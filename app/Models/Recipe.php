@@ -46,7 +46,10 @@ class Recipe extends Model
             return null;
         }
 
-        return Str::startsWith($this->image, ['http://', 'https://'])
+        return Str::startsWith(
+            $this->image,
+            ['http://', 'https://']
+        )
             ? $this->image
             : asset('storage/' . $this->image);
     }

@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/recipes', [RecipeController::class, 'store']);
 
+
     // DETAIL RESEP BERDASARKAN SLUG
     Route::get('/recipes/{recipe:slug}', [RecipeController::class, 'show']);
 

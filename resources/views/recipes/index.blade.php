@@ -12,9 +12,7 @@
 
     <h1>Daftar Resep</h1>
 
-    {{-- =========================
-         SEARCH
-    ========================== --}}
+    {{-- SEARCH --}}
     <form action="/recipes" method="GET">
 
         <input
@@ -32,33 +30,28 @@
 
     <br>
 
-    {{-- =========================
-         TAMBAH RESEP
-    ========================== --}}
+    {{-- TAMBAH RESEP --}}
     <a href="/recipes/create">
         Tambah Resep
     </a>
 
     <hr>
 
-    {{-- =========================
-         PESAN SUCCESS
-    ========================== --}}
+    {{-- PESAN SUCCESS --}}
     @if (session('success'))
+
         <p>
             {{ session('success') }}
         </p>
+
     @endif
 
-
-    {{-- =========================
-         DAFTAR RESEP
-    ========================== --}}
+    {{-- DAFTAR RESEP --}}
     @forelse ($recipes as $recipe)
 
         <div>
 
-            {{-- JUDUL --}}
+            {{-- NAMA RESEP --}}
             <h2>
                 {{ $recipe->title }}
             </h2>
@@ -75,7 +68,14 @@
                     >
                 </div>
 
+            @else
+
+                <p>
+                    Belum ada foto.
+                </p>
+
             @endif
+
 
             <br>
 
@@ -89,122 +89,67 @@
 
 
             {{-- EDIT --}}
-            <a href="/recipes/{{ $recipe->id }}/edit">
-                Edit
-            </a>
+            @can('update', $recipe)
 
-            |
+                <a href="/recipes/{{ $recipe->slug }}">
+    Lihat Detail
+</a>
 
+    @if (auth()->user()->role === 'admin' || auth()->id() === $recipe->user_id)
 
-            {{-- HAPUS --}}
-            <form
-                action="/recipes/{{ $recipe->id }}"
-                method="POST"
-                style="display: inline;"
+        <a href="/recipes/{{ $recipe->id }}/edit">
+            Edit
+        </a>
+
+        <form
+            action="/recipes/{{ $recipe->id }}"
+            method="POST"
+            style="display: inline;"
+        >
+            @csrf
+            @method('DELETE')
+
+            <button
+                type="submit"
+                onclick="return confirm('Yakin ingin menghapus resep ini?')"
             >
+                Hapus
+            </button>
+    </form>
 
-                @csrf
-
-                @method('DELETE')
-
-                <button type="submit">
-                    Hapus
-                </button>
-
-            </form>
+@endif
+            @endcan
 
         </div>
 
         <hr>
 
-
     @empty
 
-        {{-- =========================
-             JIKA TIDAK ADA RESEP
-        ========================== --}}
+        {{-- JIKA TIDAK ADA RESEP --}}
+        <p>
 
-        @if (request('search'))
+            @if (request('search'))
 
-            <p>
                 Resep "{{ request('search') }}" tidak ditemukan.
-            </p>
 
-        @else
+            @else
 
-            <p>
                 Belum ada resep.
-            </p>
 
-        @endif
+            @endif
+
+        </p>
 
     @endforelse
 
 
-    {{-- =========================
-         PAGINATION
-    ========================== --}}
-    @if ($recipes->hasPages())
+    {{-- PAGINATION --}}
+    <div>
 
-        <div style="margin-top: 20px;">
+        {{ $recipes->links() }}
 
-            {{-- PREVIOUS --}}
-            @if ($recipes->onFirstPage())
-
-                <span>
-                    Previous
-                </span>
-
-            @else
-
-                <a href="{{ $recipes->previousPageUrl() }}">
-                    Previous
-                </a>
-
-            @endif
-
-
-            {{-- NOMOR HALAMAN --}}
-            @foreach (
-                $recipes->getUrlRange(1, $recipes->lastPage())
-                as $page => $url
-            )
-
-                @if ($page == $recipes->currentPage())
-
-                    <strong>
-                        {{ $page }}
-                    </strong>
-
-                @else
-
-                    <a href="{{ $url }}">
-                        {{ $page }}
-                    </a>
-
-                @endif
-
-            @endforeach
-
-
-            {{-- NEXT --}}
-            @if ($recipes->hasMorePages())
-
-                <a href="{{ $recipes->nextPageUrl() }}">
-                    Next
-                </a>
-
-            @else
-
-                <span>
-                    Next
-                </span>
-
-            @endif
-
-        </div>
-
-    @endif
+    </div>
 
 </body>
 
