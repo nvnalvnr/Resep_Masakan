@@ -2,138 +2,130 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRecipeRequest;
-use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
     /**
-     * Menampilkan daftar resep.
+     * Menampilkan daftar resep untuk website
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $query = Recipe::with('user')
+            ->latest();
 
-        $recipes = Recipe::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('title', 'like', '%' . $search . '%');
-            })
-            ->latest()
-            ->paginate(6)
-            ->withQueryString();
+        if ($request->filled('search')) {
+            $search = $request->search;
 
-        return view('recipes.index', [
-            'recipes' => $recipes,
-            'search' => $search,
-        ]);
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $recipes = $query->paginate(12)->withQueryString();
+
+        return view('recipes.index', compact('recipes'));
     }
 
-
     /**
-     * Menampilkan form tambah resep.
+     * Form tambah resep
      */
     public function create()
     {
-        $this->authorize('create', Recipe::class);
-
         return view('recipes.create');
     }
 
     /**
-     * Menyimpan resep baru.
+     * Simpan resep
      */
-    public function store(StoreRecipeRequest $request)
+    public function store(Request $request)
     {
-        $this->authorize('create', Recipe::class);
-
-        $validated = $request->validated();
-
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')
-                ->store('recipes', 'public');
-        }
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'ingredients' => 'required|string',
+            'steps' => 'required|string',
+            'image' => 'nullable|string|max:255',
+        ]);
 
         $validated['user_id'] = auth()->id();
+        $validated['slug'] = Str::slug($validated['title']);
 
         Recipe::create($validated);
 
-        return redirect('/recipes')
+        return redirect()
+            ->route('user.dashboard')
             ->with('success', 'Resep berhasil ditambahkan.');
     }
 
     /**
-     * Menampilkan detail resep.
+     * Detail resep
      */
     public function show(Recipe $recipe)
     {
-        $this->authorize('view', $recipe);
-
-        return view('recipes.show', [
-            'recipe' => $recipe,
-        ]);
+        return view('recipes.show', compact('recipe'));
     }
 
     /**
-     * Menampilkan form edit resep.
+     * Form edit
      */
     public function edit(Recipe $recipe)
     {
-        $this->authorize('update', $recipe);
+        if (
+            $recipe->user_id !== auth()->id() &&
+            auth()->user()->role !== 'admin'
+        ) {
+            abort(403);
+        }
 
-        return view('recipes.edit', [
-            'recipe' => $recipe,
-        ]);
+        return view('recipes.edit', compact('recipe'));
     }
 
     /**
-     * Mengupdate resep.
+     * Update resep
      */
-    public function update(
-        UpdateRecipeRequest $request,
-        Recipe $recipe
-    ) {
-        $this->authorize('update', $recipe);
+    public function update(Request $request, Recipe $recipe)
+    {
+        if (
+            $recipe->user_id !== auth()->id() &&
+            auth()->user()->role !== 'admin'
+        ) {
+            abort(403);
+        }
 
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'ingredients' => 'required|string',
+            'steps' => 'required|string',
+            'image' => 'nullable|string|max:255',
+        ]);
 
-        /*
-         * Jika user memilih gambar baru,
-         * hapus gambar lama lalu simpan gambar baru.
-         */
-        if ($request->hasFile('image')) {
-
-            if ($recipe->image) {
-                Storage::disk('public')->delete($recipe->image);
-            }
-
-            $validated['image'] = $request->file('image')
-                ->store('recipes', 'public');
+        if ($validated['title'] !== $recipe->title) {
+            $validated['slug'] = Str::slug($validated['title']);
         }
 
         $recipe->update($validated);
 
-        return redirect('/recipes')
+        return redirect()
+            ->route('user.dashboard')
             ->with('success', 'Resep berhasil diperbarui.');
     }
 
     /**
-     * Menghapus resep.
+     * Hapus resep
      */
     public function destroy(Recipe $recipe)
     {
-        $this->authorize('delete', $recipe);
-
-        // Hapus gambar jika ada
-        if ($recipe->image) {
-            Storage::disk('public')->delete($recipe->image);
+        if (
+            $recipe->user_id !== auth()->id() &&
+            auth()->user()->role !== 'admin'
+        ) {
+            abort(403);
         }
 
         $recipe->delete();
 
-        return redirect('/recipes')
+        return redirect()
+            ->route('user.dashboard')
             ->with('success', 'Resep berhasil dihapus.');
     }
 }

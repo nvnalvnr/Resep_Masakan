@@ -8,44 +8,50 @@ use App\Models\User;
 class RecipePolicy
 {
     /**
-     * Menentukan apakah user boleh melihat daftar resep.
+     * Admin boleh melakukan semua aksi terhadap resep.
      */
-    public function viewAny(User $user): bool
+    public function before(User $user, string $ability): ?bool
     {
-        return true;
+        if ($user->role === 'admin') {
+            return true;
+        }
+
+        return null;
     }
 
+
     /**
-     * Menentukan apakah user boleh melihat detail resep.
+     * User boleh melihat resep.
      */
     public function view(User $user, Recipe $recipe): bool
     {
         return true;
     }
 
+
     /**
-     * Menentukan apakah user boleh membuat resep.
+     * User boleh membuat resep.
      */
     public function create(User $user): bool
     {
         return true;
     }
 
+
     /**
-     * Menentukan apakah user boleh mengubah resep.
+     * User hanya boleh mengubah resep miliknya.
      */
     public function update(User $user, Recipe $recipe): bool
     {
-        return $user->role === 'admin'
-            || $user->id === $recipe->user_id;
+        return $recipe->user_id === $user->id;
     }
 
+
     /**
-     * Menentukan apakah user boleh menghapus resep.
+     * User hanya boleh menghapus resep miliknya.
      */
     public function delete(User $user, Recipe $recipe): bool
     {
-        return $user->role === 'admin'
-            || $user->id === $recipe->user_id;
+        return $recipe->user_id === $user->id;
     }
 }
