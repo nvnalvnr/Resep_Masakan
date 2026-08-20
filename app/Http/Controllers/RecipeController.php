@@ -8,124 +8,216 @@ use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
-    /**
-     * Menampilkan daftar resep untuk website
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | DAFTAR RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function index(Request $request)
     {
-        $query = Recipe::with('user')
-            ->latest();
+        $search = $request->input('search');
 
-        if ($request->filled('search')) {
-            $search = $request->search;
-
-            $query->where('title', 'like', '%' . $search . '%');
-        }
-
-        $recipes = $query->paginate(12)->withQueryString();
+        $recipes = Recipe::with('user')
+            ->when($search, function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
 
         return view('recipes.index', compact('recipes'));
     }
 
-    /**
-     * Form tambah resep
-     */
+
+    /*
+    |--------------------------------------------------------------------------
+    | DETAIL RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    public function show($slug)
+    {
+        $recipe = Recipe::with('user')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        return view('recipes.show', compact('recipe'));
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FORM TAMBAH RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function create()
     {
         return view('recipes.create');
     }
 
-    /**
-     * Simpan resep
-     */
+
+    /*
+    |--------------------------------------------------------------------------
+    | SIMPAN RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'ingredients' => 'required|string',
             'steps' => 'required|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|string|max:1000',
         ]);
 
-        $validated['user_id'] = auth()->id();
-        $validated['slug'] = Str::slug($validated['title']);
 
-        Recipe::create($validated);
+        $slug = Str::slug($validated['title']);
+
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Recipe::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+
+        Recipe::create([
+            'user_id' => auth()->id(),
+            'title' => $validated['title'],
+            'slug' => $slug,
+            'ingredients' => $validated['ingredients'],
+            'steps' => $validated['steps'],
+            'image' => $validated['image'] ?? null,
+        ]);
+
 
         return redirect()
-            ->route('user.dashboard')
+            ->route('user.recipes')
             ->with('success', 'Resep berhasil ditambahkan.');
     }
 
-    /**
-     * Detail resep
-     */
-    public function show(Recipe $recipe)
-    {
-        return view('recipes.show', compact('recipe'));
-    }
 
-    /**
-     * Form edit
-     */
-    public function edit(Recipe $recipe)
+    /*
+    |--------------------------------------------------------------------------
+    | FORM EDIT RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    public function edit($slug)
     {
-        if (
-            $recipe->user_id !== auth()->id() &&
-            auth()->user()->role !== 'admin'
-        ) {
-            abort(403);
+        $recipe = Recipe::where('slug', $slug)
+            ->firstOrFail();
+
+
+        /*
+        | User hanya boleh edit resep miliknya sendiri.
+        */
+
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'Kamu tidak memiliki izin untuk mengedit resep ini.');
         }
+
 
         return view('recipes.edit', compact('recipe'));
     }
 
-    /**
-     * Update resep
-     */
-    public function update(Request $request, Recipe $recipe)
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    public function update(Request $request, $slug)
     {
-        if (
-            $recipe->user_id !== auth()->id() &&
-            auth()->user()->role !== 'admin'
-        ) {
-            abort(403);
+        $recipe = Recipe::where('slug', $slug)
+            ->firstOrFail();
+
+
+        /*
+        | User hanya boleh update resep miliknya sendiri.
+        */
+
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'Kamu tidak memiliki izin untuk mengubah resep ini.');
         }
+
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'ingredients' => 'required|string',
             'steps' => 'required|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|string|max:1000',
         ]);
 
-        if ($validated['title'] !== $recipe->title) {
-            $validated['slug'] = Str::slug($validated['title']);
+
+        $newSlug = Str::slug($validated['title']);
+
+
+        if ($newSlug !== $recipe->slug) {
+
+            $originalSlug = $newSlug;
+            $counter = 1;
+
+            while (
+                Recipe::where('slug', $newSlug)
+                    ->where('id', '!=', $recipe->id)
+                    ->exists()
+            ) {
+                $newSlug = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+
+        } else {
+            $newSlug = $recipe->slug;
         }
 
-        $recipe->update($validated);
+
+        $recipe->update([
+            'title' => $validated['title'],
+            'slug' => $newSlug,
+            'ingredients' => $validated['ingredients'],
+            'steps' => $validated['steps'],
+            'image' => $validated['image'] ?? null,
+        ]);
+
 
         return redirect()
-            ->route('user.dashboard')
+            ->route('recipes.show', $recipe->slug)
             ->with('success', 'Resep berhasil diperbarui.');
     }
 
-    /**
-     * Hapus resep
-     */
-    public function destroy(Recipe $recipe)
+
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    public function destroy($slug)
     {
-        if (
-            $recipe->user_id !== auth()->id() &&
-            auth()->user()->role !== 'admin'
-        ) {
-            abort(403);
+        $recipe = Recipe::where('slug', $slug)
+            ->firstOrFail();
+
+
+        /*
+        | User hanya boleh hapus resep miliknya sendiri.
+        */
+
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'Kamu tidak memiliki izin untuk menghapus resep ini.');
         }
+
 
         $recipe->delete();
 
+
         return redirect()
-            ->route('user.dashboard')
+            ->route('user.recipes')
             ->with('success', 'Resep berhasil dihapus.');
     }
 }

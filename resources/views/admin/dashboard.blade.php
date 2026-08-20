@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@
 
         /* =========================================
            LAYOUT
-        ========================================= */
+        ========================================== */
 
         .layout {
             display: flex;
@@ -39,7 +40,7 @@
 
         /* =========================================
            SIDEBAR
-        ========================================= */
+        ========================================== */
 
         .sidebar {
             width: 245px;
@@ -170,7 +171,7 @@
 
         /* =========================================
            SIDEBAR BOTTOM
-        ========================================= */
+        ========================================== */
 
         .sidebar-bottom {
             position: absolute;
@@ -273,7 +274,7 @@
 
         /* =========================================
            MAIN
-        ========================================= */
+        ========================================== */
 
         .main {
             margin-left: 245px;
@@ -290,7 +291,7 @@
 
         /* =========================================
            TOPBAR
-        ========================================= */
+        ========================================== */
 
         .topbar {
             display: flex;
@@ -334,7 +335,7 @@
 
         /* =========================================
            BANNER
-        ========================================= */
+        ========================================== */
 
         .banner {
             background: linear-gradient(
@@ -387,7 +388,7 @@
 
         /* =========================================
            STATISTICS
-        ========================================= */
+        ========================================== */
 
         .stats {
             display: grid;
@@ -475,7 +476,7 @@
 
         /* =========================================
            CONTENT GRID
-        ========================================= */
+        ========================================== */
 
         .content-grid {
             display: grid;
@@ -492,7 +493,7 @@
 
         /* =========================================
            SECTION CARD
-        ========================================= */
+        ========================================== */
 
         .section-card {
             background: white;
@@ -534,7 +535,7 @@
 
         /* =========================================
            MENU CARD
-        ========================================= */
+        ========================================== */
 
         .menu-card {
             display: flex;
@@ -639,7 +640,7 @@
 
         /* =========================================
            INFORMATION
-        ========================================= */
+        ========================================== */
 
         .info-box {
             background: #fff7ed;
@@ -695,7 +696,7 @@
 
         /* =========================================
            FOOTER
-        ========================================= */
+        ========================================== */
 
         footer {
             text-align: center;
@@ -710,7 +711,7 @@
 
         /* =========================================
            RESPONSIVE
-        ========================================= */
+        ========================================== */
 
         @media (max-width: 1000px) {
 
@@ -901,6 +902,23 @@
 
                 <span>
                     Tambah Resep
+                </span>
+
+            </a>
+
+
+            <!-- DATA USER -->
+
+            <a
+                href="{{ route('admin.users.index') }}"
+            >
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                <span>
+                    Data User
                 </span>
 
             </a>
@@ -1107,23 +1125,28 @@
 
 
 
-            <!-- RESEP TERBARU -->
+            <!-- RESEP HARI INI -->
 
             <div class="stat-card">
 
                 <div class="stat-icon green">
-                    ❤️
+                    🍽️
                 </div>
 
 
                 <div class="stat-content">
 
                     <span>
-                        TOTAL RESEP
+                        RESEP HARI INI
                     </span>
 
                     <strong>
-                        {{ \App\Models\Recipe::count() }}
+                        {{
+                            \App\Models\Recipe::whereDate(
+                                'created_at',
+                                today()
+                            )->count()
+                        }}
                     </strong>
 
                 </div>
@@ -1233,6 +1256,41 @@
 
 
 
+                <!-- DATA USER -->
+
+                <a
+                    href="{{ route('admin.users.index') }}"
+                    class="menu-card"
+                >
+
+                    <div class="menu-card-icon blue">
+
+                        👥
+
+                    </div>
+
+
+                    <div class="menu-card-info">
+
+                        <strong>
+                            Data User
+                        </strong>
+
+                        <span>
+                            Lihat pengguna yang terdaftar
+                        </span>
+
+                    </div>
+
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
                 <!-- LIHAT WEBSITE -->
 
                 <a
@@ -1290,12 +1348,13 @@
                 <div class="info-box">
 
                     <h4>
-                        👨‍🍳 Panel Administrator
+                        Panel Administrator
                     </h4>
 
                     <p>
                         Dari halaman ini kamu dapat mengelola
-                        seluruh resep yang dibuat oleh pengguna.
+                        seluruh resep dan pengguna yang ada
+                        di website ResepKu.
                     </p>
 
                 </div>

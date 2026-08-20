@@ -26,7 +26,9 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('recipes.show', compact('recipe'));
+        $recipe->load('user');
+
+        return view('admin.recipes.show', compact('recipe'));
     }
 
     /**
@@ -34,7 +36,7 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return view('recipes.edit', compact('recipe'));
+        return view('admin.recipes.edit', compact('recipe'));
     }
 
     /**
@@ -49,19 +51,34 @@ class RecipeController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Upload gambar baru
+        |--------------------------------------------------------------------------
+        */
+
         if ($request->hasFile('image')) {
 
+            // Hapus gambar lama jika ada
             if ($recipe->image) {
                 Storage::disk('public')->delete($recipe->image);
             }
 
+            // Simpan gambar baru
             $validated['image'] = $request->file('image')
                 ->store('recipes', 'public');
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Update data recipe
+        |--------------------------------------------------------------------------
+        */
+
         $recipe->update($validated);
 
-        return redirect('/admin/recipes')
+        return redirect()
+            ->route('admin.recipes.index')
             ->with('success', 'Resep berhasil diperbarui.');
     }
 
@@ -70,13 +87,26 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Hapus gambar recipe
+        |--------------------------------------------------------------------------
+        */
+
         if ($recipe->image) {
             Storage::disk('public')->delete($recipe->image);
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Hapus recipe
+        |--------------------------------------------------------------------------
+        */
+
         $recipe->delete();
 
-        return redirect('/admin/recipes')
+        return redirect()
+            ->route('admin.recipes.index')
             ->with('success', 'Resep berhasil dihapus.');
     }
 }

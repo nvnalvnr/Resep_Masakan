@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
@@ -10,175 +11,85 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| FRONTEND
+| WEBSITE
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [
-    RecipeController::class,
-    'index'
-])->name('home');
+// Halaman utama
+Route::get('/', [RecipeController::class, 'index'])
+    ->name('recipes.index');
 
-/*
-|--------------------------------------------------------------------------
-| DEFAULT DASHBOARD
-|--------------------------------------------------------------------------
-*/
+// Daftar semua resep
+Route::get('/recipes', [RecipeController::class, 'index'])
+    ->name('recipes.list');
 
-Route::get('/dashboard', function () {
-
-    if (auth()->check()) {
-
-        if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-
-        return redirect()->route('user.dashboard');
-    }
-
-    return redirect()->route('login');
-
-})->middleware('auth')->name('dashboard');
+// Detail resep
+Route::get('/recipes/{slug}', [RecipeController::class, 'show'])
+    ->name('recipes.show');
 
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN
+| USER
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth', 'verified', 'admin'])
-    ->prefix('admin')
-    ->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-        /*
-        |--------------------------------------------------------------------------
-        | ADMIN DASHBOARD
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | DASHBOARD USER
+    |--------------------------------------------------------------------------
+    */
 
-        Route::get('/dashboard', [
-            AdminDashboardController::class,
-            'index'
-        ])->name('admin.dashboard');
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])
+        ->name('user.dashboard');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | ADMIN RECIPE
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | RESEP SAYA
+    |--------------------------------------------------------------------------
+    */
 
-        // Daftar semua resep
-        Route::get('/recipes', [
-            AdminRecipeController::class,
-            'index'
-        ])->name('admin.recipes.index');
+    Route::get('/dashboard/resep-saya', [UserDashboardController::class, 'myRecipes'])
+        ->name('user.recipes');
 
 
-        // Form edit resep
-        Route::get('/recipes/{recipe}/edit', [
-            AdminRecipeController::class,
-            'edit'
-        ])->name('admin.recipes.edit');
+    /*
+    |--------------------------------------------------------------------------
+    | TAMBAH RESEP USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/dashboard/resep/tambah', [RecipeController::class, 'create'])
+        ->name('recipes.create');
+
+    Route::post('/dashboard/resep', [RecipeController::class, 'store'])
+        ->name('recipes.store');
 
 
-        // Update resep
-        Route::put('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'update'
-        ])->name('admin.recipes.update');
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT RESEP USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/dashboard/resep/{slug}/edit', [RecipeController::class, 'edit'])
+        ->name('recipes.edit');
+
+    Route::put('/dashboard/resep/{slug}', [RecipeController::class, 'update'])
+        ->name('recipes.update');
 
 
-        // Hapus resep
-        Route::delete('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'destroy'
-        ])->name('admin.recipes.destroy');
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP USER
+    |--------------------------------------------------------------------------
+    */
 
-
-        // Detail resep
-        Route::get('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'show'
-        ])->name('admin.recipes.show');
-
-    });
-
-
-/*
-|--------------------------------------------------------------------------
-| USER DASHBOARD
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth', 'verified'])
-    ->prefix('user')
-    ->group(function () {
-
-        Route::get('/dashboard', [
-            UserDashboardController::class,
-            'index'
-        ])->name('user.dashboard');
-
-    });
-
-
-/*
-|--------------------------------------------------------------------------
-| USER RECIPE
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware('auth')->group(function () {
-
-    // Daftar resep
-    Route::get('/recipes', [
-        RecipeController::class,
-        'index'
-    ])->name('recipes.index');
-
-
-    // Form tambah resep
-    Route::get('/recipes/create', [
-        RecipeController::class,
-        'create'
-    ])->name('recipes.create');
-
-
-    // Simpan resep
-    Route::post('/recipes', [
-        RecipeController::class,
-        'store'
-    ])->name('recipes.store');
-
-
-    // Detail resep
-    Route::get('/recipes/{recipe:slug}', [
-        RecipeController::class,
-        'show'
-    ])->name('recipes.show');
-
-
-    // Form edit resep
-    Route::get('/recipes/{recipe}/edit', [
-        RecipeController::class,
-        'edit'
-    ])->name('recipes.edit');
-
-
-    // Update resep
-    Route::put('/recipes/{recipe}', [
-        RecipeController::class,
-        'update'
-    ])->name('recipes.update');
-
-
-    // Hapus resep
-    Route::delete('/recipes/{recipe}', [
-        RecipeController::class,
-        'destroy'
-    ])->name('recipes.destroy');
+    Route::delete('/dashboard/resep/{slug}', [RecipeController::class, 'destroy'])
+        ->name('recipes.destroy');
 
 
     /*
@@ -187,24 +98,86 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/profile', [
-        ProfileController::class,
-        'edit'
-    ])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
 
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 
-    Route::patch('/profile', [
-        ProfileController::class,
-        'update'
-    ])->name('profile.update');
-
-
-    Route::delete('/profile', [
-        ProfileController::class,
-        'destroy'
-    ])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
 
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        /*
+        |--------------------------------------------------------------------------
+        | DASHBOARD ADMIN
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])
+            ->name('dashboard');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | RESEP ADMIN
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/recipes', [AdminRecipeController::class, 'index'])
+            ->name('recipes.index');
+
+        Route::get('/recipes/create', [AdminRecipeController::class, 'create'])
+            ->name('recipes.create');
+
+        Route::post('/recipes', [AdminRecipeController::class, 'store'])
+            ->name('recipes.store');
+
+        Route::get('/recipes/{recipe}', [AdminRecipeController::class, 'show'])
+            ->name('recipes.show');
+
+        Route::get('/recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])
+            ->name('recipes.edit');
+
+        Route::put('/recipes/{recipe}', [AdminRecipeController::class, 'update'])
+            ->name('recipes.update');
+
+        Route::delete('/recipes/{recipe}', [AdminRecipeController::class, 'destroy'])
+            ->name('recipes.destroy');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | USER MANAGEMENT
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/users', [AdminUserController::class, 'index'])
+            ->name('users.index');
+
+        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])
+            ->name('users.edit');
+
+        Route::put('/users/{user}', [AdminUserController::class, 'update'])
+            ->name('users.update');
+
+        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])
+            ->name('users.destroy');
+
+    });
 
 
 /*
@@ -213,4 +186,4 @@ Route::middleware('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
