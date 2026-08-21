@@ -5,9 +5,16 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Data User - ResepKu</title>
+    <title>
+        Data User | ResepKu
+    </title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
 
@@ -19,7 +26,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f8f6f3;
+            background: #f7f6f3;
             color: #292524;
         }
 
@@ -27,340 +34,566 @@
             text-decoration: none;
         }
 
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
         .layout {
-            display: flex;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
 
         .sidebar {
-            width: 245px;
-            background: #fff;
-            border-right: 1px solid #eee8e1;
-            padding: 25px 18px;
-
             position: fixed;
+
             left: 0;
             top: 0;
             bottom: 0;
 
-            z-index: 10;
+            width: 235px;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e7e5e4;
+
+            padding: 25px 16px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            z-index: 50;
         }
+
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 10px 30px;
+            padding: 0 12px;
+
+            margin-bottom: 35px;
         }
 
-        .brand-icon {
-            width: 42px;
-            height: 42px;
 
-            background: #ffedd5;
-            border-radius: 12px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .brand a {
+            color: #292524;
 
             font-size: 22px;
+
+            font-weight: 700;
         }
 
-        .brand-text h2 {
-            font-size: 17px;
+
+        .brand a span {
+            color: #ea580c;
         }
 
-        .brand-text span {
-            font-size: 11px;
+
+        .brand small {
+            display: block;
+
             color: #a8a29e;
-        }
 
-        .menu-title {
             font-size: 10px;
-            font-weight: bold;
 
+            margin-top: 5px;
+        }
+
+
+        .menu-label {
             color: #a8a29e;
 
-            margin: 5px 10px 10px;
+            font-size: 10px;
+
+            font-weight: 600;
 
             text-transform: uppercase;
-            letter-spacing: 1px;
+
+            letter-spacing: .6px;
+
+            margin: 0 12px 10px;
         }
+
 
         .menu {
             display: flex;
+
             flex-direction: column;
-            gap: 6px;
+
+            gap: 4px;
         }
+
 
         .menu a {
             display: flex;
+
             align-items: center;
 
-            gap: 12px;
+            gap: 11px;
 
-            padding: 12px 13px;
+            padding: 11px 12px;
+
+            border-radius: 7px;
 
             color: #57534e;
-
-            border-radius: 10px;
 
             font-size: 13px;
 
             transition: .2s;
         }
 
+
         .menu a:hover {
             background: #fff7ed;
+
             color: #ea580c;
         }
+
 
         .menu a.active {
             background: #ffedd5;
+
             color: #ea580c;
-            font-weight: bold;
+
+            font-weight: 600;
         }
+
 
         .menu-icon {
-            width: 28px;
+            width: 20px;
+
+            min-width: 20px;
+
             text-align: center;
-            font-size: 17px;
+
+            font-size: 15px;
         }
 
-        /* BOTTOM */
+
+        /* =====================================================
+           SIDEBAR BOTTOM
+        ===================================================== */
 
         .sidebar-bottom {
-            position: absolute;
+            margin-top: auto;
 
-            left: 18px;
-            right: 18px;
-            bottom: 20px;
+            padding-top: 15px;
+
+            border-top: 1px solid #eeeae6;
         }
 
-        .profile-mini {
-            background: #fafaf9;
 
-            border: 1px solid #eee8e1;
-
-            border-radius: 12px;
-
-            padding: 12px;
-
+        .profile-box {
             display: flex;
+
             align-items: center;
 
             gap: 10px;
 
-            margin-bottom: 10px;
+            padding: 9px 10px;
+
+            margin-bottom: 8px;
         }
 
+
         .avatar {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
 
             border-radius: 50%;
 
-            background: #fed7aa;
+            background: #ea580c;
+
+            color: #ffffff;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            color: #9a3412;
+            font-size: 13px;
 
-            font-weight: bold;
+            font-weight: 600;
+
+            flex-shrink: 0;
         }
 
-        .profile-mini-info {
-            overflow: hidden;
+
+        .profile-info {
+            min-width: 0;
         }
 
-        .profile-mini strong {
-            display: block;
+
+        .profile-name {
+            color: #292524;
 
             font-size: 12px;
 
+            font-weight: 600;
+
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
         }
 
-        .profile-mini span {
-            font-size: 10px;
+
+        .profile-role {
             color: #a8a29e;
+
+            font-size: 10px;
+
+            margin-top: 3px;
         }
 
-        .logout-btn {
+
+        .logout-button {
             width: 100%;
 
             border: none;
 
             background: #fff1f2;
+
             color: #be123c;
 
-            padding: 10px;
+            padding: 10px 12px;
 
-            border-radius: 9px;
+            border-radius: 7px;
+
+            font-size: 12px;
 
             cursor: pointer;
 
-            font-size: 12px;
+            text-align: left;
+
+            transition: .2s;
         }
 
-        /* MAIN */
+
+        .logout-button:hover {
+            background: #ffe4e6;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
-            margin-left: 245px;
+            margin-left: 235px;
 
-            width: calc(100% - 245px);
-
-            padding: 30px 35px 50px;
+            min-height: 100vh;
         }
 
-        /* HEADER */
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
 
         .topbar {
+            height: 68px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e7e5e4;
+
+            padding: 0 32px;
+
             display: flex;
 
             align-items: center;
 
             justify-content: space-between;
-
-            margin-bottom: 25px;
         }
 
-        .welcome h1 {
-            font-size: 25px;
-            margin-bottom: 6px;
+
+        .page-name {
+            font-size: 17px;
+
+            font-weight: 600;
         }
 
-        .welcome p {
-            font-size: 13px;
+
+        .topbar-right {
             color: #a8a29e;
+
+            font-size: 11px;
         }
 
-        .back-btn {
-            background: #fff;
 
-            border: 1px solid #eee8e1;
+        /* =====================================================
+           CONTENT
+        ===================================================== */
 
-            color: #57534e;
+        .content {
+            padding: 30px 32px 50px;
 
-            padding: 10px 15px;
-
-            border-radius: 9px;
-
-            font-size: 12px;
+            max-width: 1250px;
         }
 
-        .back-btn:hover {
-            background: #fff7ed;
-            color: #ea580c;
-        }
 
-        /* CARD */
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
 
-        .card {
-            background: #fff;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 16px;
-
-            padding: 22px;
-        }
-
-        .card-header {
+        .page-header {
             display: flex;
+
+            align-items: center;
 
             justify-content: space-between;
 
+            gap: 20px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .page-header h1 {
+            font-size: 24px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+
+        .page-header p {
+            color: #a8a29e;
+
+            font-size: 11px;
+        }
+
+
+        .add-user-button {
+            display: inline-flex;
+
             align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            background: #ea580c;
+
+            color: #ffffff;
+
+            padding: 10px 14px;
+
+            border-radius: 7px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            transition: .2s;
+        }
+
+
+        .add-user-button:hover {
+            background: #c2410c;
+        }
+
+
+        /* =====================================================
+           ALERT
+        ===================================================== */
+
+        .alert {
+            border-radius: 7px;
+
+            padding: 11px 14px;
+
+            margin-bottom: 18px;
+
+            font-size: 11px;
+        }
+
+
+        .alert-success {
+            background: #f0fdf4;
+
+            border: 1px solid #bbf7d0;
+
+            color: #15803d;
+        }
+
+
+        .alert-error {
+            background: #fff1f2;
+
+            border: 1px solid #fecdd3;
+
+            color: #be123c;
+        }
+
+
+        /* =====================================================
+           SUMMARY
+        ===================================================== */
+
+        .summary {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
 
             margin-bottom: 20px;
         }
 
-        .card-header h2 {
-            font-size: 17px;
+
+        .summary-card {
+            background: #ffffff;
+
+            border: 1px solid #e7e5e4;
+
+            border-radius: 9px;
+
+            padding: 17px;
         }
 
-        .card-header span {
-            font-size: 12px;
+
+        .summary-label {
             color: #a8a29e;
+
+            font-size: 10px;
+
+            margin-bottom: 8px;
+
+            text-transform: uppercase;
+
+            font-weight: 600;
         }
 
-        /* ALERT */
 
-        .alert-success {
-            background: #dcfce7;
+        .summary-number {
+            font-size: 23px;
 
-            color: #166534;
+            font-weight: 600;
+        }
+
+
+        .summary-description {
+            color: #a8a29e;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           TABLE CARD
+        ===================================================== */
+
+        .table-card {
+            background: #ffffff;
+
+            border: 1px solid #e7e5e4;
 
             border-radius: 10px;
 
-            padding: 12px 15px;
-
-            font-size: 12px;
-
-            margin-bottom: 15px;
+            overflow: hidden;
         }
 
-        .alert-error {
-            background: #ffe4e6;
 
-            color: #be123c;
+        .table-header {
+            display: flex;
 
-            border-radius: 10px;
+            align-items: center;
 
-            padding: 12px 15px;
+            justify-content: space-between;
 
-            font-size: 12px;
+            padding: 17px 18px;
 
-            margin-bottom: 15px;
+            border-bottom: 1px solid #eeeae6;
         }
 
-        /* TABLE */
+
+        .table-title {
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .table-subtitle {
+            color: #a8a29e;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+        }
+
 
         .table-wrapper {
+            width: 100%;
+
             overflow-x: auto;
         }
+
 
         table {
             width: 100%;
 
             border-collapse: collapse;
+
+            min-width: 720px;
         }
+
 
         th {
             background: #fafaf9;
 
             color: #78716c;
 
-            font-size: 11px;
+            font-size: 10px;
+
+            font-weight: 600;
 
             text-align: left;
 
-            padding: 13px;
+            padding: 12px 15px;
 
-            border-bottom: 1px solid #eee8e1;
+            border-bottom: 1px solid #eeeae6;
         }
+
 
         td {
-            padding: 14px 13px;
+            padding: 13px 15px;
 
-            border-bottom: 1px solid #f5f5f4;
+            border-bottom: 1px solid #f0efed;
 
-            font-size: 12px;
+            font-size: 11px;
+
+            vertical-align: middle;
         }
 
-        tr:last-child td {
+
+        tbody tr:hover {
+            background: #fffcf9;
+        }
+
+
+        tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .user-info {
+
+        .user-cell {
             display: flex;
 
             align-items: center;
@@ -368,164 +601,287 @@
             gap: 10px;
         }
 
+
         .user-avatar {
-            width: 35px;
-            height: 35px;
+            width: 34px;
+
+            height: 34px;
 
             border-radius: 50%;
 
-            background: #ffedd5;
+            background: #fff1e8;
+
+            color: #c2410c;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
-            color: #9a3412;
+            font-size: 11px;
 
-            font-weight: bold;
+            font-weight: 700;
+
+            flex-shrink: 0;
         }
+
+
+        .user-details {
+            min-width: 0;
+        }
+
 
         .user-name {
-            font-weight: bold;
-            margin-bottom: 3px;
+            color: #292524;
+
+            font-size: 11px;
+
+            font-weight: 600;
         }
+
 
         .user-email {
             color: #a8a29e;
-            font-size: 11px;
+
+            font-size: 9px;
+
+            margin-top: 3px;
         }
 
-        /* ROLE */
 
-        .role {
+        .role-badge {
             display: inline-block;
 
-            padding: 5px 9px;
+            padding: 5px 8px;
 
             border-radius: 20px;
 
-            font-size: 10px;
+            font-size: 9px;
 
-            font-weight: bold;
+            font-weight: 600;
         }
 
-        .role-admin {
-            background: #f3e8ff;
-            color: #7e22ce;
-        }
 
         .role-user {
-            background: #dbeafe;
-            color: #1d4ed8;
+            background: #eff6ff;
+
+            color: #2563eb;
         }
 
-        /* RECIPE */
 
-        .recipe-count {
-            font-weight: bold;
+        .role-admin {
+            background: #fff1e8;
+
+            color: #ea580c;
         }
 
-        /* BUTTON */
 
-        .actions {
+        .date-text {
+            color: #78716c;
+
+            font-size: 10px;
+        }
+
+
+        .action-group {
             display: flex;
+
+            align-items: center;
+
             gap: 6px;
         }
 
-        .btn {
+
+        .action-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 7px 9px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .edit-button {
+            background: #eff6ff;
+
+            color: #2563eb;
+        }
+
+
+        .edit-button:hover {
+            background: #dbeafe;
+        }
+
+
+        .delete-button {
             border: none;
 
-            padding: 7px 10px;
+            background: #fff1f2;
 
-            border-radius: 7px;
-
-            font-size: 10px;
+            color: #be123c;
 
             cursor: pointer;
         }
 
-        .btn-edit {
-            background: #ffedd5;
-            color: #c2410c;
-        }
 
-        .btn-delete {
+        .delete-button:hover {
             background: #ffe4e6;
-            color: #be123c;
         }
 
-        .btn:hover {
-            opacity: .8;
+
+        .you-badge {
+            display: inline-block;
+
+            margin-left: 5px;
+
+            padding: 3px 5px;
+
+            background: #f5f5f4;
+
+            color: #78716c;
+
+            border-radius: 4px;
+
+            font-size: 8px;
         }
 
-        /* EMPTY */
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
 
         .empty {
             text-align: center;
 
-            padding: 40px;
-
-            color: #a8a29e;
-
-            font-size: 13px;
+            padding: 60px 20px;
         }
 
-        /* PAGINATION */
 
-        .pagination {
-            margin-top: 20px;
+        .empty-icon {
+            font-size: 34px;
 
+            margin-bottom: 12px;
+        }
+
+
+        .empty h2 {
+            font-size: 17px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .empty p {
+            color: #a8a29e;
+
+            font-size: 11px;
+
+            margin-bottom: 17px;
+        }
+
+
+        /* =====================================================
+           PAGINATION
+        ===================================================== */
+
+        .pagination-wrapper {
+            padding: 16px 18px;
+
+            border-top: 1px solid #eeeae6;
+        }
+
+
+        .pagination-wrapper nav {
             display: flex;
 
             justify-content: center;
         }
 
-        .pagination nav {
-            display: flex;
-            gap: 5px;
+
+        .pagination-wrapper svg {
+            width: 18px;
+
+            height: 18px;
         }
 
-        /* FOOTER */
 
-        footer {
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
             text-align: center;
-
-            padding-top: 30px;
 
             color: #a8a29e;
 
-            font-size: 11px;
+            font-size: 9px;
+
+            padding-top: 25px;
         }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .summary {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
 
         @media (max-width: 750px) {
 
             .sidebar {
-                width: 70px;
-                padding: 18px 10px;
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+                border-right: none;
+
+                border-bottom: 1px solid #e7e5e4;
             }
 
-            .brand-text,
-            .menu-title,
-            .menu a span:not(.menu-icon),
-            .sidebar-bottom {
-                display: none;
-            }
-
-            .brand {
-                justify-content: center;
-            }
-
-            .menu a {
-                justify-content: center;
-            }
 
             .main {
-                margin-left: 70px;
+                margin-left: 0;
+            }
 
-                width: calc(100% - 70px);
 
-                padding: 22px 18px;
+            .topbar {
+                padding: 0 18px;
+            }
+
+
+            .content {
+                padding: 22px 18px 40px;
+            }
+
+
+            .page-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .summary {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -537,43 +893,45 @@
 
 <body>
 
-
 <div class="layout">
 
 
-    <!-- SIDEBAR -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="sidebar">
 
 
         <div class="brand">
 
-            <div class="brand-icon">
-                🍳
-            </div>
+            <a href="{{ route('admin.dashboard') }}">
 
-            <div class="brand-text">
+                Resep<span>Ku</span>
 
-                <h2>
-                    ResepKu
-                </h2>
+            </a>
 
-                <span>
-                    Admin Panel
-                </span>
 
-            </div>
+            <small>
+
+                Website Resep Masakan
+
+            </small>
 
         </div>
 
 
-        <div class="menu-title">
+        <div class="menu-label">
+
             Menu Utama
+
         </div>
 
 
         <nav class="menu">
 
+
+            <!-- DASHBOARD -->
 
             <a href="{{ route('admin.dashboard') }}">
 
@@ -588,6 +946,8 @@
             </a>
 
 
+            <!-- DAFTAR RESEP -->
+
             <a href="{{ route('admin.recipes.index') }}">
 
                 <span class="menu-icon">
@@ -601,10 +961,12 @@
             </a>
 
 
-            <a href="{{ route('recipes.create') }}">
+            <!-- TAMBAH RESEP -->
+
+            <a href="{{ route('admin.recipes.create') }}">
 
                 <span class="menu-icon">
-                    ➕
+                    ＋
                 </span>
 
                 <span>
@@ -613,6 +975,8 @@
 
             </a>
 
+
+            <!-- DATA USER -->
 
             <a
                 href="{{ route('admin.users.index') }}"
@@ -630,10 +994,15 @@
             </a>
 
 
-            <a href="{{ route('recipes.index') }}">
+            <!-- LIHAT WEBSITE -->
+
+            <a
+                href="{{ route('recipes.index') }}"
+                target="_blank"
+            >
 
                 <span class="menu-icon">
-                    🌐
+                    ↗
                 </span>
 
                 <span>
@@ -651,7 +1020,8 @@
         <div class="sidebar-bottom">
 
 
-            <div class="profile-mini">
+            <div class="profile-box">
+
 
                 <div class="avatar">
 
@@ -659,17 +1029,26 @@
 
                 </div>
 
-                <div class="profile-mini-info">
 
-                    <strong>
+                <div class="profile-info">
+
+
+                    <div class="profile-name">
+
                         {{ auth()->user()->name }}
-                    </strong>
 
-                    <span>
+                    </div>
+
+
+                    <div class="profile-role">
+
                         Administrator
-                    </span>
+
+                    </div>
+
 
                 </div>
+
 
             </div>
 
@@ -681,12 +1060,15 @@
 
                 @csrf
 
+
                 <button
                     type="submit"
-                    class="logout-btn"
+                    class="logout-button"
                 >
 
-                    🚪 Keluar
+                    🚪
+                    &nbsp;
+                    Keluar
 
                 </button>
 
@@ -699,299 +1081,518 @@
     </aside>
 
 
-
-    <!-- MAIN -->
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
     <main class="main">
 
 
         <!-- TOPBAR -->
 
-        <div class="topbar">
+        <header class="topbar">
 
 
-            <div class="welcome">
+            <div class="page-name">
 
-                <h1>
-                    Data User
-                </h1>
-
-                <p>
-                    Kelola pengguna yang terdaftar di website ResepKu.
-                </p>
+                Data User
 
             </div>
 
 
-            <a
-                href="{{ route('admin.dashboard') }}"
-                class="back-btn"
-            >
-                ← Kembali ke Dashboard
-            </a>
+            <div class="topbar-right">
 
-
-        </div>
-
-
-
-        <!-- CARD -->
-
-        <div class="card">
-
-
-            <div class="card-header">
-
-                <h2>
-                    Daftar Pengguna
-                </h2>
-
-                <span>
-                    {{ $users->total() }} pengguna
-                </span>
+                {{ now()->format('d M Y') }}
 
             </div>
 
 
-            <!-- SUCCESS -->
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- =================================================
+                 SUCCESS
+            ================================================== -->
 
             @if(session('success'))
 
-                <div class="alert-success">
+                <div class="alert alert-success">
+
+                    ✓
                     {{ session('success') }}
+
                 </div>
 
             @endif
 
 
-            <!-- ERROR -->
+            <!-- =================================================
+                 ERROR
+            ================================================== -->
 
             @if(session('error'))
 
-                <div class="alert-error">
+                <div class="alert alert-error">
+
+                    !
                     {{ session('error') }}
+
                 </div>
 
             @endif
 
 
-            <!-- TABLE -->
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
 
-            @if($users->count() > 0)
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    USER
-                                </th>
-
-                                <th>
-                                    ROLE
-                                </th>
-
-                                <th>
-                                    JUMLAH RESEP
-                                </th>
-
-                                <th>
-                                    TERDAFTAR
-                                </th>
-
-                                <th>
-                                    AKSI
-                                </th>
-
-                            </tr>
-
-                        </thead>
+            <div class="page-header">
 
 
-                        <tbody>
+                <div>
 
-                            @foreach($users as $user)
+                    <h1>
+
+                        Data User
+
+                    </h1>
+
+
+                    <p>
+
+                        Kelola akun pengguna yang terdaftar di website ResepKu.
+
+                    </p>
+
+                </div>
+
+
+                <!-- TAMBAH USER -->
+
+                <a
+                    href="{{ route('admin.users.create') }}"
+                    class="add-user-button"
+                >
+
+                    ＋ Tambah User
+
+                </a>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+
+            <div class="summary">
+
+
+                <div class="summary-card">
+
+
+                    <div class="summary-label">
+
+                        Total User
+
+                    </div>
+
+
+                    <div class="summary-number">
+
+                        {{ \App\Models\User::count() }}
+
+                    </div>
+
+
+                    <div class="summary-description">
+
+                        Semua akun terdaftar
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="summary-card">
+
+
+                    <div class="summary-label">
+
+                        Admin
+
+                    </div>
+
+
+                    <div class="summary-number">
+
+                        {{ \App\Models\User::where('role', 'admin')->count() }}
+
+                    </div>
+
+
+                    <div class="summary-description">
+
+                        Akun dengan akses admin
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="summary-card">
+
+
+                    <div class="summary-label">
+
+                        User
+
+                    </div>
+
+
+                    <div class="summary-number">
+
+                        {{ \App\Models\User::where('role', 'user')->count() }}
+
+                    </div>
+
+
+                    <div class="summary-description">
+
+                        Akun pengguna biasa
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="table-card">
+
+
+                <div class="table-header">
+
+
+                    <div>
+
+                        <div class="table-title">
+
+                            Daftar Pengguna
+
+                        </div>
+
+
+                        <div class="table-subtitle">
+
+                            Semua akun yang tersedia di sistem.
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                @if($users->count() > 0)
+
+
+                    <div class="table-wrapper">
+
+
+                        <table>
+
+
+                            <thead>
 
                                 <tr>
 
-                                    <!-- USER -->
+                                    <th>
+                                        USER
+                                    </th>
 
-                                    <td>
+                                    <th>
+                                        ROLE
+                                    </th>
 
-                                        <div class="user-info">
+                                    <th>
+                                        BERGABUNG
+                                    </th>
 
-                                            <div class="user-avatar">
+                                    <th>
+                                        AKSI
+                                    </th>
 
-                                                {{ strtoupper(substr($user->name, 0, 1)) }}
+                                </tr>
 
-                                            </div>
+                            </thead>
 
 
-                                            <div>
+                            <tbody>
 
-                                                <div class="user-name">
 
-                                                    {{ $user->name }}
+                                @foreach($users as $user)
+
+
+                                    <tr>
+
+
+                                        <!-- USER -->
+
+                                        <td>
+
+
+                                            <div class="user-cell">
+
+
+                                                <div class="user-avatar">
+
+                                                    {{ strtoupper(substr($user->name, 0, 1)) }}
 
                                                 </div>
 
 
-                                                <div class="user-email">
+                                                <div class="user-details">
 
-                                                    {{ $user->email }}
+
+                                                    <div class="user-name">
+
+                                                        {{ $user->name }}
+
+
+                                                        @if($user->id === auth()->id())
+
+                                                            <span class="you-badge">
+
+                                                                Kamu
+
+                                                            </span>
+
+                                                        @endif
+
+                                                    </div>
+
+
+                                                    <div class="user-email">
+
+                                                        {{ $user->email }}
+
+                                                    </div>
+
 
                                                 </div>
 
+
                                             </div>
 
-                                        </div>
 
-                                    </td>
-
-
-                                    <!-- ROLE -->
-
-                                    <td>
-
-                                        @if($user->role === 'admin')
-
-                                            <span class="role role-admin">
-                                                ADMIN
-                                            </span>
-
-                                        @else
-
-                                            <span class="role role-user">
-                                                USER
-                                            </span>
-
-                                        @endif
-
-                                    </td>
+                                        </td>
 
 
-                                    <!-- JUMLAH RESEP -->
+                                        <!-- ROLE -->
 
-                                    <td>
-
-                                        <span class="recipe-count">
-
-                                            {{ $user->recipes_count }}
-
-                                            resep
-
-                                        </span>
-
-                                    </td>
+                                        <td>
 
 
-                                    <!-- TANGGAL -->
+                                            @if($user->role === 'admin')
 
-                                    <td>
+                                                <span class="role-badge role-admin">
 
-                                        {{ $user->created_at->format('d M Y') }}
+                                                    Administrator
 
-                                    </td>
+                                                </span>
 
+                                            @else
 
-                                    <!-- AKSI -->
+                                                <span class="role-badge role-user">
 
-                                    <td>
+                                                    User
 
-                                        <div class="actions">
-
-
-                                            <!-- EDIT -->
-
-                                            <a
-                                                href="{{ route('admin.users.edit', $user) }}"
-                                                class="btn btn-edit"
-                                            >
-                                                Edit
-                                            </a>
-
-
-                                            <!-- DELETE -->
-
-                                            @if($user->id !== auth()->id())
-
-                                                <form
-                                                    method="POST"
-                                                    action="{{ route('admin.users.destroy', $user) }}"
-                                                    onsubmit="return confirm('Yakin ingin menghapus user ini?')"
-                                                >
-
-                                                    @csrf
-
-                                                    @method('DELETE')
-
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-delete"
-                                                    >
-                                                        Hapus
-                                                    </button>
-
-                                                </form>
+                                                </span>
 
                                             @endif
 
 
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-                            @endforeach
-
-                        </tbody>
-
-                    </table>
-
-                </div>
+                                        </td>
 
 
-                <!-- PAGINATION -->
+                                        <!-- TANGGAL -->
 
-                <div class="pagination">
-
-                    {{ $users->links() }}
-
-                </div>
+                                        <td>
 
 
-            @else
+                                            <span class="date-text">
 
-                <div class="empty">
+                                                {{ $user->created_at?->format('d M Y') ?? '-' }}
 
-                    Belum ada user yang terdaftar.
-
-                </div>
-
-            @endif
+                                            </span>
 
 
-        </div>
+                                        </td>
 
 
-        <footer>
+                                        <!-- AKSI -->
 
-            © {{ date('Y') }} ResepKu.
-            Admin Dashboard.
+                                        <td>
 
-        </footer>
+
+                                            <div class="action-group">
+
+
+                                                <!-- EDIT -->
+
+                                                <a
+                                                    href="{{ route('admin.users.edit', $user->id) }}"
+                                                    class="action-button edit-button"
+                                                >
+
+                                                    Edit
+
+                                                </a>
+
+
+                                                <!-- HAPUS -->
+
+                                                @if($user->id !== auth()->id())
+
+
+                                                    <form
+                                                        action="{{ route('admin.users.destroy', $user->id) }}"
+                                                        method="POST"
+                                                        style="margin:0;"
+                                                        onsubmit="return confirm('Yakin ingin menghapus user ini?')"
+                                                    >
+
+                                                        @csrf
+
+                                                        @method('DELETE')
+
+
+                                                        <button
+                                                            type="submit"
+                                                            class="action-button delete-button"
+                                                        >
+
+                                                            Hapus
+
+                                                        </button>
+
+                                                    </form>
+
+
+                                                @endif
+
+
+                                            </div>
+
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                @endforeach
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                    <!-- PAGINATION -->
+
+                    <div class="pagination-wrapper">
+
+                        {{ $users->links() }}
+
+                    </div>
+
+
+                @else
+
+
+                    <!-- EMPTY -->
+
+                    <div class="empty">
+
+
+                        <div class="empty-icon">
+
+                            👥
+
+                        </div>
+
+
+                        <h2>
+
+                            Belum Ada User
+
+                        </h2>
+
+
+                        <p>
+
+                            Belum ada pengguna lain yang terdaftar.
+
+                        </p>
+
+
+                        <a
+                            href="{{ route('admin.users.create') }}"
+                            class="add-user-button"
+                        >
+
+                            ＋ Tambah User
+
+                        </a>
+
+
+                    </div>
+
+
+                @endif
+
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                © {{ date('Y') }} ResepKu.
+                Panel Administrasi.
+
+            </div>
+
+
+        </section>
 
 
     </main>
 
 
 </div>
-
 
 </body>
 

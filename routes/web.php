@@ -15,6 +15,17 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
+| WEBSITE PUBLIK
+|--------------------------------------------------------------------------
+|
+| Homepage, daftar resep, dan detail resep bisa dibuka
+| tanpa harus login.
+|
+*/
+
+
+/*
+|--------------------------------------------------------------------------
 | HOMEPAGE
 |--------------------------------------------------------------------------
 */
@@ -29,9 +40,6 @@ Route::get('/', [
 |--------------------------------------------------------------------------
 | DAFTAR SEMUA RESEP
 |--------------------------------------------------------------------------
-|
-| Ini dibuat sebagai alias supaya link lama /recipes juga tetap bekerja.
-|
 */
 
 Route::get('/recipes', [
@@ -42,11 +50,32 @@ Route::get('/recipes', [
 
 /*
 |--------------------------------------------------------------------------
+| DETAIL RESEP
+|--------------------------------------------------------------------------
+|
+| PENTING:
+| Route ini berada di luar middleware auth.
+| Jadi pengunjung bisa melihat resep tanpa login.
+|
+*/
+
+Route::get('/recipes/{slug}', [
+    RecipeController::class,
+    'show'
+])->name('recipes.show');
+
+
+/*
+|--------------------------------------------------------------------------
 | USER
 |--------------------------------------------------------------------------
+|
+| Mulai dari sini fitur membutuhkan login.
+|
 */
 
 Route::middleware(['auth'])->group(function () {
+
 
     /*
     |--------------------------------------------------------------------------
@@ -70,6 +99,54 @@ Route::middleware(['auth'])->group(function () {
         RecipeController::class,
         'my'
     ])->name('recipes.my');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | TAMBAH RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/recipes/create', [
+        RecipeController::class,
+        'create'
+    ])->name('recipes.create');
+
+
+    Route::post('/recipes', [
+        RecipeController::class,
+        'store'
+    ])->name('recipes.store');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/recipes/{slug}/edit', [
+        RecipeController::class,
+        'edit'
+    ])->name('recipes.edit');
+
+
+    Route::put('/recipes/{slug}', [
+        RecipeController::class,
+        'update'
+    ])->name('recipes.update');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    Route::delete('/recipes/{slug}', [
+        RecipeController::class,
+        'destroy'
+    ])->name('recipes.destroy');
 
 
     /*
@@ -98,64 +175,6 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | TAMBAH RESEP
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/recipes/create', [
-        RecipeController::class,
-        'create'
-    ])->name('recipes.create');
-
-    Route::post('/recipes', [
-        RecipeController::class,
-        'store'
-    ])->name('recipes.store');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | DETAIL RESEP
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/recipes/{slug}', [
-        RecipeController::class,
-        'show'
-    ])->name('recipes.show');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | EDIT RESEP
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/recipes/{slug}/edit', [
-        RecipeController::class,
-        'edit'
-    ])->name('recipes.edit');
-
-    Route::put('/recipes/{slug}', [
-        RecipeController::class,
-        'update'
-    ])->name('recipes.update');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | HAPUS RESEP
-    |--------------------------------------------------------------------------
-    */
-
-    Route::delete('/recipes/{slug}', [
-        RecipeController::class,
-        'destroy'
-    ])->name('recipes.destroy');
-
-
-    /*
-    |--------------------------------------------------------------------------
     | PROFILE
     |--------------------------------------------------------------------------
     */
@@ -165,10 +184,12 @@ Route::middleware(['auth'])->group(function () {
         'edit'
     ])->name('profile.edit');
 
+
     Route::patch('/profile', [
         ProfileController::class,
         'update'
     ])->name('profile.update');
+
 
     Route::delete('/profile', [
         ProfileController::class,
@@ -182,12 +203,16 @@ Route::middleware(['auth'])->group(function () {
 |--------------------------------------------------------------------------
 | ADMIN
 |--------------------------------------------------------------------------
+|
+| Semua halaman admin harus login dan mempunyai role admin.
+|
 */
 
 Route::middleware(['auth', 'admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+
 
         /*
         |--------------------------------------------------------------------------
@@ -203,7 +228,7 @@ Route::middleware(['auth', 'admin'])
 
         /*
         |--------------------------------------------------------------------------
-        | RESEP ADMIN
+        | DAFTAR RESEP ADMIN
         |--------------------------------------------------------------------------
         */
 
@@ -212,30 +237,60 @@ Route::middleware(['auth', 'admin'])
             'index'
         ])->name('recipes.index');
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | TAMBAH RESEP ADMIN
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/recipes/create', [
             AdminRecipeController::class,
             'create'
         ])->name('recipes.create');
+
 
         Route::post('/recipes', [
             AdminRecipeController::class,
             'store'
         ])->name('recipes.store');
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | DETAIL RESEP ADMIN
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/recipes/{recipe}', [
             AdminRecipeController::class,
             'show'
         ])->name('recipes.show');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | EDIT RESEP ADMIN
+        |--------------------------------------------------------------------------
+        */
 
         Route::get('/recipes/{recipe}/edit', [
             AdminRecipeController::class,
             'edit'
         ])->name('recipes.edit');
 
+
         Route::put('/recipes/{recipe}', [
             AdminRecipeController::class,
             'update'
         ])->name('recipes.update');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | HAPUS RESEP ADMIN
+        |--------------------------------------------------------------------------
+        */
 
         Route::delete('/recipes/{recipe}', [
             AdminRecipeController::class,
@@ -245,7 +300,7 @@ Route::middleware(['auth', 'admin'])
 
         /*
         |--------------------------------------------------------------------------
-        | USER ADMIN
+        | DATA USER ADMIN
         |--------------------------------------------------------------------------
         */
 
@@ -254,15 +309,48 @@ Route::middleware(['auth', 'admin'])
             'index'
         ])->name('users.index');
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | TAMBAH USER
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/users/create', [
+            AdminUserController::class,
+            'create'
+        ])->name('users.create');
+
+
+        Route::post('/users', [
+            AdminUserController::class,
+            'store'
+        ])->name('users.store');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | EDIT USER
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/users/{user}/edit', [
             AdminUserController::class,
             'edit'
         ])->name('users.edit');
 
+
         Route::put('/users/{user}', [
             AdminUserController::class,
             'update'
         ])->name('users.update');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | HAPUS USER
+        |--------------------------------------------------------------------------
+        */
 
         Route::delete('/users/{user}', [
             AdminUserController::class,
@@ -274,7 +362,7 @@ Route::middleware(['auth', 'admin'])
 
 /*
 |--------------------------------------------------------------------------
-| AUTH
+| AUTHENTICATION
 |--------------------------------------------------------------------------
 */
 

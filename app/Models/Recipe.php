@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Favorite;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Recipe extends Model
@@ -21,44 +19,23 @@ class Recipe extends Model
         'image',
     ];
 
-    /*
-    |--------------------------------------------------------------------------
-    | USER
-    |--------------------------------------------------------------------------
-    */
-
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | FAVORITE
-    |--------------------------------------------------------------------------
-    */
 
     public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | URL GAMBAR
-    |--------------------------------------------------------------------------
-    */
-
-    public function imageUrl(): ?string
+    public function imageUrl()
     {
         if (!$this->image) {
             return null;
         }
 
-        /*
-        | Kalau data lama masih berupa URL
-        */
-
+        // Kalau masih ada data lama berupa URL
         if (
             str_starts_with($this->image, 'http://') ||
             str_starts_with($this->image, 'https://')
@@ -66,16 +43,7 @@ class Recipe extends Model
             return $this->image;
         }
 
-        /*
-        | Kalau gambar hasil upload:
-        |
-        | database:
-        | recipes/nama-file.jpg
-        |
-        | browser:
-        | /storage/recipes/nama-file.jpg
-        */
-
+        // Kalau gambar merupakan hasil upload
         return asset('storage/' . ltrim($this->image, '/'));
     }
 }

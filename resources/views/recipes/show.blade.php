@@ -34,7 +34,9 @@
             text-decoration: none;
         }
 
-        button {
+        button,
+        input,
+        textarea {
             font-family: inherit;
         }
 
@@ -62,18 +64,19 @@
 
             padding: 28px 18px;
 
-            z-index: 50;
+            z-index: 20;
 
             display: flex;
-
             flex-direction: column;
         }
+
 
         .brand {
             padding: 0 14px;
 
             margin-bottom: 42px;
         }
+
 
         .brand a {
             color: #e85d04;
@@ -82,6 +85,7 @@
 
             font-weight: 700;
         }
+
 
         .brand small {
             display: block;
@@ -92,6 +96,7 @@
 
             margin-top: 5px;
         }
+
 
         .menu-label {
             color: #999;
@@ -107,6 +112,7 @@
             margin: 0 14px 10px;
         }
 
+
         .menu {
             display: flex;
 
@@ -114,6 +120,7 @@
 
             gap: 3px;
         }
+
 
         .menu a {
             display: flex;
@@ -131,15 +138,15 @@
             font-size: 13px;
 
             transition: .2s;
-
-            min-height: 40px;
         }
+
 
         .menu a:hover {
             background: #f7f7f7;
 
             color: #e85d04;
         }
+
 
         .menu a.active {
             background: #fff1e8;
@@ -149,16 +156,15 @@
             font-weight: 600;
         }
 
-        .menu-icon {
-            width: 20px;
 
-            min-width: 20px;
+        .menu-icon {
+            width: 18px;
+
+            min-width: 18px;
 
             text-align: center;
 
-            font-size: 16px;
-
-            line-height: 1;
+            font-size: 14px;
         }
 
 
@@ -169,10 +175,11 @@
         .sidebar-bottom {
             margin-top: auto;
 
-            padding-top: 18px;
+            border-top: 1px solid #eeeae6;
 
-            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
         }
+
 
         .profile-box {
             display: flex;
@@ -181,21 +188,22 @@
 
             gap: 10px;
 
-            padding: 8px 10px;
+            padding: 9px 10px;
 
             margin-bottom: 8px;
         }
 
-        .avatar {
-            width: 37px;
 
-            height: 37px;
+        .avatar {
+            width: 36px;
+
+            height: 36px;
+
+            border-radius: 50%;
 
             background: #e85d04;
 
             color: #ffffff;
-
-            border-radius: 50%;
 
             display: flex;
 
@@ -210,14 +218,18 @@
             flex-shrink: 0;
         }
 
+
         .profile-info {
             min-width: 0;
         }
+
 
         .profile-name {
             font-size: 12px;
 
             font-weight: 600;
+
+            color: #292929;
 
             white-space: nowrap;
 
@@ -226,13 +238,17 @@
             text-overflow: ellipsis;
         }
 
+
         .profile-role {
+            display: block;
+
             color: #999;
 
             font-size: 10px;
 
             margin-top: 3px;
         }
+
 
         .logout-button {
             width: 100%;
@@ -243,18 +259,21 @@
 
             color: #be123c;
 
-            padding: 10px;
+            padding: 10px 12px;
 
             border-radius: 7px;
 
-            cursor: pointer;
+            font-size: 11px;
 
-            font-size: 12px;
+            cursor: pointer;
 
             text-align: left;
 
+            display: block;
+
             transition: .2s;
         }
+
 
         .logout-button:hover {
             background: #ffe4e6;
@@ -292,11 +311,13 @@
             justify-content: space-between;
         }
 
+
         .page-name {
             font-size: 18px;
 
             font-weight: 600;
         }
+
 
         .user-area {
             display: flex;
@@ -306,9 +327,11 @@
             gap: 11px;
         }
 
+
         .user-info {
             text-align: right;
         }
+
 
         .user-name {
             display: block;
@@ -317,6 +340,7 @@
 
             color: #444;
         }
+
 
         .user-role {
             display: block;
@@ -340,10 +364,6 @@
         }
 
 
-        /* =====================================================
-           BACK
-        ===================================================== */
-
         .back-link {
             display: inline-flex;
 
@@ -357,6 +377,7 @@
 
             margin-bottom: 20px;
         }
+
 
         .back-link:hover {
             color: #e85d04;
@@ -385,7 +406,7 @@
 
 
         /* =====================================================
-           DETAIL
+           RECIPE DETAIL
         ===================================================== */
 
         .recipe-detail {
@@ -413,6 +434,7 @@
             overflow: hidden;
         }
 
+
         .recipe-cover img {
             width: 100%;
 
@@ -422,6 +444,7 @@
 
             display: block;
         }
+
 
         .no-image {
             width: 100%;
@@ -437,11 +460,13 @@
             color: #999;
 
             font-size: 13px;
+
+            background: #f5f5f4;
         }
 
 
         /* =====================================================
-           HEADER
+           HEADER RESEP
         ===================================================== */
 
         .recipe-header {
@@ -449,6 +474,7 @@
 
             border-bottom: 1px solid #eeeeee;
         }
+
 
         .recipe-category {
             display: inline-block;
@@ -468,6 +494,7 @@
             margin-bottom: 12px;
         }
 
+
         .recipe-title {
             font-size: 28px;
 
@@ -479,8 +506,9 @@
 
             margin-bottom: 10px;
 
-            overflow-wrap: anywhere;
+            word-break: break-word;
         }
+
 
         .recipe-description {
             color: #777;
@@ -490,6 +518,8 @@
             line-height: 1.7;
 
             margin-bottom: 18px;
+
+            max-width: 850px;
         }
 
 
@@ -504,6 +534,7 @@
 
             gap: 10px;
         }
+
 
         .author-avatar {
             width: 34px;
@@ -527,6 +558,7 @@
             font-weight: 600;
         }
 
+
         .author-name {
             font-size: 12px;
 
@@ -534,6 +566,7 @@
 
             font-weight: 600;
         }
+
 
         .author-date {
             font-size: 10px;
@@ -551,12 +584,15 @@
         .recipe-body {
             display: grid;
 
-            grid-template-columns: 320px minmax(0, 1fr);
+            grid-template-columns:
+                320px
+                minmax(0, 1fr);
 
             gap: 35px;
 
             padding: 30px;
         }
+
 
         .section-title {
             font-size: 17px;
@@ -568,6 +604,7 @@
             color: #292929;
         }
 
+
         .ingredients-box {
             background: #fafafa;
 
@@ -577,6 +614,7 @@
 
             padding: 18px;
         }
+
 
         .ingredients {
             color: #555;
@@ -589,6 +627,7 @@
 
             overflow-wrap: anywhere;
         }
+
 
         .steps-box {
             color: #555;
@@ -611,13 +650,16 @@
             padding: 0 30px 25px;
         }
 
+
         .recipe-info {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
 
             gap: 12px;
         }
+
 
         .info-item {
             border: 1px solid #eeeeee;
@@ -629,6 +671,7 @@
             padding: 14px;
         }
 
+
         .info-label {
             color: #999;
 
@@ -637,12 +680,15 @@
             margin-bottom: 5px;
         }
 
+
         .info-value {
             color: #444;
 
             font-size: 12px;
 
             font-weight: 600;
+
+            word-break: break-word;
         }
 
 
@@ -666,6 +712,7 @@
             flex-wrap: wrap;
         }
 
+
         .btn {
             display: inline-flex;
 
@@ -684,7 +731,10 @@
             border: none;
 
             cursor: pointer;
+
+            min-height: 34px;
         }
+
 
         .btn-back {
             background: #f1f1f1;
@@ -692,9 +742,11 @@
             color: #555;
         }
 
+
         .btn-back:hover {
             background: #e8e8e8;
         }
+
 
         .btn-edit {
             background: #fff1e8;
@@ -702,9 +754,11 @@
             color: #e85d04;
         }
 
+
         .btn-edit:hover {
             background: #ffe6d5;
         }
+
 
         .btn-delete {
             background: #fff0f0;
@@ -712,8 +766,64 @@
             color: #c62828;
         }
 
+
         .btn-delete:hover {
             background: #ffe4e4;
+        }
+
+
+        .favorite-action {
+            background: #fff7ed;
+
+            color: #ea580c;
+
+            border: 1px solid #fed7aa;
+        }
+
+
+        .favorite-action:hover {
+            background: #ffedd5;
+        }
+
+
+        .favorite-action.saved {
+            background: #ea580c;
+
+            color: #ffffff;
+
+            border-color: #ea580c;
+        }
+
+
+        .favorite-action.saved:hover {
+            background: #c2410c;
+        }
+
+
+        .login-action {
+            background: #e85d04;
+
+            color: #ffffff;
+        }
+
+
+        .login-action:hover {
+            background: #d65300;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+
+            color: #a8a29e;
+
+            font-size: 10px;
+
+            padding-top: 25px;
         }
 
 
@@ -727,10 +837,14 @@
                 grid-template-columns: 1fr;
             }
 
+
             .recipe-info {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
             }
+
         }
+
 
         @media (max-width: 750px) {
 
@@ -746,29 +860,36 @@
                 border-bottom: 1px solid #e3e3e3;
             }
 
+
             .main {
                 margin-left: 0;
             }
+
 
             .topbar {
                 padding: 0 18px;
             }
 
+
             .content {
                 padding: 22px 18px;
             }
+
 
             .recipe-cover {
                 height: 260px;
             }
 
+
             .recipe-header {
                 padding: 22px;
             }
 
+
             .recipe-title {
                 font-size: 23px;
             }
+
 
             .recipe-body {
                 padding: 22px;
@@ -776,17 +897,59 @@
                 gap: 25px;
             }
 
+
             .info-wrapper {
                 padding: 0 22px 22px;
             }
+
 
             .recipe-actions {
                 padding: 18px 22px;
             }
 
+
             .recipe-info {
                 grid-template-columns: 1fr;
             }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .topbar {
+                height: auto;
+
+                min-height: 66px;
+            }
+
+
+            .page-name {
+                font-size: 16px;
+            }
+
+
+            .user-info {
+                display: none;
+            }
+
+
+            .recipe-cover {
+                height: 220px;
+            }
+
+
+            .recipe-actions {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .btn {
+                width: 100%;
+            }
+
         }
 
     </style>
@@ -806,11 +969,34 @@
     <aside class="sidebar">
 
 
+        <!-- BRAND -->
+
         <div class="brand">
 
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
+            @auth
+
+                @if(auth()->user()->role === 'admin')
+
+                    <a href="{{ route('admin.dashboard') }}">
+                        ResepKu
+                    </a>
+
+                @else
+
+                    <a href="{{ route('user.dashboard') }}">
+                        ResepKu
+                    </a>
+
+                @endif
+
+            @else
+
+                <a href="{{ route('recipes.index') }}">
+                    ResepKu
+                </a>
+
+            @endauth
+
 
             <small>
                 Website Resep Masakan
@@ -819,139 +1005,339 @@
         </div>
 
 
+        <!-- LABEL -->
+
         <div class="menu-label">
             Menu Utama
         </div>
 
 
+        <!-- MENU -->
+
         <nav class="menu">
 
 
-            <!-- DASHBOARD -->
-
-            <a href="{{ route('user.dashboard') }}">
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
+            @auth
 
 
-            <!-- RESEP SAYA -->
+                {{-- =================================================
+                     ADMIN
+                ================================================== --}}
 
-            <a href="{{ route('recipes.my') }}">
-
-                <span class="menu-icon">
-                    ▣
-                </span>
-
-                <span>
-                    Resep Saya
-                </span>
-
-            </a>
+                @if(auth()->user()->role === 'admin')
 
 
-            <!-- RESEP TERSIMPAN -->
+                    <a href="{{ route('admin.dashboard') }}">
 
-            <a href="{{ route('user.favorites') }}">
+                        <span class="menu-icon">
+                            🏠
+                        </span>
 
-                <span class="menu-icon">
-                    ♥
-                </span>
+                        <span>
+                            Dashboard
+                        </span>
 
-                <span>
-                    Resep Tersimpan
-                </span>
-
-            </a>
+                    </a>
 
 
-            <!-- TAMBAH RESEP -->
+                    <a href="{{ route('admin.recipes.index') }}">
 
-            <a href="{{ route('recipes.create') }}">
+                        <span class="menu-icon">
+                            🍲
+                        </span>
 
-                <span class="menu-icon">
-                    ＋
-                </span>
+                        <span>
+                            Daftar Resep
+                        </span>
 
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
+                    </a>
 
 
-            <!-- PROFIL -->
+                    <a href="{{ route('admin.recipes.create') }}">
 
-            <a href="{{ route('profile.edit') }}">
+                        <span class="menu-icon">
+                            ＋
+                        </span>
 
-                <span class="menu-icon">
-                    ○
-                </span>
+                        <span>
+                            Tambah Resep
+                        </span>
 
-                <span>
-                    Profil
-                </span>
+                    </a>
 
-            </a>
+
+                    <a href="{{ route('admin.users.index') }}">
+
+                        <span class="menu-icon">
+                            👥
+                        </span>
+
+                        <span>
+                            Data User
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="{{ route('recipes.index') }}"
+                        target="_blank"
+                    >
+
+                        <span class="menu-icon">
+                            ↗
+                        </span>
+
+                        <span>
+                            Lihat Website
+                        </span>
+
+                    </a>
+
+
+                @else
+
+
+                    {{-- =================================================
+                         USER
+                    ================================================== --}}
+
+                    <a href="{{ route('user.dashboard') }}">
+
+                        <span class="menu-icon">
+                            🏠
+                        </span>
+
+                        <span>
+                            Dashboard
+                        </span>
+
+                    </a>
+
+
+                    <a href="{{ route('recipes.my') }}">
+
+                        <span class="menu-icon">
+                            🍲
+                        </span>
+
+                        <span>
+                            Resep Saya
+                        </span>
+
+                    </a>
+
+
+                    <a href="{{ route('user.favorites') }}">
+
+                        <span class="menu-icon">
+                            ♥
+                        </span>
+
+                        <span>
+                            Resep Tersimpan
+                        </span>
+
+                    </a>
+
+
+                    <a href="{{ route('recipes.create') }}">
+
+                        <span class="menu-icon">
+                            ＋
+                        </span>
+
+                        <span>
+                            Tambah Resep
+                        </span>
+
+                    </a>
+
+
+                    <a href="{{ route('profile.edit') }}">
+
+                        <span class="menu-icon">
+                            ○
+                        </span>
+
+                        <span>
+                            Profil
+                        </span>
+
+                    </a>
+
+
+                @endif
+
+
+            @else
+
+
+                {{-- =================================================
+                     PENGUNJUNG
+                ================================================== --}}
+
+                <a
+                    href="{{ route('recipes.index') }}"
+                    class="active"
+                >
+
+                    <span class="menu-icon">
+                        🏠
+                    </span>
+
+                    <span>
+                        Beranda
+                    </span>
+
+                </a>
+
+
+                <a href="{{ route('recipes.list') }}">
+
+                    <span class="menu-icon">
+                        🍲
+                    </span>
+
+                    <span>
+                        Daftar Resep
+                    </span>
+
+                </a>
+
+
+            @endauth
+
 
         </nav>
 
 
-        <!-- SIDEBAR BOTTOM -->
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
 
         <div class="sidebar-bottom">
 
-            <div class="profile-box">
 
-                <div class="avatar">
+            @auth
 
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
 
-                </div>
+                <!-- USER LOGIN -->
 
-                <div class="profile-info">
+                <div class="profile-box">
 
-                    <div class="profile-name">
 
-                        {{ auth()->user()->name }}
+                    <div class="avatar">
 
-                    </div>
-
-                    <div class="profile-role">
-
-                        User
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
 
                     </div>
 
+
+                    <div class="profile-info">
+
+
+                        <div class="profile-name">
+
+                            {{ auth()->user()->name }}
+
+                        </div>
+
+
+                        <div class="profile-role">
+
+                            {{ auth()->user()->role === 'admin'
+                                ? 'Administrator'
+                                : 'User'
+                            }}
+
+                        </div>
+
+
+                    </div>
+
+
                 </div>
 
-            </div>
+
+                <!-- LOGOUT -->
+
+                <form
+                    method="POST"
+                    action="{{ route('logout') }}"
+                >
+
+                    @csrf
 
 
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
+                    <button
+                        type="submit"
+                        class="logout-button"
+                    >
 
-                @csrf
+                        🚪
+                        &nbsp;
+                        Keluar
 
-                <button
-                    type="submit"
+                    </button>
+
+
+                </form>
+
+
+            @else
+
+
+                <!-- PENGUNJUNG -->
+
+                <div class="profile-box">
+
+
+                    <div class="avatar">
+
+                        G
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+
+                        <div class="profile-name">
+
+                            Pengunjung
+
+                        </div>
+
+
+                        <div class="profile-role">
+
+                            Belum login
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <a
+                    href="{{ route('login') }}"
                     class="logout-button"
                 >
-                    🚪 &nbsp; Keluar
-                </button>
 
-            </form>
+                    Masuk ke Akun
+
+                </a>
+
+
+            @endauth
+
 
         </div>
+
 
     </aside>
 
@@ -967,6 +1353,7 @@
 
         <header class="topbar">
 
+
             <div class="page-name">
 
                 Detail Resep
@@ -974,49 +1361,132 @@
             </div>
 
 
-            <div class="user-area">
+            @auth
 
-                <div class="user-info">
 
-                    <span class="user-name">
+                <div class="user-area">
 
-                        {{ auth()->user()->name }}
 
-                    </span>
+                    <div class="user-info">
 
-                    <span class="user-role">
 
-                        User
+                        <span class="user-name">
 
-                    </span>
+                            {{ auth()->user()->name }}
+
+                        </span>
+
+
+                        <span class="user-role">
+
+                            {{ auth()->user()->role === 'admin'
+                                ? 'Administrator'
+                                : 'User'
+                            }}
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="avatar">
+
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+
+                    </div>
+
 
                 </div>
 
 
-                <div class="avatar">
+            @else
 
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+
+                <div class="user-area">
+
+
+                    <div class="user-info">
+
+
+                        <span class="user-name">
+
+                            Pengunjung
+
+                        </span>
+
+
+                        <span class="user-role">
+
+                            Belum login
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="avatar">
+
+                        G
+
+                    </div>
+
 
                 </div>
 
-            </div>
+
+            @endauth
+
 
         </header>
 
 
-        <!-- CONTENT -->
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
 
         <section class="content">
 
 
             <!-- KEMBALI -->
 
-            <a
-                href="{{ route('recipes.my') }}"
-                class="back-link"
-            >
-                ← Kembali ke Resep Saya
-            </a>
+            @auth
+
+
+                @if(auth()->user()->role === 'admin')
+
+                    <a
+                        href="{{ route('admin.recipes.index') }}"
+                        class="back-link"
+                    >
+                        ← Kembali ke Daftar Resep
+                    </a>
+
+                @else
+
+                    <a
+                        href="{{ route('recipes.my') }}"
+                        class="back-link"
+                    >
+                        ← Kembali ke Resep Saya
+                    </a>
+
+                @endif
+
+
+            @else
+
+
+                <a
+                    href="{{ route('recipes.index') }}"
+                    class="back-link"
+                >
+                    ← Kembali ke Website
+                </a>
+
+
+            @endauth
 
 
             <!-- SUCCESS -->
@@ -1025,6 +1495,7 @@
 
                 <div class="success">
 
+                    ✓
                     {{ session('success') }}
 
                 </div>
@@ -1032,13 +1503,15 @@
             @endif
 
 
-            <!-- DETAIL -->
+            <!-- =================================================
+                 DETAIL RESEP
+            ================================================== -->
 
             <article class="recipe-detail">
 
 
                 <!-- =================================================
-                     FOTO RESEP
+                     GAMBAR
                 ================================================== -->
 
                 <div class="recipe-cover">
@@ -1046,27 +1519,33 @@
 
                     @if($recipe->imageUrl())
 
+
                         <img
                             src="{{ $recipe->imageUrl() }}"
                             alt="{{ $recipe->title }}"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                         >
 
+
                         <div
                             class="no-image"
                             style="display:none;"
                         >
-                            Gambar tidak tersedia
+
+                            Gambar tidak dapat dimuat
+
                         </div>
 
 
                     @else
+
 
                         <div class="no-image">
 
                             Tidak ada gambar resep
 
                         </div>
+
 
                     @endif
 
@@ -1103,12 +1582,13 @@
                     </p>
 
 
-                    <!-- PEMBUAT -->
+                    <!-- AUTHOR -->
 
                     <div class="author">
 
 
                         <div class="author-avatar">
+
 
                             @if($recipe->user)
 
@@ -1120,14 +1600,26 @@
 
                             @endif
 
+
                         </div>
 
 
                         <div>
 
+
                             <div class="author-name">
 
-                                {{ $recipe->user->name ?? 'Pengguna' }}
+
+                                @if($recipe->user)
+
+                                    {{ $recipe->user->name }}
+
+                                @else
+
+                                    Pengguna
+
+                                @endif
+
 
                             </div>
 
@@ -1139,15 +1631,18 @@
 
                             </div>
 
+
                         </div>
 
+
                     </div>
+
 
                 </div>
 
 
                 <!-- =================================================
-                     BAHAN DAN LANGKAH
+                     BAHAN & LANGKAH
                 ================================================== -->
 
                 <div class="recipe-body">
@@ -1156,6 +1651,7 @@
                     <!-- BAHAN -->
 
                     <div>
+
 
                         <h2 class="section-title">
 
@@ -1166,13 +1662,18 @@
 
                         <div class="ingredients-box">
 
+
                             <div class="ingredients">
 
-                                {{ $recipe->ingredients ?? 'Belum ada bahan yang ditambahkan.' }}
+                                {{ $recipe->ingredients
+                                    ?? 'Belum ada bahan yang ditambahkan.'
+                                }}
 
                             </div>
 
+
                         </div>
+
 
                     </div>
 
@@ -1180,6 +1681,7 @@
                     <!-- LANGKAH -->
 
                     <div>
+
 
                         <h2 class="section-title">
 
@@ -1190,11 +1692,15 @@
 
                         <div class="steps-box">
 
-                            {{ $recipe->steps ?? 'Belum ada langkah yang ditambahkan.' }}
+                            {{ $recipe->steps
+                                ?? 'Belum ada langkah yang ditambahkan.'
+                            }}
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
@@ -1205,29 +1711,47 @@
 
                 <div class="info-wrapper">
 
+
                     <div class="recipe-info">
 
 
                         <div class="info-item">
 
+
                             <div class="info-label">
+
                                 Dibuat oleh
+
                             </div>
+
 
                             <div class="info-value">
 
-                                {{ $recipe->user->name ?? 'Pengguna' }}
+                                @if($recipe->user)
+
+                                    {{ $recipe->user->name }}
+
+                                @else
+
+                                    Pengguna
+
+                                @endif
 
                             </div>
+
 
                         </div>
 
 
                         <div class="info-item">
 
+
                             <div class="info-label">
+
                                 Tanggal dibuat
+
                             </div>
+
 
                             <div class="info-value">
 
@@ -1235,14 +1759,19 @@
 
                             </div>
 
+
                         </div>
 
 
                         <div class="info-item">
 
+
                             <div class="info-label">
+
                                 Terakhir diperbarui
+
                             </div>
+
 
                             <div class="info-value">
 
@@ -1250,10 +1779,12 @@
 
                             </div>
 
+
                         </div>
 
 
                     </div>
+
 
                 </div>
 
@@ -1265,57 +1796,176 @@
                 <div class="recipe-actions">
 
 
-                    <!-- KEMBALI -->
-
-                    <a
-                        href="{{ route('recipes.my') }}"
-                        class="btn btn-back"
-                    >
-                        ← Kembali
-                    </a>
+                    @auth
 
 
-                    @if($recipe->user_id == auth()->id())
+                        @if(auth()->user()->role === 'admin')
 
 
-                        <!-- EDIT -->
+                            <!-- ADMIN KEMBALI -->
+
+                            <a
+                                href="{{ route('admin.recipes.index') }}"
+                                class="btn btn-back"
+                            >
+
+                                ← Daftar Resep
+
+                            </a>
+
+
+                        @else
+
+
+                            <!-- USER KEMBALI -->
+
+                            <a
+                                href="{{ route('recipes.my') }}"
+                                class="btn btn-back"
+                            >
+
+                                ← Resep Saya
+
+                            </a>
+
+
+                            <!-- FAVORITE -->
+
+                            @php
+
+                                $isFavorite = \App\Models\Favorite::where(
+                                    'user_id',
+                                    auth()->id()
+                                )
+                                ->where(
+                                    'recipe_id',
+                                    $recipe->id
+                                )
+                                ->exists();
+
+                            @endphp
+
+
+                            <form
+                                method="POST"
+                                action="{{ route('recipe.favorite', $recipe->id) }}"
+                                style="margin:0;"
+                            >
+
+                                @csrf
+
+
+                                <button
+                                    type="submit"
+                                    class="btn favorite-action {{ $isFavorite ? 'saved' : '' }}"
+                                >
+
+
+                                    @if($isFavorite)
+
+                                        ♥ Tersimpan
+
+                                    @else
+
+                                        ♡ Simpan Resep
+
+                                    @endif
+
+
+                                </button>
+
+
+                            </form>
+
+
+                        @endif
+
+
+                        <!-- EDIT & HAPUS PEMILIK -->
+
+                        @if(auth()->id() === $recipe->user_id)
+
+
+                            <a
+                                href="{{ route('recipes.edit', $recipe->slug) }}"
+                                class="btn btn-edit"
+                            >
+
+                                Edit Resep
+
+                            </a>
+
+
+                            <form
+                                method="POST"
+                                action="{{ route('recipes.destroy', $recipe->slug) }}"
+                                style="margin:0;"
+                                onsubmit="return confirm('Yakin ingin menghapus resep ini?')"
+                            >
+
+                                @csrf
+
+                                @method('DELETE')
+
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-delete"
+                                >
+
+                                    Hapus Resep
+
+                                </button>
+
+
+                            </form>
+
+
+                        @endif
+
+
+                    @else
+
+
+                        <!-- PENGUNJUNG -->
 
                         <a
-                            href="{{ route('recipes.edit', $recipe->slug) }}"
-                            class="btn btn-edit"
+                            href="{{ route('recipes.index') }}"
+                            class="btn btn-back"
                         >
-                            Edit Resep
+
+                            ← Kembali ke Resep
+
                         </a>
 
 
-                        <!-- HAPUS -->
-
-                        <form
-                            action="{{ route('recipes.destroy', $recipe->slug) }}"
-                            method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus resep ini?')"
-                            style="margin:0;"
+                        <a
+                            href="{{ route('login') }}"
+                            class="btn login-action"
                         >
 
-                            @csrf
+                            Masuk untuk Menyimpan
 
-                            @method('DELETE')
+                        </a>
 
-                            <button
-                                type="submit"
-                                class="btn btn-delete"
-                            >
-                                Hapus Resep
-                            </button>
 
-                        </form>
-
-                    @endif
+                    @endauth
 
 
                 </div>
 
+
             </article>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                © {{ date('Y') }} ResepKu.
+                Website Resep Masakan.
+
+            </div>
 
 
         </section>
@@ -1325,6 +1975,7 @@
 
 
 </div>
+
 
 </body>
 
