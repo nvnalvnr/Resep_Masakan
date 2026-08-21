@@ -1,3 +1,7 @@
+@import './sidebar.css';
+@import './admin-forms.css';
+@import './admin-recipes.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

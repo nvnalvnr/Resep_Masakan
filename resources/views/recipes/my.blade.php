@@ -372,49 +372,7 @@
 
 <div class="layout">
 
-    <aside class="sidebar">
-
-        <div class="brand">
-
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
-
-            <small>
-                Website Resep Masakan
-            </small>
-
-        </div>
-
-        <div class="menu-label">
-            Menu Utama
-        </div>
-
-        <nav class="menu">
-
-            <a href="{{ route('user.dashboard') }}">
-                <span class="menu-icon">⌂</span>
-                Dashboard
-            </a>
-
-            <a href="{{ route('recipes.my') }}" class="active">
-                <span class="menu-icon">▣</span>
-                Resep Saya
-            </a>
-
-            <a href="{{ route('recipes.create') }}">
-                <span class="menu-icon">＋</span>
-                Tambah Resep
-            </a>
-
-            <a href="{{ route('profile.edit') }}">
-                <span class="menu-icon">○</span>
-                Profil
-            </a>
-
-        </nav>
-
-    </aside>
+    <x-role-sidebar active="recipes" />
 
 
     <main class="main">
@@ -434,7 +392,7 @@
                     </span>
 
                     <span class="user-role">
-                        User
+                        {{ ucfirst(auth()->user()->role) }}
                     </span>
 
                 </div>

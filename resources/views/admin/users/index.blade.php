@@ -9,6 +9,8 @@
 
     <title>Data User - ResepKu</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
 
         * {
@@ -543,160 +545,7 @@
 
     <!-- SIDEBAR -->
 
-    <aside class="sidebar">
-
-
-        <div class="brand">
-
-            <div class="brand-icon">
-                🍳
-            </div>
-
-            <div class="brand-text">
-
-                <h2>
-                    ResepKu
-                </h2>
-
-                <span>
-                    Admin Panel
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="menu-title">
-            Menu Utama
-        </div>
-
-
-        <nav class="menu">
-
-
-            <a href="{{ route('admin.dashboard') }}">
-
-                <span class="menu-icon">
-                    🏠
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('admin.recipes.index') }}">
-
-                <span class="menu-icon">
-                    🍲
-                </span>
-
-                <span>
-                    Daftar Resep
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('recipes.create') }}">
-
-                <span class="menu-icon">
-                    ➕
-                </span>
-
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
-
-
-            <a
-                href="{{ route('admin.users.index') }}"
-                class="active"
-            >
-
-                <span class="menu-icon">
-                    👥
-                </span>
-
-                <span>
-                    Data User
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('recipes.index') }}">
-
-                <span class="menu-icon">
-                    🌐
-                </span>
-
-                <span>
-                    Lihat Website
-                </span>
-
-            </a>
-
-
-        </nav>
-
-
-        <!-- SIDEBAR BOTTOM -->
-
-        <div class="sidebar-bottom">
-
-
-            <div class="profile-mini">
-
-                <div class="avatar">
-
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-
-                </div>
-
-                <div class="profile-mini-info">
-
-                    <strong>
-                        {{ auth()->user()->name }}
-                    </strong>
-
-                    <span>
-                        Administrator
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-
-                @csrf
-
-                <button
-                    type="submit"
-                    class="logout-btn"
-                >
-
-                    🚪 Keluar
-
-                </button>
-
-            </form>
-
-
-        </div>
-
-
-    </aside>
+    <x-role-sidebar active="users" />
 
 
 
@@ -723,11 +572,8 @@
             </div>
 
 
-            <a
-                href="{{ route('admin.dashboard') }}"
-                class="back-btn"
-            >
-                ← Kembali ke Dashboard
+            <a href="{{ route('admin.users.create') }}" class="back-btn">
+                + Tambah User
             </a>
 
 

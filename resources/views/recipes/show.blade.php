@@ -803,157 +803,7 @@
          SIDEBAR
     ====================================================== -->
 
-    <aside class="sidebar">
-
-
-        <div class="brand">
-
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
-
-            <small>
-                Website Resep Masakan
-            </small>
-
-        </div>
-
-
-        <div class="menu-label">
-            Menu Utama
-        </div>
-
-
-        <nav class="menu">
-
-
-            <!-- DASHBOARD -->
-
-            <a href="{{ route('user.dashboard') }}">
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
-
-
-            <!-- RESEP SAYA -->
-
-            <a href="{{ route('recipes.my') }}">
-
-                <span class="menu-icon">
-                    ▣
-                </span>
-
-                <span>
-                    Resep Saya
-                </span>
-
-            </a>
-
-
-            <!-- RESEP TERSIMPAN -->
-
-            <a href="{{ route('user.favorites') }}">
-
-                <span class="menu-icon">
-                    ♥
-                </span>
-
-                <span>
-                    Resep Tersimpan
-                </span>
-
-            </a>
-
-
-            <!-- TAMBAH RESEP -->
-
-            <a href="{{ route('recipes.create') }}">
-
-                <span class="menu-icon">
-                    ＋
-                </span>
-
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
-
-
-            <!-- PROFIL -->
-
-            <a href="{{ route('profile.edit') }}">
-
-                <span class="menu-icon">
-                    ○
-                </span>
-
-                <span>
-                    Profil
-                </span>
-
-            </a>
-
-        </nav>
-
-
-        <!-- SIDEBAR BOTTOM -->
-
-        <div class="sidebar-bottom">
-
-            <div class="profile-box">
-
-                <div class="avatar">
-
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-
-                </div>
-
-                <div class="profile-info">
-
-                    <div class="profile-name">
-
-                        {{ auth()->user()->name }}
-
-                    </div>
-
-                    <div class="profile-role">
-
-                        User
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-
-                @csrf
-
-                <button
-                    type="submit"
-                    class="logout-button"
-                >
-                    🚪 &nbsp; Keluar
-                </button>
-
-            </form>
-
-        </div>
-
-    </aside>
+    <x-role-sidebar active="recipes" />
 
 
     <!-- =====================================================
@@ -986,7 +836,7 @@
 
                     <span class="user-role">
 
-                        User
+                        {{ ucfirst(auth()->user()->role) }}
 
                     </span>
 
@@ -1012,7 +862,9 @@
             <!-- KEMBALI -->
 
             <a
-                href="{{ route('recipes.my') }}"
+                href="{{ auth()->user()->role === 'admin'
+                    ? route('admin.recipes.index')
+                    : route('recipes.my') }}"
                 class="back-link"
             >
                 ← Kembali ke Resep Saya
@@ -1268,20 +1120,24 @@
                     <!-- KEMBALI -->
 
                     <a
-                        href="{{ route('recipes.my') }}"
+                        href="{{ auth()->user()->role === 'admin'
+                            ? route('admin.recipes.index')
+                            : route('recipes.my') }}"
                         class="btn btn-back"
                     >
                         ← Kembali
                     </a>
 
 
-                    @if($recipe->user_id == auth()->id())
+                    @if(auth()->user()->role === 'admin' || $recipe->user_id == auth()->id())
 
 
                         <!-- EDIT -->
 
                         <a
-                            href="{{ route('recipes.edit', $recipe->slug) }}"
+                            href="{{ auth()->user()->role === 'admin'
+                                ? route('admin.recipes.edit', $recipe)
+                                : route('recipes.edit', $recipe->slug) }}"
                             class="btn btn-edit"
                         >
                             Edit Resep
@@ -1291,7 +1147,9 @@
                         <!-- HAPUS -->
 
                         <form
-                            action="{{ route('recipes.destroy', $recipe->slug) }}"
+                            action="{{ auth()->user()->role === 'admin'
+                                ? route('admin.recipes.destroy', $recipe)
+                                : route('recipes.destroy', $recipe->slug) }}"
                             method="POST"
                             onsubmit="return confirm('Yakin ingin menghapus resep ini?')"
                             style="margin:0;"

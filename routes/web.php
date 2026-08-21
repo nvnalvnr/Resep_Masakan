@@ -42,6 +42,23 @@ Route::get('/recipes', [
 
 /*
 |--------------------------------------------------------------------------
+| ROLE-BASED DASHBOARD REDIRECT
+|--------------------------------------------------------------------------
+|
+| Breeze memakai route "dashboard" setelah register dan verifikasi email.
+| Route ini mengarahkan setiap role ke dashboard yang benar.
+|
+*/
+
+Route::get('/dashboard', function () {
+    return auth()->user()->role === 'admin'
+        ? redirect()->route('admin.dashboard')
+        : redirect()->route('user.dashboard');
+})->middleware('auth')->name('dashboard');
+
+
+/*
+|--------------------------------------------------------------------------
 | USER
 |--------------------------------------------------------------------------
 */
@@ -54,7 +71,7 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/dashboard', [
+    Route::get('/user/dashboard', [
         UserDashboardController::class,
         'index'
     ])->name('user.dashboard');
@@ -253,6 +270,16 @@ Route::middleware(['auth', 'admin'])
             AdminUserController::class,
             'index'
         ])->name('users.index');
+
+        Route::get('/users/create', [
+            AdminUserController::class,
+            'create'
+        ])->name('users.create');
+
+        Route::post('/users', [
+            AdminUserController::class,
+            'store'
+        ])->name('users.store');
 
         Route::get('/users/{user}/edit', [
             AdminUserController::class,

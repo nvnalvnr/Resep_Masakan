@@ -680,228 +680,14 @@
          SIDEBAR
     ====================================================== -->
 
-    <aside class="sidebar">
-
-
-        <div class="brand">
-
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
-
-            <small>
-                Website Resep Masakan
-            </small>
-
-        </div>
-
-
-        <div class="menu-label">
-            Menu Utama
-        </div>
-
-
-        <nav class="menu">
-
-
-            <!-- DASHBOARD -->
-
-            <a href="{{ route('user.dashboard') }}">
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
-
-
-            <!-- RESEP SAYA -->
-
-            <a href="{{ route('recipes.my') }}">
-
-                <span class="menu-icon">
-                    ▣
-                </span>
-
-                <span>
-                    Resep Saya
-                </span>
-
-            </a>
-
-
-            <!-- RESEP TERSIMPAN -->
-
-            <a href="{{ route('user.favorites') }}">
-
-                <span class="menu-icon">
-                    ♥
-                </span>
-
-                <span>
-                    Resep Tersimpan
-                </span>
-
-            </a>
-
-
-            <!-- TAMBAH RESEP -->
-
-            <a
-                href="{{ route('recipes.create') }}"
-                class="active"
-            >
-
-                <span class="menu-icon">
-                    ＋
-                </span>
-
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
-
-
-            <!-- PROFIL -->
-
-            <a href="{{ route('profile.edit') }}">
-
-                <span class="menu-icon">
-                    ○
-                </span>
-
-                <span>
-                    Profil
-                </span>
-
-            </a>
-
-
-        </nav>
-
-
-        <!-- SIDEBAR BOTTOM -->
-
-        <div class="sidebar-bottom">
-
-
-            <div class="profile-box">
-
-
-                <div class="avatar">
-
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-
-                </div>
-
-
-                <div class="profile-info">
-
-
-                    <div class="profile-name">
-
-                        {{ auth()->user()->name }}
-
-                    </div>
-
-
-                    <div class="profile-role">
-
-                        User
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-            <!-- LOGOUT -->
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-
-                @csrf
-
-
-                <button
-                    type="submit"
-                    class="logout-button"
-                >
-
-                    🚪
-                    &nbsp;
-                    Keluar
-
-                </button>
-
-            </form>
-
-
-        </div>
-
-    </aside>
+    <x-role-sidebar active="create" />
 
 
     <!-- =====================================================
          MAIN
     ====================================================== -->
 
-    <main class="main">
-
-
-        <!-- TOPBAR -->
-
-        <header class="topbar">
-
-
-            <div class="page-name">
-
-                Tambah Resep
-
-            </div>
-
-
-            <div class="user-area">
-
-
-                <div class="user-info">
-
-                    <span class="user-name">
-
-                        {{ auth()->user()->name }}
-
-                    </span>
-
-
-                    <span class="user-role">
-
-                        User
-
-                    </span>
-
-                </div>
-
-
-                <div class="avatar">
-
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-
-                </div>
-
-
-            </div>
-
-        </header>
+    <main class="main role-sidebar-content">
 
 
         <!-- CONTENT -->
@@ -956,7 +742,7 @@
 
 
                 <form
-                    action="{{ route('recipes.store') }}"
+                    action="{{ route(auth()->user()->role === 'admin' ? 'admin.recipes.store' : 'recipes.store') }}"
                     method="POST"
                     enctype="multipart/form-data"
                 >
@@ -1172,7 +958,7 @@ Garam secukupnya"
 
 
                         <a
-                            href="{{ route('recipes.my') }}"
+                            href="{{ route(auth()->user()->role === 'admin' ? 'admin.recipes.index' : 'recipes.my') }}"
                             class="btn-cancel"
                         >
                             Batal

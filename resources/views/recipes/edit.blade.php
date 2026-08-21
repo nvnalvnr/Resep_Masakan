@@ -581,81 +581,7 @@
          SIDEBAR
     ========================= --}}
 
-    <aside class="sidebar">
-
-
-        <div class="brand">
-
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
-
-            <small>
-                Website Resep Masakan
-            </small>
-
-        </div>
-
-
-        <div class="menu-label">
-            Menu Utama
-        </div>
-
-
-        <nav class="menu">
-
-
-            <a href="{{ route('user.dashboard') }}">
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                Dashboard
-
-            </a>
-
-
-            <a
-                href="{{ route('recipes.index') }}"
-                class="active"
-            >
-
-                <span class="menu-icon">
-                    ▣
-                </span>
-
-                Resep
-
-            </a>
-
-
-            <a href="{{ route('recipes.create') }}">
-
-                <span class="menu-icon">
-                    ＋
-                </span>
-
-                Tambah Resep
-
-            </a>
-
-
-            <a href="{{ route('profile.edit') }}">
-
-                <span class="menu-icon">
-                    ○
-                </span>
-
-                Profil
-
-            </a>
-
-
-        </nav>
-
-
-    </aside>
+    <x-role-sidebar active="recipes" />
 
 
 
@@ -683,6 +609,10 @@
 
                     {{ auth()->user()->name }}
 
+                </span>
+
+                <span class="user-role">
+                    {{ ucfirst(auth()->user()->role) }}
                 </span>
 
 
@@ -767,7 +697,9 @@
 
 
                 <form
-                    action="{{ route('recipes.update', $recipe->slug) }}"
+                    action="{{ auth()->user()->role === 'admin'
+                        ? route('admin.recipes.update', $recipe)
+                        : route('recipes.update', $recipe->slug) }}"
                     method="POST"
                     enctype="multipart/form-data"
                 >
@@ -1012,7 +944,9 @@
 
 
                         <a
-                            href="{{ route('recipes.show', $recipe->slug) }}"
+                            href="{{ auth()->user()->role === 'admin'
+                                ? route('admin.recipes.show', $recipe)
+                                : route('recipes.show', $recipe->slug) }}"
                             class="btn-cancel"
                         >
 

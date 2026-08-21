@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
@@ -22,13 +23,48 @@ class RecipeController extends Controller
     }
 
     /**
+     * Menampilkan form tambah resep untuk admin.
+     */
+    public function create()
+    {
+        return view('recipes.create');
+    }
+
+    /**
+     * Menyimpan resep baru yang dibuat admin.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'ingredients' => 'required|string',
+            'steps' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $validated['user_id'] = $request->user()->id;
+        $validated['slug'] = $this->generateUniqueSlug($validated['title']);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')
+                ->store('recipes', 'public');
+        }
+
+        Recipe::create($validated);
+
+        return redirect()
+            ->route('admin.recipes.index')
+            ->with('success', 'Resep berhasil ditambahkan.');
+    }
+
+    /**
      * Menampilkan detail resep
      */
     public function show(Recipe $recipe)
     {
         $recipe->load('user');
 
-        return view('admin.recipes.show', compact('recipe'));
+        return view('recipes.show', compact('recipe'));
     }
 
     /**
@@ -36,7 +72,7 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return view('admin.recipes.edit', compact('recipe'));
+        return view('recipes.edit', compact('recipe'));
     }
 
     /**
@@ -51,6 +87,11 @@ class RecipeController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        $validated['slug'] = $this->generateUniqueSlug(
+            $validated['title'],
+            $recipe
+        );
+
         /*
         |--------------------------------------------------------------------------
         | Upload gambar baru
@@ -60,7 +101,7 @@ class RecipeController extends Controller
         if ($request->hasFile('image')) {
 
             // Hapus gambar lama jika ada
-            if ($recipe->image) {
+            if ($this->isStoredImage($recipe->image)) {
                 Storage::disk('public')->delete($recipe->image);
             }
 
@@ -93,7 +134,7 @@ class RecipeController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        if ($recipe->image) {
+        if ($this->isStoredImage($recipe->image)) {
             Storage::disk('public')->delete($recipe->image);
         }
 
@@ -108,5 +149,32 @@ class RecipeController extends Controller
         return redirect()
             ->route('admin.recipes.index')
             ->with('success', 'Resep berhasil dihapus.');
+    }
+
+    private function generateUniqueSlug(string $title, ?Recipe $ignoredRecipe = null): string
+    {
+        $baseSlug = Str::slug($title);
+        $slug = $baseSlug !== '' ? $baseSlug : 'resep';
+        $counter = 1;
+
+        while (
+            Recipe::where('slug', $slug)
+                ->when(
+                    $ignoredRecipe,
+                    fn ($query) => $query->where('id', '!=', $ignoredRecipe->getKey())
+                )
+                ->exists()
+        ) {
+            $slug = ($baseSlug !== '' ? $baseSlug : 'resep') . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
+    }
+
+    private function isStoredImage(?string $image): bool
+    {
+        return filled($image)
+            && ! Str::startsWith($image, ['http://', 'https://']);
     }
 }

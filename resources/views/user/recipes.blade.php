@@ -859,7 +859,7 @@
             {{-- RESEP SAYA --}}
 
             <a
-                href="{{ route('user.recipes') }}"
+                href="{{ route('recipes.my') }}"
                 class="active"
             >
 
@@ -1045,7 +1045,7 @@
             <div class="search-box">
 
                 <form
-                    action="{{ route('user.recipes') }}"
+                    action="{{ route('recipes.my') }}"
                     method="GET"
                     class="search-form"
                 >

@@ -1,0 +1,211 @@
+.sidebar.role-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    display: flex;
+    width: 255px;
+    min-height: 100vh;
+    padding: 24px 18px;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid #eee8e1;
+    background: #fff;
+}
+
+.role-sidebar .brand {
+    padding: 0 8px 24px;
+}
+
+.role-sidebar .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.role-sidebar .menu-title,
+.role-sidebar .menu-label {
+    margin: 8px 10px;
+    color: #a8a29e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.role-sidebar .menu {
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+}
+
+.role-sidebar .menu a {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 12px;
+    border-radius: 9px;
+    color: #57534e;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background-color .2s, color .2s;
+}
+
+.role-sidebar .menu a:hover,
+.role-sidebar .menu a.active {
+    color: #c2410c;
+    background: #fff7ed;
+}
+
+.role-sidebar .brand-mark {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #e85d04;
+}
+
+.role-sidebar .brand-copy {
+    min-width: 0;
+}
+
+.role-sidebar .brand-copy strong,
+.role-sidebar .brand-copy small {
+    display: block;
+}
+
+.role-sidebar .brand-copy strong {
+    color: #222;
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+.role-sidebar .brand-copy small {
+    color: #888;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.role-sidebar .menu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 20px;
+}
+
+.role-sidebar .menu-icon svg,
+.role-sidebar .logout-button svg,
+.role-sidebar .logout-btn svg {
+    display: block;
+}
+
+.role-sidebar .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.role-sidebar .profile-box,
+.role-sidebar .profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 6px;
+    border-top: 1px solid #f1ede9;
+}
+
+.role-sidebar .avatar {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #e85d04;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.role-sidebar .profile-info,
+.role-sidebar .profile-mini-info {
+    min-width: 0;
+}
+
+.role-sidebar .profile-name,
+.role-sidebar .profile-mini-info strong {
+    display: block;
+    overflow: hidden;
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.role-sidebar .profile-role,
+.role-sidebar .profile-mini-info span {
+    display: block;
+    color: #888;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.role-sidebar .logout-button,
+.role-sidebar .logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    color: #b91c1c;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.role-sidebar .logout-button:hover,
+.role-sidebar .logout-btn:hover {
+    background: #fef2f2;
+}
+
+.role-sidebar-content {
+    width: auto;
+    margin-left: 255px;
+}
+
+.role-sidebar + .role-sidebar-content {
+    max-width: calc(100% - 255px);
+    margin-left: 255px;
+}
+
+.topbar .user-role {
+    display: block;
+    color: #888;
+    font-size: 10px;
+}
+
+@media (max-width: 760px) {
+    .sidebar.role-sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .role-sidebar-content {
+        margin-left: 0;
+    }
+
+    .role-sidebar + .role-sidebar-content {
+        max-width: 100%;
+        margin-left: 0;
+    }
+}

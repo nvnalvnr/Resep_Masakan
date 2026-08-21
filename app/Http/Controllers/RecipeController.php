@@ -80,7 +80,7 @@ class RecipeController extends Controller
             ],
         ]);
 
-        $slug = Str::slug($validated['title']);
+        $slug = Str::slug($validated['title']) ?: 'resep';
 
         $originalSlug = $slug;
         $counter = 1;
@@ -169,7 +169,7 @@ class RecipeController extends Controller
             ],
         ]);
 
-        $newSlug = Str::slug($validated['title']);
+        $newSlug = Str::slug($validated['title']) ?: 'resep';
 
         if ($newSlug !== $recipe->slug) {
 
