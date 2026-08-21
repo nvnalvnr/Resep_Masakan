@@ -14,6 +14,8 @@
         Resep Tersimpan - ResepKu
     </title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
 
         * {
@@ -24,19 +26,25 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f8f6f3;
-            color: #292524;
+            background: #f6f6f4;
+            color: #292929;
         }
 
         a {
             text-decoration: none;
         }
 
+        button {
+            font-family: inherit;
+        }
+
         .layout {
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
 
         .sidebar {
             position: fixed;
@@ -44,67 +52,57 @@
             top: 0;
             bottom: 0;
 
-            width: 245px;
+            width: 240px;
 
             background: #ffffff;
 
-            border-right: 1px solid #eee8e1;
+            border-right: 1px solid #e3e3e3;
 
-            padding: 25px 18px;
+            padding: 28px 18px;
 
-            z-index: 10;
+            z-index: 50;
+
+            display: flex;
+
+            flex-direction: column;
         }
 
         .brand {
-            display: flex;
-            align-items: center;
+            padding: 0 14px;
 
-            gap: 10px;
-
-            padding: 8px 10px 30px;
+            margin-bottom: 42px;
         }
 
-        .brand-icon {
-            width: 42px;
-            height: 42px;
+        .brand a {
+            color: #e85d04;
 
-            background: #ffedd5;
+            font-size: 25px;
 
-            border-radius: 12px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 21px;
+            font-weight: 700;
         }
 
-        .brand-text h2 {
-            font-size: 17px;
-        }
-
-        .brand-text span {
+        .brand small {
             display: block;
 
-            color: #a8a29e;
+            color: #999;
 
-            font-size: 10px;
+            font-size: 11px;
 
-            margin-top: 3px;
+            margin-top: 5px;
         }
 
-        .menu-title {
-            color: #a8a29e;
+        .menu-label {
+            color: #999;
 
             font-size: 10px;
 
-            font-weight: bold;
+            font-weight: 600;
 
             letter-spacing: .8px;
 
-            margin: 5px 10px 10px;
-
             text-transform: uppercase;
+
+            margin: 0 14px 10px;
         }
 
         .menu {
@@ -112,7 +110,7 @@
 
             flex-direction: column;
 
-            gap: 5px;
+            gap: 3px;
         }
 
         .menu a {
@@ -122,11 +120,11 @@
 
             gap: 11px;
 
-            padding: 12px 13px;
+            padding: 12px 14px;
 
-            border-radius: 9px;
+            color: #606060;
 
-            color: #57534e;
+            border-radius: 7px;
 
             font-size: 13px;
 
@@ -134,86 +132,85 @@
         }
 
         .menu a:hover {
-            background: #fff7ed;
+            background: #f7f7f7;
 
-            color: #ea580c;
+            color: #e85d04;
         }
 
         .menu a.active {
-            background: #ffedd5;
+            background: #fff1e8;
 
-            color: #ea580c;
+            color: #e85d04;
 
             font-weight: 600;
         }
 
         .menu-icon {
-            width: 22px;
+            width: 20px;
+
+            min-width: 20px;
 
             text-align: center;
 
             font-size: 16px;
         }
 
-        /* SIDEBAR BOTTOM */
+        /* =====================================================
+           SIDEBAR BOTTOM
+        ===================================================== */
 
         .sidebar-bottom {
-            position: absolute;
+            margin-top: auto;
 
-            left: 18px;
-            right: 18px;
+            padding-top: 18px;
 
-            bottom: 20px;
+            border-top: 1px solid #eeeeee;
         }
 
-        .profile-mini {
+        .profile-box {
             display: flex;
 
             align-items: center;
 
             gap: 10px;
 
-            padding: 11px;
+            padding: 8px 10px;
 
-            margin-bottom: 9px;
-
-            background: #fafaf9;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 10px;
+            margin-bottom: 8px;
         }
 
         .avatar {
             width: 37px;
+
             height: 37px;
 
-            flex-shrink: 0;
+            background: #e85d04;
+
+            color: #ffffff;
+
+            border-radius: 50%;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
-
-            border-radius: 50%;
-
-            background: #fed7aa;
-
-            color: #9a3412;
 
             font-size: 13px;
 
-            font-weight: bold;
+            font-weight: 600;
+
+            flex-shrink: 0;
         }
 
         .profile-info {
             min-width: 0;
         }
 
-        .profile-info strong {
-            display: block;
-
+        .profile-name {
             font-size: 12px;
+
+            font-weight: 600;
 
             white-space: nowrap;
 
@@ -222,17 +219,15 @@
             text-overflow: ellipsis;
         }
 
-        .profile-info span {
-            display: block;
-
-            color: #a8a29e;
+        .profile-role {
+            color: #999;
 
             font-size: 10px;
 
             margin-top: 3px;
         }
 
-        .logout-btn {
+        .logout-button {
             width: 100%;
 
             border: none;
@@ -243,84 +238,110 @@
 
             padding: 10px;
 
-            border-radius: 8px;
+            border-radius: 7px;
 
             cursor: pointer;
 
             font-size: 12px;
+
+            text-align: left;
         }
 
-        .logout-btn:hover {
+        .logout-button:hover {
             background: #ffe4e6;
         }
 
-        /* MAIN */
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
-            margin-left: 245px;
-
-            padding: 30px 35px 50px;
+            margin-left: 240px;
 
             min-height: 100vh;
         }
 
-        /* TOPBAR */
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
 
         .topbar {
+            height: 72px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e3e3e3;
+
+            padding: 0 34px;
+
             display: flex;
 
             align-items: center;
 
             justify-content: space-between;
-
-            margin-bottom: 22px;
         }
 
-        .topbar h1 {
-            font-size: 25px;
+        .page-name {
+            font-size: 18px;
 
-            margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .topbar p {
-            color: #a8a29e;
+        .user-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            display: block;
+
+            font-size: 13px;
+
+            color: #444;
+        }
+
+        .user-role {
+            display: block;
+
+            color: #999;
+
+            font-size: 10px;
+
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+            padding: 30px 34px 50px;
+
+            max-width: 1250px;
+        }
+
+        .success {
+            background: #edf8f0;
+
+            border: 1px solid #cce8d2;
+
+            color: #26733b;
+
+            border-radius: 6px;
+
+            padding: 12px 15px;
 
             font-size: 12px;
+
+            margin-bottom: 20px;
         }
-
-        .date-box {
-            background: white;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 9px;
-
-            padding: 10px 13px;
-
-            color: #78716c;
-
-            font-size: 11px;
-        }
-
-        /* SUCCESS */
-
-        .success-message {
-            background: #f0fdf4;
-
-            color: #15803d;
-
-            border: 1px solid #bbf7d0;
-
-            padding: 11px 14px;
-
-            border-radius: 9px;
-
-            margin-bottom: 18px;
-
-            font-size: 12px;
-        }
-
-        /* HEADER */
 
         .page-header {
             display: flex;
@@ -329,36 +350,40 @@
 
             justify-content: space-between;
 
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
 
-        .page-header h2 {
-            font-size: 20px;
+        .page-header h1 {
+            font-size: 24px;
 
-            margin-bottom: 5px;
+            font-weight: 600;
+
+            margin-bottom: 6px;
         }
 
         .page-header p {
-            color: #a8a29e;
+            color: #888;
 
             font-size: 12px;
         }
 
         .total-badge {
-            background: #ffedd5;
+            background: #fff1e8;
 
-            color: #ea580c;
+            color: #e85d04;
 
             padding: 9px 13px;
 
-            border-radius: 8px;
+            border-radius: 6px;
 
             font-size: 11px;
 
             font-weight: 600;
         }
 
-        /* RECIPE GRID */
+        /* =====================================================
+           RECIPE GRID
+        ===================================================== */
 
         .recipe-grid {
             display: grid;
@@ -370,11 +395,11 @@
         }
 
         .recipe-card {
-            background: white;
+            background: #ffffff;
 
-            border: 1px solid #eee8e1;
+            border: 1px solid #e3e3e3;
 
-            border-radius: 13px;
+            border-radius: 9px;
 
             overflow: hidden;
 
@@ -384,14 +409,23 @@
         .recipe-card:hover {
             transform: translateY(-2px);
 
-            box-shadow:
-                0 8px 20px rgba(0, 0, 0, .05);
+            border-color: #fed7aa;
         }
 
         .recipe-image {
             width: 100%;
 
-            height: 190px;
+            height: 175px;
+
+            background: #eeeeee;
+
+            overflow: hidden;
+        }
+
+        .recipe-image img {
+            width: 100%;
+
+            height: 100%;
 
             object-fit: cover;
 
@@ -401,9 +435,7 @@
         .no-image {
             width: 100%;
 
-            height: 190px;
-
-            background: #fff7ed;
+            height: 100%;
 
             display: flex;
 
@@ -411,9 +443,9 @@
 
             justify-content: center;
 
-            color: #a8a29e;
+            color: #999;
 
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .recipe-content {
@@ -421,31 +453,31 @@
         }
 
         .recipe-title {
+            display: block;
+
+            color: #292929;
+
             font-size: 15px;
 
             font-weight: 600;
 
-            color: #292524;
+            line-height: 1.4;
 
-            margin-bottom: 8px;
+            margin-bottom: 7px;
+        }
 
-            display: block;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
+        .recipe-title:hover {
+            color: #e85d04;
         }
 
         .recipe-meta {
-            color: #a8a29e;
+            color: #999;
 
-            font-size: 11px;
+            font-size: 10px;
 
             line-height: 1.6;
 
-            margin-bottom: 14px;
+            margin-bottom: 15px;
         }
 
         .recipe-actions {
@@ -459,91 +491,87 @@
         .view-button {
             flex: 1;
 
-            display: flex;
+            display: inline-flex;
 
             align-items: center;
 
             justify-content: center;
 
-            background: #ffedd5;
+            background: #fff1e8;
 
-            color: #ea580c;
+            color: #e85d04;
 
-            padding: 9px;
+            padding: 8px 10px;
 
-            border-radius: 8px;
+            border-radius: 5px;
 
-            font-size: 11px;
+            font-size: 10px;
 
             font-weight: 600;
         }
 
         .view-button:hover {
-            background: #fed7aa;
+            background: #ffe3d1;
         }
 
         .remove-button {
+            width: 33px;
+
+            height: 33px;
+
             border: none;
 
-            background: #fff1f2;
+            background: #fff0f0;
 
-            color: #be123c;
+            color: #c62828;
 
-            padding: 9px 11px;
-
-            border-radius: 8px;
+            border-radius: 5px;
 
             cursor: pointer;
 
-            font-size: 11px;
-        }
-
-        .remove-button:hover {
-            background: #ffe4e6;
-        }
-
-        /* EMPTY */
-
-        .empty-state {
-            background: white;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 13px;
-
-            padding: 60px 30px;
-
-            text-align: center;
-        }
-
-        .empty-icon {
-            width: 65px;
-
-            height: 65px;
-
-            margin: 0 auto 15px;
-
-            border-radius: 50%;
-
-            background: #fff7ed;
+            font-size: 15px;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            font-size: 27px;
         }
 
-        .empty-state h3 {
-            font-size: 17px;
-
-            margin-bottom: 7px;
+        .remove-button:hover {
+            background: #ffe4e4;
         }
 
-        .empty-state p {
-            color: #a8a29e;
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty {
+            background: #ffffff;
+
+            border: 1px solid #e3e3e3;
+
+            border-radius: 9px;
+
+            padding: 60px 20px;
+
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 35px;
+
+            margin-bottom: 12px;
+        }
+
+        .empty h2 {
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            color: #999;
 
             font-size: 12px;
 
@@ -551,19 +579,15 @@
         }
 
         .browse-button {
-            display: inline-flex;
+            display: inline-block;
 
-            align-items: center;
+            background: #e85d04;
 
-            justify-content: center;
-
-            background: #ea580c;
-
-            color: white;
+            color: #ffffff;
 
             padding: 10px 15px;
 
-            border-radius: 8px;
+            border-radius: 6px;
 
             font-size: 11px;
 
@@ -571,22 +595,14 @@
         }
 
         .browse-button:hover {
-            background: #c2410c;
+            background: #d65300;
         }
 
-        footer {
-            text-align: center;
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
 
-            padding: 25px 0 0;
-
-            color: #a8a29e;
-
-            font-size: 11px;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 1050px) {
+        @media (max-width: 1000px) {
 
             .recipe-grid {
                 grid-template-columns:
@@ -598,58 +614,39 @@
         @media (max-width: 750px) {
 
             .sidebar {
-                width: 70px;
+                position: relative;
 
-                padding: 18px 10px;
-            }
+                width: 100%;
 
-            .brand {
-                justify-content: center;
+                height: auto;
 
-                padding-bottom: 25px;
-            }
+                border-right: none;
 
-            .brand-text,
-            .menu-title,
-            .menu a span:not(.menu-icon),
-            .sidebar-bottom {
-                display: none;
-            }
-
-            .menu a {
-                justify-content: center;
+                border-bottom: 1px solid #e3e3e3;
             }
 
             .main {
-                margin-left: 70px;
+                margin-left: 0;
+            }
 
-                padding: 22px 18px;
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 22px 18px 40px;
             }
 
             .recipe-grid {
                 grid-template-columns: 1fr;
             }
 
-        }
-
-        @media (max-width: 550px) {
-
-            .topbar {
-                display: block;
-            }
-
-            .date-box {
-                display: none;
-            }
-
             .page-header {
-                display: block;
-            }
+                align-items: flex-start;
 
-            .total-badge {
-                display: inline-block;
+                gap: 12px;
 
-                margin-top: 12px;
+                flex-direction: column;
             }
 
         }
@@ -664,42 +661,40 @@
 <div class="layout">
 
 
-    {{-- SIDEBAR --}}
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="sidebar">
 
+
         <div class="brand">
 
-            <div class="brand-icon">
-                🍳
-            </div>
+            <a href="{{ route('user.dashboard') }}">
+                ResepKu
+            </a>
 
-            <div class="brand-text">
-
-                <h2>
-                    ResepKu
-                </h2>
-
-                <span>
-                    Website Resep Masakan
-                </span>
-
-            </div>
+            <small>
+                Website Resep Masakan
+            </small>
 
         </div>
 
 
-        <div class="menu-title">
+        <div class="menu-label">
             Menu Utama
         </div>
 
 
         <nav class="menu">
 
+
+            <!-- DASHBOARD -->
+
             <a href="{{ route('user.dashboard') }}">
 
                 <span class="menu-icon">
-                    🏠
+                    ⌂
                 </span>
 
                 <span>
@@ -709,10 +704,12 @@
             </a>
 
 
-            <a href="{{ route('user.recipes') }}">
+            <!-- RESEP SAYA -->
+
+            <a href="{{ route('recipes.my') }}">
 
                 <span class="menu-icon">
-                    🍲
+                    ▣
                 </span>
 
                 <span>
@@ -721,6 +718,8 @@
 
             </a>
 
+
+            <!-- RESEP TERSIMPAN -->
 
             <a
                 href="{{ route('user.favorites') }}"
@@ -738,6 +737,8 @@
             </a>
 
 
+            <!-- TAMBAH RESEP -->
+
             <a href="{{ route('recipes.create') }}">
 
                 <span class="menu-icon">
@@ -751,6 +752,8 @@
             </a>
 
 
+            <!-- PROFIL -->
+
             <a href="{{ route('profile.edit') }}">
 
                 <span class="menu-icon">
@@ -763,14 +766,18 @@
 
             </a>
 
+
         </nav>
 
 
-        {{-- USER --}}
+        <!-- =================================================
+             USER BOTTOM
+        ================================================== -->
 
         <div class="sidebar-bottom">
 
-            <div class="profile-mini">
+
+            <div class="profile-box">
 
                 <div class="avatar">
 
@@ -778,15 +785,21 @@
 
                 </div>
 
+
                 <div class="profile-info">
 
-                    <strong>
-                        {{ $user->name }}
-                    </strong>
+                    <div class="profile-name">
 
-                    <span>
+                        {{ $user->name }}
+
+                    </div>
+
+
+                    <div class="profile-role">
+
                         User
-                    </span>
+
+                    </div>
 
                 </div>
 
@@ -802,9 +815,13 @@
 
                 <button
                     type="submit"
-                    class="logout-btn"
+                    class="logout-button"
                 >
-                    🚪 Keluar
+
+                    🚪
+                    &nbsp;
+                    Keluar
+
                 </button>
 
             </form>
@@ -814,230 +831,263 @@
     </aside>
 
 
-    {{-- MAIN --}}
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
     <main class="main">
 
 
-        {{-- TOPBAR --}}
+        <!-- TOPBAR -->
 
-        <div class="topbar">
+        <header class="topbar">
 
-            <div>
-
-                <h1>
-                    Resep Tersimpan
-                </h1>
-
-                <p>
-                    Kumpulan resep yang kamu simpan untuk dimasak nanti.
-                </p>
-
+            <div class="page-name">
+                Resep Tersimpan
             </div>
 
 
-            <div class="date-box">
+            <div class="user-area">
 
-                📅
-                {{ now()->format('d M Y') }}
+                <div class="user-info">
 
-            </div>
+                    <span class="user-name">
+                        {{ $user->name }}
+                    </span>
 
-        </div>
+                    <span class="user-role">
+                        User
+                    </span>
 
-
-        {{-- SUCCESS MESSAGE --}}
-
-        @if(session('success'))
-
-            <div class="success-message">
-
-                ✓ {{ session('success') }}
-
-            </div>
-
-        @endif
-
-
-        {{-- PAGE HEADER --}}
-
-        <div class="page-header">
-
-            <div>
-
-                <h2>
-                    Koleksi Resep
-                </h2>
-
-                <p>
-                    Resep favorit yang sudah kamu simpan.
-                </p>
-
-            </div>
-
-
-            <div class="total-badge">
-
-                ♥ {{ $favorites->count() }} Resep
-
-            </div>
-
-        </div>
-
-
-        {{-- ADA FAVORITE --}}
-
-        @if($favorites->count() > 0)
-
-            <div class="recipe-grid">
-
-                @foreach($favorites as $favorite)
-
-                    @if($favorite->recipe)
-
-                        <div class="recipe-card">
-
-
-                            {{-- GAMBAR --}}
-
-                            @if($favorite->recipe->image)
-
-                                <img
-                                    src="{{ $favorite->recipe->imageUrl() }}"
-                                    alt="{{ $favorite->recipe->title }}"
-                                    class="recipe-image"
-                                >
-
-                            @else
-
-                                <div class="no-image">
-
-                                    🍽️
-
-                                    &nbsp;
-
-                                    Tidak ada gambar
-
-                                </div>
-
-                            @endif
-
-
-                            {{-- CONTENT --}}
-
-                            <div class="recipe-content">
-
-
-                                <a
-                                    href="{{ route('recipes.show', $favorite->recipe->slug) }}"
-                                    class="recipe-title"
-                                >
-
-                                    {{ $favorite->recipe->title }}
-
-                                </a>
-
-
-                                <div class="recipe-meta">
-
-                                    👨‍🍳
-                                    {{ $favorite->recipe->user->name ?? 'Pengguna' }}
-
-                                    <br>
-
-                                    📅
-                                    {{ $favorite->recipe->created_at?->format('d M Y') ?? '-' }}
-
-                                </div>
-
-
-                                <div class="recipe-actions">
-
-
-                                    {{-- LIHAT --}}
-
-                                    <a
-                                        href="{{ route('recipes.show', $favorite->recipe->slug) }}"
-                                        class="view-button"
-                                    >
-                                        👀 Lihat Resep
-                                    </a>
-
-
-                                    {{-- HAPUS FAVORITE --}}
-
-                                    <form
-                                        method="POST"
-                                        action="{{ route('recipe.favorite', $favorite->recipe->id) }}"
-                                        style="margin:0;"
-                                    >
-
-                                        @csrf
-
-                                        <button
-                                            type="submit"
-                                            class="remove-button"
-                                            title="Hapus dari resep tersimpan"
-                                        >
-                                            ♥
-                                        </button>
-
-                                    </form>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    @endif
-
-                @endforeach
-
-            </div>
-
-
-        {{-- BELUM ADA FAVORITE --}}
-
-        @else
-
-            <div class="empty-state">
-
-                <div class="empty-icon">
-                    ♡
                 </div>
 
 
-                <h3>
-                    Belum Ada Resep Tersimpan
-                </h3>
+                <div class="avatar">
 
+                    {{ strtoupper(substr($user->name, 0, 1)) }}
 
-                <p>
-                    Kamu belum menyimpan resep apa pun.
-                    Yuk cari resep yang ingin kamu masak.
-                </p>
-
-
-                <a
-                    href="{{ route('recipes.index') }}"
-                    class="browse-button"
-                >
-                    🍲 Cari Resep
-                </a>
+                </div>
 
             </div>
 
-        @endif
+        </header>
 
 
-        <footer>
+        <!-- CONTENT -->
 
-            © {{ date('Y') }} ResepKu.
-            Website Resep Masakan.
+        <section class="content">
 
-        </footer>
 
+            <!-- SUCCESS -->
+
+            @if(session('success'))
+
+                <div class="success">
+
+                    {{ session('success') }}
+
+                </div>
+
+            @endif
+
+
+            <!-- HEADER -->
+
+            <div class="page-header">
+
+
+                <div>
+
+                    <h1>
+                        Resep Tersimpan
+                    </h1>
+
+                    <p>
+                        Kumpulan resep yang kamu simpan untuk dimasak nanti.
+                    </p>
+
+                </div>
+
+
+                <div class="total-badge">
+
+                    ♥ {{ $favorites->count() }} Resep
+
+                </div>
+
+            </div>
+
+
+            <!-- RESEP -->
+
+            @if($favorites->count() > 0)
+
+
+                <div class="recipe-grid">
+
+
+                    @foreach($favorites as $favorite)
+
+
+                        @if($favorite->recipe)
+
+
+                            <article class="recipe-card">
+
+
+                                <!-- FOTO -->
+
+                                <div class="recipe-image">
+
+
+                                    @if($favorite->recipe->imageUrl())
+
+                                        <img
+                                            src="{{ $favorite->recipe->imageUrl() }}"
+                                            alt="{{ $favorite->recipe->title }}"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                        >
+
+                                        <div
+                                            class="no-image"
+                                            style="display:none;"
+                                        >
+                                            Gambar tidak tersedia
+                                        </div>
+
+                                    @else
+
+                                        <div class="no-image">
+
+                                            Tidak ada gambar
+
+                                        </div>
+
+                                    @endif
+
+
+                                </div>
+
+
+                                <!-- CONTENT -->
+
+                                <div class="recipe-content">
+
+
+                                    <a
+                                        href="{{ route('recipes.show', $favorite->recipe->slug) }}"
+                                        class="recipe-title"
+                                    >
+
+                                        {{ $favorite->recipe->title }}
+
+                                    </a>
+
+
+                                    <div class="recipe-meta">
+
+                                        Dibuat oleh:
+
+                                        {{ $favorite->recipe->user->name ?? 'Pengguna' }}
+
+                                        <br>
+
+                                        {{ $favorite->recipe->created_at?->format('d M Y') ?? '-' }}
+
+                                    </div>
+
+
+                                    <!-- ACTION -->
+
+                                    <div class="recipe-actions">
+
+
+                                        <a
+                                            href="{{ route('recipes.show', $favorite->recipe->slug) }}"
+                                            class="view-button"
+                                        >
+
+                                            Lihat Resep
+
+                                        </a>
+
+
+                                        <form
+                                            action="{{ route('recipe.favorite', $favorite->recipe->id) }}"
+                                            method="POST"
+                                            style="margin:0;"
+                                        >
+
+                                            @csrf
+
+                                            <button
+                                                type="submit"
+                                                class="remove-button"
+                                                title="Hapus dari resep tersimpan"
+                                            >
+                                                ♥
+                                            </button>
+
+                                        </form>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </article>
+
+
+                        @endif
+
+
+                    @endforeach
+
+
+                </div>
+
+
+            @else
+
+
+                <!-- EMPTY -->
+
+                <div class="empty">
+
+
+                    <div class="empty-icon">
+                        ♡
+                    </div>
+
+
+                    <h2>
+                        Belum Ada Resep Tersimpan
+                    </h2>
+
+
+                    <p>
+                        Kamu belum menyimpan resep apa pun.
+                        Simpan resep favoritmu agar mudah ditemukan kembali.
+                    </p>
+
+
+                    <a
+                        href="{{ route('recipes.my') }}"
+                        class="browse-button"
+                    >
+                        Lihat Resep Saya
+                    </a>
+
+
+                </div>
+
+
+            @endif
+
+
+        </section>
 
     </main>
 

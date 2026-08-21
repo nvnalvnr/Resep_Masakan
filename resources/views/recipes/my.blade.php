@@ -493,10 +493,10 @@
 
                             <div class="recipe-image">
 
-                                @if ($recipe->image)
+                                @if ($recipe->imageUrl())
 
                                     <img
-                                        src="{{ $recipe->image }}"
+                                        src="{{ $recipe->imageUrl() }}"
                                         alt="{{ $recipe->title }}"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                     >

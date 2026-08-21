@@ -10,6 +10,34 @@ use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | HOMEPAGE
+    |--------------------------------------------------------------------------
+    */
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $recipes = Recipe::with('user')
+            ->when($search, function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
+
+        return view('recipes.index', compact('recipes'));
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | RESEP SAYA
+    |--------------------------------------------------------------------------
+    */
+
     public function my()
     {
         $recipes = Recipe::where('user_id', Auth::id())
@@ -19,10 +47,24 @@ class RecipeController extends Controller
         return view('recipes.my', compact('recipes'));
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | TAMBAH RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function create()
     {
         return view('recipes.create');
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SIMPAN RESEP
+    |--------------------------------------------------------------------------
+    */
 
     public function store(Request $request)
     {
@@ -41,20 +83,16 @@ class RecipeController extends Controller
         $slug = Str::slug($validated['title']);
 
         $originalSlug = $slug;
-
         $counter = 1;
 
         while (Recipe::where('slug', $slug)->exists()) {
-
             $slug = $originalSlug . '-' . $counter;
-
             $counter++;
         }
 
         $imagePath = null;
 
         if ($request->hasFile('image')) {
-
             $imagePath = $request
                 ->file('image')
                 ->store('recipes', 'public');
@@ -74,6 +112,13 @@ class RecipeController extends Controller
             ->with('success', 'Resep berhasil ditambahkan.');
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | DETAIL RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function show($slug)
     {
         $recipe = Recipe::with('user')
@@ -83,6 +128,13 @@ class RecipeController extends Controller
         return view('recipes.show', compact('recipe'));
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function edit($slug)
     {
         $recipe = Recipe::where('slug', $slug)
@@ -91,6 +143,13 @@ class RecipeController extends Controller
 
         return view('recipes.edit', compact('recipe'));
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE RESEP
+    |--------------------------------------------------------------------------
+    */
 
     public function update(Request $request, $slug)
     {
@@ -115,7 +174,6 @@ class RecipeController extends Controller
         if ($newSlug !== $recipe->slug) {
 
             $originalSlug = $newSlug;
-
             $counter = 1;
 
             while (
@@ -123,14 +181,10 @@ class RecipeController extends Controller
                     ->where('id', '!=', $recipe->id)
                     ->exists()
             ) {
-
                 $newSlug = $originalSlug . '-' . $counter;
-
                 $counter++;
             }
-
         } else {
-
             $newSlug = $recipe->slug;
         }
 
@@ -138,24 +192,13 @@ class RecipeController extends Controller
 
         if ($request->hasFile('image')) {
 
-            /*
-            | Hapus gambar lama jika merupakan
-            | file storage.
-            */
-
             if (
                 $recipe->image &&
                 !str_starts_with($recipe->image, 'http://') &&
                 !str_starts_with($recipe->image, 'https://')
             ) {
-
-                Storage::disk('public')
-                    ->delete($recipe->image);
+                Storage::disk('public')->delete($recipe->image);
             }
-
-            /*
-            | Simpan gambar baru.
-            */
 
             $imagePath = $request
                 ->file('image')
@@ -175,6 +218,13 @@ class RecipeController extends Controller
             ->with('success', 'Resep berhasil diperbarui.');
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP
+    |--------------------------------------------------------------------------
+    */
+
     public function destroy($slug)
     {
         $recipe = Recipe::where('slug', $slug)
@@ -186,9 +236,7 @@ class RecipeController extends Controller
             !str_starts_with($recipe->image, 'http://') &&
             !str_starts_with($recipe->image, 'https://')
         ) {
-
-            Storage::disk('public')
-                ->delete($recipe->image);
+            Storage::disk('public')->delete($recipe->image);
         }
 
         $recipe->delete();

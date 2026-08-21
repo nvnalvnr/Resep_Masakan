@@ -15,23 +15,29 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
-| HOME
+| HOMEPAGE
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
+Route::get('/', [
+    RecipeController::class,
+    'index'
+])->name('recipes.index');
 
-    if (auth()->check()) {
 
-        if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
+/*
+|--------------------------------------------------------------------------
+| DAFTAR SEMUA RESEP
+|--------------------------------------------------------------------------
+|
+| Ini dibuat sebagai alias supaya link lama /recipes juga tetap bekerja.
+|
+*/
 
-        return redirect()->route('user.dashboard');
-    }
-
-    return redirect()->route('login');
-});
+Route::get('/recipes', [
+    RecipeController::class,
+    'index'
+])->name('recipes.list');
 
 
 /*
@@ -44,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | DASHBOARD
+    | DASHBOARD USER
     |--------------------------------------------------------------------------
     */
 
@@ -68,6 +74,30 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
+    | RESEP TERSIMPAN
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/dashboard/resep-tersimpan', [
+        FavoriteController::class,
+        'index'
+    ])->name('user.favorites');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SIMPAN / HAPUS FAVORITE
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post('/resep/{recipe}/favorite', [
+        FavoriteController::class,
+        'toggle'
+    ])->name('recipe.favorite');
+
+
+    /*
+    |--------------------------------------------------------------------------
     | TAMBAH RESEP
     |--------------------------------------------------------------------------
     */
@@ -81,32 +111,6 @@ Route::middleware(['auth'])->group(function () {
         RecipeController::class,
         'store'
     ])->name('recipes.store');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | RESEP TERSIMPAN / FAVORITE
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/dashboard/resep-tersimpan', [
-        FavoriteController::class,
-        'index'
-    ])->name('user.favorites');
-
-
-    /*
-    | Simpan / hapus favorite
-    |
-    | Route ini HARUS berada sebelum /recipes/{slug}
-    | kalau nanti memakai parameter recipe.
-    |--------------------------------------------------------------------------
-    */
-
-    Route::post('/resep/{recipe}/favorite', [
-        FavoriteController::class,
-        'toggle'
-    ])->name('recipe.favorite');
 
 
     /*
@@ -241,7 +245,7 @@ Route::middleware(['auth', 'admin'])
 
         /*
         |--------------------------------------------------------------------------
-        | USER MANAGEMENT
+        | USER ADMIN
         |--------------------------------------------------------------------------
         */
 
@@ -274,4 +278,4 @@ Route::middleware(['auth', 'admin'])
 |--------------------------------------------------------------------------
 */
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -1,29 +1,28 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
 
-    <!-- Primary Navigation -->
+    <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="flex justify-between h-16">
 
-            <!-- LEFT -->
-            <div class="flex items-center">
+            <div class="flex">
 
-                <!-- LOGO -->
+                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
 
-                    <a href="{{ route('user.dashboard') }}"
-                       class="text-xl font-bold text-gray-800">
+                    <a href="{{ route('user.dashboard') }}">
 
-                        Resep<span class="text-orange-600">Ku</span>
+                        <x-application-logo
+                            class="block h-9 w-auto fill-current text-gray-800"
+                        />
 
                     </a>
 
                 </div>
 
 
-                <!-- MENU DESKTOP -->
+                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-
 
                     <!-- Dashboard -->
                     <x-nav-link
@@ -36,8 +35,8 @@
 
                     <!-- Resep Saya -->
                     <x-nav-link
-                        :href="route('user.recipes')"
-                        :active="request()->routeIs('user.recipes')"
+                        :href="route('recipes.my')"
+                        :active="request()->routeIs('recipes.my')"
                     >
                         {{ __('Resep Saya') }}
                     </x-nav-link>
@@ -60,21 +59,12 @@
                         {{ __('Tambah Resep') }}
                     </x-nav-link>
 
-
-                    <!-- Profil -->
-                    <x-nav-link
-                        :href="route('profile.edit')"
-                        :active="request()->routeIs('profile.*')"
-                    >
-                        {{ __('Profil') }}
-                    </x-nav-link>
-
                 </div>
 
             </div>
 
 
-            <!-- USER DROPDOWN -->
+            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
 
                 <x-dropdown align="right" width="48">
@@ -82,7 +72,7 @@
                     <x-slot name="trigger">
 
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition"
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                         >
 
                             <div>
@@ -112,19 +102,21 @@
                     </x-slot>
 
 
-                    <!-- DROPDOWN -->
+                    <!-- Dropdown Content -->
+
                     <x-slot name="content">
 
-
                         <!-- Profile -->
-                        <x-dropdown-link
-                            :href="route('profile.edit')"
-                        >
-                            {{ __('Profil') }}
+
+                        <x-dropdown-link :href="route('profile.edit')">
+
+                            {{ __('Profile') }}
+
                         </x-dropdown-link>
 
 
                         <!-- Logout -->
+
                         <form
                             method="POST"
                             action="{{ route('logout') }}"
@@ -138,12 +130,11 @@
                                     this.closest('form').submit();"
                             >
 
-                                {{ __('Keluar') }}
+                                {{ __('Log Out') }}
 
                             </x-dropdown-link>
 
                         </form>
-
 
                     </x-slot>
 
@@ -152,12 +143,13 @@
             </div>
 
 
-            <!-- HAMBURGER -->
+            <!-- Hamburger -->
+
             <div class="-me-2 flex items-center sm:hidden">
 
                 <button
                     @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none transition"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                 >
 
                     <svg
@@ -202,7 +194,8 @@
     </div>
 
 
-    <!-- RESPONSIVE MENU -->
+    <!-- Responsive Navigation Menu -->
+
     <div
         :class="{
             'block': open,
@@ -213,8 +206,8 @@
 
         <div class="pt-2 pb-3 space-y-1">
 
-
             <!-- Dashboard -->
+
             <x-responsive-nav-link
                 :href="route('user.dashboard')"
                 :active="request()->routeIs('user.dashboard')"
@@ -224,15 +217,17 @@
 
 
             <!-- Resep Saya -->
+
             <x-responsive-nav-link
-                :href="route('user.recipes')"
-                :active="request()->routeIs('user.recipes')"
+                :href="route('recipes.my')"
+                :active="request()->routeIs('recipes.my')"
             >
                 {{ __('Resep Saya') }}
             </x-responsive-nav-link>
 
 
             <!-- Resep Tersimpan -->
+
             <x-responsive-nav-link
                 :href="route('user.favorites')"
                 :active="request()->routeIs('user.favorites')"
@@ -242,6 +237,7 @@
 
 
             <!-- Tambah Resep -->
+
             <x-responsive-nav-link
                 :href="route('recipes.create')"
                 :active="request()->routeIs('recipes.create')"
@@ -249,29 +245,25 @@
                 {{ __('Tambah Resep') }}
             </x-responsive-nav-link>
 
-
-            <!-- Profil -->
-            <x-responsive-nav-link
-                :href="route('profile.edit')"
-                :active="request()->routeIs('profile.*')"
-            >
-                {{ __('Profil') }}
-            </x-responsive-nav-link>
-
         </div>
 
 
-        <!-- RESPONSIVE USER -->
+        <!-- Responsive Settings Options -->
+
         <div class="pt-4 pb-1 border-t border-gray-200">
 
             <div class="px-4">
 
                 <div class="font-medium text-base text-gray-800">
+
                     {{ Auth::user()->name }}
+
                 </div>
 
                 <div class="font-medium text-sm text-gray-500">
+
                     {{ Auth::user()->email }}
+
                 </div>
 
             </div>
@@ -279,16 +271,19 @@
 
             <div class="mt-3 space-y-1">
 
-
                 <!-- Profile -->
+
                 <x-responsive-nav-link
                     :href="route('profile.edit')"
                 >
-                    {{ __('Profil') }}
+
+                    {{ __('Profile') }}
+
                 </x-responsive-nav-link>
 
 
                 <!-- Logout -->
+
                 <form
                     method="POST"
                     action="{{ route('logout') }}"
@@ -301,7 +296,9 @@
                         onclick="event.preventDefault();
                             this.closest('form').submit();"
                     >
-                        {{ __('Keluar') }}
+
+                        {{ __('Log Out') }}
+
                     </x-responsive-nav-link>
 
                 </form>
