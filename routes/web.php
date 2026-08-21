@@ -1,31 +1,37 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
+
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\User\FavoriteController;
+
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\User\DashboardController as UserDashboardController;
-use Illuminate\Support\Facades\Route;
 
 
 /*
 |--------------------------------------------------------------------------
-| WEBSITE
+| HOME
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama
-Route::get('/', [RecipeController::class, 'index'])
-    ->name('recipes.index');
+Route::get('/', function () {
 
-// Daftar semua resep
-Route::get('/recipes', [RecipeController::class, 'index'])
-    ->name('recipes.list');
+    if (auth()->check()) {
 
-// Detail resep
-Route::get('/recipes/{slug}', [RecipeController::class, 'show'])
-    ->name('recipes.show');
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('user.dashboard');
+    }
+
+    return redirect()->route('login');
+});
 
 
 /*
@@ -38,12 +44,14 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | DASHBOARD USER
+    | DASHBOARD
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])
-        ->name('user.dashboard');
+    Route::get('/dashboard', [
+        UserDashboardController::class,
+        'index'
+    ])->name('user.dashboard');
 
 
     /*
@@ -52,44 +60,94 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/dashboard/resep-saya', [UserDashboardController::class, 'myRecipes'])
-        ->name('user.recipes');
+    Route::get('/recipes/my', [
+        RecipeController::class,
+        'my'
+    ])->name('recipes.my');
 
 
     /*
     |--------------------------------------------------------------------------
-    | TAMBAH RESEP USER
+    | TAMBAH RESEP
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/dashboard/resep/tambah', [RecipeController::class, 'create'])
-        ->name('recipes.create');
+    Route::get('/recipes/create', [
+        RecipeController::class,
+        'create'
+    ])->name('recipes.create');
 
-    Route::post('/dashboard/resep', [RecipeController::class, 'store'])
-        ->name('recipes.store');
+    Route::post('/recipes', [
+        RecipeController::class,
+        'store'
+    ])->name('recipes.store');
 
 
     /*
     |--------------------------------------------------------------------------
-    | EDIT RESEP USER
+    | RESEP TERSIMPAN / FAVORITE
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/dashboard/resep/{slug}/edit', [RecipeController::class, 'edit'])
-        ->name('recipes.edit');
+    Route::get('/dashboard/resep-tersimpan', [
+        FavoriteController::class,
+        'index'
+    ])->name('user.favorites');
 
-    Route::put('/dashboard/resep/{slug}', [RecipeController::class, 'update'])
-        ->name('recipes.update');
+
+    /*
+    | Simpan / hapus favorite
+    |
+    | Route ini HARUS berada sebelum /recipes/{slug}
+    | kalau nanti memakai parameter recipe.
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post('/resep/{recipe}/favorite', [
+        FavoriteController::class,
+        'toggle'
+    ])->name('recipe.favorite');
 
 
     /*
     |--------------------------------------------------------------------------
-    | HAPUS RESEP USER
+    | DETAIL RESEP
     |--------------------------------------------------------------------------
     */
 
-    Route::delete('/dashboard/resep/{slug}', [RecipeController::class, 'destroy'])
-        ->name('recipes.destroy');
+    Route::get('/recipes/{slug}', [
+        RecipeController::class,
+        'show'
+    ])->name('recipes.show');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/recipes/{slug}/edit', [
+        RecipeController::class,
+        'edit'
+    ])->name('recipes.edit');
+
+    Route::put('/recipes/{slug}', [
+        RecipeController::class,
+        'update'
+    ])->name('recipes.update');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP
+    |--------------------------------------------------------------------------
+    */
+
+    Route::delete('/recipes/{slug}', [
+        RecipeController::class,
+        'destroy'
+    ])->name('recipes.destroy');
 
 
     /*
@@ -98,14 +156,20 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
+    Route::get('/profile', [
+        ProfileController::class,
+        'edit'
+    ])->name('profile.edit');
 
-    Route::patch('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
+    Route::patch('/profile', [
+        ProfileController::class,
+        'update'
+    ])->name('profile.update');
 
-    Route::delete('/profile', [ProfileController::class, 'destroy'])
-        ->name('profile.destroy');
+    Route::delete('/profile', [
+        ProfileController::class,
+        'destroy'
+    ])->name('profile.destroy');
 
 });
 
@@ -127,8 +191,10 @@ Route::middleware(['auth', 'admin'])
         |--------------------------------------------------------------------------
         */
 
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])
-            ->name('dashboard');
+        Route::get('/dashboard', [
+            AdminDashboardController::class,
+            'index'
+        ])->name('dashboard');
 
 
         /*
@@ -137,26 +203,40 @@ Route::middleware(['auth', 'admin'])
         |--------------------------------------------------------------------------
         */
 
-        Route::get('/recipes', [AdminRecipeController::class, 'index'])
-            ->name('recipes.index');
+        Route::get('/recipes', [
+            AdminRecipeController::class,
+            'index'
+        ])->name('recipes.index');
 
-        Route::get('/recipes/create', [AdminRecipeController::class, 'create'])
-            ->name('recipes.create');
+        Route::get('/recipes/create', [
+            AdminRecipeController::class,
+            'create'
+        ])->name('recipes.create');
 
-        Route::post('/recipes', [AdminRecipeController::class, 'store'])
-            ->name('recipes.store');
+        Route::post('/recipes', [
+            AdminRecipeController::class,
+            'store'
+        ])->name('recipes.store');
 
-        Route::get('/recipes/{recipe}', [AdminRecipeController::class, 'show'])
-            ->name('recipes.show');
+        Route::get('/recipes/{recipe}', [
+            AdminRecipeController::class,
+            'show'
+        ])->name('recipes.show');
 
-        Route::get('/recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])
-            ->name('recipes.edit');
+        Route::get('/recipes/{recipe}/edit', [
+            AdminRecipeController::class,
+            'edit'
+        ])->name('recipes.edit');
 
-        Route::put('/recipes/{recipe}', [AdminRecipeController::class, 'update'])
-            ->name('recipes.update');
+        Route::put('/recipes/{recipe}', [
+            AdminRecipeController::class,
+            'update'
+        ])->name('recipes.update');
 
-        Route::delete('/recipes/{recipe}', [AdminRecipeController::class, 'destroy'])
-            ->name('recipes.destroy');
+        Route::delete('/recipes/{recipe}', [
+            AdminRecipeController::class,
+            'destroy'
+        ])->name('recipes.destroy');
 
 
         /*
@@ -165,17 +245,25 @@ Route::middleware(['auth', 'admin'])
         |--------------------------------------------------------------------------
         */
 
-        Route::get('/users', [AdminUserController::class, 'index'])
-            ->name('users.index');
+        Route::get('/users', [
+            AdminUserController::class,
+            'index'
+        ])->name('users.index');
 
-        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])
-            ->name('users.edit');
+        Route::get('/users/{user}/edit', [
+            AdminUserController::class,
+            'edit'
+        ])->name('users.edit');
 
-        Route::put('/users/{user}', [AdminUserController::class, 'update'])
-            ->name('users.update');
+        Route::put('/users/{user}', [
+            AdminUserController::class,
+            'update'
+        ])->name('users.update');
 
-        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])
-            ->name('users.destroy');
+        Route::delete('/users/{user}', [
+            AdminUserController::class,
+            'destroy'
+        ])->name('users.destroy');
 
     });
 

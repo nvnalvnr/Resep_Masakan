@@ -26,11 +26,13 @@
             text-decoration: none;
         }
 
+        button {
+            font-family: inherit;
+        }
+
         .layout {
             min-height: 100vh;
         }
-
-        /* SIDEBAR */
 
         .sidebar {
             position: fixed;
@@ -41,6 +43,7 @@
             background: #fff;
             border-right: 1px solid #e3e3e3;
             padding: 28px 18px;
+            z-index: 20;
         }
 
         .brand {
@@ -100,18 +103,15 @@
 
         .menu-icon {
             width: 18px;
+            min-width: 18px;
             text-align: center;
             font-size: 14px;
         }
-
-        /* MAIN */
 
         .main {
             margin-left: 240px;
             min-height: 100vh;
         }
-
-        /* TOPBAR */
 
         .topbar {
             height: 72px;
@@ -134,7 +134,12 @@
             gap: 11px;
         }
 
+        .user-info {
+            text-align: right;
+        }
+
         .user-name {
+            display: block;
             font-size: 13px;
             color: #444;
         }
@@ -159,11 +164,19 @@
             font-weight: 600;
         }
 
-        /* CONTENT */
-
         .content {
             padding: 30px 34px 50px;
             max-width: 1250px;
+        }
+
+        .success {
+            background: #edf8f0;
+            border: 1px solid #cce8d2;
+            color: #26733b;
+            border-radius: 6px;
+            padding: 12px 15px;
+            font-size: 12px;
+            margin-bottom: 20px;
         }
 
         .page-header {
@@ -185,6 +198,7 @@
         }
 
         .add-button {
+            display: inline-block;
             background: #e85d04;
             color: #fff;
             padding: 10px 15px;
@@ -197,23 +211,9 @@
             background: #d65300;
         }
 
-        /* SUCCESS */
-
-        .success {
-            background: #edf8f0;
-            border: 1px solid #cce8d2;
-            color: #26733b;
-            border-radius: 6px;
-            padding: 12px 15px;
-            font-size: 12px;
-            margin-bottom: 20px;
-        }
-
-        /* RECIPE GRID */
-
         .recipe-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
         }
 
@@ -233,15 +233,18 @@
         .recipe-image {
             height: 175px;
             background: #eee;
+            overflow: hidden;
         }
 
         .recipe-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .no-image {
+            width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
@@ -268,6 +271,7 @@
 
         .actions {
             display: flex;
+            align-items: center;
             gap: 7px;
         }
 
@@ -277,6 +281,7 @@
             border-radius: 5px;
             font-size: 11px;
             font-weight: 600;
+            border: none;
         }
 
         .btn-view {
@@ -292,16 +297,12 @@
         .btn-delete {
             background: #fff0f0;
             color: #c62828;
-            border: none;
             cursor: pointer;
-            font-family: inherit;
         }
 
         .btn:hover {
             opacity: .8;
         }
-
-        /* EMPTY */
 
         .empty {
             background: #fff;
@@ -322,26 +323,18 @@
             margin-bottom: 20px;
         }
 
-        /* PAGINATION */
-
         .pagination {
             margin-top: 25px;
         }
 
-        .pagination nav {
-            display: flex;
-            justify-content: center;
-        }
-
-        /* RESPONSIVE */
-
         @media (max-width: 1000px) {
             .recipe-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
         @media (max-width: 750px) {
+
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -378,8 +371,6 @@
 <body>
 
 <div class="layout">
-
-    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
@@ -426,11 +417,7 @@
     </aside>
 
 
-    <!-- MAIN -->
-
     <main class="main">
-
-        <!-- TOPBAR -->
 
         <header class="topbar">
 
@@ -440,7 +427,8 @@
 
             <div class="user-area">
 
-                <div>
+                <div class="user-info">
+
                     <span class="user-name">
                         {{ auth()->user()->name }}
                     </span>
@@ -448,6 +436,7 @@
                     <span class="user-role">
                         User
                     </span>
+
                 </div>
 
                 <div class="avatar">
@@ -459,11 +448,7 @@
         </header>
 
 
-        <!-- CONTENT -->
-
         <section class="content">
-
-            {{-- SUCCESS MESSAGE --}}
 
             @if (session('success'))
 
@@ -474,11 +459,10 @@
             @endif
 
 
-            <!-- HEADER -->
-
             <div class="page-header">
 
                 <div>
+
                     <h1>
                         Resep Saya
                     </h1>
@@ -486,6 +470,7 @@
                     <p>
                         Kelola resep masakan yang kamu buat.
                     </p>
+
                 </div>
 
                 <a
@@ -497,8 +482,6 @@
 
             </div>
 
-
-            <!-- RECIPE LIST -->
 
             @if ($recipes->count() > 0)
 
@@ -515,7 +498,12 @@
                                     <img
                                         src="{{ $recipe->image }}"
                                         alt="{{ $recipe->title }}"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                     >
+
+                                    <div class="no-image" style="display:none;">
+                                        Gambar tidak dapat dimuat
+                                    </div>
 
                                 @else
 
@@ -541,17 +529,12 @@
 
                                 <div class="actions">
 
-                                    {{-- Lihat --}}
-
                                     <a
                                         href="{{ route('recipes.show', $recipe->slug) }}"
                                         class="btn btn-view"
                                     >
                                         Lihat
                                     </a>
-
-
-                                    {{-- Edit --}}
 
                                     <a
                                         href="{{ route('recipes.edit', $recipe->slug) }}"
@@ -560,17 +543,14 @@
                                         Edit
                                     </a>
 
-
-                                    {{-- Hapus --}}
-
                                     <form
                                         action="{{ route('recipes.destroy', $recipe->slug) }}"
                                         method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus resep ini?')"
+                                        style="margin:0;"
                                     >
 
                                         @csrf
-
                                         @method('DELETE')
 
                                         <button
@@ -593,15 +573,11 @@
                 </div>
 
 
-                <!-- PAGINATION -->
-
                 <div class="pagination">
                     {{ $recipes->links() }}
                 </div>
 
             @else
-
-                <!-- EMPTY -->
 
                 <div class="empty">
 
@@ -610,7 +586,8 @@
                     </h2>
 
                     <p>
-                        Kamu belum memiliki resep. Yuk, tambahkan resep pertama kamu.
+                        Kamu belum memiliki resep.
+                        Yuk, tambahkan resep pertama kamu.
                     </p>
 
                     <a
