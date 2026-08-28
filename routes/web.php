@@ -17,6 +17,12 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |--------------------------------------------------------------------------
 | WEBSITE PUBLIK
 |--------------------------------------------------------------------------
+|
+| Halaman publik dapat dibuka tanpa login:
+| - Homepage
+| - Semua resep
+| - Detail resep
+|
 */
 
 
@@ -34,7 +40,7 @@ Route::get('/', [
 
 /*
 |--------------------------------------------------------------------------
-| DAFTAR RESEP PUBLIK
+| SEMUA RESEP
 |--------------------------------------------------------------------------
 */
 
@@ -46,30 +52,54 @@ Route::get('/recipes', [
 
 /*
 |--------------------------------------------------------------------------
-| USER + ADMIN
+| AUTHENTICATED USER
 |--------------------------------------------------------------------------
 |
-| Semua route di sini membutuhkan login.
+| Semua route di bawah membutuhkan login.
 |
 */
 
 Route::middleware(['auth'])->group(function () {
 
+
     /*
     |--------------------------------------------------------------------------
-    | DASHBOARD
+    | DASHBOARD UTAMA
     |--------------------------------------------------------------------------
+    |
+    | Route ini digunakan sebagai dashboard setelah proses login.
+    | Admin -> admin.dashboard
+    | User  -> user.dashboard
+    |
     */
 
     Route::get('/dashboard', function () {
 
         if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
+
+            return redirect()->route(
+                'admin.dashboard'
+            );
+
         }
 
-        return app(UserDashboardController::class)->index();
+        return redirect()->route(
+            'user.dashboard'
+        );
 
-    })->name('user.dashboard');
+    })->name('dashboard');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | DASHBOARD USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/user/dashboard', [
+        UserDashboardController::class,
+        'index'
+    ])->name('user.dashboard');
 
 
     /*
@@ -86,8 +116,11 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | TAMBAH RESEP USER
+    | TAMBAH RESEP
     |--------------------------------------------------------------------------
+    |
+    | User dan admin dapat menggunakan form tambah resep umum.
+    |
     */
 
     Route::get('/recipes/create', [
@@ -104,7 +137,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | EDIT RESEP MILIK SENDIRI
+    | EDIT RESEP MILIK USER
     |--------------------------------------------------------------------------
     */
 
@@ -122,7 +155,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | HAPUS RESEP MILIK SENDIRI
+    | HAPUS RESEP MILIK USER
     |--------------------------------------------------------------------------
     */
 
@@ -146,7 +179,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | FAVORITE
+    | SIMPAN / HAPUS FAVORITE
     |--------------------------------------------------------------------------
     */
 
@@ -187,8 +220,13 @@ Route::middleware(['auth'])->group(function () {
 | DETAIL RESEP PUBLIK
 |--------------------------------------------------------------------------
 |
-| Harus diletakkan setelah /recipes/create,
-| /recipes/{slug}/edit, dan route khusus lainnya.
+| Route ini diletakkan setelah /recipes/create agar:
+|
+| /recipes/create
+|
+| tidak dianggap sebagai:
+|
+| /recipes/{slug}
 |
 */
 
@@ -203,11 +241,16 @@ Route::get('/recipes/{slug}', [
 | ADMIN
 |--------------------------------------------------------------------------
 |
-| Semua route di bawah hanya bisa diakses administrator.
+| Semua route berikut:
+| - harus login
+| - harus memiliki role admin
 |
 */
 
-Route::middleware(['auth', 'admin'])
+Route::middleware([
+    'auth',
+    'admin'
+])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -227,38 +270,14 @@ Route::middleware(['auth', 'admin'])
 
         /*
         |--------------------------------------------------------------------------
-        | KELOLA RESEP ADMIN
+        | SEMUA RESEP ADMIN
         |--------------------------------------------------------------------------
         */
 
-        // Daftar resep
         Route::get('/recipes', [
             AdminRecipeController::class,
             'index'
         ])->name('recipes.index');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | TAMBAH RESEP ADMIN
-        |--------------------------------------------------------------------------
-        |
-        | Admin menggunakan RecipeController umum untuk membuat resep.
-        | Karena route berada di middleware admin, hanya admin yang bisa
-        | mengaksesnya.
-        |
-        */
-
-        Route::get('/recipes/create', [
-            RecipeController::class,
-            'create'
-        ])->name('recipes.create');
-
-
-        Route::post('/recipes', [
-            RecipeController::class,
-            'store'
-        ])->name('recipes.store');
 
 
         /*
@@ -301,6 +320,29 @@ Route::middleware(['auth', 'admin'])
             AdminRecipeController::class,
             'destroy'
         ])->name('recipes.destroy');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | TAMBAH RESEP ADMIN
+        |--------------------------------------------------------------------------
+        |
+        | Admin memakai form tambah resep umum,
+        | sehingga route khusus admin tetap disediakan
+        | jika dipanggil oleh Blade.
+        |
+        */
+
+        Route::get('/recipes/create', [
+            RecipeController::class,
+            'create'
+        ])->name('recipes.create');
+
+
+        Route::post('/recipes', [
+            RecipeController::class,
+            'store'
+        ])->name('recipes.store');
 
 
         /*
