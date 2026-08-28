@@ -9,39 +9,31 @@
     <title>Edit Resep | ResepKu</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
         rel="stylesheet"
     >
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
 
         :root {
-            --bg: #f5f1e8;
-            --surface: #fffdf8;
-            --surface-soft: #faf7f1;
+            --paper: #f5f1e8;
+            --paper-light: #fbf9f4;
+            --white: #fffdf8;
 
-            --text: #2d2723;
-            --muted: #81776e;
+            --ink: #29231f;
+            --muted: #777067;
 
             --brown: #6b3424;
-            --brown-dark: #4c261b;
             --terracotta: #a95635;
             --olive: #5d6947;
 
-            --border: #ded6ca;
+            --line: #ded7ca;
 
-            --soft-brown: #eee4d8;
-            --soft-green: #e5eadf;
-            --soft-red: #f1dfda;
+            --soft-brown: #eee3d8;
+            --soft-green: #e7eadf;
         }
 
 
@@ -59,15 +51,14 @@
 
         body {
             font-family: "DM Sans", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            background: var(--paper);
+            color: var(--ink);
         }
 
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
 
@@ -96,9 +87,9 @@
         ====================================================== */
 
         .sidebar {
-            background: var(--surface-soft);
+            background: var(--paper-light);
 
-            border-right: 1px solid var(--border);
+            border-right: 1px solid var(--line);
 
             min-height: 100vh;
 
@@ -123,17 +114,15 @@
 
             gap: 11px;
 
-            padding-bottom: 30px;
+            padding-bottom: 31px;
 
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
         }
 
 
         .brand-mark {
             width: 40px;
             height: 40px;
-
-            border-radius: 50%;
 
             background: var(--brown);
 
@@ -144,6 +133,8 @@
             align-items: center;
 
             justify-content: center;
+
+            border-radius: 50%;
 
             font-family: Georgia, serif;
 
@@ -160,37 +151,37 @@
         }
 
 
-        .brand-sub {
+        .brand-small {
             display: block;
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
+
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
-
-            letter-spacing: 1.4px;
 
             margin-top: 2px;
         }
 
 
-        .menu-title {
+        .nav-label {
             color: #968d82;
 
             font-size: 9px;
 
             font-weight: 700;
 
+            letter-spacing: 1.6px;
+
             text-transform: uppercase;
 
-            letter-spacing: 1.5px;
-
-            margin: 26px 9px 10px;
+            margin: 27px 9px 11px;
         }
 
 
-        .menu {
+        .nav {
             display: flex;
 
             flex-direction: column;
@@ -199,7 +190,7 @@
         }
 
 
-        .menu a {
+        .nav a {
             display: flex;
 
             align-items: center;
@@ -208,9 +199,9 @@
 
             padding: 11px 10px;
 
-            color: var(--muted);
+            font-size: 12px;
 
-            font-size: 11px;
+            color: var(--muted);
 
             border-left: 2px solid transparent;
 
@@ -218,30 +209,30 @@
         }
 
 
-        .menu a:hover {
+        .nav a:hover {
             color: var(--brown);
 
-            background: #f1eae0;
+            background: #f4eee5;
         }
 
 
-        .menu a.active {
+        .nav a.active {
             color: var(--brown);
 
-            background: #eee4d8;
-
             border-left-color: var(--brown);
+
+            background: #eee5da;
 
             font-weight: 700;
         }
 
 
-        .menu-icon {
+        .nav-icon {
             width: 19px;
 
             text-align: center;
 
-            font-size: 13px;
+            font-size: 14px;
         }
 
 
@@ -251,29 +242,25 @@
 
         .sidebar-bottom {
             margin-top: auto;
-
-            padding-top: 18px;
-
-            border-top: 1px solid var(--border);
         }
 
 
-        .user-mini {
+        .admin-user {
+            border-top: 1px solid var(--line);
+
+            padding-top: 19px;
+
             display: flex;
 
             align-items: center;
 
             gap: 10px;
-
-            margin-bottom: 12px;
         }
 
 
         .avatar {
-            width: 35px;
-            height: 35px;
-
-            border-radius: 50%;
+            width: 34px;
+            height: 34px;
 
             background: var(--soft-brown);
 
@@ -285,6 +272,8 @@
 
             justify-content: center;
 
+            border-radius: 50%;
+
             font-size: 12px;
 
             font-weight: 700;
@@ -293,15 +282,17 @@
         }
 
 
-        .user-mini-info {
+        .admin-user-info {
             min-width: 0;
         }
 
 
-        .user-mini-info strong {
+        .admin-user strong {
             display: block;
 
-            font-size: 10px;
+            font-size: 11px;
+
+            max-width: 125px;
 
             white-space: nowrap;
 
@@ -311,44 +302,44 @@
         }
 
 
-        .user-mini-info span {
+        .admin-user span {
             display: block;
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
 
             margin-top: 2px;
         }
 
 
-        .logout-button {
+        .logout {
+            margin-top: 14px;
+
             width: 100%;
 
             background: transparent;
 
-            color: var(--muted);
-
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
 
             padding: 9px;
 
+            color: var(--muted);
+
             cursor: pointer;
 
-            font-size: 9px;
+            font-size: 10px;
 
-            text-align: left;
-
-            transition: .2s ease;
+            transition: .2s;
         }
 
 
-        .logout-button:hover {
+        .logout:hover {
             color: #9b3d2d;
 
-            border-color: #cdb1a7;
+            border-color: #c9a397;
 
-            background: var(--soft-red);
+            background: #faf0ec;
         }
 
 
@@ -359,7 +350,7 @@
         .main {
             min-width: 0;
 
-            padding: 35px 48px 50px;
+            padding: 36px 48px 45px;
         }
 
 
@@ -367,38 +358,38 @@
            HEADER
         ====================================================== */
 
-        .topbar {
+        .top {
             display: flex;
-
-            align-items: flex-start;
 
             justify-content: space-between;
 
-            padding-bottom: 24px;
+            align-items: flex-start;
 
-            border-bottom: 1px solid var(--border);
+            padding-bottom: 27px;
+
+            border-bottom: 1px solid var(--line);
         }
 
 
         .eyebrow {
-            color: var(--terracotta);
-
-            font-size: 8px;
-
-            font-weight: 700;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: 2px;
 
-            margin-bottom: 7px;
+            color: var(--terracotta);
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
         }
 
 
-        .topbar h1 {
+        .top h1 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 34px;
+            font-size: 36px;
 
             font-weight: 500;
 
@@ -406,23 +397,23 @@
         }
 
 
-        .topbar p {
+        .top p {
+            margin-top: 8px;
+
             color: var(--muted);
 
-            font-size: 10px;
-
-            margin-top: 7px;
+            font-size: 12px;
         }
 
 
         .date {
-            color: var(--muted);
+            font-size: 10px;
 
-            font-size: 9px;
+            color: var(--muted);
 
             border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 4px;
+            padding-bottom: 5px;
         }
 
 
@@ -433,44 +424,46 @@
         .intro {
             display: grid;
 
-            grid-template-columns: 1.4fr .8fr;
+            grid-template-columns: 1.5fr .8fr;
 
             gap: 30px;
 
-            margin: 27px 0 28px;
+            margin: 28px 0 30px;
 
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
 
-            padding-bottom: 28px;
+            padding-bottom: 30px;
         }
 
 
         .intro h2 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 25px;
+            font-size: 27px;
 
             font-weight: 500;
 
+            max-width: 640px;
+
             line-height: 1.3;
-
-            max-width: 620px;
         }
 
 
-        .intro h2 span {
+        .intro h2 em {
             color: var(--terracotta);
+
+            font-style: normal;
         }
 
 
-        .intro-copy {
+        .intro-text {
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 12px;
 
             line-height: 1.8;
 
-            max-width: 380px;
+            max-width: 390px;
 
             justify-self: end;
         }
@@ -483,17 +476,17 @@
         .back-link {
             display: inline-block;
 
+            margin-bottom: 18px;
+
             color: var(--brown);
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
-            padding-bottom: 2px;
-
             border-bottom: 1px solid var(--brown);
 
-            margin-bottom: 18px;
+            padding-bottom: 3px;
         }
 
 
@@ -505,49 +498,50 @@
 
 
         /* =====================================================
-           ALERTS
+           ERROR
         ====================================================== */
 
-        .alert {
-            padding: 11px 13px;
+        .error-box {
+            background: #faf0ec;
 
-            margin-bottom: 18px;
+            border: 1px solid #dec1b5;
 
-            font-size: 9px;
+            padding: 14px 16px;
+
+            margin-bottom: 20px;
         }
 
 
-        .alert-success {
-            color: var(--olive);
-
-            background: var(--soft-green);
-
-            border-left: 2px solid var(--olive);
-        }
-
-
-        .alert-error {
-            color: #8f382b;
-
-            background: var(--soft-red);
-
-            border-left: 2px solid #9b3d2d;
-        }
-
-
-        .alert-error strong {
+        .error-box strong {
             display: block;
 
-            margin-bottom: 5px;
+            color: #8b3426;
 
-            font-size: 9px;
+            font-size: 11px;
+
+            margin-bottom: 7px;
         }
 
 
-        .alert-error ul {
-            padding-left: 17px;
+        .error-box ul {
+            padding-left: 18px;
 
-            line-height: 1.6;
+            color: #8b3426;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        .field-error {
+            display: block;
+
+            color: #a33b2c;
+
+            font-size: 9px;
+
+            margin-top: 6px;
         }
 
 
@@ -558,40 +552,47 @@
         .recipe-summary {
             display: grid;
 
-            grid-template-columns: 145px 1fr;
-
-            align-items: center;
+            grid-template-columns: 130px 1fr;
 
             gap: 17px;
 
-            border-top: 1px solid var(--text);
+            align-items: center;
 
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--ink);
+
+            border-bottom: 1px solid var(--line);
 
             padding: 16px 0;
 
-            margin-bottom: 27px;
+            margin-bottom: 28px;
         }
 
 
-        .summary-image,
-        .summary-no-image {
-            width: 145px;
+        .summary-image {
+            width: 130px;
 
-            height: 105px;
+            height: 95px;
 
             object-fit: cover;
 
-            border: 1px solid var(--border);
-
             display: block;
+
+            border: 1px solid var(--line);
+
+            background: #e9e3d9;
         }
 
 
         .summary-no-image {
-            background: #e9e2d7;
+            width: 130px;
 
-            color: #8d8379;
+            height: 95px;
+
+            border: 1px solid var(--line);
+
+            background: #e9e3d9;
+
+            color: #91887d;
 
             display: flex;
 
@@ -604,15 +605,13 @@
 
 
         .summary-label {
-            color: var(--terracotta);
+            color: var(--muted);
 
-            font-size: 8px;
-
-            font-weight: 700;
+            font-size: 9px;
 
             text-transform: uppercase;
 
-            letter-spacing: 1.3px;
+            letter-spacing: 1.2px;
 
             margin-bottom: 6px;
         }
@@ -621,11 +620,13 @@
         .summary-title {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 25px;
+            font-size: 22px;
 
             font-weight: 500;
 
-            line-height: 1.2;
+            line-height: 1.25;
+
+            margin-bottom: 6px;
         }
 
 
@@ -633,8 +634,6 @@
             color: var(--muted);
 
             font-size: 9px;
-
-            margin-top: 7px;
         }
 
 
@@ -648,79 +647,72 @@
         ====================================================== */
 
         .form-wrapper {
-            max-width: 920px;
+            max-width: 900px;
         }
 
 
-        .form-head {
+        .form-heading {
             display: flex;
-
-            align-items: end;
 
             justify-content: space-between;
 
-            gap: 20px;
+            align-items: baseline;
 
-            margin-bottom: 14px;
+            margin-bottom: 18px;
         }
 
 
-        .form-head h3 {
+        .form-heading h3 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 22px;
+            font-size: 23px;
 
             font-weight: 500;
         }
 
 
-        .form-head span {
+        .form-note {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
         }
 
 
         .form-card {
-            background: var(--surface);
+            background: var(--white);
 
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
 
-            padding: 26px;
+            padding: 27px;
         }
 
 
         .form-group {
-            margin-bottom: 23px;
-        }
-
-
-        .form-group:last-child {
-            margin-bottom: 0;
+            margin-bottom: 24px;
         }
 
 
         label {
             display: block;
 
-            color: var(--text);
-
-            font-size: 10px;
+            font-size: 11px;
 
             font-weight: 700;
+
+            letter-spacing: .3px;
 
             margin-bottom: 7px;
         }
 
 
-        .help-text {
+        .description {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
             line-height: 1.6;
 
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
 
@@ -728,232 +720,208 @@
         textarea {
             width: 100%;
 
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
 
-            background: #fffefa;
+            background: #fffefb;
 
-            color: var(--text);
+            color: var(--ink);
+
+            padding: 12px 13px;
+
+            font-size: 12px;
 
             outline: none;
 
-            font-size: 10px;
-
-            padding: 11px 12px;
+            border-radius: 0;
 
             transition: .2s ease;
         }
 
 
         input[type="text"] {
-            height: 43px;
+            height: 44px;
         }
 
 
         textarea {
-            min-height: 165px;
+            min-height: 170px;
 
             resize: vertical;
 
-            line-height: 1.75;
+            line-height: 1.7;
         }
 
 
         input[type="text"]:focus,
         textarea:focus {
-            border-color: var(--brown);
+            border-color: var(--terracotta);
 
-            background: #fffdf9;
+            background: #fffdf8;
         }
 
 
         input::placeholder,
         textarea::placeholder {
-            color: #a29a91;
-        }
-
-
-        .field-error {
-            display: block;
-
-            color: #9b3d2d;
-
-            font-size: 8px;
-
-            margin-top: 5px;
+            color: #aaa198;
         }
 
 
         /* =====================================================
-           CURRENT IMAGE
+           IMAGE UPLOAD
         ====================================================== */
 
-        .current-image {
-            margin-bottom: 13px;
+        .image-box {
+            border: 1px dashed #cfc6b9;
 
-            padding-bottom: 14px;
+            background: #faf7f0;
 
-            border-bottom: 1px solid var(--border);
+            padding: 18px;
         }
 
 
-        .current-label {
-            color: var(--muted);
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            font-size: 8px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .current-image img {
-            width: 240px;
-
-            height: 160px;
-
-            object-fit: cover;
-
-            display: block;
-
-            border: 1px solid var(--border);
-        }
-
-
-        .current-note {
-            color: var(--muted);
-
-            font-size: 8px;
-
-            margin-top: 6px;
-        }
-
-
-        /* =====================================================
-           IMAGE INPUT
-        ====================================================== */
-
-        .image-upload {
-            border: 1px dashed #c9bcae;
-
-            background: var(--surface-soft);
-
-            padding: 15px;
-        }
-
-
-        .image-upload input[type="file"] {
+        .image-box input[type="file"] {
             width: 100%;
 
-            color: var(--muted);
+            font-size: 11px;
 
-            font-size: 9px;
+            color: var(--muted);
 
             cursor: pointer;
         }
 
 
-        .image-upload input[type="file"]::file-selector-button {
+        .image-box input[type="file"]::file-selector-button {
             background: var(--brown);
 
             color: white;
 
             border: none;
 
-            padding: 8px 11px;
+            padding: 9px 13px;
 
-            margin-right: 8px;
+            margin-right: 10px;
+
+            cursor: pointer;
 
             font-family: inherit;
 
-            font-size: 8px;
-
-            cursor: pointer;
+            font-size: 10px;
         }
 
 
-        .image-note {
+        .image-info {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
 
             line-height: 1.6;
 
-            margin-top: 8px;
+            margin-top: 9px;
+        }
+
+
+        .current-image {
+            margin-bottom: 15px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+
+        .current-label {
+            color: var(--muted);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .current-image img {
+            width: 230px;
+
+            height: 150px;
+
+            object-fit: cover;
+
+            display: block;
+
+            border: 1px solid var(--line);
         }
 
 
         .image-preview {
             display: none;
 
-            margin-top: 14px;
+            margin-top: 15px;
 
-            padding-top: 14px;
+            padding-top: 15px;
 
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--line);
         }
 
 
         .preview-label {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: 1px;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
 
         .image-preview img {
-            width: 240px;
+            width: 230px;
 
-            height: 160px;
+            height: 150px;
 
             object-fit: cover;
 
             display: block;
 
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
         }
 
 
         /* =====================================================
-           FOOTER BUTTONS
+           FORM FOOTER
         ====================================================== */
 
         .form-footer {
             display: flex;
 
-            align-items: center;
-
             justify-content: space-between;
 
-            gap: 15px;
+            align-items: center;
 
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--line);
 
-            padding-top: 18px;
+            margin-top: 7px;
 
-            margin-top: 4px;
+            padding-top: 20px;
         }
 
 
-        .form-note {
+        .footer-note {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
         }
 
 
-        .form-actions {
+        .form-buttons {
             display: flex;
 
-            gap: 7px;
+            gap: 9px;
         }
 
 
@@ -964,15 +932,15 @@
 
             justify-content: center;
 
-            padding: 10px 14px;
+            padding: 10px 16px;
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
-            border: 1px solid var(--border);
+            cursor: pointer;
 
-            transition: .2s ease;
+            transition: .2s;
         }
 
 
@@ -980,31 +948,31 @@
             background: transparent;
 
             color: var(--muted);
+
+            border: 1px solid var(--line);
         }
 
 
         .btn-cancel:hover {
-            background: var(--soft-brown);
+            background: #f4eee5;
 
             color: var(--brown);
         }
 
 
-        .btn-submit {
+        .btn-save {
             background: var(--brown);
 
             color: white;
 
-            border-color: var(--brown);
-
-            cursor: pointer;
+            border: 1px solid var(--brown);
         }
 
 
-        .btn-submit:hover {
-            background: var(--terracotta);
+        .btn-save:hover {
+            background: #54291d;
 
-            border-color: var(--terracotta);
+            border-color: #54291d;
         }
 
 
@@ -1012,16 +980,16 @@
            FOOTER
         ====================================================== */
 
-        .footer {
-            border-top: 1px solid var(--border);
+        footer {
+            border-top: 1px solid var(--line);
 
-            margin-top: 45px;
+            margin-top: 50px;
 
-            padding-top: 17px;
+            padding-top: 18px;
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 9px;
 
             display: flex;
 
@@ -1029,40 +997,25 @@
         }
 
 
-        .footer strong {
-            color: var(--brown);
-        }
-
-
         /* =====================================================
            RESPONSIVE
         ====================================================== */
 
-        @media (max-width: 950px) {
-
-            .page {
-                grid-template-columns: 200px 1fr;
-            }
-
-
-            .main {
-                padding: 30px;
-            }
-
+        @media (max-width: 900px) {
 
             .intro {
                 grid-template-columns: 1fr;
             }
 
 
-            .intro-copy {
+            .intro-text {
                 justify-self: start;
             }
 
         }
 
 
-        @media (max-width: 800px) {
+        @media (max-width: 850px) {
 
             .page {
                 display: block;
@@ -1074,15 +1027,15 @@
 
                 width: 100%;
 
-                min-height: auto;
-
                 height: auto;
 
-                padding: 18px 20px;
+                min-height: auto;
+
+                padding: 18px 22px;
 
                 border-right: none;
 
-                border-bottom: 1px solid var(--border);
+                border-bottom: 1px solid var(--line);
             }
 
 
@@ -1093,23 +1046,21 @@
             }
 
 
-            .menu-title {
+            .nav-label {
                 display: none;
             }
 
 
-            .menu {
+            .nav {
                 flex-direction: row;
 
                 overflow-x: auto;
 
-                gap: 4px;
-
-                margin-top: 7px;
+                margin-top: 10px;
             }
 
 
-            .menu a {
+            .nav a {
                 white-space: nowrap;
 
                 border-left: none;
@@ -1118,7 +1069,7 @@
             }
 
 
-            .menu a.active {
+            .nav a.active {
                 border-left: none;
 
                 border-bottom-color: var(--brown);
@@ -1129,17 +1080,17 @@
                 display: none;
             }
 
-
-            .main {
-                padding: 27px 20px 45px;
-            }
-
         }
 
 
         @media (max-width: 600px) {
 
-            .topbar {
+            .main {
+                padding: 25px 18px;
+            }
+
+
+            .top {
                 display: block;
             }
 
@@ -1147,11 +1098,11 @@
             .date {
                 display: inline-block;
 
-                margin-top: 12px;
+                margin-top: 15px;
             }
 
 
-            .topbar h1 {
+            .top h1 {
                 font-size: 30px;
             }
 
@@ -1170,7 +1121,7 @@
 
 
             .form-card {
-                padding: 18px;
+                padding: 19px;
             }
 
 
@@ -1179,14 +1130,12 @@
             }
 
 
-            .form-note {
-                display: block;
-
-                margin-bottom: 12px;
+            .footer-note {
+                margin-bottom: 14px;
             }
 
 
-            .form-actions {
+            .form-buttons {
                 width: 100%;
             }
 
@@ -1200,11 +1149,11 @@
             .image-preview img {
                 width: 100%;
 
-                height: 210px;
+                height: 190px;
             }
 
 
-            .footer {
+            footer {
                 display: block;
 
                 line-height: 1.7;
@@ -1231,7 +1180,7 @@
 
 
         <a
-            href="{{ route('user.dashboard') }}"
+            href="{{ route('admin.dashboard') }}"
             class="brand"
         >
 
@@ -1247,7 +1196,7 @@
                 </div>
 
 
-                <span class="brand-sub">
+                <span class="brand-small">
                     Culinary Journal
                 </span>
 
@@ -1256,79 +1205,96 @@
         </a>
 
 
-        <div class="menu-title">
+        <div class="nav-label">
             Menu Utama
         </div>
 
 
-        <nav class="menu">
+        <nav class="nav">
 
 
-            <a href="{{ route('user.dashboard') }}">
+            {{-- DASHBOARD --}}
 
-                <span class="menu-icon">
+            <a
+                href="{{ route('admin.dashboard') }}"
+            >
+
+                <span class="nav-icon">
                     ⌂
                 </span>
 
-                Dashboard
+                <span>
+                    Dashboard
+                </span>
 
             </a>
 
 
+            {{-- SEMUA RESEP --}}
+
             <a
-                href="{{ route('recipes.my') }}"
+                href="{{ route('admin.recipes.index') }}"
                 class="active"
             >
 
-                <span class="menu-icon">
+                <span class="nav-icon">
                     ≡
                 </span>
 
-                Resep Saya
+                <span>
+                    Semua Resep
+                </span>
 
             </a>
 
 
-            <a href="{{ route('recipes.create') }}">
+            {{-- TAMBAH RESEP --}}
 
-                <span class="menu-icon">
+            <a
+                href="{{ route('recipes.create') }}"
+            >
+
+                <span class="nav-icon">
                     +
                 </span>
 
-                Tambah Resep
-
-            </a>
-
-
-            <a href="{{ route('user.favorites') }}">
-
-                <span class="menu-icon">
-                    ♡
+                <span>
+                    Tambah Resep
                 </span>
 
-                Resep Tersimpan
-
             </a>
 
 
-            <a href="{{ route('profile.edit') }}">
+            {{-- DATA USER --}}
 
-                <span class="menu-icon">
+            <a
+                href="{{ route('admin.users.index') }}"
+            >
+
+                <span class="nav-icon">
                     ○
                 </span>
 
-                Profil
+                <span>
+                    Data User
+                </span>
 
             </a>
 
 
-            <a href="{{ route('recipes.index') }}">
+            {{-- WEBSITE --}}
 
-                <span class="menu-icon">
+            <a
+                href="{{ route('recipes.index') }}"
+            >
+
+                <span class="nav-icon">
                     ↗
                 </span>
 
-                Lihat Website
+                <span>
+                    Lihat Website
+                </span>
 
             </a>
 
@@ -1336,10 +1302,12 @@
         </nav>
 
 
+        {{-- USER ADMIN --}}
+
         <div class="sidebar-bottom">
 
 
-            <div class="user-mini">
+            <div class="admin-user">
 
 
                 <div class="avatar">
@@ -1355,8 +1323,7 @@
                 </div>
 
 
-                <div class="user-mini-info">
-
+                <div class="admin-user-info">
 
                     <strong>
                         {{ auth()->user()->name }}
@@ -1364,9 +1331,8 @@
 
 
                     <span>
-                        Pengguna
+                        Administrator
                     </span>
-
 
                 </div>
 
@@ -1381,16 +1347,12 @@
 
                 @csrf
 
-
                 <button
                     type="submit"
-                    class="logout-button"
+                    class="logout"
                 >
-
-                    🚪 &nbsp; Keluar
-
+                    Keluar dari akun
                 </button>
-
 
             </form>
 
@@ -1411,14 +1373,13 @@
 
         {{-- HEADER --}}
 
-        <header class="topbar">
+        <header class="top">
 
 
             <div>
 
-
                 <div class="eyebrow">
-                    ResepKu / Resep Saya / Edit
+                    ResepKu / Admin / Edit
                 </div>
 
 
@@ -1428,9 +1389,8 @@
 
 
                 <p>
-                    Perbarui resep yang sudah kamu buat.
+                    Perbarui informasi resep yang dipilih.
                 </p>
-
 
             </div>
 
@@ -1445,7 +1405,6 @@
         </header>
 
 
-
         {{-- INTRO --}}
 
         <section class="intro">
@@ -1453,17 +1412,17 @@
 
             <h2>
 
-                Rapikan kembali resep
-                <span>{{ $recipe->title }}</span>.
+                Perbarui resep
+                <em>{{ $recipe->title }}</em>
+                agar tetap rapi di koleksi.
 
             </h2>
 
 
-            <p class="intro-copy">
+            <p class="intro-text">
 
-                Kamu dapat mengubah nama resep, bahan-bahan,
-                langkah memasak, maupun mengganti foto.
-                Perubahan akan langsung tersimpan ke koleksimu.
+                Admin dapat mengubah nama resep, bahan,
+                langkah memasak, dan foto resep.
 
             </p>
 
@@ -1471,43 +1430,21 @@
         </section>
 
 
-
         {{-- BACK --}}
 
         <a
-            href="{{ route(
-                'recipes.show',
-                $recipe->slug
-            ) }}"
+            href="{{ route('admin.recipes.show', $recipe) }}"
             class="back-link"
         >
-
-            ← Kembali ke resep
-
+            ← Kembali ke Detail Resep
         </a>
-
-
-
-        {{-- SUCCESS --}}
-
-        @if(session('success'))
-
-            <div class="alert alert-success">
-
-                ✓
-                {{ session('success') }}
-
-            </div>
-
-        @endif
-
 
 
         {{-- ERROR --}}
 
         @if($errors->any())
 
-            <div class="alert alert-error">
+            <div class="error-box">
 
 
                 <strong>
@@ -1533,10 +1470,7 @@
         @endif
 
 
-
-        {{-- =================================================
-             RECIPE SUMMARY
-        ================================================== --}}
+        {{-- RECIPE SUMMARY --}}
 
         <div class="recipe-summary">
 
@@ -1576,7 +1510,7 @@
                     Dibuat oleh
 
                     <strong>
-                        {{ auth()->user()->name }}
+                        {{ $recipe->user->name ?? 'User' }}
                     </strong>
 
                 </div>
@@ -1588,15 +1522,12 @@
         </div>
 
 
-
-        {{-- =================================================
-             FORM
-        ================================================== --}}
+        {{-- FORM --}}
 
         <div class="form-wrapper">
 
 
-            <div class="form-head">
+            <div class="form-heading">
 
 
                 <h3>
@@ -1604,7 +1535,7 @@
                 </h3>
 
 
-                <span>
+                <span class="form-note">
                     * Wajib diisi
                 </span>
 
@@ -1612,14 +1543,13 @@
             </div>
 
 
-
             <div class="form-card">
 
 
                 <form
                     action="{{ route(
-                        'recipes.update',
-                        $recipe->slug
+                        'admin.recipes.update',
+                        $recipe
                     ) }}"
                     method="POST"
                     enctype="multipart/form-data"
@@ -1630,8 +1560,7 @@
                     @method('PUT')
 
 
-
-                    {{-- NAMA RESEP --}}
+                    {{-- NAMA --}}
 
                     <div class="form-group">
 
@@ -1639,6 +1568,14 @@
                         <label for="title">
                             Nama Resep *
                         </label>
+
+
+                        <div class="description">
+
+                            Gunakan nama resep yang jelas
+                            dan mudah dikenali.
+
+                        </div>
 
 
                         <input
@@ -1649,7 +1586,6 @@
                                 'title',
                                 $recipe->title
                             ) }}"
-                            placeholder="Masukkan nama resep"
                             required
                         >
 
@@ -1666,7 +1602,6 @@
                     </div>
 
 
-
                     {{-- BAHAN --}}
 
                     <div class="form-group">
@@ -1677,10 +1612,10 @@
                         </label>
 
 
-                        <div class="help-text">
+                        <div class="description">
 
-                            Tulis bahan dan takaran.
-                            Gunakan satu baris untuk setiap bahan.
+                            Pisahkan setiap bahan pada baris
+                            yang berbeda agar mudah dibaca.
 
                         </div>
 
@@ -1688,10 +1623,6 @@
                         <textarea
                             id="ingredients"
                             name="ingredients"
-                            placeholder="Contoh:
-500 gram kentang
-1 buah wortel
-2 butir telur"
                             required
                         >{{ old(
                             'ingredients',
@@ -1711,7 +1642,6 @@
                     </div>
 
 
-
                     {{-- LANGKAH --}}
 
                     <div class="form-group">
@@ -1722,9 +1652,10 @@
                         </label>
 
 
-                        <div class="help-text">
+                        <div class="description">
 
-                            Jelaskan proses memasak secara berurutan.
+                            Tulis langkah memasak secara
+                            berurutan dari awal hingga selesai.
 
                         </div>
 
@@ -1732,10 +1663,6 @@
                         <textarea
                             id="steps"
                             name="steps"
-                            placeholder="Contoh:
-1. Siapkan semua bahan.
-2. Rebus bahan hingga matang.
-3. Campurkan semua bahan."
                             required
                         >{{ old(
                             'steps',
@@ -1755,77 +1682,49 @@
                     </div>
 
 
-
-                    {{-- FOTO SAAT INI --}}
-
-                    <div class="form-group">
-
-
-                        <label>
-                            Foto Saat Ini
-                        </label>
-
-
-                        @if($recipe->image)
-
-                            <div class="current-image">
-
-
-                                <div class="current-label">
-                                    Foto yang digunakan
-                                </div>
-
-
-                                <img
-                                    src="{{ $recipe->imageUrl() }}"
-                                    alt="{{ $recipe->title }}"
-                                >
-
-
-                                <div class="current-note">
-
-                                    Foto ini akan tetap digunakan
-                                    jika kamu tidak memilih foto baru.
-
-                                </div>
-
-
-                            </div>
-
-                        @else
-
-                            <div class="image-note">
-
-                                Resep ini belum memiliki foto.
-
-                            </div>
-
-                        @endif
-
-
-                    </div>
-
-
-
-                    {{-- FOTO BARU --}}
+                    {{-- FOTO --}}
 
                     <div class="form-group">
 
 
                         <label for="image">
-                            Ganti Foto
+                            Foto Resep
                         </label>
 
 
-                        <div class="help-text">
+                        <div class="description">
 
-                            Pilih foto baru hanya jika ingin mengganti
-                            foto yang sekarang.
+                            Pilih foto baru untuk mengganti
+                            foto yang sekarang. Kosongkan jika
+                            ingin mempertahankan foto lama.
 
                         </div>
 
 
-                        <div class="image-upload">
+                        <div class="image-box">
+
+
+                            {{-- FOTO LAMA --}}
+
+                            @if($recipe->image)
+
+                                <div class="current-image">
+
+
+                                    <div class="current-label">
+                                        Foto saat ini
+                                    </div>
+
+
+                                    <img
+                                        src="{{ $recipe->imageUrl() }}"
+                                        alt="{{ $recipe->title }}"
+                                    >
+
+
+                                </div>
+
+                            @endif
 
 
                             <input
@@ -1836,15 +1735,16 @@
                             >
 
 
-                            <div class="image-note">
+                            <div class="image-info">
 
-                                JPG, JPEG, PNG, atau WEBP.
+                                Format:
+                                JPG, JPEG, PNG, WEBP.
                                 Maksimal 2 MB.
 
                             </div>
 
 
-                            {{-- PREVIEW --}}
+                            {{-- PREVIEW BARU --}}
 
                             <div
                                 class="image-preview"
@@ -1882,27 +1782,26 @@
                     </div>
 
 
-
                     {{-- FOOTER FORM --}}
 
                     <div class="form-footer">
 
 
-                        <div class="form-note">
+                        <div class="footer-note">
 
-                            Perubahan akan disimpan
-                            ke koleksi resep kamu.
+                            Pastikan perubahan sudah sesuai
+                            sebelum disimpan.
 
                         </div>
 
 
-                        <div class="form-actions">
+                        <div class="form-buttons">
 
 
                             <a
                                 href="{{ route(
-                                    'recipes.show',
-                                    $recipe->slug
+                                    'admin.recipes.show',
+                                    $recipe
                                 ) }}"
                                 class="btn btn-cancel"
                             >
@@ -1912,7 +1811,7 @@
 
                             <button
                                 type="submit"
-                                class="btn btn-submit"
+                                class="btn btn-save"
                             >
                                 Simpan Perubahan →
                             </button>
@@ -1933,19 +1832,18 @@
         </div>
 
 
-
         {{-- FOOTER --}}
 
-        <footer class="footer">
+        <footer>
 
 
             <span>
-                © {{ date('Y') }} <strong>ResepKu</strong>
+                © {{ date('Y') }} ResepKu
             </span>
 
 
             <span>
-                Culinary Journal · Resep Saya
+                Culinary Journal · Administrator
             </span>
 
 
@@ -1956,7 +1854,6 @@
 
 
 </div>
-
 
 
 <script>

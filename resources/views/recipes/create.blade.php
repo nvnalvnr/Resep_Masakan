@@ -4,19 +4,39 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+    <title>Tambah Resep | ResepKu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet"
     >
-
-    <title>
-        Tambah Resep | ResepKu
-    </title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+
+        :root {
+            --paper: #f5f1e8;
+            --paper-light: #fbf9f4;
+            --white: #fffdf8;
+
+            --ink: #29231f;
+            --muted: #777067;
+
+            --brown: #6b3424;
+            --terracotta: #a95635;
+            --olive: #5d6947;
+
+            --line: #ded7ca;
+            --soft-brown: #eee3d8;
+            --soft-green: #e7eadf;
+        }
+
 
         * {
             margin: 0;
@@ -24,15 +44,24 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f6f6f4;
-            color: #292929;
+
+        html {
+            scroll-behavior: smooth;
         }
 
+
+        body {
+            font-family: "DM Sans", Arial, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+        }
+
+
         a {
+            color: inherit;
             text-decoration: none;
         }
+
 
         button,
         input,
@@ -42,71 +71,116 @@
 
 
         /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .page {
+            min-height: 100vh;
+
+            display: grid;
+
+            grid-template-columns: 235px 1fr;
+        }
+
+
+        /* =====================================================
            SIDEBAR
         ===================================================== */
 
         .sidebar {
-            position: fixed;
+            background: var(--paper-light);
+
+            border-right: 1px solid var(--line);
+
+            min-height: 100vh;
+
+            padding: 30px 22px;
+
+            position: sticky;
+
             top: 0;
-            left: 0;
-            bottom: 0;
 
-            width: 240px;
-
-            background: #ffffff;
-
-            border-right: 1px solid #e3e3e3;
-
-            padding: 28px 18px;
-
-            z-index: 50;
+            height: 100vh;
 
             display: flex;
+
             flex-direction: column;
         }
 
 
         .brand {
-            padding: 0 14px;
+            display: flex;
 
-            margin-bottom: 42px;
-        }
+            align-items: center;
 
-        .brand a {
-            color: #e85d04;
+            gap: 11px;
 
-            font-size: 25px;
+            padding-bottom: 31px;
 
-            font-weight: 700;
-        }
-
-        .brand small {
-            display: block;
-
-            color: #999;
-
-            font-size: 11px;
-
-            margin-top: 5px;
+            border-bottom: 1px solid var(--line);
         }
 
 
-        .menu-label {
-            color: #999;
+        .brand-mark {
+            width: 40px;
+            height: 40px;
 
-            font-size: 10px;
+            background: var(--brown);
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+        }
+
+
+        .brand-name {
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 21px;
 
             font-weight: 600;
+        }
 
-            letter-spacing: .8px;
+
+        .brand-small {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
 
-            margin: 0 14px 10px;
+            margin-top: 2px;
         }
 
 
-        .menu {
+        .nav-label {
+            color: #968d82;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+
+            margin: 27px 9px 11px;
+        }
+
+
+        .nav {
             display: flex;
 
             flex-direction: column;
@@ -115,53 +189,49 @@
         }
 
 
-        .menu a {
+        .nav a {
             display: flex;
 
             align-items: center;
 
             gap: 11px;
 
-            padding: 12px 14px;
+            padding: 11px 10px;
 
-            color: #606060;
+            font-size: 12px;
 
-            border-radius: 7px;
+            color: var(--muted);
 
-            font-size: 13px;
+            border-left: 2px solid transparent;
 
-            transition: .2s;
-
-            min-height: 40px;
+            transition: .2s ease;
         }
 
 
-        .menu a:hover {
-            background: #f7f7f7;
+        .nav a:hover {
+            color: var(--brown);
 
-            color: #e85d04;
+            background: #f4eee5;
         }
 
 
-        .menu a.active {
-            background: #fff1e8;
+        .nav a.active {
+            color: var(--brown);
 
-            color: #e85d04;
+            border-left-color: var(--brown);
 
-            font-weight: 600;
+            background: #eee5da;
+
+            font-weight: 700;
         }
 
 
-        .menu-icon {
-            width: 20px;
-
-            min-width: 20px;
+        .nav-icon {
+            width: 19px;
 
             text-align: center;
 
-            font-size: 16px;
-
-            line-height: 1;
+            font-size: 14px;
         }
 
 
@@ -171,60 +241,51 @@
 
         .sidebar-bottom {
             margin-top: auto;
-
-            padding-top: 18px;
-
-            border-top: 1px solid #eeeeee;
         }
 
 
-        .profile-box {
+        .admin-user {
+            border-top: 1px solid var(--line);
+
+            padding-top: 19px;
+
             display: flex;
 
             align-items: center;
 
             gap: 10px;
-
-            padding: 8px 10px;
-
-            margin-bottom: 8px;
         }
 
 
         .avatar {
-            width: 37px;
+            width: 34px;
+            height: 34px;
 
-            height: 37px;
+            background: var(--soft-brown);
 
-            background: #e85d04;
-
-            color: #ffffff;
-
-            border-radius: 50%;
+            color: var(--brown);
 
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
-            font-size: 13px;
+            border-radius: 50%;
 
-            font-weight: 600;
+            font-size: 12px;
+
+            font-weight: 700;
 
             flex-shrink: 0;
         }
 
 
-        .profile-info {
-            min-width: 0;
-        }
+        .admin-user strong {
+            display: block;
 
+            font-size: 11px;
 
-        .profile-name {
-            font-size: 12px;
-
-            font-weight: 600;
+            max-width: 125px;
 
             white-space: nowrap;
 
@@ -234,40 +295,44 @@
         }
 
 
-        .profile-role {
-            color: #999;
+        .admin-user span {
+            display: block;
 
-            font-size: 10px;
+            color: var(--muted);
 
-            margin-top: 3px;
+            font-size: 9px;
+
+            margin-top: 2px;
         }
 
 
-        .logout-button {
+        .logout {
+            margin-top: 14px;
+
             width: 100%;
 
-            border: none;
+            background: transparent;
 
-            background: #fff1f2;
+            border: 1px solid var(--line);
 
-            color: #be123c;
+            padding: 9px;
 
-            padding: 10px;
-
-            border-radius: 7px;
+            color: var(--muted);
 
             cursor: pointer;
 
-            font-size: 12px;
-
-            text-align: left;
+            font-size: 10px;
 
             transition: .2s;
         }
 
 
-        .logout-button:hover {
-            background: #ffe4e6;
+        .logout:hover {
+            color: #9b3d2d;
+
+            border-color: #c9a397;
+
+            background: #faf0ec;
         }
 
 
@@ -276,103 +341,120 @@
         ===================================================== */
 
         .main {
-            margin-left: 240px;
+            min-width: 0;
 
-            min-height: 100vh;
+            padding: 36px 48px 45px;
         }
 
 
         /* =====================================================
-           TOPBAR
+           HEADER
         ===================================================== */
 
-        .topbar {
-            height: 72px;
-
-            background: #ffffff;
-
-            border-bottom: 1px solid #e3e3e3;
-
-            padding: 0 34px;
-
+        .top {
             display: flex;
-
-            align-items: center;
 
             justify-content: space-between;
+
+            align-items: flex-start;
+
+            padding-bottom: 27px;
+
+            border-bottom: 1px solid var(--line);
         }
 
 
-        .page-name {
-            font-size: 18px;
+        .eyebrow {
+            font-size: 9px;
 
-            font-weight: 600;
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            color: var(--terracotta);
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
         }
 
 
-        .user-area {
-            display: flex;
+        .top h1 {
+            font-family: "Playfair Display", Georgia, serif;
 
-            align-items: center;
+            font-size: 36px;
 
-            gap: 11px;
+            font-weight: 500;
+
+            line-height: 1.15;
         }
 
 
-        .user-info {
-            text-align: right;
+        .top p {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 12px;
         }
 
 
-        .user-name {
-            display: block;
-
-            font-size: 13px;
-
-            color: #444;
-        }
-
-
-        .user-role {
-            display: block;
-
-            color: #999;
-
+        .date {
             font-size: 10px;
 
-            margin-top: 2px;
+            color: var(--muted);
+
+            border-bottom: 1px solid var(--brown);
+
+            padding-bottom: 5px;
         }
 
 
         /* =====================================================
-           CONTENT
+           FORM INTRO
         ===================================================== */
 
-        .content {
-            padding: 30px 34px 50px;
+        .intro {
+            display: grid;
 
-            max-width: 1050px;
+            grid-template-columns: 1.5fr .8fr;
+
+            gap: 35px;
+
+            margin: 28px 0 30px;
+
+            border-bottom: 1px solid var(--line);
+
+            padding-bottom: 30px;
         }
 
 
-        .page-header {
-            margin-bottom: 25px;
+        .intro h2 {
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 27px;
+
+            font-weight: 500;
+
+            line-height: 1.3;
         }
 
 
-        .page-header h1 {
-            font-size: 25px;
-
-            font-weight: 600;
-
-            margin-bottom: 7px;
+        .intro h2 em {
+            color: var(--terracotta);
         }
 
 
-        .page-header p {
-            color: #777;
+        .intro-text {
+            color: var(--muted);
 
-            font-size: 13px;
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            max-width: 390px;
+
+            justify-self: end;
         }
 
 
@@ -380,19 +462,51 @@
            FORM
         ===================================================== */
 
+        .form-wrapper {
+            max-width: 900px;
+        }
+
+
+        .form-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: baseline;
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-heading h3 {
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 23px;
+
+            font-weight: 500;
+        }
+
+
+        .required-note {
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+
         .form-container {
-            background: #ffffff;
+            background: var(--white);
 
-            border: 1px solid #e3e3e3;
+            border: 1px solid var(--line);
 
-            border-radius: 9px;
+            padding: 27px;
 
-            padding: 28px;
+            border-radius: 2px;
         }
 
 
         .form-group {
-            margin-bottom: 23px;
+            margin-bottom: 24px;
         }
 
 
@@ -404,70 +518,74 @@
         label {
             display: block;
 
-            font-size: 13px;
+            font-size: 11px;
 
-            font-weight: 600;
+            font-weight: 700;
 
-            margin-bottom: 8px;
+            letter-spacing: .3px;
+
+            margin-bottom: 7px;
         }
 
 
         .label-description {
-            font-size: 11px;
+            color: var(--muted);
 
-            color: #999;
+            font-size: 10px;
 
-            font-weight: normal;
+            line-height: 1.6;
 
             margin-bottom: 9px;
         }
 
 
-        input,
+        input[type="text"],
         textarea {
             width: 100%;
 
-            border: 1px solid #dcdcdc;
+            border: 1px solid var(--line);
 
-            border-radius: 5px;
+            background: #fffefb;
 
-            padding: 11px 12px;
+            color: var(--ink);
 
-            font-size: 13px;
+            padding: 12px 13px;
 
-            color: #333;
+            font-size: 12px;
 
             outline: none;
 
-            background: #fff;
+            border-radius: 0;
+
+            transition: .2s ease;
         }
 
 
-        input[type="file"] {
-            padding: 9px 10px;
-
-            cursor: pointer;
+        input[type="text"] {
+            height: 44px;
         }
 
 
         textarea {
+            min-height: 170px;
+
             resize: vertical;
 
-            min-height: 150px;
-
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
 
-        input:focus,
+        input[type="text"]:focus,
         textarea:focus {
-            border-color: #e85d04;
+            border-color: var(--terracotta);
+
+            background: #fffdf8;
         }
 
 
         input::placeholder,
         textarea::placeholder {
-            color: #aaa;
+            color: #aaa198;
         }
 
 
@@ -475,45 +593,90 @@
            IMAGE
         ===================================================== */
 
-        .image-upload {
-            border: 1px dashed #d8d8d8;
+        .image-box {
+            border: 1px dashed #cfc6b9;
 
-            border-radius: 7px;
+            background: #faf7f0;
 
             padding: 18px;
-
-            background: #fafafa;
         }
 
 
-        .image-upload-text {
-            color: #888;
+        .image-box input[type="file"] {
+            width: 100%;
 
             font-size: 11px;
 
+            color: var(--muted);
+
+            cursor: pointer;
+        }
+
+
+        .image-box input[type="file"]::file-selector-button {
+            background: var(--brown);
+
+            color: white;
+
+            border: none;
+
+            padding: 9px 13px;
+
+            margin-right: 10px;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 10px;
+        }
+
+
+        .image-info {
+            color: var(--muted);
+
+            font-size: 9px;
+
             line-height: 1.6;
 
-            margin-top: 8px;
+            margin-top: 9px;
         }
 
 
         .image-preview {
-            margin-top: 14px;
-
             display: none;
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid var(--line);
+        }
+
+
+        .image-preview-label {
+            color: var(--muted);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
         }
 
 
         .image-preview img {
-            width: 220px;
+            width: 230px;
 
-            height: 150px;
+            height: 155px;
 
             object-fit: cover;
 
-            border-radius: 7px;
+            display: block;
 
-            border: 1px solid #e3e3e3;
+            border: 1px solid var(--line);
         }
 
 
@@ -522,13 +685,11 @@
         ===================================================== */
 
         .error-box {
-            background: #fff4f4;
+            background: #faf0ec;
 
-            border: 1px solid #f0cccc;
+            border: 1px solid #dec1b5;
 
-            border-radius: 6px;
-
-            padding: 13px 15px;
+            padding: 14px 16px;
 
             margin-bottom: 20px;
         }
@@ -537,92 +698,141 @@
         .error-box strong {
             display: block;
 
-            font-size: 12px;
+            color: #8b3426;
+
+            font-size: 11px;
 
             margin-bottom: 7px;
-
-            color: #b42318;
         }
 
 
         .error-box ul {
             padding-left: 18px;
 
-            color: #b42318;
+            color: #8b3426;
 
-            font-size: 12px;
+            font-size: 10px;
+
+            line-height: 1.7;
         }
 
 
         .field-error {
             display: block;
 
-            color: #c62828;
+            color: #a33b2c;
 
-            font-size: 11px;
+            font-size: 9px;
 
             margin-top: 6px;
         }
 
 
         /* =====================================================
-           BUTTON
+           FORM FOOTER
         ===================================================== */
 
         .form-footer {
             display: flex;
 
-            justify-content: flex-end;
+            justify-content: space-between;
 
             align-items: center;
 
-            gap: 10px;
+            border-top: 1px solid var(--line);
 
-            padding-top: 8px;
+            padding-top: 20px;
+
+            margin-top: 7px;
+        }
+
+
+        .form-footer-note {
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+
+        .form-buttons {
+            display: flex;
+
+            gap: 9px;
         }
 
 
         .btn-cancel {
-            padding: 10px 17px;
+            display: inline-flex;
 
-            border: 1px solid #ddd;
+            align-items: center;
 
-            border-radius: 5px;
+            justify-content: center;
 
-            color: #555;
+            padding: 10px 16px;
 
-            font-size: 12px;
+            border: 1px solid var(--line);
 
-            background: #fff;
+            background: transparent;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            transition: .2s;
         }
 
 
         .btn-cancel:hover {
-            background: #f7f7f7;
+            background: #f4eee5;
+
+            color: var(--brown);
         }
 
 
         .btn-submit {
-            border: none;
+            border: 1px solid var(--brown);
 
-            background: #e85d04;
+            background: var(--brown);
 
-            color: #fff;
+            color: white;
 
             padding: 10px 18px;
 
-            border-radius: 5px;
+            font-size: 10px;
 
-            font-size: 12px;
-
-            font-weight: 600;
+            font-weight: 700;
 
             cursor: pointer;
+
+            transition: .2s;
         }
 
 
         .btn-submit:hover {
-            background: #d65300;
+            background: #54291d;
+
+            border-color: #54291d;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            border-top: 1px solid var(--line);
+
+            margin-top: 50px;
+
+            padding-top: 18px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            display: flex;
+
+            justify-content: space-between;
         }
 
 
@@ -630,7 +840,25 @@
            RESPONSIVE
         ===================================================== */
 
-        @media (max-width: 750px) {
+        @media (max-width: 1100px) {
+
+            .page {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .main {
+                padding: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .page {
+                display: block;
+            }
+
 
             .sidebar {
                 position: relative;
@@ -639,29 +867,140 @@
 
                 height: auto;
 
+                min-height: auto;
+
+                padding: 18px 22px;
+
                 border-right: none;
 
-                border-bottom: 1px solid #e3e3e3;
+                border-bottom: 1px solid var(--line);
             }
 
+
+            .brand {
+                padding-bottom: 15px;
+
+                border-bottom: none;
+            }
+
+
+            .nav-label {
+                display: none;
+            }
+
+
+            .nav {
+                flex-direction: row;
+
+                overflow-x: auto;
+
+                margin-top: 10px;
+            }
+
+
+            .nav a {
+                white-space: nowrap;
+
+                border-left: none;
+
+                border-bottom: 2px solid transparent;
+            }
+
+
+            .nav a.active {
+                border-left: none;
+
+                border-bottom-color: var(--brown);
+            }
+
+
+            .sidebar-bottom {
+                display: none;
+            }
+
+
+            .intro {
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+
+            .intro-text {
+                justify-self: start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
 
             .main {
-                margin-left: 0;
+                padding: 25px 18px;
             }
 
 
-            .content {
-                padding: 22px 18px;
+            .top {
+                display: block;
             }
 
 
-            .topbar {
-                padding: 0 18px;
+            .date {
+                display: inline-block;
+
+                margin-top: 15px;
+            }
+
+
+            .top h1 {
+                font-size: 30px;
+            }
+
+
+            .intro h2 {
+                font-size: 23px;
             }
 
 
             .form-container {
-                padding: 20px;
+                padding: 19px;
+            }
+
+
+            .form-footer {
+                display: block;
+            }
+
+
+            .form-footer-note {
+                margin-bottom: 14px;
+            }
+
+
+            .form-buttons {
+                width: 100%;
+            }
+
+
+            .btn-cancel,
+            .btn-submit {
+                flex: 1;
+
+                text-align: center;
+            }
+
+
+            .image-preview img {
+                width: 100%;
+
+                height: 190px;
+            }
+
+
+            footer {
+                display: block;
+
+                line-height: 1.7;
             }
 
         }
@@ -673,7 +1012,7 @@
 
 <body>
 
-<div class="layout">
+<div class="page">
 
 
     <!-- =====================================================
@@ -683,103 +1022,191 @@
     <aside class="sidebar">
 
 
-        <div class="brand">
+        <!-- BRAND -->
 
-            <a href="{{ route('user.dashboard') }}">
-                ResepKu
-            </a>
+        <a
+            href="{{ auth()->user()->role === 'admin'
+                ? route('admin.dashboard')
+                : route('user.dashboard') }}"
+            class="brand"
+        >
 
-            <small>
-                Website Resep Masakan
-            </small>
+            <div class="brand-mark">
+                R
+            </div>
 
-        </div>
+            <div>
+
+                <div class="brand-name">
+                    ResepKu
+                </div>
+
+                <span class="brand-small">
+                    Culinary Journal
+                </span>
+
+            </div>
+
+        </a>
 
 
-        <div class="menu-label">
+        <div class="nav-label">
             Menu Utama
         </div>
 
 
-        <nav class="menu">
+        <nav class="nav">
 
 
-            <!-- DASHBOARD -->
-
-            <a href="{{ route('user.dashboard') }}">
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
+            @if(auth()->user()->role === 'admin')
 
 
-            <!-- RESEP SAYA -->
-
-            <a href="{{ route('recipes.my') }}">
-
-                <span class="menu-icon">
-                    ▣
-                </span>
-
-                <span>
-                    Resep Saya
-                </span>
-
-            </a>
+                <!-- ADMIN -->
 
 
-            <!-- RESEP TERSIMPAN -->
+                <a href="{{ route('admin.dashboard') }}">
 
-            <a href="{{ route('user.favorites') }}">
+                    <span class="nav-icon">
+                        ⌂
+                    </span>
 
-                <span class="menu-icon">
-                    ♥
-                </span>
+                    <span>
+                        Dashboard
+                    </span>
 
-                <span>
-                    Resep Tersimpan
-                </span>
-
-            </a>
+                </a>
 
 
-            <!-- TAMBAH RESEP -->
+                <a href="{{ route('admin.recipes.index') }}">
 
-            <a
-                href="{{ route('recipes.create') }}"
-                class="active"
-            >
+                    <span class="nav-icon">
+                        ≡
+                    </span>
 
-                <span class="menu-icon">
-                    ＋
-                </span>
+                    <span>
+                        Semua Resep
+                    </span>
 
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
+                </a>
 
 
-            <!-- PROFIL -->
+                <a
+                    href="{{ route('recipes.create') }}"
+                    class="active"
+                >
 
-            <a href="{{ route('profile.edit') }}">
+                    <span class="nav-icon">
+                        +
+                    </span>
 
-                <span class="menu-icon">
-                    ○
-                </span>
+                    <span>
+                        Tambah Resep
+                    </span>
 
-                <span>
-                    Profil
-                </span>
+                </a>
 
-            </a>
+
+                <a href="{{ route('admin.users.index') }}">
+
+                    <span class="nav-icon">
+                        ○
+                    </span>
+
+                    <span>
+                        Data User
+                    </span>
+
+                </a>
+
+
+                <a href="{{ route('recipes.index') }}">
+
+                    <span class="nav-icon">
+                        ↗
+                    </span>
+
+                    <span>
+                        Lihat Website
+                    </span>
+
+                </a>
+
+
+            @else
+
+
+                <!-- USER -->
+
+
+                <a href="{{ route('user.dashboard') }}">
+
+                    <span class="nav-icon">
+                        ⌂
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <a href="{{ route('recipes.my') }}">
+
+                    <span class="nav-icon">
+                        ≡
+                    </span>
+
+                    <span>
+                        Resep Saya
+                    </span>
+
+                </a>
+
+
+                <a href="{{ route('user.favorites') }}">
+
+                    <span class="nav-icon">
+                        ♡
+                    </span>
+
+                    <span>
+                        Resep Tersimpan
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{{ route('recipes.create') }}"
+                    class="active"
+                >
+
+                    <span class="nav-icon">
+                        +
+                    </span>
+
+                    <span>
+                        Tambah Resep
+                    </span>
+
+                </a>
+
+
+                <a href="{{ route('profile.edit') }}">
+
+                    <span class="nav-icon">
+                        ○
+                    </span>
+
+                    <span>
+                        Profil
+                    </span>
+
+                </a>
+
+
+            @endif
 
 
         </nav>
@@ -790,7 +1217,7 @@
         <div class="sidebar-bottom">
 
 
-            <div class="profile-box">
+            <div class="admin-user">
 
 
                 <div class="avatar">
@@ -800,30 +1227,26 @@
                 </div>
 
 
-                <div class="profile-info">
+                <div>
 
-
-                    <div class="profile-name">
-
+                    <strong>
                         {{ auth()->user()->name }}
+                    </strong>
 
-                    </div>
+                    <span>
 
+                        {{ auth()->user()->role === 'admin'
+                            ? 'Administrator'
+                            : 'User'
+                        }}
 
-                    <div class="profile-role">
-
-                        User
-
-                    </div>
-
+                    </span>
 
                 </div>
 
 
             </div>
 
-
-            <!-- LOGOUT -->
 
             <form
                 method="POST"
@@ -832,15 +1255,12 @@
 
                 @csrf
 
-
                 <button
                     type="submit"
-                    class="logout-button"
+                    class="logout"
                 >
 
-                    🚪
-                    &nbsp;
-                    Keluar
+                    Keluar dari akun
 
                 </button>
 
@@ -848,6 +1268,7 @@
 
 
         </div>
+
 
     </aside>
 
@@ -859,65 +1280,82 @@
     <main class="main">
 
 
-        <!-- TOPBAR -->
+        <!-- HEADER -->
 
-        <header class="topbar">
-
-
-            <div class="page-name">
-
-                Tambah Resep
-
-            </div>
+        <header class="top">
 
 
-            <div class="user-area">
+            <div>
 
-
-                <div class="user-info">
-
-                    <span class="user-name">
-
-                        {{ auth()->user()->name }}
-
-                    </span>
-
-
-                    <span class="user-role">
-
-                        User
-
-                    </span>
-
+                <div class="eyebrow">
+                    ResepKu / {{ auth()->user()->role === 'admin' ? 'Admin' : 'User' }}
                 </div>
 
-
-                <div class="avatar">
-
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-
-                </div>
-
-
-            </div>
-
-        </header>
-
-
-        <!-- CONTENT -->
-
-        <section class="content">
-
-
-            <div class="page-header">
 
                 <h1>
                     Tambah Resep
                 </h1>
 
+
                 <p>
-                    Masukkan informasi resep masakan yang ingin kamu simpan.
+                    Tambahkan resep baru ke dalam koleksi ResepKu.
                 </p>
+
+            </div>
+
+
+            <div class="date">
+
+                {{ now()->translatedFormat('l, d F Y') }}
+
+            </div>
+
+
+        </header>
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+
+            <h2>
+
+                Bagikan resep masakan
+                <em>favoritmu</em>
+                ke dalam koleksi.
+
+            </h2>
+
+
+            <p class="intro-text">
+
+                Lengkapi nama resep, bahan-bahan, langkah memasak,
+                dan foto agar resep mudah dibaca dan ditemukan kembali.
+
+            </p>
+
+
+        </section>
+
+
+        <!-- FORM -->
+
+        <div class="form-wrapper">
+
+
+            <div class="form-heading">
+
+
+                <h3>
+                    Informasi Resep
+                </h3>
+
+
+                <span class="required-note">
+                    * Wajib diisi
+                </span>
+
 
             </div>
 
@@ -927,6 +1365,7 @@
             @if ($errors->any())
 
                 <div class="error-box">
+
 
                     <strong>
                         Periksa kembali data yang dimasukkan.
@@ -945,12 +1384,11 @@
 
                     </ul>
 
+
                 </div>
 
             @endif
 
-
-            <!-- FORM -->
 
             <div class="form-container">
 
@@ -964,16 +1402,19 @@
                     @csrf
 
 
-                    <!-- =================================================
-                         NAMA RESEP
-                    ================================================== -->
+                    <!-- NAMA RESEP -->
 
                     <div class="form-group">
 
 
                         <label for="title">
-                            Nama Resep
+                            Nama Resep *
                         </label>
+
+
+                        <div class="label-description">
+                            Gunakan nama yang singkat dan mudah dikenali.
+                        </div>
 
 
                         <input
@@ -981,7 +1422,7 @@
                             id="title"
                             name="title"
                             value="{{ old('title') }}"
-                            placeholder="Contoh: Nasi Bakar Kemangi Cumi Asin"
+                            placeholder="Contoh: Japanese Potato Salad"
                             required
                         >
 
@@ -998,23 +1439,18 @@
                     </div>
 
 
-                    <!-- =================================================
-                         BAHAN
-                    ================================================== -->
+                    <!-- BAHAN -->
 
                     <div class="form-group">
 
 
                         <label for="ingredients">
-                            Bahan-bahan
+                            Bahan-bahan *
                         </label>
 
 
                         <div class="label-description">
-
-                            Tulis bahan dan takarannya.
-                            Gunakan satu bahan per baris agar lebih mudah dibaca.
-
+                            Tulis bahan beserta takarannya. Sebaiknya satu bahan per baris.
                         </div>
 
 
@@ -1023,15 +1459,15 @@
                             name="ingredients"
                             placeholder="Contoh:
 
-2 porsi nasi putih
-100 gram cumi asin
-5 lembar daun kemangi
-3 siung bawang putih
-5 buah cabai rawit
-2 lembar daun jeruk
-1 batang serai
-1 sdm minyak
-Garam secukupnya"
+500 gram kentang
+1 buah wortel
+1 buah mentimun
+2 butir telur
+4 sdm mayones
+1 sdt cuka
+1 sdt gula
+½ sdt garam
+¼ sdt lada hitam"
                             required
                         >{{ old('ingredients') }}</textarea>
 
@@ -1048,22 +1484,18 @@ Garam secukupnya"
                     </div>
 
 
-                    <!-- =================================================
-                         LANGKAH
-                    ================================================== -->
+                    <!-- LANGKAH -->
 
                     <div class="form-group">
 
 
                         <label for="steps">
-                            Langkah-langkah
+                            Langkah-langkah *
                         </label>
 
 
                         <div class="label-description">
-
-                            Tulis proses memasak secara berurutan.
-
+                            Jelaskan proses memasak secara berurutan dari awal sampai selesai.
                         </div>
 
 
@@ -1072,16 +1504,16 @@ Garam secukupnya"
                             name="steps"
                             placeholder="Contoh:
 
-1. Cuci cumi asin lalu rebus sebentar agar rasa asinnya berkurang.
-2. Tiriskan dan potong cumi menjadi bagian kecil.
-3. Tumis bawang putih, cabai, daun jeruk, dan serai hingga harum.
-4. Masukkan cumi asin lalu aduk beberapa menit.
-5. Masukkan nasi putih dan aduk sampai bumbu tercampur rata.
-6. Tambahkan daun kemangi dan masak sebentar.
-7. Koreksi rasa lalu matikan api.
-8. Bungkus nasi menggunakan daun pisang.
-9. Panggang nasi sebentar hingga daun pisang harum.
-10. Sajikan selagi hangat."
+1. Kupas kentang lalu potong menjadi beberapa bagian.
+2. Rebus kentang sampai empuk.
+3. Rebus telur sampai matang.
+4. Iris tipis mentimun dan peras airnya.
+5. Rebus wortel sebentar sampai agak lunak.
+6. Haluskan kentang secara kasar.
+7. Tambahkan cuka, gula, garam, dan lada.
+8. Masukkan wortel, mentimun, telur, dan bahan lainnya.
+9. Tambahkan mayones lalu aduk rata.
+10. Simpan di kulkas sebelum disajikan."
                             required
                         >{{ old('steps') }}</textarea>
 
@@ -1098,9 +1530,7 @@ Garam secukupnya"
                     </div>
 
 
-                    <!-- =================================================
-                         FOTO RESEP
-                    ================================================== -->
+                    <!-- FOTO -->
 
                     <div class="form-group">
 
@@ -1111,14 +1541,11 @@ Garam secukupnya"
 
 
                         <div class="label-description">
-
-                            Pilih gambar dari komputer kamu.
-                            Format JPG, JPEG, PNG, atau WEBP.
-
+                            Foto akan membuat resep lebih menarik. Bagian ini boleh dikosongkan.
                         </div>
 
 
-                        <div class="image-upload">
+                        <div class="image-box">
 
 
                             <input
@@ -1129,10 +1556,11 @@ Garam secukupnya"
                             >
 
 
-                            <div class="image-upload-text">
+                            <div class="image-info">
 
-                                Maksimal ukuran file 2 MB.
-                                Pilih foto makanan dengan kualitas yang jelas.
+                                Format yang didukung:
+                                JPG, JPEG, PNG, WEBP.
+                                Maksimal ukuran 2 MB.
 
                             </div>
 
@@ -1142,11 +1570,18 @@ Garam secukupnya"
                                 id="imagePreview"
                             >
 
+
+                                <div class="image-preview-label">
+                                    Preview foto
+                                </div>
+
+
                                 <img
                                     id="previewImage"
                                     src=""
-                                    alt="Preview gambar resep"
+                                    alt="Preview foto resep"
                                 >
+
 
                             </div>
 
@@ -1166,25 +1601,53 @@ Garam secukupnya"
                     </div>
 
 
-                    <!-- BUTTON -->
+                    <!-- FOOTER FORM -->
 
                     <div class="form-footer">
 
 
-                        <a
-                            href="{{ route('recipes.my') }}"
-                            class="btn-cancel"
-                        >
-                            Batal
-                        </a>
+                        <div class="form-footer-note">
+
+                            Pastikan semua informasi resep sudah benar.
+
+                        </div>
 
 
-                        <button
-                            type="submit"
-                            class="btn-submit"
-                        >
-                            Simpan Resep
-                        </button>
+                        <div class="form-buttons">
+
+
+                            @if(auth()->user()->role === 'admin')
+
+                                <a
+                                    href="{{ route('admin.dashboard') }}"
+                                    class="btn-cancel"
+                                >
+                                    Batal
+                                </a>
+
+                            @else
+
+                                <a
+                                    href="{{ route('user.dashboard') }}"
+                                    class="btn-cancel"
+                                >
+                                    Batal
+                                </a>
+
+                            @endif
+
+
+                            <button
+                                type="submit"
+                                class="btn-submit"
+                            >
+
+                                Simpan Resep →
+
+                            </button>
+
+
+                        </div>
 
 
                     </div>
@@ -1196,7 +1659,26 @@ Garam secukupnya"
             </div>
 
 
-        </section>
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+
+            <span>
+                © {{ date('Y') }} ResepKu
+            </span>
+
+
+            <span>
+                Culinary Journal ·
+                {{ auth()->user()->role === 'admin' ? 'Administrator' : 'Member' }}
+            </span>
+
+
+        </footer>
 
 
     </main>
@@ -1204,6 +1686,10 @@ Garam secukupnya"
 
 </div>
 
+
+<!-- =====================================================
+     PREVIEW GAMBAR
+====================================================== -->
 
 <script>
 
@@ -1214,37 +1700,52 @@ Garam secukupnya"
     const previewImage = document.getElementById('previewImage');
 
 
-    imageInput.addEventListener('change', function () {
+    if (imageInput) {
 
-        const file = this.files[0];
+        imageInput.addEventListener('change', function () {
 
-
-        if (!file) {
-
-            imagePreview.style.display = 'none';
-
-            previewImage.src = '';
-
-            return;
-
-        }
+            const file = this.files[0];
 
 
-        const reader = new FileReader();
+            if (!file) {
+
+                imagePreview.style.display = 'none';
+
+                previewImage.src = '';
+
+                return;
+
+            }
 
 
-        reader.onload = function (event) {
+            if (!file.type.startsWith('image/')) {
 
-            previewImage.src = event.target.result;
+                imagePreview.style.display = 'none';
 
-            imagePreview.style.display = 'block';
+                previewImage.src = '';
 
-        };
+                return;
+
+            }
 
 
-        reader.readAsDataURL(file);
+            const reader = new FileReader();
 
-    });
+
+            reader.onload = function (event) {
+
+                previewImage.src = event.target.result;
+
+                imagePreview.style.display = 'block';
+
+            };
+
+
+            reader.readAsDataURL(file);
+
+        });
+
+    }
 
 </script>
 
