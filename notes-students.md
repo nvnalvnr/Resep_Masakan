@@ -1,4 +1,4 @@
-# Catatan Review — Resep_Masakan
+# Catatan Review — Resep_Masakan.
 
 **Tanggal:** 28 Agustus 2026
 **Branch:** `main` @ `9fa9d01`
