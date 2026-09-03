@@ -4,23 +4,15 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Resep Saya | ResepKu</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
         rel="stylesheet"
     >
 
@@ -35,13 +27,14 @@
 
             --text: #2d2723;
             --muted: #81776e;
+            --light-muted: #a8a099;
 
             --brown: #6b3424;
+            --brown-dark: #512719;
             --terracotta: #a95635;
             --olive: #5d6947;
 
             --border: #ded6ca;
-
             --soft-brown: #eee4d8;
             --soft-green: #e5eadf;
             --soft-red: #f1dfda;
@@ -49,9 +42,9 @@
 
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
 
@@ -62,46 +55,44 @@
 
         body {
             font-family: "DM Sans", Arial, sans-serif;
-
             background: var(--bg);
-
             color: var(--text);
-
-            line-height: 1.6;
+            min-height: 100vh;
+            font-size: 14px;
         }
 
 
         a {
-            text-decoration: none;
-
             color: inherit;
+            text-decoration: none;
         }
 
 
-        button {
+        button,
+        input {
             font-family: inherit;
         }
 
 
         /* =====================================================
            LAYOUT
-        ====================================================== */
+        ===================================================== */
 
         .page {
             min-height: 100vh;
 
             display: grid;
 
-            grid-template-columns: 235px 1fr;
+            grid-template-columns: 240px minmax(0, 1fr);
         }
 
 
         /* =====================================================
            SIDEBAR
-        ====================================================== */
+        ===================================================== */
 
         .sidebar {
-            background: var(--surface-soft);
+            background: #fbf9f4;
 
             border-right: 1px solid var(--border);
 
@@ -109,15 +100,15 @@
 
             padding: 30px 22px;
 
-            display: flex;
-
-            flex-direction: column;
-
             position: sticky;
 
             top: 0;
 
             height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
         }
 
 
@@ -128,7 +119,7 @@
 
             gap: 11px;
 
-            padding-bottom: 30px;
+            padding: 5px 7px 31px;
 
             border-bottom: 1px solid var(--border);
         }
@@ -138,8 +129,6 @@
             width: 40px;
             height: 40px;
 
-            border-radius: 50%;
-
             background: var(--brown);
 
             color: white;
@@ -147,55 +136,60 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
+
+            border-radius: 50%;
 
             font-family: Georgia, serif;
 
             font-size: 18px;
+
+            flex-shrink: 0;
         }
 
 
         .brand-name {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 21px;
+            font-size: 22px;
 
             font-weight: 600;
+
+            line-height: 1;
         }
 
 
-        .brand-sub {
+        .brand-small {
             display: block;
 
             color: var(--muted);
 
-            font-size: 8px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.4px;
-
-            margin-top: 2px;
-        }
-
-
-        .menu-title {
-            color: #968d82;
-
-            font-size: 9px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
+            font-size: 10px;
 
             letter-spacing: 1.5px;
 
-            margin: 26px 9px 10px;
+            text-transform: uppercase;
+
+            margin-top: 5px;
         }
 
 
-        .menu {
+        .nav-label {
+            color: #968d82;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+
+            margin: 28px 9px 11px;
+        }
+
+
+        .nav {
             display: flex;
 
             flex-direction: column;
@@ -204,81 +198,82 @@
         }
 
 
-        .menu a {
+        .nav a {
             display: flex;
 
             align-items: center;
 
             gap: 11px;
 
-            padding: 11px 10px;
+            padding: 12px 10px;
+
+            font-size: 13px;
 
             color: var(--muted);
 
-            font-size: 11px;
-
             border-left: 2px solid transparent;
 
-            transition: .2s ease;
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
         }
 
 
-        .menu a:hover {
+        .nav a:hover {
             color: var(--brown);
 
-            background: #f1eae0;
+            background: #f4eee5;
         }
 
 
-        .menu a.active {
+        .nav a.active {
             color: var(--brown);
-
-            background: #eee4d8;
 
             border-left-color: var(--brown);
+
+            background: #eee5da;
 
             font-weight: 700;
         }
 
 
-        .menu-icon {
+        .nav-icon {
             width: 19px;
 
             text-align: center;
 
-            font-size: 13px;
+            font-size: 15px;
+
+            flex-shrink: 0;
         }
 
 
         /* =====================================================
-           SIDEBAR BOTTOM
-        ====================================================== */
+           SIDEBAR USER
+        ===================================================== */
 
         .sidebar-bottom {
             margin-top: auto;
-
-            padding-top: 18px;
-
-            border-top: 1px solid var(--border);
         }
 
 
-        .user-mini {
+        .admin-user {
+            border-top: 1px solid var(--border);
+
+            padding-top: 19px;
+
             display: flex;
 
             align-items: center;
 
             gap: 10px;
-
-            margin-bottom: 12px;
         }
 
 
         .avatar {
-            width: 35px;
-            height: 35px;
-
-            border-radius: 50%;
+            width: 38px;
+            height: 38px;
 
             background: var(--soft-brown);
 
@@ -287,10 +282,11 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
-            font-size: 12px;
+            border-radius: 50%;
+
+            font-size: 13px;
 
             font-weight: 700;
 
@@ -298,15 +294,12 @@
         }
 
 
-        .user-mini-info {
-            min-width: 0;
-        }
-
-
-        .user-mini-info strong {
+        .admin-user strong {
             display: block;
 
-            font-size: 10px;
+            font-size: 12px;
+
+            max-width: 135px;
 
             white-space: nowrap;
 
@@ -316,94 +309,94 @@
         }
 
 
-        .user-mini-info span {
+        .admin-user span {
             display: block;
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
 
-        .logout-button {
+        .logout {
+            margin-top: 14px;
+
             width: 100%;
 
             background: transparent;
 
-            color: var(--muted);
-
             border: 1px solid var(--border);
 
-            padding: 9px;
+            padding: 10px;
+
+            color: var(--muted);
 
             cursor: pointer;
 
-            font-size: 9px;
-
-            text-align: left;
+            font-size: 12px;
 
             transition: .2s ease;
         }
 
 
-        .logout-button:hover {
+        .logout:hover {
             color: #9b3d2d;
 
-            border-color: #cdb1a7;
+            border-color: #c9a397;
 
-            background: var(--soft-red);
+            background: #faf0ec;
         }
 
 
         /* =====================================================
            MAIN
-        ====================================================== */
+        ===================================================== */
 
         .main {
             min-width: 0;
 
-            padding: 35px 48px 50px;
+            padding: 38px 48px 45px;
         }
 
 
         /* =====================================================
            HEADER
-        ====================================================== */
+        ===================================================== */
 
-        .topbar {
+        .top {
             display: flex;
-
-            align-items: flex-start;
 
             justify-content: space-between;
 
-            padding-bottom: 24px;
+            align-items: flex-start;
+
+            padding-bottom: 26px;
 
             border-bottom: 1px solid var(--border);
         }
 
 
         .eyebrow {
-            color: var(--terracotta);
-
-            font-size: 8px;
-
-            font-weight: 700;
+            font-size: 10px;
 
             text-transform: uppercase;
 
             letter-spacing: 2px;
 
-            margin-bottom: 7px;
+            color: var(--terracotta);
+
+            font-weight: 700;
+
+            margin-bottom: 9px;
         }
 
 
-        .topbar h1 {
+        .top h1 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 35px;
+            font-size: 36px;
 
             font-weight: 500;
 
@@ -411,133 +404,135 @@
         }
 
 
-        .topbar p {
+        .top p {
+            margin-top: 9px;
+
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 13px;
 
-            margin-top: 7px;
+            line-height: 1.6;
         }
 
 
         .date {
-            color: var(--muted);
+            font-size: 12px;
 
-            font-size: 9px;
+            color: var(--muted);
 
             border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 4px;
+            padding-bottom: 6px;
+
+            white-space: nowrap;
         }
 
 
         /* =====================================================
            INTRO
-        ====================================================== */
+        ===================================================== */
 
         .intro {
-            display: grid;
+            display: flex;
 
-            grid-template-columns: 1.4fr .8fr;
+            justify-content: space-between;
+
+            align-items: flex-end;
 
             gap: 30px;
 
-            margin: 27px 0 28px;
-
-            border-bottom: 1px solid var(--border);
-
-            padding-bottom: 28px;
+            margin: 27px 0 25px;
         }
 
 
         .intro h2 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 26px;
+            font-size: 27px;
 
             font-weight: 500;
 
             line-height: 1.3;
-
-            max-width: 620px;
         }
 
 
-        .intro h2 span {
+        .intro h2 em {
             color: var(--terracotta);
+
+            font-style: italic;
         }
 
 
-        .intro-copy {
+        .intro-text {
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 13px;
 
-            line-height: 1.8;
+            line-height: 1.7;
 
-            max-width: 380px;
+            max-width: 400px;
 
-            justify-self: end;
+            text-align: right;
         }
 
 
         /* =====================================================
            ACTION BAR
-        ====================================================== */
+        ===================================================== */
 
         .action-bar {
             display: flex;
 
-            align-items: center;
-
             justify-content: space-between;
 
-            gap: 15px;
+            align-items: center;
 
-            border-top: 1px solid var(--text);
+            gap: 20px;
+
+            padding: 16px 0;
+
+            border-top: 1px solid var(--border);
 
             border-bottom: 1px solid var(--border);
 
-            padding: 13px 0;
-
-            margin-bottom: 25px;
+            margin-bottom: 18px;
         }
 
 
         .recipe-count {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 13px;
         }
 
 
         .recipe-count strong {
             color: var(--brown);
 
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 21px;
-
-            font-weight: 500;
+            font-size: 14px;
         }
 
 
-        .add-recipe {
+        .add-button {
             display: inline-flex;
 
             align-items: center;
 
             justify-content: center;
 
-            gap: 6px;
+            gap: 7px;
+
+            min-height: 40px;
+
+            padding: 0 17px;
 
             background: var(--brown);
 
+            border: 1px solid var(--brown);
+
             color: white;
 
-            padding: 10px 14px;
-
-            font-size: 9px;
+            font-size: 12px;
 
             font-weight: 700;
 
@@ -545,118 +540,193 @@
         }
 
 
-        .add-recipe:hover {
-            background: var(--terracotta);
+        .add-button:hover {
+            background: var(--brown-dark);
+
+            border-color: var(--brown-dark);
         }
 
 
         /* =====================================================
-           ALERT
-        ====================================================== */
+           SEARCH
+        ===================================================== */
 
-        .success {
-            background: var(--soft-green);
+        .search-box {
+            display: grid;
 
-            border-left: 2px solid var(--olive);
+            grid-template-columns: minmax(0, 1fr) auto auto;
 
-            color: var(--olive);
+            gap: 8px;
 
-            padding: 11px 13px;
+            margin-bottom: 25px;
+        }
+
+
+        .search-input-wrapper {
+            min-width: 0;
+        }
+
+
+        .search-input {
+            width: 100%;
+
+            height: 44px;
+
+            padding: 0 14px;
+
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+
+            color: var(--text);
+
+            outline: none;
+
+            font-size: 13px;
+
+            transition: .2s ease;
+        }
+
+
+        .search-input:focus {
+            border-color: var(--terracotta);
+
+            background: #fffefb;
+        }
+
+
+        .search-input::placeholder {
+            color: #aaa198;
+        }
+
+
+        .search-button,
+        .reset-button {
+            height: 44px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 0 16px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .search-button {
+            border: 1px solid var(--brown);
+
+            background: var(--brown);
+
+            color: white;
+        }
+
+
+        .search-button:hover {
+            background: var(--brown-dark);
+
+            border-color: var(--brown-dark);
+        }
+
+
+        .reset-button {
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+
+            color: var(--muted);
+        }
+
+
+        .reset-button:hover {
+            background: var(--soft-brown);
+
+            color: var(--brown);
+
+            border-color: #c8b9a8;
+        }
+
+
+        .search-result {
+            padding: 12px 14px;
+
+            margin-top: -10px;
 
             margin-bottom: 20px;
 
-            font-size: 9px;
-        }
+            background: var(--soft-brown);
 
+            border-left: 3px solid var(--brown);
 
-        /* =====================================================
-           SECTION HEADER
-        ====================================================== */
-
-        .section-header {
-            display: flex;
-
-            align-items: end;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            margin-bottom: 17px;
-        }
-
-
-        .section-label {
-            color: var(--terracotta);
-
-            font-size: 8px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.8px;
-
-            margin-bottom: 5px;
-        }
-
-
-        .section-title {
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 26px;
-
-            font-weight: 500;
-        }
-
-
-        .section-description {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 12px;
+        }
 
-            margin-top: 4px;
+
+        .search-result strong {
+            color: var(--brown);
         }
 
 
         /* =====================================================
            RECIPE GRID
-        ====================================================== */
+        ===================================================== */
 
         .recipe-grid {
             display: grid;
 
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
 
-            gap: 20px;
+            gap: 24px;
         }
 
+
+        /* =====================================================
+           RECIPE CARD
+        ===================================================== */
 
         .recipe-card {
             background: var(--surface);
 
             border: 1px solid var(--border);
 
-            overflow: hidden;
+            min-width: 0;
 
-            transition: .22s ease;
+            display: flex;
+
+            flex-direction: column;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
         }
 
 
         .recipe-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
 
-            border-color: #c8b9a8;
+            box-shadow: 0 8px 22px rgba(80, 55, 40, .07);
         }
 
 
         .recipe-image {
+            width: 100%;
+
+            height: 245px;
+
+            background: #e9e2d8;
+
             position: relative;
-
-            height: 215px;
-
-            background: var(--soft-brown);
 
             overflow: hidden;
         }
@@ -671,45 +741,16 @@
 
             display: block;
 
-            filter: saturate(.85);
-
-            transition: .3s ease;
+            transition: transform .35s ease;
         }
 
 
         .recipe-card:hover .recipe-image img {
-            transform: scale(1.035);
+            transform: scale(1.025);
         }
 
 
-        .recipe-number {
-            position: absolute;
-
-            top: 11px;
-
-            left: 11px;
-
-            width: 28px;
-
-            height: 28px;
-
-            background: rgba(45, 39, 35, .9);
-
-            color: white;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 8px;
-
-            font-weight: 700;
-        }
-
-
-        .no-image {
+        .image-placeholder {
             width: 100%;
 
             height: 100%;
@@ -720,243 +761,483 @@
 
             justify-content: center;
 
-            background: #e8e0d5;
+            background: #eee7dd;
 
-            color: #8d8379;
+            color: #a69b8e;
 
-            font-size: 10px;
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 18px;
+
+            font-style: italic;
         }
 
 
-        .recipe-body {
-            padding: 16px;
+        .recipe-number {
+            position: absolute;
+
+            top: 14px;
+
+            left: 14px;
+
+            min-width: 42px;
+
+            height: 42px;
+
+            padding: 0 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: rgba(45, 39, 35, .88);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: .5px;
+        }
+
+
+        .recipe-content {
+            padding: 21px 20px 18px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
         }
 
 
         .recipe-label {
             color: var(--terracotta);
 
-            font-size: 7px;
+            font-size: 10px;
 
             font-weight: 700;
 
             text-transform: uppercase;
 
-            letter-spacing: 1.1px;
+            letter-spacing: 1.5px;
 
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
 
-        .recipe-title {
+        .recipe-card-title {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 20px;
+            font-size: 29px;
 
             font-weight: 500;
 
-            line-height: 1.25;
+            line-height: 1.18;
 
-            min-height: 50px;
+            color: var(--text);
+
+            margin-bottom: 9px;
+
+            word-break: break-word;
         }
 
 
         .recipe-date {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 12px;
 
-            margin-top: 7px;
-        }
+            line-height: 1.5;
 
-
-        .recipe-actions {
-            display: flex;
-
-            align-items: center;
-
-            gap: 6px;
-
-            border-top: 1px solid var(--border);
-
-            margin-top: 12px;
-
-            padding-top: 12px;
-        }
-
-
-        .view-link,
-        .edit-link,
-        .delete-button {
-            flex: 1;
-
-            text-align: center;
-
-            padding: 7px 8px;
-
-            font-size: 8px;
-
-            font-weight: 700;
-        }
-
-
-        .view-link {
-            color: var(--brown);
-
-            background: var(--soft-brown);
-        }
-
-
-        .view-link:hover {
-            background: #e4d8ca;
-        }
-
-
-        .edit-link {
-            color: var(--olive);
-
-            border: 1px solid #c6ceba;
-        }
-
-
-        .edit-link:hover {
-            background: var(--soft-green);
-        }
-
-
-        .delete-button {
-            color: #944233;
-
-            border: 1px solid #d5bbb2;
-
-            background: transparent;
-
-            cursor: pointer;
-        }
-
-
-        .delete-button:hover {
-            background: var(--soft-red);
+            margin-bottom: 16px;
         }
 
 
         /* =====================================================
-           EMPTY
-        ====================================================== */
+           CARD ACTIONS
+        ===================================================== */
 
-        .empty {
-            border-top: 1px solid var(--text);
+        .recipe-actions {
+            display: grid;
 
-            border-bottom: 1px solid var(--border);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 7px;
+
+            border-top: 1px solid var(--border);
+
+            padding-top: 15px;
+
+            margin-top: auto;
+        }
+
+
+        .recipe-actions a,
+        .recipe-actions button {
+            min-height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            background: transparent;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .btn-view {
+            background: var(--soft-brown) !important;
+
+            border-color: var(--soft-brown) !important;
+
+            color: var(--brown);
+        }
+
+
+        .btn-view:hover {
+            background: #e6d9cb !important;
+
+            border-color: #e6d9cb !important;
+        }
+
+
+        .btn-edit {
+            color: var(--olive);
+
+            background: #fffdf8;
+        }
+
+
+        .btn-edit:hover {
+            background: var(--soft-green);
+
+            border-color: #c9d0be;
+        }
+
+
+        .btn-delete {
+            color: #a33b2c;
+
+            background: #fffdf8;
+        }
+
+
+        .btn-delete:hover {
+            background: var(--soft-red);
+
+            border-color: #d9b8af;
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+            grid-column: 1 / -1;
+
+            padding: 70px 25px;
 
             text-align: center;
 
-            padding: 65px 20px;
+            background: var(--surface);
 
-            background: rgba(255,255,255,.16);
+            border: 1px solid var(--border);
         }
 
 
-        .empty-mark {
-            font-family: "Playfair Display", Georgia, serif;
+        .empty-icon {
+            width: 54px;
+            height: 54px;
 
-            font-size: 28px;
+            margin: 0 auto 17px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: var(--soft-brown);
 
             color: var(--brown);
 
-            margin-bottom: 9px;
+            font-size: 22px;
         }
 
 
-        .empty h3 {
+        .empty-state h3 {
             font-family: "Playfair Display", Georgia, serif;
 
             font-size: 24px;
 
             font-weight: 500;
 
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
 
-        .empty p {
+        .empty-state p {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 13px;
 
-            margin-bottom: 15px;
+            line-height: 1.7;
+
+            max-width: 430px;
+
+            margin: 0 auto 20px;
+        }
+
+
+        .empty-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 40px;
+
+            padding: 0 17px;
+
+            background: var(--brown);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .empty-button:hover {
+            background: var(--brown-dark);
         }
 
 
         /* =====================================================
            PAGINATION
-        ====================================================== */
+        ===================================================== */
 
-        .pagination {
+        .pagination-wrapper {
+            width: 100%;
+
+            margin-top: 35px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid var(--border);
+
             display: flex;
 
             justify-content: center;
 
-            margin-top: 30px;
+            text-align: center;
         }
 
 
-        .pagination svg {
-            width: 15px;
+        .pagination {
+            display: flex;
 
-            height: 15px;
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            flex-wrap: wrap;
         }
 
 
-        /* =====================================================
-           FOOTER
-        ====================================================== */
+        .page-btn {
+            width: 38px;
+            height: 38px;
 
-        .footer {
-            border-top: 1px solid var(--border);
-
-            margin-top: 48px;
-
-            padding-top: 17px;
-
-            color: var(--muted);
-
-            font-size: 8px;
+            flex-shrink: 0;
 
             display: flex;
 
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            line-height: 1;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
         }
 
 
-        .footer strong {
+        a.page-btn:hover {
+            border-color: #c8b9a8;
+
+            background: var(--soft-brown);
+
+            color: var(--brown);
+        }
+
+
+        .page-btn.active {
+            border-color: var(--brown);
+
+            background: var(--brown);
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: default;
+        }
+
+
+        .page-btn.disabled {
+            border-color: var(--border);
+
+            background: #f5f1eb;
+
+            color: #b7aea5;
+
+            cursor: default;
+        }
+
+
+        .page-arrow {
+            font-size: 20px;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 400;
+        }
+
+
+        .pagination-info {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 12px;
+        }
+
+
+        .pagination-info strong {
             color: var(--brown);
         }
 
 
         /* =====================================================
-           RESPONSIVE
-        ====================================================== */
+           FOOTER
+        ===================================================== */
 
-        @media (max-width: 1000px) {
+        footer {
+            border-top: 1px solid var(--border);
 
-            .page {
-                grid-template-columns: 200px 1fr;
-            }
+            margin-top: 50px;
 
+            padding-top: 18px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1200px) {
 
             .main {
-                padding: 30px;
+                padding: 32px;
             }
 
 
             .recipe-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
+                gap: 18px;
+            }
+
+
+            .recipe-image {
+                height: 220px;
+            }
+
+
+            .recipe-card-title {
+                font-size: 26px;
             }
 
         }
 
+
+        @media (max-width: 1050px) {
+
+            .page {
+                grid-template-columns: 210px minmax(0, 1fr);
+            }
+
+
+            .sidebar {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+
+            .main {
+                padding: 30px 25px;
+            }
+
+
+            .recipe-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE NAV
+        ===================================================== */
 
         @media (max-width: 800px) {
 
@@ -983,38 +1264,44 @@
 
 
             .brand {
-                padding-bottom: 15px;
+                padding-bottom: 16px;
 
                 border-bottom: none;
             }
 
 
-            .menu-title {
+            .nav-label {
                 display: none;
             }
 
 
-            .menu {
+            .nav {
                 flex-direction: row;
 
                 overflow-x: auto;
 
-                gap: 4px;
+                gap: 3px;
 
-                margin-top: 7px;
+                margin-top: 10px;
+
+                padding-bottom: 2px;
             }
 
 
-            .menu a {
+            .nav a {
                 white-space: nowrap;
 
                 border-left: none;
 
                 border-bottom: 2px solid transparent;
+
+                padding: 10px 12px;
+
+                font-size: 13px;
             }
 
 
-            .menu a.active {
+            .nav a.active {
                 border-left: none;
 
                 border-bottom-color: var(--brown);
@@ -1026,39 +1313,73 @@
             }
 
 
-            .main {
-                padding: 27px 20px 45px;
-            }
-
-
             .intro {
+                display: grid;
+
                 grid-template-columns: 1fr;
+
+                align-items: start;
+
+                gap: 14px;
             }
 
 
-            .intro-copy {
-                justify-self: start;
+            .intro-text {
+                max-width: 520px;
+
+                text-align: left;
             }
 
         }
 
 
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
         @media (max-width: 600px) {
 
-            .topbar {
+            .main {
+                padding: 25px 17px 35px;
+            }
+
+
+            .top {
                 display: block;
+            }
+
+
+            .top h1 {
+                font-size: 30px;
+            }
+
+
+            .top p {
+                font-size: 13px;
             }
 
 
             .date {
                 display: inline-block;
 
-                margin-top: 12px;
+                margin-top: 15px;
+
+                font-size: 12px;
             }
 
 
-            .topbar h1 {
-                font-size: 30px;
+            .intro {
+                margin-top: 22px;
+            }
+
+
+            .intro h2 {
+                font-size: 23px;
+            }
+
+
+            .intro-text {
+                font-size: 13px;
             }
 
 
@@ -1066,47 +1387,144 @@
                 align-items: flex-start;
 
                 flex-direction: column;
+
+                gap: 12px;
             }
 
 
-            .add-recipe {
+            .recipe-count {
+                font-size: 13px;
+            }
+
+
+            .add-button {
                 width: 100%;
+
+                font-size: 12px;
             }
 
 
-            .section-header {
-                align-items: flex-start;
+            .search-box {
+                grid-template-columns: 1fr;
 
-                flex-direction: column;
+                gap: 7px;
+            }
+
+
+            .search-input {
+                font-size: 13px;
+            }
+
+
+            .search-button,
+            .reset-button {
+                width: 100%;
+
+                font-size: 12px;
             }
 
 
             .recipe-grid {
                 grid-template-columns: 1fr;
+
+                gap: 18px;
             }
 
 
             .recipe-image {
-                height: 230px;
+                height: 235px;
+            }
+
+
+            .recipe-content {
+                padding: 19px 17px 16px;
+            }
+
+
+            .recipe-card-title {
+                font-size: 28px;
+            }
+
+
+            .recipe-date {
+                font-size: 12px;
             }
 
 
             .recipe-actions {
-                flex-wrap: wrap;
+                gap: 6px;
             }
 
 
-            .view-link,
-            .edit-link,
-            .delete-button {
-                min-width: 30%;
+            .recipe-actions a,
+            .recipe-actions button {
+                min-height: 40px;
+
+                font-size: 12px;
             }
 
 
-            .footer {
+            .pagination-wrapper {
+                margin-top: 28px;
+
+                padding-top: 18px;
+            }
+
+
+            .pagination {
+                gap: 5px;
+            }
+
+
+            .page-btn {
+                width: 34px;
+                height: 34px;
+
+                font-size: 11px;
+            }
+
+
+            .page-arrow {
+                font-size: 18px;
+            }
+
+
+            .pagination-info {
+                font-size: 11px;
+            }
+
+
+            footer {
                 display: block;
 
-                line-height: 1.7;
+                line-height: 1.8;
+
+                font-size: 11px;
+            }
+
+
+            footer span {
+                display: block;
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .recipe-card-title {
+                font-size: 25px;
+            }
+
+
+            .recipe-image {
+                height: 210px;
+            }
+
+
+            .recipe-actions a,
+            .recipe-actions button {
+                font-size: 11px;
             }
 
         }
@@ -1118,19 +1536,19 @@
 
 <body>
 
-
 <div class="page">
 
 
-    {{-- =====================================================
+    <!-- =====================================================
          SIDEBAR
-    ====================================================== --}}
+    ====================================================== -->
 
     <aside class="sidebar">
 
-
         <a
-            href="{{ route('user.dashboard') }}"
+            href="{{ auth()->user()->role === 'admin'
+                ? route('admin.dashboard')
+                : route('user.dashboard') }}"
             class="brand"
         >
 
@@ -1138,15 +1556,13 @@
                 R
             </div>
 
-
             <div>
 
                 <div class="brand-name">
                     ResepKu
                 </div>
 
-
-                <span class="brand-sub">
+                <span class="brand-small">
                     Culinary Journal
                 </span>
 
@@ -1155,130 +1571,151 @@
         </a>
 
 
-        <div class="menu-title">
+        <div class="nav-label">
             Menu Utama
         </div>
 
 
-        <nav class="menu">
+        <nav class="nav">
+
+            @if(auth()->user()->role === 'admin')
+
+                <a href="{{ route('admin.dashboard') }}">
+
+                    <span class="nav-icon">⌂</span>
+
+                    <span>Dashboard</span>
+
+                </a>
 
 
-            <a
-                href="{{ route('user.dashboard') }}"
-            >
+                <a href="{{ route('admin.recipes.index') }}">
 
-                <span class="menu-icon">
-                    ⌂
-                </span>
+                    <span class="nav-icon">≡</span>
 
-                Dashboard
+                    <span>Semua Resep</span>
 
-            </a>
+                </a>
 
 
-            <a
-                href="{{ route('recipes.my') }}"
-                class="active"
-            >
+                <a href="{{ route('recipes.create') }}">
 
-                <span class="menu-icon">
-                    ≡
-                </span>
+                    <span class="nav-icon">+</span>
 
-                Resep Saya
+                    <span>Tambah Resep</span>
 
-            </a>
+                </a>
 
 
-            <a
-                href="{{ route('recipes.create') }}"
-            >
+                <a href="{{ route('admin.users.index') }}">
 
-                <span class="menu-icon">
-                    +
-                </span>
+                    <span class="nav-icon">○</span>
 
-                Tambah Resep
+                    <span>Data User</span>
 
-            </a>
+                </a>
 
 
-            <a
-                href="{{ route('user.favorites') }}"
-            >
+                <a href="{{ route('recipes.index') }}">
 
-                <span class="menu-icon">
-                    ♡
-                </span>
+                    <span class="nav-icon">↗</span>
 
-                Resep Tersimpan
+                    <span>Lihat Website</span>
 
-            </a>
+                </a>
 
+            @else
 
-            <a
-                href="{{ route('profile.edit') }}"
-            >
+                <a href="{{ route('user.dashboard') }}">
 
-                <span class="menu-icon">
-                    ○
-                </span>
+                    <span class="nav-icon">⌂</span>
 
-                Profil
+                    <span>Dashboard</span>
 
-            </a>
+                </a>
 
 
-            <a
-                href="{{ route('recipes.index') }}"
-            >
+                <a
+                    href="{{ route('recipes.my') }}"
+                    class="active"
+                >
 
-                <span class="menu-icon">
-                    ↗
-                </span>
+                    <span class="nav-icon">≡</span>
 
-                Lihat Website
+                    <span>Resep Saya</span>
 
-            </a>
+                </a>
 
+
+                <a href="{{ route('recipes.create') }}">
+
+                    <span class="nav-icon">+</span>
+
+                    <span>Tambah Resep</span>
+
+                </a>
+
+
+                <a href="{{ route('user.favorites') }}">
+
+                    <span class="nav-icon">♡</span>
+
+                    <span>Resep Tersimpan</span>
+
+                </a>
+
+
+                <a href="{{ route('profile.edit') }}">
+
+                    <span class="nav-icon">○</span>
+
+                    <span>Profil</span>
+
+                </a>
+
+
+                <a href="{{ route('recipes.index') }}">
+
+                    <span class="nav-icon">↗</span>
+
+                    <span>Lihat Website</span>
+
+                </a>
+
+            @endif
 
         </nav>
 
 
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
         <div class="sidebar-bottom">
 
-
-            <div class="user-mini">
-
+            <div class="admin-user">
 
                 <div class="avatar">
 
-                    {{ strtoupper(
-                        substr(
-                            auth()->user()->name,
-                            0,
-                            1
-                        )
-                    ) }}
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
 
                 </div>
 
 
-                <div class="user-mini-info">
-
+                <div>
 
                     <strong>
                         {{ auth()->user()->name }}
                     </strong>
 
-
                     <span>
-                        Pengguna
+                        {{ auth()->user()->role === 'admin'
+                            ? 'Administrator'
+                            : 'Pengguna'
+                        }}
                     </span>
 
-
                 </div>
-
 
             </div>
 
@@ -1290,44 +1727,35 @@
 
                 @csrf
 
-
                 <button
                     type="submit"
-                    class="logout-button"
+                    class="logout"
                 >
-
-                    🚪 &nbsp; Keluar
-
+                    Keluar dari akun
                 </button>
-
 
             </form>
 
-
         </div>
-
 
     </aside>
 
 
-
-    {{-- =====================================================
+    <!-- =====================================================
          MAIN
-    ====================================================== --}}
+    ====================================================== -->
 
     <main class="main">
 
 
-        {{-- HEADER --}}
+        <!-- HEADER -->
 
-        <header class="topbar">
-
+        <header class="top">
 
             <div>
 
-
                 <div class="eyebrow">
-                    ResepKu / User / Koleksi
+                    ResepKu / Koleksi Pribadi
                 </div>
 
 
@@ -1337,9 +1765,8 @@
 
 
                 <p>
-                    Kelola semua resep yang sudah kamu buat.
+                    Semua resep pribadi dalam satu tempat.
                 </p>
-
 
             </div>
 
@@ -1350,340 +1777,529 @@
 
             </div>
 
-
         </header>
 
 
-
-        {{-- INTRO --}}
+        <!-- INTRO -->
 
         <section class="intro">
 
-
             <h2>
-
-                Koleksi resep
-                <span>{{ auth()->user()->name }}</span>.
-
+                Koleksi masakan
+                <em>favoritmu.</em>
             </h2>
 
 
-            <p class="intro-copy">
+            <p class="intro-text">
 
-                Semua resep yang kamu buat tersimpan di sini.
-                Kamu bisa melihat, mengedit, atau menghapus
-                resep kapan saja.
+                Kelola resep yang sudah kamu buat,
+                lihat detailnya, edit informasi,
+                atau hapus resep yang sudah tidak digunakan.
 
             </p>
-
 
         </section>
 
 
-
-        {{-- SUCCESS --}}
-
-        @if(session('success'))
-
-            <div class="success">
-
-                ✓
-
-                {{ session('success') }}
-
-            </div>
-
-        @endif
-
-
-
-        {{-- ACTION BAR --}}
+        <!-- ACTION BAR -->
 
         <div class="action-bar">
 
-
             <div class="recipe-count">
 
-                Kamu memiliki
+                Menampilkan
 
                 <strong>
                     {{ $recipes->total() }}
                 </strong>
 
-                resep
+                resep milikmu.
 
             </div>
 
 
             <a
                 href="{{ route('recipes.create') }}"
-                class="add-recipe"
+                class="add-button"
             >
-
-                +
-
-                Tambah Resep
-
+                + Tambah Resep
             </a>
-
 
         </div>
 
 
+        <!-- SEARCH -->
 
-        {{-- SECTION HEADER --}}
+        <form
+            method="GET"
+            action="{{ route('recipes.my') }}"
+            class="search-box"
+        >
 
-        <div class="section-header">
+            <div class="search-input-wrapper">
 
-
-            <div>
-
-
-                <div class="section-label">
-                    My Collection
-                </div>
-
-
-                <h2 class="section-title">
-                    Resep yang Kamu Buat
-                </h2>
-
-
-                <p class="section-description">
-                    Semua resep pribadi dalam satu tempat.
-                </p>
-
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ request('search') }}"
+                    class="search-input"
+                    placeholder="Cari resep berdasarkan nama..."
+                    autocomplete="off"
+                >
 
             </div>
 
 
-        </div>
+            <button
+                type="submit"
+                class="search-button"
+            >
+                🔍 &nbsp; Cari
+            </button>
 
 
+            <a
+                href="{{ route('recipes.my') }}"
+                class="reset-button"
+            >
+                ↻ &nbsp; Reset
+            </a>
 
-        {{-- RECIPE LIST --}}
-
-        @if($recipes->count())
-
-
-            <div class="recipe-grid">
-
-
-                @foreach($recipes as $index => $recipe)
+        </form>
 
 
-                    <article class="recipe-card">
+        @if(request('search'))
+
+            <div class="search-result">
+
+                Hasil pencarian:
+
+                <strong>
+                    "{{ request('search') }}"
+                </strong>
+
+                —
+
+                <strong>
+                    {{ $recipes->total() }}
+                </strong>
+
+                resep ditemukan.
+
+            </div>
+
+        @endif
 
 
-                        <div class="recipe-image">
+        <!-- =================================================
+             RECIPE GRID
+        ================================================== -->
+
+        <section class="recipe-grid">
 
 
-                            @if($recipe->image)
+            @forelse($recipes as $index => $recipe)
+
+                <article class="recipe-card">
+
+
+                    <!-- IMAGE -->
+
+                    <div class="recipe-image">
+
+
+                        @if($recipe->image)
+
+                            @if(
+                                str_starts_with($recipe->image, 'http://') ||
+                                str_starts_with($recipe->image, 'https://')
+                            )
 
                                 <img
-                                    src="{{ $recipe->imageUrl() }}"
+                                    src="{{ $recipe->image }}"
                                     alt="{{ $recipe->title }}"
                                     loading="lazy"
                                 >
 
                             @else
 
-                                <div class="no-image">
-                                    Tidak ada foto
-                                </div>
+                                <img
+                                    src="{{ asset('storage/' . $recipe->image) }}"
+                                    alt="{{ $recipe->title }}"
+                                    loading="lazy"
+                                >
+
+                            @endif
+
+                        @else
+
+                            <div class="image-placeholder">
+                                ResepKu
+                            </div>
+
+                        @endif
+
+
+                        <div class="recipe-number">
+
+                            {{ str_pad(
+                                ($recipes->firstItem() ?? 1) + $index,
+                                2,
+                                '0',
+                                STR_PAD_LEFT
+                            ) }}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- CONTENT -->
+
+                    <div class="recipe-content">
+
+
+                        <div class="recipe-label">
+                            Resep Saya
+                        </div>
+
+
+                        <h2 class="recipe-card-title">
+                            {{ $recipe->title }}
+                        </h2>
+
+
+                        <div class="recipe-date">
+
+                            Dibuat
+                            {{ optional($recipe->created_at)->translatedFormat('d F Y') }}
+
+                        </div>
+
+
+                        <!-- ACTIONS -->
+
+                        <div class="recipe-actions">
+
+
+                            <a
+                                href="{{ route('recipes.show', $recipe->slug) }}"
+                                class="btn-view"
+                            >
+                                Lihat
+                            </a>
+
+
+                            <a
+                                href="{{ route('recipes.edit', $recipe->slug) }}"
+                                class="btn-edit"
+                            >
+                                Edit
+                            </a>
+
+
+                            <form
+                                action="{{ route('recipes.destroy', $recipe->slug) }}"
+                                method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus resep ini?');"
+                            >
+
+                                @csrf
+
+                                @method('DELETE')
+
+                                <button
+                                    type="submit"
+                                    class="btn-delete"
+                                >
+                                    Hapus
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+            @empty
+
+
+                @if(request('search'))
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🔍
+                        </div>
+
+
+                        <h3>
+                            Resep tidak ditemukan
+                        </h3>
+
+
+                        <p>
+                            Tidak ada resep yang cocok dengan
+                            pencarian "{{ request('search') }}".
+                            Coba gunakan kata kunci lain.
+                        </p>
+
+
+                        <a
+                            href="{{ route('recipes.my') }}"
+                            class="empty-button"
+                        >
+                            ↻ Reset Pencarian
+                        </a>
+
+                    </div>
+
+                @else
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            +
+                        </div>
+
+
+                        <h3>
+                            Belum ada resep
+                        </h3>
+
+
+                        <p>
+                            Kamu belum memiliki resep.
+                            Yuk tambahkan resep pertama ke koleksi ResepKu.
+                        </p>
+
+
+                        <a
+                            href="{{ route('recipes.create') }}"
+                            class="empty-button"
+                        >
+                            + Tambah Resep
+                        </a>
+
+                    </div>
+
+                @endif
+
+            @endforelse
+
+
+        </section>
+
+
+        <!-- =================================================
+             PAGINATION
+        ================================================== -->
+
+        @if($recipes->hasPages())
+
+            <div class="pagination-wrapper">
+
+                <div>
+
+                    <div class="pagination">
+
+
+                        {{-- PREVIOUS --}}
+
+                        @if($recipes->onFirstPage())
+
+                            <span class="page-btn disabled page-arrow">
+                                ‹
+                            </span>
+
+                        @else
+
+                            <a
+                                href="{{ $recipes->previousPageUrl() }}"
+                                class="page-btn page-arrow"
+                                aria-label="Halaman sebelumnya"
+                            >
+                                ‹
+                            </a>
+
+                        @endif
+
+
+                        @php
+
+                            $current = $recipes->currentPage();
+
+                            $last = $recipes->lastPage();
+
+                            $start = max(1, $current - 2);
+
+                            $end = min($last, $current + 2);
+
+                        @endphp
+
+
+                        {{-- FIRST PAGE --}}
+
+                        @if($start > 1)
+
+                            <a
+                                href="{{ $recipes->url(1) }}"
+                                class="page-btn"
+                            >
+                                1
+                            </a>
+
+
+                            @if($start > 2)
+
+                                <span class="page-btn disabled">
+                                    …
+                                </span>
+
+                            @endif
+
+                        @endif
+
+
+                        {{-- PAGE NUMBERS --}}
+
+                        @for($page = $start; $page <= $end; $page++)
+
+                            @if($page == $current)
+
+                                <span
+                                    class="page-btn active"
+                                    aria-current="page"
+                                >
+                                    {{ $page }}
+                                </span>
+
+                            @else
+
+                                <a
+                                    href="{{ $recipes->url($page) }}"
+                                    class="page-btn"
+                                >
+                                    {{ $page }}
+                                </a>
+
+                            @endif
+
+                        @endfor
+
+
+                        {{-- LAST PAGE --}}
+
+                        @if($end < $last)
+
+                            @if($end < $last - 1)
+
+                                <span class="page-btn disabled">
+                                    …
+                                </span>
 
                             @endif
 
 
-                            <div class="recipe-number">
+                            <a
+                                href="{{ $recipes->url($last) }}"
+                                class="page-btn"
+                            >
+                                {{ $last }}
+                            </a>
 
-                                {{ str_pad(
-                                    $recipes->firstItem() + $index,
-                                    2,
-                                    '0',
-                                    STR_PAD_LEFT
-                                ) }}
-
-                            </div>
+                        @endif
 
 
-                        </div>
+                        {{-- NEXT --}}
+
+                        @if($recipes->hasMorePages())
+
+                            <a
+                                href="{{ $recipes->nextPageUrl() }}"
+                                class="page-btn page-arrow"
+                                aria-label="Halaman berikutnya"
+                            >
+                                ›
+                            </a>
+
+                        @else
+
+                            <span class="page-btn disabled page-arrow">
+                                ›
+                            </span>
+
+                        @endif
 
 
-
-                        <div class="recipe-body">
-
-
-                            <div class="recipe-label">
-                                Resep Saya
-                            </div>
+                    </div>
 
 
-                            <h3 class="recipe-title">
+                    <!-- PAGINATION INFO -->
 
-                                {{ $recipe->title }}
+                    <div class="pagination-info">
 
-                            </h3>
+                        Menampilkan
 
+                        <strong>
+                            {{ $recipes->firstItem() }}
+                        </strong>
 
-                            <div class="recipe-date">
+                        sampai
 
-                                Dibuat
-                                {{ $recipe->created_at?->format('d M Y') ?? '-' }}
+                        <strong>
+                            {{ $recipes->lastItem() }}
+                        </strong>
 
-                            </div>
+                        dari
 
+                        <strong>
+                            {{ $recipes->total() }}
+                        </strong>
 
-                            <div class="recipe-actions">
+                        resep
 
+                    </div>
 
-                                {{-- LIHAT --}}
-
-                                <a
-                                    href="{{ route(
-                                        'recipes.show',
-                                        $recipe->slug
-                                    ) }}"
-                                    class="view-link"
-                                >
-                                    Lihat
-                                </a>
-
-
-                                {{-- EDIT --}}
-
-                                <a
-                                    href="{{ route(
-                                        'recipes.edit',
-                                        $recipe->slug
-                                    ) }}"
-                                    class="edit-link"
-                                >
-                                    Edit
-                                </a>
-
-
-                                {{-- HAPUS --}}
-
-                                <form
-                                    action="{{ route(
-                                        'recipes.destroy',
-                                        $recipe->slug
-                                    ) }}"
-                                    method="POST"
-                                    style="margin:0; flex:1;"
-                                >
-
-                                    @csrf
-
-                                    @method('DELETE')
-
-
-                                    <button
-                                        type="submit"
-                                        class="delete-button"
-                                        onclick="return confirm('Yakin ingin menghapus resep ini?')"
-                                    >
-                                        Hapus
-                                    </button>
-
-
-                                </form>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                    </article>
-
-
-                @endforeach
-
-
-            </div>
-
-
-        @else
-
-
-            {{-- EMPTY --}}
-
-            <div class="empty">
-
-
-                <div class="empty-mark">
-                    ResepKu
                 </div>
 
-
-                <h3>
-                    Belum ada resep
-                </h3>
-
-
-                <p>
-                    Kamu belum membuat resep apa pun.
-                    Yuk mulai tambahkan resep pertamamu.
-                </p>
-
-
-                <a
-                    href="{{ route('recipes.create') }}"
-                    class="add-recipe"
-                >
-
-                    + Tambah Resep
-
-                </a>
-
-
-            </div>
-
-
-        @endif
-
-
-
-        {{-- PAGINATION --}}
-
-        @if($recipes->hasPages())
-
-            <div class="pagination">
-
-                {{ $recipes->links() }}
-
             </div>
 
         @endif
 
 
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
 
-        {{-- FOOTER --}}
-
-        <footer class="footer">
-
+        <footer>
 
             <span>
-                © {{ date('Y') }} <strong>ResepKu</strong>
+                © {{ date('Y') }} ResepKu
             </span>
 
 
             <span>
-                Culinary Journal · Resep Saya
+                Culinary Journal ·
+                {{ auth()->user()->role === 'admin'
+                    ? 'Administrator'
+                    : 'Member'
+                }}
             </span>
-
 
         </footer>
 
 
     </main>
 
-
 </div>
-
 
 </body>
 

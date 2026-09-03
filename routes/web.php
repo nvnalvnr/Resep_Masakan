@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -17,12 +18,6 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |--------------------------------------------------------------------------
 | WEBSITE PUBLIK
 |--------------------------------------------------------------------------
-|
-| Halaman publik dapat dibuka tanpa login:
-| - Homepage
-| - Semua resep
-| - Detail resep
-|
 */
 
 
@@ -40,7 +35,7 @@ Route::get('/', [
 
 /*
 |--------------------------------------------------------------------------
-| SEMUA RESEP
+| SEMUA RESEP PUBLIK
 |--------------------------------------------------------------------------
 */
 
@@ -67,7 +62,6 @@ Route::middleware(['auth'])->group(function () {
     | DASHBOARD UTAMA
     |--------------------------------------------------------------------------
     |
-    | Route ini digunakan sebagai dashboard setelah proses login.
     | Admin -> admin.dashboard
     | User  -> user.dashboard
     |
@@ -77,15 +71,11 @@ Route::middleware(['auth'])->group(function () {
 
         if (auth()->user()->role === 'admin') {
 
-            return redirect()->route(
-                'admin.dashboard'
-            );
+            return redirect()->route('admin.dashboard');
 
         }
 
-        return redirect()->route(
-            'user.dashboard'
-        );
+        return redirect()->route('user.dashboard');
 
     })->name('dashboard');
 
@@ -119,7 +109,7 @@ Route::middleware(['auth'])->group(function () {
     | TAMBAH RESEP
     |--------------------------------------------------------------------------
     |
-    | User dan admin dapat menggunakan form tambah resep umum.
+    | Route ini digunakan oleh user maupun admin.
     |
     */
 
@@ -137,7 +127,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | EDIT RESEP MILIK USER
+    | EDIT RESEP
     |--------------------------------------------------------------------------
     */
 
@@ -147,6 +137,12 @@ Route::middleware(['auth'])->group(function () {
     ])->name('recipes.edit');
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE RESEP
+    |--------------------------------------------------------------------------
+    */
+
     Route::put('/recipes/{slug}', [
         RecipeController::class,
         'update'
@@ -155,7 +151,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | HAPUS RESEP MILIK USER
+    | HAPUS RESEP
     |--------------------------------------------------------------------------
     */
 
@@ -220,13 +216,9 @@ Route::middleware(['auth'])->group(function () {
 | DETAIL RESEP PUBLIK
 |--------------------------------------------------------------------------
 |
-| Route ini diletakkan setelah /recipes/create agar:
-|
-| /recipes/create
-|
-| tidak dianggap sebagai:
-|
-| /recipes/{slug}
+| Route ini harus berada setelah /recipes/create,
+| /recipes/my, dan route statis lainnya agar tidak
+| dianggap sebagai {slug}.
 |
 */
 
@@ -241,7 +233,7 @@ Route::get('/recipes/{slug}', [
 | ADMIN
 |--------------------------------------------------------------------------
 |
-| Semua route berikut:
+| Semua route di bawah:
 | - harus login
 | - harus memiliki role admin
 |
@@ -251,160 +243,149 @@ Route::middleware([
     'auth',
     'admin'
 ])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
+->prefix('admin')
+->name('admin.')
+->group(function () {
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | DASHBOARD ADMIN
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | DASHBOARD ADMIN
+    |--------------------------------------------------------------------------
+    */
 
-        Route::get('/dashboard', [
-            AdminDashboardController::class,
-            'index'
-        ])->name('dashboard');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | SEMUA RESEP ADMIN
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get('/recipes', [
-            AdminRecipeController::class,
-            'index'
-        ])->name('recipes.index');
+    Route::get('/dashboard', [
+        AdminDashboardController::class,
+        'index'
+    ])->name('dashboard');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | DETAIL RESEP ADMIN
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | SEMUA RESEP ADMIN
+    |--------------------------------------------------------------------------
+    */
 
-        Route::get('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'show'
-        ])->name('recipes.show');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | EDIT RESEP ADMIN
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get('/recipes/{recipe}/edit', [
-            AdminRecipeController::class,
-            'edit'
-        ])->name('recipes.edit');
+    Route::get('/recipes', [
+        AdminRecipeController::class,
+        'index'
+    ])->name('recipes.index');
 
 
-        Route::put('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'update'
-        ])->name('recipes.update');
+    /*
+    |--------------------------------------------------------------------------
+    | DETAIL RESEP ADMIN
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/recipes/{recipe}', [
+        AdminRecipeController::class,
+        'show'
+    ])->name('recipes.show');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | HAPUS RESEP ADMIN
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT RESEP ADMIN
+    |--------------------------------------------------------------------------
+    */
 
-        Route::delete('/recipes/{recipe}', [
-            AdminRecipeController::class,
-            'destroy'
-        ])->name('recipes.destroy');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | TAMBAH RESEP ADMIN
-        |--------------------------------------------------------------------------
-        |
-        | Admin memakai form tambah resep umum,
-        | sehingga route khusus admin tetap disediakan
-        | jika dipanggil oleh Blade.
-        |
-        */
-
-        Route::get('/recipes/create', [
-            RecipeController::class,
-            'create'
-        ])->name('recipes.create');
+    Route::get('/recipes/{recipe}/edit', [
+        AdminRecipeController::class,
+        'edit'
+    ])->name('recipes.edit');
 
 
-        Route::post('/recipes', [
-            RecipeController::class,
-            'store'
-        ])->name('recipes.store');
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE RESEP ADMIN
+    |--------------------------------------------------------------------------
+    */
+
+    Route::put('/recipes/{recipe}', [
+        AdminRecipeController::class,
+        'update'
+    ])->name('recipes.update');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | DATA USER
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS RESEP ADMIN
+    |--------------------------------------------------------------------------
+    */
 
-        Route::get('/users', [
-            AdminUserController::class,
-            'index'
-        ])->name('users.index');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | TAMBAH USER
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get('/users/create', [
-            AdminUserController::class,
-            'create'
-        ])->name('users.create');
+    Route::delete('/recipes/{recipe}', [
+        AdminRecipeController::class,
+        'destroy'
+    ])->name('recipes.destroy');
 
 
-        Route::post('/users', [
-            AdminUserController::class,
-            'store'
-        ])->name('users.store');
+    /*
+    |--------------------------------------------------------------------------
+    | DATA USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/users', [
+        AdminUserController::class,
+        'index'
+    ])->name('users.index');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | EDIT USER
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | TAMBAH USER
+    |--------------------------------------------------------------------------
+    */
 
-        Route::get('/users/{user}/edit', [
-            AdminUserController::class,
-            'edit'
-        ])->name('users.edit');
-
-
-        Route::put('/users/{user}', [
-            AdminUserController::class,
-            'update'
-        ])->name('users.update');
+    Route::get('/users/create', [
+        AdminUserController::class,
+        'create'
+    ])->name('users.create');
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | HAPUS USER
-        |--------------------------------------------------------------------------
-        */
+    Route::post('/users', [
+        AdminUserController::class,
+        'store'
+    ])->name('users.store');
 
-        Route::delete('/users/{user}', [
-            AdminUserController::class,
-            'destroy'
-        ])->name('users.destroy');
 
-    });
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/users/{user}/edit', [
+        AdminUserController::class,
+        'edit'
+    ])->name('users.edit');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::put('/users/{user}', [
+        AdminUserController::class,
+        'update'
+    ])->name('users.update');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HAPUS USER
+    |--------------------------------------------------------------------------
+    */
+
+    Route::delete('/users/{user}', [
+        AdminUserController::class,
+        'destroy'
+    ])->name('users.destroy');
+
+});
 
 
 /*
@@ -414,3 +395,4 @@ Route::middleware([
 */
 
 require __DIR__ . '/auth.php';
+

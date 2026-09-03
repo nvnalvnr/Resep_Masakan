@@ -4,17 +4,28 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Semua Resep - Admin | ResepKu</title>
 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
         rel="stylesheet"
     >
+
 
     <style>
 
@@ -31,6 +42,7 @@
             --olive: #5d6947;
 
             --line: #ded7ca;
+
             --soft-brown: #eee3d8;
             --soft-green: #e7eadf;
         }
@@ -49,66 +61,83 @@
 
 
         body {
-            font-family: "DM Sans", Arial, sans-serif;
+            min-height: 100vh;
+
             background: var(--paper);
+
             color: var(--ink);
+
+            font-family: "DM Sans", Arial, sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.6;
         }
 
 
         a {
             color: inherit;
+
             text-decoration: none;
         }
 
 
-        button {
+        button,
+        input {
             font-family: inherit;
         }
 
 
         /* =========================================
            LAYOUT
-        ========================================= */
+        ========================================== */
 
         .page {
             min-height: 100vh;
 
             display: grid;
 
-            grid-template-columns: 235px 1fr;
+            grid-template-columns: 235px minmax(0, 1fr);
         }
 
 
         /* =========================================
            SIDEBAR
-        ========================================= */
+        ========================================== */
 
         .sidebar {
+            position: sticky;
+
+            top: 0;
+
+            height: 100vh;
+
+            min-height: 100vh;
+
+            overflow-y: auto;
+
+            padding: 30px 22px;
+
             background: var(--paper-light);
 
             border-right: 1px solid var(--line);
 
-            min-height: 100vh;
-
-            padding: 30px 22px;
-
             display: flex;
+
             flex-direction: column;
 
-            position: sticky;
-            top: 0;
-
-            height: 100vh;
+            z-index: 20;
         }
 
 
         .brand {
             display: flex;
+
             align-items: center;
 
             gap: 11px;
 
-            padding-bottom: 31px;
+            padding-bottom: 30px;
 
             border-bottom: 1px solid var(--line);
         }
@@ -116,21 +145,28 @@
 
         .brand-mark {
             width: 40px;
+
             height: 40px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
 
             background: var(--brown);
 
             color: white;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-family: Georgia, serif;
 
             font-size: 18px;
 
-            border-radius: 50%;
+            font-weight: 600;
         }
 
 
@@ -140,11 +176,15 @@
             font-size: 21px;
 
             font-weight: 600;
+
+            line-height: 1.2;
         }
 
 
         .brand-small {
             display: block;
+
+            margin-top: 3px;
 
             color: var(--muted);
 
@@ -153,23 +193,21 @@
             letter-spacing: 1.5px;
 
             text-transform: uppercase;
-
-            margin-top: 2px;
         }
 
 
         .nav-label {
+            margin: 27px 9px 11px;
+
             color: #968d82;
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
-            letter-spacing: 1.6px;
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
-
-            margin: 27px 9px 11px;
         }
 
 
@@ -191,29 +229,29 @@
 
             padding: 11px 10px;
 
-            font-size: 12px;
+            border-left: 2px solid transparent;
 
             color: var(--muted);
 
-            border-left: 2px solid transparent;
+            font-size: 13px;
 
             transition: .2s ease;
         }
 
 
         .nav a:hover {
-            color: var(--brown);
-
             background: #f4eee5;
+
+            color: var(--brown);
         }
 
 
         .nav a.active {
-            color: var(--brown);
+            background: #eee5da;
 
             border-left-color: var(--brown);
 
-            background: #eee5da;
+            color: var(--brown);
 
             font-weight: 700;
         }
@@ -222,9 +260,11 @@
         .nav-icon {
             width: 19px;
 
+            flex-shrink: 0;
+
             text-align: center;
 
-            font-size: 14px;
+            font-size: 15px;
         }
 
 
@@ -234,21 +274,26 @@
 
 
         .admin-user {
-            border-top: 1px solid var(--line);
-
-            padding-top: 19px;
-
             display: flex;
 
             align-items: center;
 
             gap: 10px;
+
+            padding-top: 19px;
+
+            border-top: 1px solid var(--line);
         }
 
 
         .avatar {
-            width: 34px;
-            height: 34px;
+            width: 35px;
+
+            height: 35px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
 
             background: var(--soft-brown);
 
@@ -257,9 +302,8 @@
             display: flex;
 
             align-items: center;
-            justify-content: center;
 
-            border-radius: 50%;
+            justify-content: center;
 
             font-size: 12px;
 
@@ -267,65 +311,70 @@
         }
 
 
+        .admin-user-info {
+            min-width: 0;
+        }
+
+
         .admin-user strong {
             display: block;
 
-            font-size: 11px;
-
             max-width: 125px;
-
-            white-space: nowrap;
 
             overflow: hidden;
 
+            white-space: nowrap;
+
             text-overflow: ellipsis;
+
+            font-size: 12px;
         }
 
 
         .admin-user span {
             display: block;
 
+            margin-top: 2px;
+
             color: var(--muted);
 
-            font-size: 9px;
-
-            margin-top: 2px;
+            font-size: 10px;
         }
 
 
         .logout {
-            margin-top: 14px;
-
             width: 100%;
 
-            background: transparent;
+            margin-top: 14px;
+
+            padding: 10px;
 
             border: 1px solid var(--line);
 
-            padding: 9px;
+            background: transparent;
 
             color: var(--muted);
 
+            font-size: 11px;
+
             cursor: pointer;
 
-            font-size: 10px;
-
-            transition: .2s;
+            transition: .2s ease;
         }
 
 
         .logout:hover {
-            color: #9b3d2d;
+            background: #faf0ec;
 
             border-color: #c9a397;
 
-            background: #faf0ec;
+            color: #9b3d2d;
         }
 
 
         /* =========================================
            MAIN
-        ========================================= */
+        ========================================== */
 
         .main {
             min-width: 0;
@@ -335,15 +384,17 @@
 
 
         /* =========================================
-           HEADER
-        ========================================= */
+           TOP
+        ========================================== */
 
         .top {
             display: flex;
 
+            align-items: flex-start;
+
             justify-content: space-between;
 
-            align-items: flex-start;
+            gap: 20px;
 
             padding-bottom: 27px;
 
@@ -352,17 +403,17 @@
 
 
         .eyebrow {
-            font-size: 9px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 2px;
+            margin-bottom: 8px;
 
             color: var(--terracotta);
 
+            font-size: 10px;
+
             font-weight: 700;
 
-            margin-bottom: 8px;
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
 
@@ -393,17 +444,17 @@
 
             gap: 7px;
 
-            font-size: 10px;
-
-            color: var(--brown);
-
-            border-bottom: 1px solid var(--brown);
+            margin-top: 5px;
 
             padding-bottom: 5px;
 
-            margin-top: 5px;
+            border-bottom: 1px solid var(--brown);
 
-            transition: .2s;
+            color: var(--brown);
+
+            font-size: 10px;
+
+            font-weight: 700;
         }
 
 
@@ -415,32 +466,36 @@
 
 
         /* =========================================
-           INFO
-        ========================================= */
+           INTRO
+        ========================================== */
 
         .intro {
             display: grid;
 
-            grid-template-columns: 1.5fr .8fr;
+            grid-template-columns:
+                minmax(0, 1.5fr)
+                minmax(230px, .8fr);
+
+            gap: 30px;
 
             margin: 28px 0 30px;
 
-            border-bottom: 1px solid var(--line);
-
             padding-bottom: 30px;
+
+            border-bottom: 1px solid var(--line);
         }
 
 
         .intro h2 {
+            max-width: 610px;
+
             font-family: "Playfair Display", Georgia, serif;
 
             font-size: 27px;
 
             font-weight: 500;
 
-            max-width: 610px;
-
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
 
@@ -452,69 +507,71 @@
 
 
         .intro-text {
+            max-width: 390px;
+
+            justify-self: end;
+
             color: var(--muted);
 
             font-size: 12px;
 
             line-height: 1.8;
-
-            max-width: 390px;
-
-            justify-self: end;
         }
 
 
         /* =========================================
            SUCCESS
-        ========================================= */
+        ========================================== */
 
         .success {
-            background: var(--soft-green);
-
-            border: 1px solid #d5dac8;
-
-            color: var(--olive);
+            margin-bottom: 25px;
 
             padding: 13px 16px;
 
-            font-size: 11px;
+            border: 1px solid #d5dac8;
 
-            margin-bottom: 25px;
+            background: var(--soft-green);
+
+            color: var(--olive);
+
+            font-size: 11px;
         }
 
 
         /* =========================================
            TOOLBAR
-        ========================================= */
+        ========================================== */
 
         .toolbar {
             display: flex;
 
+            align-items: center;
+
             justify-content: space-between;
 
-            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 18px;
+
+            padding: 14px 0;
 
             border-top: 1px solid var(--ink);
 
             border-bottom: 1px solid var(--line);
-
-            padding: 14px 0;
-
-            margin-bottom: 25px;
         }
 
 
         .toolbar-left {
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 11px;
         }
 
 
         .toolbar-left strong {
             color: var(--ink);
 
-            font-size: 12px;
+            font-size: 13px;
         }
 
 
@@ -523,17 +580,21 @@
 
             align-items: center;
 
+            justify-content: center;
+
             gap: 7px;
+
+            padding: 10px 14px;
 
             background: var(--brown);
 
             color: white;
 
-            padding: 10px 14px;
-
             font-size: 10px;
 
-            transition: .2s;
+            font-weight: 700;
+
+            transition: .2s ease;
         }
 
 
@@ -543,22 +604,162 @@
 
 
         /* =========================================
+           SEARCH
+        ========================================== */
+
+        .search-box {
+            display: flex;
+
+            align-items: stretch;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+
+            padding: 14px;
+
+            border: 1px solid var(--line);
+
+            background: var(--white);
+        }
+
+
+        .search-input-wrapper {
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .search-input {
+            width: 100%;
+
+            height: 43px;
+
+            padding: 0 14px;
+
+            outline: none;
+
+            border: 1px solid var(--line);
+
+            background: white;
+
+            color: var(--ink);
+
+            font-size: 12px;
+
+            transition: .2s ease;
+        }
+
+
+        .search-input::placeholder {
+            color: #aaa099;
+        }
+
+
+        .search-input:focus {
+            border-color: var(--brown);
+
+            box-shadow: 0 0 0 3px rgba(107, 52, 36, .08);
+        }
+
+
+        .search-button,
+        .reset-button {
+            height: 43px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 0 18px;
+
+            white-space: nowrap;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .search-button {
+            border: 1px solid var(--brown);
+
+            background: var(--brown);
+
+            color: white;
+        }
+
+
+        .search-button:hover {
+            border-color: var(--terracotta);
+
+            background: var(--terracotta);
+        }
+
+
+        .reset-button {
+            border: 1px solid var(--line);
+
+            background: var(--white);
+
+            color: var(--muted);
+        }
+
+
+        .reset-button:hover {
+            border-color: #c8b9a8;
+
+            background: var(--soft-brown);
+
+            color: var(--brown);
+        }
+
+
+        .search-result {
+            margin-bottom: 20px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        .search-result strong {
+            color: var(--brown);
+        }
+
+
+        /* =========================================
            RECIPE GRID
-        ========================================= */
+        ========================================== */
 
         .recipe-grid {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
 
             gap: 18px;
         }
 
 
         .recipe-card {
-            background: var(--white);
+            min-width: 0;
+
+            overflow: hidden;
 
             border: 1px solid var(--line);
+
+            background: var(--white);
 
             transition: .2s ease;
         }
@@ -568,6 +769,8 @@
             transform: translateY(-3px);
 
             border-color: #c5b7a5;
+
+            box-shadow: 0 7px 18px rgba(41, 35, 31, .05);
         }
 
 
@@ -577,13 +780,13 @@
 
 
         .recipe-image {
+            display: block;
+
             width: 100%;
 
             height: 185px;
 
             object-fit: cover;
-
-            display: block;
         }
 
 
@@ -592,19 +795,19 @@
 
             height: 185px;
 
-            background: #e9e3d9;
-
-            color: #91887d;
-
             display: flex;
 
             align-items: center;
 
             justify-content: center;
 
+            background: #e9e3d9;
+
+            color: #91887d;
+
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 13px;
+            font-size: 12px;
         }
 
 
@@ -615,13 +818,13 @@
 
             left: 12px;
 
+            padding: 5px 8px;
+
             background: var(--brown);
 
             color: white;
 
-            padding: 5px 8px;
-
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
         }
@@ -633,28 +836,36 @@
 
 
         .recipe-title {
+            min-height: 44px;
+
+            overflow: hidden;
+
+            display: -webkit-box;
+
+            -webkit-box-orient: vertical;
+
+            -webkit-line-clamp: 2;
+
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 18px;
-
-            line-height: 1.3;
+            font-size: 16px;
 
             font-weight: 500;
 
-            min-height: 47px;
+            line-height: 1.35;
         }
 
 
         .recipe-user {
-            color: var(--muted);
-
-            font-size: 9px;
-
             margin-top: 8px;
 
             padding-bottom: 13px;
 
             border-bottom: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-size: 10px;
         }
 
 
@@ -683,49 +894,49 @@
 
             padding: 9px 5px;
 
-            font-size: 9px;
-
-            font-weight: 700;
-
             border: 1px solid var(--line);
 
             background: transparent;
 
+            font-size: 10px;
+
+            font-weight: 700;
+
             cursor: pointer;
 
-            transition: .2s;
+            transition: .2s ease;
         }
 
 
         .btn-view {
-            color: var(--brown);
-
             border-color: #cdbeb0;
+
+            color: var(--brown);
         }
 
 
         .btn-view:hover {
+            border-color: var(--brown);
+
             background: var(--brown);
 
             color: white;
-
-            border-color: var(--brown);
         }
 
 
         .btn-edit {
-            color: var(--olive);
-
             border-color: #c8cfba;
+
+            color: var(--olive);
         }
 
 
         .btn-edit:hover {
+            border-color: var(--olive);
+
             background: var(--olive);
 
             color: white;
-
-            border-color: var(--olive);
         }
 
 
@@ -737,29 +948,29 @@
         .btn-delete {
             width: 100%;
 
-            color: #9b3d2d;
-
             border-color: #d8bdb4;
+
+            color: #9b3d2d;
         }
 
 
         .btn-delete:hover {
+            border-color: #9b3d2d;
+
             background: #9b3d2d;
 
             color: white;
-
-            border-color: #9b3d2d;
         }
 
 
         /* =========================================
-           EMPTY
-        ========================================= */
+           EMPTY STATE
+        ========================================== */
 
         .empty {
-            border: 1px dashed #cfc6b9;
-
             padding: 55px 20px;
+
+            border: 1px dashed #cfc6b9;
 
             text-align: center;
 
@@ -770,90 +981,74 @@
 
 
         .empty-icon {
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 30px;
+            margin-bottom: 10px;
 
             color: var(--brown);
 
-            margin-bottom: 12px;
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 30px;
         }
 
 
         .empty h3 {
+            margin-bottom: 7px;
+
+            color: var(--ink);
+
             font-family: "Playfair Display", Georgia, serif;
 
             font-size: 21px;
 
-            color: var(--ink);
-
-            margin-bottom: 7px;
+            font-weight: 500;
         }
 
 
         .empty p {
-            font-size: 10px;
-
             margin-bottom: 15px;
         }
 
 
-        .empty a {
-            display: inline-block;
-
-            color: var(--brown);
-
-            border-bottom: 1px solid var(--brown);
-
-            padding-bottom: 3px;
-
-            font-size: 10px;
-        }
-
-
         /* =========================================
-           PAGINATION
-        ========================================= */
+           CUSTOM PAGINATION
+        ========================================== */
 
-        .pagination {
-            margin-top: 30px;
-        }
+        .custom-pagination-wrapper {
+            width: 100%;
 
+            margin-top: 35px;
 
-        .pagination nav {
+            padding-top: 22px;
+
+            border-top: 1px solid var(--line);
+
             display: flex;
+
+            align-items: center;
 
             justify-content: center;
         }
 
 
-        .pagination svg {
-            width: 15px;
-            height: 15px;
-        }
-
-
-        .pagination > nav > div:first-child {
-            display: none;
-        }
-
-
-        .pagination > nav > div:last-child {
+        .custom-pagination {
             display: flex;
 
-            gap: 4px;
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
         }
 
 
-        .pagination a,
-        .pagination span {
-            min-width: 32px;
+        .page-btn {
+            width: 38px;
 
-            height: 32px;
+            height: 38px;
 
-            padding: 0 9px;
+            flex-shrink: 0;
 
-            display: inline-flex;
+            display: flex;
 
             align-items: center;
 
@@ -865,50 +1060,91 @@
 
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 11px;
+
+            font-weight: 600;
+
+            line-height: 1;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
         }
 
 
-        .pagination a:hover {
+        a.page-btn:hover {
+            border-color: #c8b9a8;
+
+            background: var(--soft-brown);
+
             color: var(--brown);
-
-            border-color: var(--brown);
         }
 
 
-        .pagination span[aria-current="page"] {
+        .page-btn.active {
+            border-color: var(--brown);
+
             background: var(--brown);
 
             color: white;
 
-            border-color: var(--brown);
+            font-weight: 700;
+
+            cursor: default;
+        }
+
+
+        .page-btn.disabled {
+            border-color: var(--line);
+
+            background: #f5f1eb;
+
+            color: #b7aea5;
+
+            cursor: default;
+        }
+
+
+        .page-arrow {
+            font-size: 20px;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 400;
         }
 
 
         /* =========================================
            FOOTER
-        ========================================= */
+        ========================================== */
 
         footer {
-            border-top: 1px solid var(--line);
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
 
             margin-top: 50px;
 
             padding-top: 18px;
 
+            border-top: 1px solid var(--line);
+
             color: var(--muted);
 
-            font-size: 9px;
-
-            display: flex;
-
-            justify-content: space-between;
+            font-size: 10px;
         }
 
 
         /* =========================================
            RESPONSIVE
-        ========================================= */
+        ========================================== */
 
         @media (max-width: 1100px) {
 
@@ -916,12 +1152,15 @@
                 grid-template-columns: 200px 1fr;
             }
 
+
             .main {
                 padding: 30px;
             }
 
+
             .recipe-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
             }
 
         }
@@ -973,6 +1212,8 @@
 
 
             .nav a {
+                flex-shrink: 0;
+
                 white-space: nowrap;
 
                 border-left: none;
@@ -995,8 +1236,6 @@
 
             .intro {
                 grid-template-columns: 1fr;
-
-                gap: 18px;
             }
 
 
@@ -1039,15 +1278,54 @@
             }
 
 
+            .search-box {
+                flex-direction: column;
+            }
+
+
+            .search-button,
+            .reset-button {
+                width: 100%;
+            }
+
+
             .recipe-grid {
                 grid-template-columns: 1fr;
+            }
+
+
+            .custom-pagination-wrapper {
+                margin-top: 28px;
+
+                padding-top: 18px;
+            }
+
+
+            .custom-pagination {
+                gap: 5px;
+
+                flex-wrap: wrap;
+            }
+
+
+            .page-btn {
+                width: 34px;
+
+                height: 34px;
+
+                font-size: 10px;
+            }
+
+
+            .page-arrow {
+                font-size: 18px;
             }
 
 
             footer {
                 display: block;
 
-                line-height: 1.7;
+                line-height: 1.8;
             }
 
         }
@@ -1063,18 +1341,22 @@
 <div class="page">
 
 
-    {{-- =====================================================
+    {{-- =========================================
          SIDEBAR
-    ====================================================== --}}
+    ========================================== --}}
 
     <aside class="sidebar">
 
 
-        <a href="{{ route('admin.dashboard') }}" class="brand">
+        <a
+            href="{{ route('admin.dashboard') }}"
+            class="brand"
+        >
 
             <div class="brand-mark">
                 R
             </div>
+
 
             <div>
 
@@ -1091,9 +1373,11 @@
         </a>
 
 
+
         <div class="nav-label">
             Menu Utama
         </div>
+
 
 
         <nav class="nav">
@@ -1101,11 +1385,14 @@
 
             <a href="{{ route('admin.dashboard') }}">
 
-                <span class="nav-icon">⌂</span>
+                <span class="nav-icon">
+                    ⌂
+                </span>
 
-                <span>Dashboard</span>
+                Dashboard
 
             </a>
+
 
 
             <a
@@ -1113,36 +1400,47 @@
                 class="active"
             >
 
-                <span class="nav-icon">≡</span>
+                <span class="nav-icon">
+                    ≡
+                </span>
 
-                <span>Semua Resep</span>
+                Semua Resep
 
             </a>
+
 
 
             <a href="{{ route('recipes.create') }}">
 
-                <span class="nav-icon">+</span>
+                <span class="nav-icon">
+                    +
+                </span>
 
-                <span>Tambah Resep</span>
+                Tambah Resep
 
             </a>
+
 
 
             <a href="{{ route('admin.users.index') }}">
 
-                <span class="nav-icon">○</span>
+                <span class="nav-icon">
+                    ○
+                </span>
 
-                <span>Data User</span>
+                Data User
 
             </a>
 
 
+
             <a href="{{ route('recipes.index') }}">
 
-                <span class="nav-icon">↗</span>
+                <span class="nav-icon">
+                    ↗
+                </span>
 
-                <span>Lihat Website</span>
+                Lihat Website
 
             </a>
 
@@ -1150,19 +1448,27 @@
         </nav>
 
 
+
         <div class="sidebar-bottom">
 
 
             <div class="admin-user">
 
+
                 <div class="avatar">
 
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    {{ strtoupper(
+                        substr(
+                            auth()->user()->name,
+                            0,
+                            1
+                        )
+                    ) }}
 
                 </div>
 
 
-                <div>
+                <div class="admin-user-info">
 
                     <strong>
                         {{ auth()->user()->name }}
@@ -1174,7 +1480,9 @@
 
                 </div>
 
+
             </div>
+
 
 
             <form
@@ -1201,14 +1509,14 @@
 
 
 
-    {{-- =====================================================
+    {{-- =========================================
          MAIN
-    ====================================================== --}}
+    ========================================== --}}
 
     <main class="main">
 
 
-        {{-- HEADER --}}
+        {{-- TOP --}}
 
         <header class="top">
 
@@ -1236,7 +1544,9 @@
                 href="{{ route('admin.dashboard') }}"
                 class="back-btn"
             >
+
                 ← Kembali ke Dashboard
+
             </a>
 
 
@@ -1252,7 +1562,11 @@
             <h2>
 
                 Koleksi resep
-                <em>ResepKu</em>
+
+                <em>
+                    ResepKu
+                </em>
+
                 dalam satu tempat.
 
             </h2>
@@ -1277,6 +1591,8 @@
 
             <div class="success">
 
+                ✓
+
                 {{ session('success') }}
 
             </div>
@@ -1298,7 +1614,7 @@
                     {{ $recipes->total() }}
                 </strong>
 
-                resep dalam koleksi.
+                resep
 
             </div>
 
@@ -1308,7 +1624,7 @@
                 class="add-btn"
             >
 
-                <span>+</span>
+                +
 
                 Tambah Resep
 
@@ -1316,6 +1632,79 @@
 
 
         </div>
+
+
+
+        {{-- SEARCH --}}
+
+        <form
+            method="GET"
+            action="{{ route('admin.recipes.index') }}"
+            class="search-box"
+        >
+
+
+            <div class="search-input-wrapper">
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ request('search') }}"
+                    class="search-input"
+                    placeholder="Cari resep berdasarkan nama..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+
+                🔍 Cari
+
+            </button>
+
+
+            <a
+                href="{{ route('admin.recipes.index') }}"
+                class="reset-button"
+            >
+
+                ↻ Reset
+
+            </a>
+
+
+        </form>
+
+
+
+        {{-- SEARCH RESULT --}}
+
+        @if(request('search'))
+
+            <div class="search-result">
+
+                Hasil pencarian:
+
+                <strong>
+                    "{{ request('search') }}"
+                </strong>
+
+                —
+
+                <strong>
+                    {{ $recipes->total() }}
+                </strong>
+
+                resep ditemukan.
+
+            </div>
+
+        @endif
 
 
 
@@ -1332,8 +1721,6 @@
 
                     <article class="recipe-card">
 
-
-                        {{-- IMAGE --}}
 
                         <div class="recipe-image-wrap">
 
@@ -1357,7 +1744,12 @@
 
                             <div class="recipe-number">
 
-                                {{ str_pad($recipes->firstItem() + $index, 2, '0', STR_PAD_LEFT) }}
+                                {{ str_pad(
+                                    $recipes->firstItem() + $index,
+                                    2,
+                                    '0',
+                                    STR_PAD_LEFT
+                                ) }}
 
                             </div>
 
@@ -1365,8 +1757,6 @@
                         </div>
 
 
-
-                        {{-- BODY --}}
 
                         <div class="recipe-body">
 
@@ -1389,34 +1779,44 @@
                             </div>
 
 
+
                             <div class="recipe-actions">
 
 
-                                {{-- LIHAT --}}
-
                                 <a
-                                    href="{{ route('admin.recipes.show', $recipe) }}"
+                                    href="{{ route(
+                                        'admin.recipes.show',
+                                        $recipe
+                                    ) }}"
                                     class="btn btn-view"
                                 >
+
                                     Lihat
+
                                 </a>
 
 
-                                {{-- EDIT --}}
 
                                 <a
-                                    href="{{ route('admin.recipes.edit', $recipe) }}"
+                                    href="{{ route(
+                                        'admin.recipes.edit',
+                                        $recipe
+                                    ) }}"
                                     class="btn btn-edit"
                                 >
+
                                     Edit
+
                                 </a>
 
 
-                                {{-- DELETE --}}
 
                                 <form
                                     method="POST"
-                                    action="{{ route('admin.recipes.destroy', $recipe) }}"
+                                    action="{{ route(
+                                        'admin.recipes.destroy',
+                                        $recipe
+                                    ) }}"
                                     class="delete-form"
                                 >
 
@@ -1434,6 +1834,7 @@
                                         Hapus Resep
 
                                     </button>
+
 
                                 </form>
 
@@ -1454,13 +1855,165 @@
 
 
 
-            {{-- PAGINATION --}}
+            {{-- =====================================
+                 CUSTOM PAGINATION
+            ====================================== --}}
 
             @if($recipes->hasPages())
 
-                <div class="pagination">
+                <div class="custom-pagination-wrapper">
 
-                    {{ $recipes->links() }}
+
+                    <div class="custom-pagination">
+
+
+                        {{-- PREVIOUS --}}
+
+                        @if($recipes->onFirstPage())
+
+                            <span class="page-btn disabled page-arrow">
+                                ‹
+                            </span>
+
+                        @else
+
+                            <a
+                                href="{{ $recipes->previousPageUrl() }}"
+                                class="page-btn page-arrow"
+                                aria-label="Halaman sebelumnya"
+                            >
+                                ‹
+                            </a>
+
+                        @endif
+
+
+
+                        {{-- PAGE NUMBERS --}}
+
+                        @php
+
+                            $current = $recipes->currentPage();
+
+                            $last = $recipes->lastPage();
+
+                            $start = max(1, $current - 2);
+
+                            $end = min($last, $current + 2);
+
+                        @endphp
+
+
+
+                        {{-- FIRST PAGE + DOTS --}}
+
+                        @if($start > 1)
+
+
+                            <a
+                                href="{{ $recipes->url(1) }}"
+                                class="page-btn"
+                            >
+                                1
+                            </a>
+
+
+                            @if($start > 2)
+
+                                <span class="page-btn disabled">
+                                    …
+                                </span>
+
+                            @endif
+
+
+                        @endif
+
+
+
+                        {{-- CURRENT RANGE --}}
+
+                        @for(
+                            $page = $start;
+                            $page <= $end;
+                            $page++
+                        )
+
+
+                            @if($page == $current)
+
+                                <span
+                                    class="page-btn active"
+                                    aria-current="page"
+                                >
+                                    {{ $page }}
+                                </span>
+
+                            @else
+
+                                <a
+                                    href="{{ $recipes->url($page) }}"
+                                    class="page-btn"
+                                >
+                                    {{ $page }}
+                                </a>
+
+                            @endif
+
+
+                        @endfor
+
+
+
+                        {{-- LAST PAGE + DOTS --}}
+
+                        @if($end < $last)
+
+
+                            @if($end < $last - 1)
+
+                                <span class="page-btn disabled">
+                                    …
+                                </span>
+
+                            @endif
+
+
+                            <a
+                                href="{{ $recipes->url($last) }}"
+                                class="page-btn"
+                            >
+                                {{ $last }}
+                            </a>
+
+
+                        @endif
+
+
+
+                        {{-- NEXT --}}
+
+                        @if($recipes->hasMorePages())
+
+                            <a
+                                href="{{ $recipes->nextPageUrl() }}"
+                                class="page-btn page-arrow"
+                                aria-label="Halaman berikutnya"
+                            >
+                                ›
+                            </a>
+
+                        @else
+
+                            <span class="page-btn disabled page-arrow">
+                                ›
+                            </span>
+
+                        @endif
+
+
+                    </div>
+
 
                 </div>
 
@@ -1470,7 +2023,7 @@
         @else
 
 
-            {{-- EMPTY --}}
+            {{-- EMPTY STATE --}}
 
             <div class="empty">
 
@@ -1480,19 +2033,56 @@
                 </div>
 
 
-                <h3>
-                    Belum ada resep
-                </h3>
+                @if(request('search'))
 
 
-                <p>
-                    Belum ada resep yang tersimpan di database.
-                </p>
+                    <h3>
+                        Resep tidak ditemukan
+                    </h3>
 
 
-                <a href="{{ route('recipes.create') }}">
-                    + Tambahkan resep pertama
-                </a>
+                    <p>
+
+                        Tidak ada resep yang cocok dengan
+                        pencarian "{{ request('search') }}".
+
+                    </p>
+
+
+                    <a
+                        href="{{ route('admin.recipes.index') }}"
+                        class="add-btn"
+                    >
+
+                        ↻ Lihat Semua Resep
+
+                    </a>
+
+
+                @else
+
+
+                    <h3>
+                        Belum ada resep
+                    </h3>
+
+
+                    <p>
+                        Belum ada resep yang tersimpan di database.
+                    </p>
+
+
+                    <a
+                        href="{{ route('recipes.create') }}"
+                        class="add-btn"
+                    >
+
+                        + Tambahkan resep pertama
+
+                    </a>
+
+
+                @endif
 
 
             </div>

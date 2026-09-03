@@ -4,8 +4,8 @@
 
 <head>
 
-
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -20,7 +20,7 @@
 
 <link
     rel="preconnect"
-    href="https://fonts.gstatic.com"
+    href="https://fonts.googleapis.com"
     crossorigin
 >
 
@@ -75,6 +75,8 @@
         background: var(--bg);
 
         color: var(--text);
+
+        font-size: 14px;
 
         line-height: 1.6;
     }
@@ -174,7 +176,7 @@
 
         color: var(--muted);
 
-        font-size: 8px;
+        font-size: 10px;
 
         text-transform: uppercase;
 
@@ -198,7 +200,7 @@
     .nav-links a {
         color: var(--muted);
 
-        font-size: 10px;
+        font-size: 13px;
 
         padding: 4px 0;
 
@@ -225,7 +227,7 @@
     .login-link {
         color: var(--muted);
 
-        font-size: 9px;
+        font-size: 12px;
 
         padding: 8px 10px;
     }
@@ -245,7 +247,7 @@
 
         padding: 9px 13px;
 
-        font-size: 9px;
+        font-size: 12px;
 
         font-weight: 700;
 
@@ -269,7 +271,7 @@
 
         padding: 8px 11px;
 
-        font-size: 9px;
+        font-size: 11px;
 
         cursor: pointer;
 
@@ -310,7 +312,7 @@
 
         color: var(--muted);
 
-        font-size: 9px;
+        font-size: 11px;
 
         margin-bottom: 22px;
     }
@@ -344,7 +346,7 @@
     .recipe-label {
         color: var(--terracotta);
 
-        font-size: 8px;
+        font-size: 10px;
 
         font-weight: 700;
 
@@ -385,7 +387,7 @@
 
         color: var(--muted);
 
-        font-size: 9px;
+        font-size: 11px;
     }
 
 
@@ -457,7 +459,7 @@
             Georgia,
             serif;
 
-        font-size: 15px;
+        font-size: 16px;
 
         border: 1px solid var(--border);
     }
@@ -487,7 +489,7 @@
     .aside-label {
         color: var(--muted);
 
-        font-size: 8px;
+        font-size: 10px;
 
         text-transform: uppercase;
 
@@ -503,7 +505,7 @@
             Georgia,
             serif;
 
-        font-size: 18px;
+        font-size: 20px;
 
         line-height: 1.3;
     }
@@ -512,7 +514,7 @@
     .aside-small {
         color: var(--muted);
 
-        font-size: 9px;
+        font-size: 10px;
 
         margin-top: 3px;
     }
@@ -558,7 +560,7 @@
     .section-number {
         color: var(--terracotta);
 
-        font-size: 8px;
+        font-size: 10px;
 
         font-weight: 700;
 
@@ -572,7 +574,7 @@
             Georgia,
             serif;
 
-        font-size: 25px;
+        font-size: 27px;
 
         font-weight: 500;
     }
@@ -583,10 +585,9 @@
 
         color: #524a43;
 
-        font-size: 11px;
+        font-size: 13px;
 
         line-height: 2;
-
     }
 
 
@@ -595,7 +596,7 @@
 
         color: #524a43;
 
-        font-size: 11px;
+        font-size: 13px;
 
         line-height: 2.05;
     }
@@ -619,7 +620,7 @@
     .note-title {
         color: var(--brown);
 
-        font-size: 9px;
+        font-size: 10px;
 
         font-weight: 700;
 
@@ -634,7 +635,7 @@
     .note p {
         color: var(--muted);
 
-        font-size: 9px;
+        font-size: 11px;
 
         line-height: 1.7;
     }
@@ -650,7 +651,7 @@
             Georgia,
             serif;
 
-        font-size: 22px;
+        font-size: 24px;
 
         font-weight: 500;
 
@@ -680,7 +681,7 @@
 
         color: var(--brown);
 
-        font-size: 9px;
+        font-size: 12px;
 
         font-weight: 700;
 
@@ -726,7 +727,7 @@
 
         cursor: pointer;
 
-        font-size: 9px;
+        font-size: 12px;
 
         font-weight: 700;
 
@@ -754,14 +755,14 @@
 
         color: var(--muted);
 
-        font-size: 8px;
+        font-size: 10px;
 
         line-height: 1.7;
     }
 
 
     /* =====================================================
-       SHARE / BACK
+       BACK
     ====================================================== */
 
     .back-section {
@@ -770,14 +771,13 @@
         padding-top: 20px;
 
         border-top: 1px solid var(--border);
-
     }
 
 
     .back-link {
         color: var(--brown);
 
-        font-size: 9px;
+        font-size: 12px;
 
         font-weight: 700;
     }
@@ -803,7 +803,7 @@
 
         margin-bottom: 20px;
 
-        font-size: 9px;
+        font-size: 11px;
     }
 
 
@@ -822,7 +822,7 @@
 
         color: var(--muted);
 
-        font-size: 8px;
+        font-size: 10px;
     }
 
 
@@ -931,8 +931,8 @@
 
 </style>
 
-
 </head>
+
 
 <body>
 
@@ -1064,6 +1064,7 @@ NAVBAR
 
 </header>
 
+
 {{-- =====================================================
 PAGE
 ====================================================== --}}
@@ -1094,7 +1095,6 @@ PAGE
 </div>
 
 
-
 {{-- SUCCESS --}}
 
 @if(session('success'))
@@ -1107,7 +1107,6 @@ PAGE
     </div>
 
 @endif
-
 
 
 {{-- RECIPE HEADER --}}
@@ -1165,7 +1164,6 @@ PAGE
 </header>
 
 
-
 {{-- HERO --}}
 
 <section class="recipe-hero">
@@ -1192,7 +1190,6 @@ PAGE
 
 
     </div>
-
 
 
     <aside class="recipe-aside">
@@ -1273,9 +1270,8 @@ PAGE
 </section>
 
 
-
 {{-- =====================================================
-     CONTENT
+CONTENT
 ====================================================== --}}
 
 <div class="content-grid">
@@ -1317,7 +1313,6 @@ PAGE
         </section>
 
 
-
         {{-- LANGKAH --}}
 
         <section class="section">
@@ -1349,7 +1344,6 @@ PAGE
         </section>
 
 
-
         {{-- NOTE --}}
 
         <div class="note">
@@ -1374,7 +1368,6 @@ PAGE
 
 
     </div>
-
 
 
     {{-- RIGHT --}}
@@ -1428,7 +1421,6 @@ PAGE
             @endauth
 
 
-
             {{-- TAMBAH RESEP --}}
 
             @auth
@@ -1452,7 +1444,6 @@ PAGE
             @endauth
 
 
-
             {{-- HOME --}}
 
             <a
@@ -1473,7 +1464,6 @@ PAGE
 
 
         </div>
-
 
 
         {{-- ADMIN --}}
@@ -1524,7 +1514,6 @@ PAGE
 </div>
 
 
-
 {{-- BACK --}}
 
 <div class="back-section">
@@ -1545,18 +1534,25 @@ PAGE
 
 </main>
 
+
 {{-- FOOTER --}}
 
 <footer class="footer">
 
 
 © {{ date('Y') }}
-<strong>ResepKu</strong>
+
+<strong>
+    ResepKu
+</strong>
+
 · Culinary Journal
+
 · Masakan rumahan untuk sehari-hari.
 
 
 </footer>
+
 
 </body>
 

@@ -52,3 +52,13 @@
 ## Jumat, 21 Agustus 2026
 
 1. loginnya diarahkan ke homepage
+
+## Jumat, 28 Agustus 2026
+
+ 1. Font digedein 
+ 2. tambahin fitur search dan reset di resep saya
+ 3. perbaiki halama login sesusaikan denga tema
+ 4. tambahkan nomer urutan di seluruh tabel dan tambahkan tombol search dan pagination 
+ 5. kalo semissal orang login terus mau logout harus dikasih jeda 10 detik kalo mau login f
+ 6. sisanya ada git hub
+ 

@@ -1,1978 +1,2082 @@
+
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Admin Dashboard - ResepKu
-    </title>
+<title>Admin Dashboard - ResepKu</title>
 
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
-        rel="stylesheet"
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    rel="stylesheet"
+>
 
+<style>
 
-    <style>
+:root {
+    --paper: #f5f1e8;
+    --paper-light: #fbf9f4;
+    --white: #fffdf8;
 
-        :root {
+    --ink: #29231f;
+    --muted: #777067;
 
-            --paper: #f5f1e8;
-            --paper-light: #fbf9f4;
-            --white: #fffdf8;
+    --brown: #6b3424;
+    --terracotta: #a95635;
+    --olive: #5d6947;
 
-            --ink: #29231f;
-            --muted: #777067;
+    --line: #ded7ca;
 
-            --brown: #6b3424;
-            --terracotta: #a95635;
-            --olive: #5d6947;
+    --soft-brown: #eee3d8;
+    --soft-green: #e7eadf;
+}
 
-            --line: #ded7ca;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-            --soft-brown: #eee3d8;
-            --soft-green: #e7eadf;
+html {
+    scroll-behavior: smooth;
+}
 
-        }
+body {
+    font-family:
+        "DM Sans",
+        Arial,
+        Helvetica,
+        sans-serif;
 
+    background:
+        var(--paper);
 
-        * {
+    color:
+        var(--ink);
 
-            box-sizing: border-box;
+    font-size:
+        14px;
 
-            margin: 0;
+    line-height:
+        1.65;
+}
 
-            padding: 0;
+a {
+    color:
+        inherit;
 
-        }
+    text-decoration:
+        none;
+}
 
+button {
+    font-family:
+        inherit;
+}
 
-        html {
 
-            scroll-behavior: smooth;
+/* =====================================================
+   LAYOUT
+====================================================== */
 
-        }
+.page {
+    min-height:
+        100vh;
 
+    display:
+        grid;
 
-        body {
+    grid-template-columns:
+        235px
+        minmax(0, 1fr);
+}
 
-            font-family:
-                "DM Sans",
-                Arial,
-                sans-serif;
 
-            background:
-                var(--paper);
+/* =====================================================
+   SIDEBAR
+====================================================== */
 
-            color:
-                var(--ink);
+.sidebar {
+    background:
+        var(--paper-light);
 
-        }
+    border-right:
+        1px solid var(--line);
 
+    min-height:
+        100vh;
 
-        a {
+    height:
+        100vh;
 
-            color: inherit;
+    padding:
+        30px 22px;
 
-            text-decoration: none;
+    display:
+        flex;
 
-        }
+    flex-direction:
+        column;
 
+    position:
+        sticky;
 
-        button {
+    top:
+        0;
 
-            font-family: inherit;
+    z-index:
+        20;
 
-        }
+    overflow-y:
+        auto;
+}
 
+.brand {
+    display:
+        flex;
 
-        /* =====================================================
-           LAYOUT
-        ====================================================== */
+    align-items:
+        center;
 
-        .page {
+    gap:
+        11px;
 
-            min-height: 100vh;
+    padding-bottom:
+        31px;
 
-            display: grid;
+    border-bottom:
+        1px solid var(--line);
+}
 
-            grid-template-columns:
-                235px
-                1fr;
+.brand-mark {
+    width:
+        40px;
 
-        }
+    height:
+        40px;
 
+    flex-shrink:
+        0;
 
-        /* =====================================================
-           SIDEBAR
-        ====================================================== */
+    background:
+        var(--brown);
 
-        .sidebar {
+    color:
+        white;
 
-            background:
-                var(--paper-light);
+    display:
+        flex;
 
-            border-right:
-                1px solid var(--line);
+    align-items:
+        center;
 
-            min-height:
-                100vh;
+    justify-content:
+        center;
 
-            padding:
-                30px 22px;
+    border-radius:
+        50%;
 
-            display:
-                flex;
+    font-family:
+        Georgia,
+        serif;
 
-            flex-direction:
-                column;
+    font-size:
+        18px;
+}
 
-            position:
-                sticky;
+.brand-name {
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            top:
-                0;
+    font-size:
+        21px;
 
-            height:
-                100vh;
+    font-weight:
+        600;
+}
 
-        }
+.brand-small {
+    display:
+        block;
 
+    color:
+        var(--muted);
 
-        .brand {
+    font-size:
+        9px;
 
-            display:
-                flex;
+    letter-spacing:
+        1.4px;
 
-            align-items:
-                center;
+    text-transform:
+        uppercase;
 
-            gap:
-                11px;
+    margin-top:
+        3px;
+}
 
-            padding-bottom:
-                31px;
+.nav-label {
+    color:
+        #968d82;
 
-            border-bottom:
-                1px solid var(--line);
+    font-size:
+        10px;
 
-        }
+    font-weight:
+        700;
 
+    letter-spacing:
+        1.5px;
 
-        .brand-mark {
+    text-transform:
+        uppercase;
 
-            width:
-                40px;
+    margin:
+        27px 9px 11px;
+}
 
-            height:
-                40px;
+.nav {
+    display:
+        flex;
 
-            background:
-                var(--brown);
+    flex-direction:
+        column;
 
-            color:
-                white;
+    gap:
+        4px;
+}
 
-            display:
-                flex;
+.nav a {
+    display:
+        flex;
 
-            align-items:
-                center;
+    align-items:
+        center;
 
-            justify-content:
-                center;
+    gap:
+        11px;
 
-            font-family:
-                Georgia,
-                serif;
+    padding:
+        11px 10px;
 
-            font-size:
-                18px;
+    color:
+        var(--muted);
 
-            border-radius:
-                50%;
+    font-size:
+        13px;
 
-        }
+    line-height:
+        1.4;
 
+    border-left:
+        2px solid transparent;
 
-        .brand-name {
+    transition:
+        .2s ease;
+}
 
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
+.nav a:hover {
+    color:
+        var(--brown);
 
-            font-size:
-                21px;
+    background:
+        #f4eee5;
+}
 
-            font-weight:
-                600;
+.nav a.active {
+    color:
+        var(--brown);
 
-        }
+    background:
+        #eee5da;
 
+    border-left-color:
+        var(--brown);
 
-        .brand-small {
+    font-weight:
+        700;
+}
 
-            display:
-                block;
+.nav-icon {
+    width:
+        19px;
 
-            color:
-                var(--muted);
+    flex-shrink:
+        0;
 
-            font-size:
-                9px;
+    text-align:
+        center;
 
-            letter-spacing:
-                1.5px;
+    font-size:
+        15px;
+}
 
-            text-transform:
-                uppercase;
 
-            margin-top:
-                2px;
+/* =====================================================
+   SIDEBAR BOTTOM
+====================================================== */
 
-        }
+.sidebar-bottom {
+    margin-top:
+        auto;
 
+    padding-top:
+        18px;
+}
 
-        .nav-label {
+.admin-user {
+    display:
+        flex;
 
-            color:
-                #968d82;
+    align-items:
+        center;
 
-            font-size:
-                9px;
+    gap:
+        10px;
 
-            font-weight:
-                700;
+    padding-top:
+        18px;
 
-            letter-spacing:
-                1.6px;
+    border-top:
+        1px solid var(--line);
+}
 
-            text-transform:
-                uppercase;
+.avatar {
+    width:
+        35px;
 
-            margin:
-                27px 9px 11px;
+    height:
+        35px;
 
-        }
+    flex-shrink:
+        0;
 
+    background:
+        var(--soft-brown);
 
-        .nav {
+    color:
+        var(--brown);
 
-            display:
-                flex;
+    display:
+        flex;
 
-            flex-direction:
-                column;
+    align-items:
+        center;
 
-            gap:
-                3px;
+    justify-content:
+        center;
 
-        }
+    border-radius:
+        50%;
 
+    font-size:
+        12px;
 
-        .nav a {
+    font-weight:
+        700;
+}
 
-            display:
-                flex;
+.admin-user-info {
+    min-width:
+        0;
+}
 
-            align-items:
-                center;
+.admin-user strong {
+    display:
+        block;
 
-            gap:
-                11px;
+    max-width:
+        125px;
 
-            padding:
-                11px 10px;
+    white-space:
+        nowrap;
 
-            font-size:
-                12px;
+    overflow:
+        hidden;
 
-            color:
-                var(--muted);
+    text-overflow:
+        ellipsis;
 
-            border-left:
-                2px solid transparent;
+    font-size:
+        12px;
+}
 
-            transition:
-                .2s ease;
+.admin-user span {
+    display:
+        block;
 
-        }
+    color:
+        var(--muted);
 
+    font-size:
+        10px;
 
-        .nav a:hover {
+    margin-top:
+        2px;
+}
 
-            color:
-                var(--brown);
+.logout {
+    width:
+        100%;
 
-            background:
-                #f4eee5;
+    margin-top:
+        14px;
 
-        }
+    padding:
+        10px;
 
+    background:
+        transparent;
 
-        .nav a.active {
+    border:
+        1px solid var(--line);
 
-            color:
-                var(--brown);
+    color:
+        var(--muted);
 
-            border-left-color:
-                var(--brown);
+    cursor:
+        pointer;
 
-            background:
-                #eee5da;
+    font-size:
+        11px;
 
-            font-weight:
-                700;
+    transition:
+        .2s ease;
+}
 
-        }
+.logout:hover {
+    color:
+        #9b3d2d;
 
+    border-color:
+        #c9a397;
 
-        .nav-icon {
+    background:
+        #faf0ec;
+}
 
-            width:
-                19px;
 
-            text-align:
-                center;
+/* =====================================================
+   MAIN
+====================================================== */
 
-            font-size:
-                14px;
+.main {
+    min-width:
+        0;
 
-        }
+    padding:
+        36px 48px 45px;
+}
 
 
-        /* =====================================================
-           SIDEBAR BOTTOM
-        ====================================================== */
+/* =====================================================
+   HEADER
+====================================================== */
 
-        .sidebar-bottom {
+.top {
+    display:
+        flex;
 
-            margin-top:
-                auto;
+    align-items:
+        flex-start;
 
-        }
+    justify-content:
+        space-between;
 
+    gap:
+        25px;
 
-        .admin-user {
+    padding-bottom:
+        27px;
 
-            border-top:
-                1px solid var(--line);
+    border-bottom:
+        1px solid var(--line);
+}
 
-            padding-top:
-                19px;
+.eyebrow {
+    color:
+        var(--terracotta);
 
-            display:
-                flex;
+    font-size:
+        10px;
 
-            align-items:
-                center;
+    font-weight:
+        700;
 
-            gap:
-                10px;
+    letter-spacing:
+        2px;
 
-        }
+    text-transform:
+        uppercase;
 
+    margin-bottom:
+        8px;
+}
 
-        .avatar {
+.top h1 {
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            width:
-                34px;
+    font-size:
+        38px;
 
-            height:
-                34px;
+    font-weight:
+        500;
 
-            background:
-                var(--soft-brown);
+    line-height:
+        1.15;
+}
 
-            color:
-                var(--brown);
+.top p {
+    color:
+        var(--muted);
 
-            display:
-                flex;
+    font-size:
+        13px;
 
-            align-items:
-                center;
+    margin-top:
+        8px;
+}
 
-            justify-content:
-                center;
+.date {
+    flex-shrink:
+        0;
 
-            border-radius:
-                50%;
+    color:
+        var(--muted);
 
-            font-size:
-                12px;
+    font-size:
+        11px;
 
-            font-weight:
-                700;
+    padding-bottom:
+        5px;
 
-            flex-shrink:
-                0;
+    border-bottom:
+        1px solid var(--brown);
+}
 
-        }
 
+/* =====================================================
+   INTRO
+====================================================== */
 
-        .admin-user-info {
+.intro {
+    display:
+        grid;
 
-            min-width:
-                0;
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(230px, .8fr);
 
-        }
+    gap:
+        30px;
 
+    margin:
+        28px 0 30px;
 
-        .admin-user strong {
+    padding-bottom:
+        30px;
 
-            display:
-                block;
+    border-bottom:
+        1px solid var(--line);
+}
 
-            font-size:
-                11px;
+.intro h2 {
+    max-width:
+        610px;
 
-            max-width:
-                125px;
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            white-space:
-                nowrap;
+    font-size:
+        28px;
 
-            overflow:
-                hidden;
+    font-weight:
+        500;
 
-            text-overflow:
-                ellipsis;
+    line-height:
+        1.35;
+}
 
-        }
+.intro h2 em {
+    color:
+        var(--terracotta);
 
+    font-style:
+        normal;
+}
 
-        .admin-user span {
+.intro-text {
+    max-width:
+        390px;
 
-            display:
-                block;
+    justify-self:
+        end;
 
-            color:
-                var(--muted);
+    color:
+        var(--muted);
 
-            font-size:
-                9px;
+    font-size:
+        12px;
 
-            margin-top:
-                2px;
+    line-height:
+        1.8;
+}
 
-        }
 
+/* =====================================================
+   STATISTICS
+====================================================== */
 
-        .logout {
+.numbers {
+    display:
+        grid;
 
-            margin-top:
-                14px;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-            width:
-                100%;
+    margin-bottom:
+        38px;
 
-            background:
-                transparent;
+    border-top:
+        1px solid var(--ink);
 
-            border:
-                1px solid var(--line);
+    border-bottom:
+        1px solid var(--line);
+}
 
-            padding:
-                9px;
+.number {
+    border-right:
+        1px solid var(--line);
+}
 
-            color:
-                var(--muted);
+.number:last-child {
+    border-right:
+        none;
+}
 
-            cursor:
-                pointer;
+.number-link {
+    display:
+        flex;
 
-            font-size:
-                10px;
+    flex-direction:
+        column;
 
-            transition:
-                .2s;
+    justify-content:
+        flex-start;
 
-        }
+    width:
+        100%;
 
+    min-height:
+        150px;
 
-        .logout:hover {
+    height:
+        100%;
 
-            color:
-                #9b3d2d;
+    padding:
+        19px 20px 20px;
 
-            border-color:
-                #c9a397;
+    color:
+        inherit;
 
-            background:
-                #faf0ec;
+    cursor:
+        pointer;
 
-        }
+    transition:
+        .2s ease;
+}
 
+.number-link:hover {
+    background:
+        #eee7dc;
+}
 
-        /* =====================================================
-           MAIN
-        ====================================================== */
+.number-link:focus-visible {
+    outline:
+        2px solid var(--terracotta);
 
-        .main {
+    outline-offset:
+        -2px;
+}
 
-            min-width:
-                0;
+.number-link:hover .number-value {
+    color:
+        var(--terracotta);
 
-            padding:
-                36px 48px 45px;
+    transform:
+        translateX(2px);
+}
 
-        }
+.number-label {
+    color:
+        var(--muted);
 
+    font-size:
+        10px;
 
-        /* =====================================================
-           HEADER
-        ====================================================== */
+    font-weight:
+        600;
 
-        .top {
+    letter-spacing:
+        1.2px;
 
-            display:
-                flex;
+    text-transform:
+        uppercase;
 
-            justify-content:
-                space-between;
+    margin-bottom:
+        8px;
+}
 
-            align-items:
-                flex-start;
+.number-value {
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            padding-bottom:
-                27px;
+    font-size:
+        33px;
 
-            border-bottom:
-                1px solid var(--line);
+    font-weight:
+        500;
 
-        }
+    transition:
+        .2s ease;
+}
 
+.number-note {
+    color:
+        var(--muted);
 
-        .eyebrow {
+    font-size:
+        10px;
 
-            font-size:
-                9px;
+    margin-top:
+        3px;
+}
 
-            text-transform:
-                uppercase;
+.number-action {
+    color:
+        var(--terracotta);
 
-            letter-spacing:
-                2px;
+    font-size:
+        10px;
 
-            color:
-                var(--terracotta);
+    font-weight:
+        700;
 
-            font-weight:
-                700;
+    margin-top:
+        8px;
+}
 
-            margin-bottom:
-                8px;
 
-        }
+/* =====================================================
+   CONTENT
+====================================================== */
 
+.content-grid {
+    display:
+        grid;
 
-        .top h1 {
+    grid-template-columns:
+        minmax(0, 1.65fr)
+        minmax(250px, .75fr);
 
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
+    gap:
+        45px;
+}
 
-            font-size:
-                36px;
+.section-heading {
+    display:
+        flex;
 
-            font-weight:
-                500;
+    align-items:
+        baseline;
 
-            line-height:
-                1.15;
+    justify-content:
+        space-between;
 
-        }
+    gap:
+        15px;
 
+    margin-bottom:
+        18px;
+}
 
-        .top p {
+.section-heading h3 {
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            margin-top:
-                8px;
+    font-size:
+        24px;
 
-            color:
-                var(--muted);
+    font-weight:
+        500;
+}
 
-            font-size:
-                12px;
+.section-heading a {
+    flex-shrink:
+        0;
 
-        }
+    color:
+        var(--terracotta);
 
+    font-size:
+        11px;
 
-        .date {
+    font-weight:
+        700;
+}
 
-            font-size:
-                10px;
 
-            color:
-                var(--muted);
+/* =====================================================
+   RECIPE GRID
+====================================================== */
 
-            border-bottom:
-                1px solid var(--brown);
+.recipe-grid {
+    display:
+        grid;
 
-            padding-bottom:
-                5px;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-        }
+    gap:
+        15px;
+}
 
+.recipe {
+    min-width:
+        0;
 
-        /* =====================================================
-           INTRO
-        ====================================================== */
+    overflow:
+        hidden;
 
-        .intro {
+    background:
+        var(--white);
 
-            display:
-                grid;
+    border:
+        1px solid var(--line);
 
-            grid-template-columns:
-                1.5fr
-                .8fr;
+    transition:
+        .2s ease;
+}
 
-            gap:
-                30px;
+.recipe:hover {
+    transform:
+        translateY(-3px);
 
-            margin:
-                28px 0 30px;
+    border-color:
+        #c5b7a5;
 
-            border-bottom:
-                1px solid var(--line);
+    box-shadow:
+        0 7px 18px rgba(41, 35, 31, .05);
+}
 
-            padding-bottom:
-                30px;
+.recipe-image,
+.no-image {
+    width:
+        100%;
 
-        }
+    height:
+        155px;
+}
 
+.recipe-image {
+    display:
+        block;
 
-        .intro h2 {
+    object-fit:
+        cover;
+}
 
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
+.no-image {
+    display:
+        flex;
 
-            font-size:
-                27px;
+    align-items:
+        center;
 
-            font-weight:
-                500;
+    justify-content:
+        center;
 
-            max-width:
-                610px;
+    background:
+        #e9e3d9;
 
-            line-height:
-                1.3;
+    color:
+        #91887d;
 
-        }
+    font-size:
+        11px;
+}
 
+.recipe-body {
+    padding:
+        14px;
+}
 
-        .intro h2 em {
+.recipe-number {
+    color:
+        var(--terracotta);
 
-            color:
-                var(--terracotta);
+    font-size:
+        10px;
 
-        }
+    font-weight:
+        700;
 
+    margin-bottom:
+        6px;
+}
 
-        .intro-text {
+.recipe-title {
+    min-height:
+        44px;
 
-            color:
-                var(--muted);
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-            font-size:
-                12px;
+    font-size:
+        18px;
 
-            line-height:
-                1.8;
+    font-weight:
+        500;
 
-            max-width:
-                390px;
+    line-height:
+        1.3;
+}
 
-            justify-self:
-                end;
+.recipe-author {
+    color:
+        var(--muted);
 
-        }
+    font-size:
+        10px;
 
+    margin-top:
+        8px;
+}
 
-        /* =====================================================
-           STATISTICS
-        ====================================================== */
+.recipe-link {
+    display:
+        inline-block;
 
-        .numbers {
+    margin-top:
+        12px;
 
-            display:
-                grid;
+    padding-bottom:
+        2px;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    border-bottom:
+        1px solid var(--brown);
 
-            border-top:
-                1px solid var(--ink);
+    color:
+        var(--brown);
 
-            border-bottom:
-                1px solid var(--line);
+    font-size:
+        10px;
 
-            margin-bottom:
-                37px;
+    font-weight:
+        700;
+}
 
-        }
+.recipe-link:hover {
+    color:
+        var(--terracotta);
 
+    border-color:
+        var(--terracotta);
+}
 
-        .number {
 
-            border-right:
-                1px solid var(--line);
+/* =====================================================
+   MANAGE
+====================================================== */
 
-        }
+.manage {
+    border-top:
+        1px solid var(--ink);
+}
 
+.manage-link {
+    display:
+        flex;
 
-        .number:last-child {
+    align-items:
+        center;
 
-            border-right:
-                none;
+    justify-content:
+        space-between;
 
-        }
+    gap:
+        12px;
 
+    padding:
+        16px 0;
 
-        .number-link {
+    border-bottom:
+        1px solid var(--line);
 
-            display:
-                block;
+    font-size:
+        12px;
 
-            width:
-                100%;
+    cursor:
+        pointer;
 
-            height:
-                100%;
+    transition:
+        .2s ease;
+}
 
-            padding:
-                18px 20px 19px;
+.manage-link:hover {
+    color:
+        var(--terracotta);
 
-            color:
-                inherit;
+    padding-left:
+        5px;
+}
 
-            transition:
-                .2s ease;
+.manage-left {
+    display:
+        flex;
 
-        }
+    align-items:
+        center;
 
+    gap:
+        11px;
 
-        .number-link:hover {
+    min-width:
+        0;
+}
 
-            background:
-                #eee7dc;
+.manage-icon {
+    width:
+        29px;
 
-        }
+    height:
+        29px;
 
+    flex-shrink:
+        0;
 
-        .number-link:hover
-        .number-value {
+    border:
+        1px solid var(--line);
 
-            color:
-                var(--terracotta);
+    display:
+        flex;
 
-            transform:
-                translateX(2px);
+    align-items:
+        center;
 
-        }
+    justify-content:
+        center;
 
+    font-size:
+        11px;
+}
 
-        .number-label {
+.manage-description {
+    display:
+        block;
 
-            color:
-                var(--muted);
+    color:
+        var(--muted);
 
-            font-size:
-                9px;
+    font-size:
+        10px;
 
-            text-transform:
-                uppercase;
+    margin-top:
+        2px;
+}
 
-            letter-spacing:
-                1.2px;
+.manage-arrow {
+    flex-shrink:
+        0;
 
-            margin-bottom:
-                8px;
+    color:
+        var(--muted);
 
-        }
+    font-size:
+        13px;
+}
 
 
-        .number-value {
+/* =====================================================
+   EMPTY
+====================================================== */
 
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
+.empty {
+    padding:
+        45px 20px;
 
-            font-size:
-                31px;
+    border:
+        1px dashed #cfc6b9;
 
-            font-weight:
-                500;
+    color:
+        var(--muted);
 
-            transition:
-                .2s ease;
+    text-align:
+        center;
 
-        }
+    font-size:
+        12px;
+}
 
+.empty a {
+    display:
+        inline-block;
 
-        .number-note {
+    margin-top:
+        12px;
 
-            color:
-                var(--muted);
+    padding-bottom:
+        2px;
 
-            font-size:
-                9px;
+    border-bottom:
+        1px solid var(--brown);
 
-            margin-top:
-                3px;
+    color:
+        var(--brown);
 
-        }
+    font-size:
+        10px;
+}
 
 
-        .number-action {
+/* =====================================================
+   FOOTER
+====================================================== */
 
-            color:
-                var(--terracotta);
+footer {
+    display:
+        flex;
 
-            font-size:
-                9px;
+    align-items:
+        center;
 
-            font-weight:
-                700;
+    justify-content:
+        space-between;
 
-            margin-top:
-                8px;
+    gap:
+        15px;
 
-        }
+    margin-top:
+        50px;
 
+    padding-top:
+        18px;
 
-        /* =====================================================
-           CONTENT GRID
-        ====================================================== */
+    border-top:
+        1px solid var(--line);
 
-        .content-grid {
+    color:
+        var(--muted);
 
-            display:
-                grid;
+    font-size:
+        10px;
+}
 
-            grid-template-columns:
-                minmax(0, 1.65fr)
-                minmax(250px, .75fr);
 
-            gap:
-                45px;
+/* =====================================================
+   TABLET
+====================================================== */
 
-        }
+@media (max-width: 1100px) {
 
+    .page {
+        grid-template-columns:
+            200px
+            minmax(0, 1fr);
+    }
 
-        .section-heading {
+    .sidebar {
+        padding:
+            28px 18px;
+    }
 
-            display:
-                flex;
+    .main {
+        padding:
+            30px;
+    }
 
-            justify-content:
-                space-between;
+    .recipe-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
 
-            align-items:
-                baseline;
+}
 
-            margin-bottom:
-                18px;
 
-        }
+/* =====================================================
+   MOBILE
+====================================================== */
 
+@media (max-width: 850px) {
 
-        .section-heading h3 {
+    .page {
+        display:
+            block;
+    }
 
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
+    .sidebar {
+        position:
+            relative;
 
-            font-size:
-                23px;
+        width:
+            100%;
 
-            font-weight:
-                500;
+        height:
+            auto;
 
-        }
+        min-height:
+            auto;
 
+        padding:
+            18px 22px;
 
-        .section-heading a {
+        overflow:
+            visible;
 
-            font-size:
-                10px;
+        border-right:
+            none;
 
-            color:
-                var(--terracotta);
+        border-bottom:
+            1px solid var(--line);
+    }
 
-            font-weight:
-                700;
+    .brand {
+        padding-bottom:
+            15px;
 
-        }
+        border-bottom:
+            none;
+    }
 
+    .nav-label {
+        display:
+            none;
+    }
 
-        /* =====================================================
-           RECIPE GRID
-        ====================================================== */
+    .nav {
+        flex-direction:
+            row;
 
-        .recipe-grid {
+        overflow-x:
+            auto;
 
-            display:
-                grid;
+        margin-top:
+            10px;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+        padding-bottom:
+            2px;
+    }
 
-            gap:
-                15px;
+    .nav a {
+        white-space:
+            nowrap;
 
-        }
+        border-left:
+            none;
 
+        border-bottom:
+            2px solid transparent;
 
-        .recipe {
+        font-size:
+            13px;
+    }
 
-            background:
-                var(--white);
+    .nav a.active {
+        border-left:
+            none;
 
-            border:
-                1px solid var(--line);
+        border-bottom-color:
+            var(--brown);
+    }
 
-            transition:
-                .2s ease;
+    .sidebar-bottom {
+        display:
+            none;
+    }
 
-        }
+    .intro {
+        grid-template-columns:
+            1fr;
 
+        gap:
+            17px;
+    }
 
-        .recipe:hover {
+    .intro-text {
+        justify-self:
+            start;
+    }
 
-            transform:
-                translateY(-3px);
+    .content-grid {
+        grid-template-columns:
+            1fr;
 
-            border-color:
-                #c5b7a5;
+        gap:
+            35px;
+    }
 
-            box-shadow:
-                0 8px 20px rgba(41, 35, 31, .06);
+}
 
-        }
 
+@media (max-width: 600px) {
 
-        .recipe-image {
+    .main {
+        padding:
+            25px 18px 40px;
+    }
 
-            height:
-                155px;
+    .top {
+        display:
+            block;
+    }
 
-            width:
-                100%;
+    .date {
+        display:
+            inline-block;
 
-            object-fit:
-                cover;
+        margin-top:
+            14px;
+    }
 
-            display:
-                block;
+    .top h1 {
+        font-size:
+            31px;
+    }
 
-        }
+    .top p {
+        font-size:
+            12px;
+    }
 
+    .intro h2 {
+        font-size:
+            24px;
+    }
 
-        .no-image {
+    .intro-text {
+        font-size:
+            11px;
+    }
 
-            height:
-                155px;
+    .numbers {
+        grid-template-columns:
+            1fr;
+    }
 
-            background:
-                #e9e3d9;
+    .number {
+        border-right:
+            none;
 
-            color:
-                #91887d;
+        border-bottom:
+            1px solid var(--line);
+    }
 
-            display:
-                flex;
+    .number:last-child {
+        border-bottom:
+            none;
+    }
 
-            align-items:
-                center;
+    .recipe-grid {
+        grid-template-columns:
+            1fr;
+    }
 
-            justify-content:
-                center;
+    footer {
+        display:
+            block;
 
-            font-size:
-                10px;
+        line-height:
+            1.8;
+    }
 
-        }
+}
 
-
-        .recipe-body {
-
-            padding:
-                14px;
-
-        }
-
-
-        .recipe-number {
-
-            color:
-                var(--terracotta);
-
-            font-size:
-                9px;
-
-            font-weight:
-                700;
-
-            margin-bottom:
-                6px;
-
-        }
-
-
-        .recipe-title {
-
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
-
-            font-size:
-                17px;
-
-            line-height:
-                1.25;
-
-            font-weight:
-                500;
-
-            min-height:
-                43px;
-
-        }
-
-
-        .recipe-author {
-
-            color:
-                var(--muted);
-
-            font-size:
-                9px;
-
-            margin-top:
-                8px;
-
-        }
-
-
-        .recipe-link {
-
-            display:
-                inline-block;
-
-            margin-top:
-                12px;
-
-            color:
-                var(--brown);
-
-            font-size:
-                9px;
-
-            font-weight:
-                700;
-
-            border-bottom:
-                1px solid var(--brown);
-
-            padding-bottom:
-                2px;
-
-            transition:
-                .2s;
-
-        }
-
-
-        .recipe-link:hover {
-
-            color:
-                var(--terracotta);
-
-            border-color:
-                var(--terracotta);
-
-        }
-
-
-        /* =====================================================
-           ADMIN MENU
-        ====================================================== */
-
-        .manage {
-
-            border-top:
-                1px solid var(--ink);
-
-        }
-
-
-        .manage-link {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            padding:
-                15px 0;
-
-            border-bottom:
-                1px solid var(--line);
-
-            font-size:
-                11px;
-
-            transition:
-                .2s;
-
-        }
-
-
-        .manage-link:hover {
-
-            color:
-                var(--terracotta);
-
-            padding-left:
-                5px;
-
-        }
-
-
-        .manage-left {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                11px;
-
-        }
-
-
-        .manage-icon {
-
-            width:
-                28px;
-
-            height:
-                28px;
-
-            border:
-                1px solid var(--line);
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            font-size:
-                11px;
-
-        }
-
-
-        .manage-description {
-
-            display:
-                block;
-
-            color:
-                var(--muted);
-
-            font-size:
-                8px;
-
-            margin-top:
-                2px;
-
-        }
-
-
-        .manage-arrow {
-
-            color:
-                var(--muted);
-
-        }
-
-
-        /* =====================================================
-           EMPTY
-        ====================================================== */
-
-        .empty {
-
-            border:
-                1px dashed #cfc6b9;
-
-            padding:
-                45px 20px;
-
-            text-align:
-                center;
-
-            color:
-                var(--muted);
-
-            font-size:
-                11px;
-
-        }
-
-
-        .empty a {
-
-            display:
-                inline-block;
-
-            margin-top:
-                12px;
-
-            color:
-                var(--brown);
-
-            border-bottom:
-                1px solid var(--brown);
-
-            padding-bottom:
-                2px;
-
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-
-        footer {
-
-            border-top:
-                1px solid var(--line);
-
-            margin-top:
-                50px;
-
-            padding-top:
-                18px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                9px;
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ====================================================== */
-
-        @media (max-width: 1100px) {
-
-            .page {
-
-                grid-template-columns:
-                    200px
-                    1fr;
-
-            }
-
-
-            .main {
-
-                padding:
-                    30px;
-
-            }
-
-
-            .recipe-grid {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-            }
-
-        }
-
-
-        @media (max-width: 850px) {
-
-            .page {
-
-                display:
-                    block;
-
-            }
-
-
-            .sidebar {
-
-                position:
-                    relative;
-
-                width:
-                    100%;
-
-                height:
-                    auto;
-
-                min-height:
-                    auto;
-
-                padding:
-                    18px 22px;
-
-                border-right:
-                    none;
-
-                border-bottom:
-                    1px solid var(--line);
-
-            }
-
-
-            .brand {
-
-                padding-bottom:
-                    15px;
-
-                border-bottom:
-                    none;
-
-            }
-
-
-            .nav-label {
-
-                display:
-                    none;
-
-            }
-
-
-            .nav {
-
-                flex-direction:
-                    row;
-
-                overflow-x:
-                    auto;
-
-                margin-top:
-                    10px;
-
-            }
-
-
-            .nav a {
-
-                white-space:
-                    nowrap;
-
-                border-left:
-                    none;
-
-                border-bottom:
-                    2px solid transparent;
-
-            }
-
-
-            .nav a.active {
-
-                border-left:
-                    none;
-
-                border-bottom-color:
-                    var(--brown);
-
-            }
-
-
-            .sidebar-bottom {
-
-                display:
-                    none;
-
-            }
-
-
-            .intro {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    18px;
-
-            }
-
-
-            .intro-text {
-
-                justify-self:
-                    start;
-
-            }
-
-
-            .content-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    35px;
-
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .main {
-
-                padding:
-                    25px 18px;
-
-            }
-
-
-            .top {
-
-                display:
-                    block;
-
-            }
-
-
-            .date {
-
-                display:
-                    inline-block;
-
-                margin-top:
-                    15px;
-
-            }
-
-
-            .top h1 {
-
-                font-size:
-                    30px;
-
-            }
-
-
-            .numbers {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .number {
-
-                border-right:
-                    none;
-
-                border-bottom:
-                    1px solid var(--line);
-
-            }
-
-
-            .number:last-child {
-
-                border-bottom:
-                    none;
-
-            }
-
-
-            .recipe-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            footer {
-
-                display:
-                    block;
-
-                line-height:
-                    1.7;
-
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
 
-    {{-- =====================================================
-         SIDEBAR
-    ====================================================== --}}
+<!-- SIDEBAR -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
+
+    <a
+        href="{{ route('admin.dashboard') }}"
+        class="brand"
+    >
+
+        <div class="brand-mark">
+            R
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                ResepKu
+            </div>
+
+            <span class="brand-small">
+                Culinary Journal
+            </span>
+
+        </div>
+
+    </a>
 
 
-        {{-- BRAND --}}
+    <div class="nav-label">
+        Menu Utama
+    </div>
+
+
+    <nav class="nav">
 
         <a
             href="{{ route('admin.dashboard') }}"
-            class="brand"
+            class="active"
         >
 
-            <div class="brand-mark">
-                R
-            </div>
+            <span class="nav-icon">
+                ⌂
+            </span>
 
-
-            <div>
-
-                <div class="brand-name">
-                    ResepKu
-                </div>
-
-
-                <span class="brand-small">
-                    Culinary Journal
-                </span>
-
-            </div>
+            <span>
+                Dashboard
+            </span>
 
         </a>
 
 
-        {{-- NAV TITLE --}}
+        <a
+            href="{{ route('admin.recipes.index') }}"
+        >
 
-        <div class="nav-label">
-            Menu Utama
+            <span class="nav-icon">
+                ≡
+            </span>
+
+            <span>
+                Semua Resep
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ route('recipes.create') }}"
+        >
+
+            <span class="nav-icon">
+                +
+            </span>
+
+            <span>
+                Tambah Resep
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ route('admin.users.index') }}"
+        >
+
+            <span class="nav-icon">
+                ○
+            </span>
+
+            <span>
+                Data User
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ route('recipes.index') }}"
+        >
+
+            <span class="nav-icon">
+                ↗
+            </span>
+
+            <span>
+                Lihat Website
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="admin-user">
+
+            <div class="avatar">
+
+                {{ strtoupper(
+                    substr(
+                        auth()->user()->name,
+                        0,
+                        1
+                    )
+                ) }}
+
+            </div>
+
+
+            <div class="admin-user-info">
+
+                <strong>
+                    {{ auth()->user()->name }}
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
         </div>
 
 
-        <nav class="nav">
+        <form
+            method="POST"
+            action="{{ route('logout') }}"
+        >
 
+            @csrf
 
-            {{-- DASHBOARD --}}
-
-            <a
-                href="{{ route('admin.dashboard') }}"
-                class="active"
+            <button
+                type="submit"
+                class="logout"
             >
 
-                <span class="nav-icon">
-                    ⌂
-                </span>
+                Keluar dari akun
 
-                <span>
-                    Dashboard
-                </span>
+            </button>
 
-            </a>
+        </form>
+
+    </div>
+
+</aside>
 
 
-            {{-- SEMUA RESEP --}}
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+    <!-- HEADER -->
+
+    <header class="top">
+
+        <div>
+
+            <div class="eyebrow">
+                ResepKu / Admin
+            </div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Ruang kerja untuk mengelola koleksi resep dan pengguna.
+            </p>
+
+        </div>
+
+
+        <div class="date">
+
+            {{ now()->translatedFormat('l, d F Y') }}
+
+        </div>
+
+    </header>
+
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <h2>
+
+            Selamat datang kembali,
+            <em>{{ auth()->user()->name }}</em>.
+
+            Mari rapikan koleksi resep hari ini.
+
+        </h2>
+
+
+        <p class="intro-text">
+
+            Semua aktivitas utama website ResepKu
+            tersedia dari satu tempat. Pantau resep,
+            pengguna, dan tambahkan koleksi baru
+            kapan saja.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- STATISTICS -->
+
+    <section class="numbers">
+
+
+        <!-- TOTAL RESEP -->
+
+        <div class="number">
 
             <a
                 href="{{ route('admin.recipes.index') }}"
+                class="number-link"
             >
 
-                <span class="nav-icon">
-                    ≡
-                </span>
+                <div class="number-label">
+                    Total Resep
+                </div>
 
-                <span>
-                    Semua Resep
-                </span>
+                <div class="number-value">
 
-            </a>
-
-
-            {{-- TAMBAH RESEP --}}
-
-            <a
-                href="{{ route('recipes.create') }}"
-            >
-
-                <span class="nav-icon">
-                    +
-                </span>
-
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
-
-
-            {{-- DATA USER --}}
-
-            <a
-                href="{{ route('admin.users.index') }}"
-            >
-
-                <span class="nav-icon">
-                    ○
-                </span>
-
-                <span>
-                    Data User
-                </span>
-
-            </a>
-
-
-            {{-- WEBSITE --}}
-
-            <a
-                href="{{ route('recipes.index') }}"
-            >
-
-                <span class="nav-icon">
-                    ↗
-                </span>
-
-                <span>
-                    Lihat Website
-                </span>
-
-            </a>
-
-
-        </nav>
-
-
-        {{-- SIDEBAR BOTTOM --}}
-
-        <div class="sidebar-bottom">
-
-
-            <div class="admin-user">
-
-
-                <div class="avatar">
-
-                    {{ strtoupper(
-                        substr(
-                            auth()->user()->name,
-                            0,
-                            1
-                        )
-                    ) }}
+                    {{ $totalRecipes }}
 
                 </div>
 
-
-                <div class="admin-user-info">
-
-                    <strong>
-                        {{ auth()->user()->name }}
-                    </strong>
-
-
-                    <span>
-                        Administrator
-                    </span>
-
+                <div class="number-note">
+                    seluruh koleksi resep
                 </div>
 
+                <div class="number-action">
+                    Kelola resep →
+                </div>
 
-            </div>
-
-
-            {{-- LOGOUT --}}
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-
-                @csrf
-
-
-                <button
-                    type="submit"
-                    class="logout"
-                >
-
-                    Keluar dari akun
-
-                </button>
-
-            </form>
-
+            </a>
 
         </div>
 
 
-    </aside>
 
+        <!-- TOTAL PENGGUNA -->
 
+        <div class="number">
 
-    {{-- =====================================================
-         MAIN
-    ====================================================== --}}
+            <a
+                href="{{ route('admin.users.index') }}"
+                class="number-link"
+            >
 
-    <main class="main">
-
-
-        {{-- HEADER --}}
-
-        <header class="top">
-
-
-            <div>
-
-                <div class="eyebrow">
-                    ResepKu / Admin
+                <div class="number-label">
+                    Total Pengguna
                 </div>
 
+                <div class="number-value">
 
-                <h1>
-                    Dashboard
-                </h1>
+                    {{ $totalUsers }}
 
+                </div>
 
-                <p>
-                    Ruang kerja untuk mengelola koleksi resep dan pengguna.
-                </p>
+                <div class="number-note">
+                    akun terdaftar
+                </div>
 
-            </div>
+                <div class="number-action">
+                    Kelola pengguna →
+                </div>
 
+            </a>
 
-            <div class="date">
-
-                {{ now()->translatedFormat('l, d F Y') }}
-
-            </div>
-
-
-        </header>
+        </div>
 
 
 
-        {{-- INTRO --}}
+        <!-- RESEP HARI INI -->
 
-        <section class="intro">
+        <div class="number">
+
+            <a
+                href="{{ route(
+                    'admin.recipes.index',
+                    ['today' => 1]
+                ) }}"
+                class="number-link"
+            >
+
+                <div class="number-label">
+                    Resep Hari Ini
+                </div>
+
+                <div class="number-value">
+
+                    {{ $todayRecipes }}
+
+                </div>
+
+                <div class="number-note">
+                    resep baru hari ini
+                </div>
+
+                <div class="number-action">
+                    Lihat hari ini →
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
 
 
-            <h2>
 
-                Selamat datang kembali,
-                <em>{{ auth()->user()->name }}</em>.
+    <!-- CONTENT -->
 
-                Mari rapikan koleksi resep hari ini.
-
-            </h2>
+    <div class="content-grid">
 
 
-            <p class="intro-text">
+        <!-- RESEP TERBARU -->
 
-                Semua aktivitas utama website ResepKu
-                tersedia dari satu tempat. Pantau resep,
-                pengguna, dan tambahkan koleksi baru
-                kapan saja.
+        <section>
 
-            </p>
+            <div class="section-heading">
 
-
-        </section>
-
-
-
-        {{-- =================================================
-             STATISTICS
-        ================================================== --}}
-
-        <section class="numbers">
-
-
-            {{-- TOTAL RESEP --}}
-
-            <div class="number">
+                <h3>
+                    Resep terbaru
+                </h3>
 
 
                 <a
                     href="{{ route('admin.recipes.index') }}"
-                    class="number-link"
                 >
 
-
-                    <div class="number-label">
-                        Total Resep
-                    </div>
-
-
-                    <div class="number-value">
-
-                        {{ \App\Models\Recipe::count() }}
-
-                    </div>
-
-
-                    <div class="number-note">
-                        seluruh koleksi resep
-                    </div>
-
-
-                    <div class="number-action">
-                        Kelola resep →
-                    </div>
-
+                    Lihat semua →
 
                 </a>
-
 
             </div>
 
 
+            @if ($latestRecipes->count())
 
-            {{-- TOTAL PENGGUNA --}}
 
-            <div class="number">
+                <div class="recipe-grid">
 
+
+                    @foreach (
+                        $latestRecipes
+                        as $index => $recipe
+                    )
+
+                        <article class="recipe">
+
+
+                            @if ($recipe->image)
+
+                                <img
+                                    src="{{ $recipe->imageUrl() }}"
+                                    alt="{{ $recipe->title }}"
+                                    class="recipe-image"
+                                >
+
+                            @else
+
+                                <div class="no-image">
+
+                                    Tidak ada foto
+
+                                </div>
+
+                            @endif
+
+
+                            <div class="recipe-body">
+
+
+                                <div class="recipe-number">
+
+                                    {{ str_pad(
+                                        $index + 1,
+                                        2,
+                                        '0',
+                                        STR_PAD_LEFT
+                                    ) }}
+
+                                </div>
+
+
+                                <h4 class="recipe-title">
+
+                                    {{ $recipe->title }}
+
+                                </h4>
+
+
+                                <p class="recipe-author">
+
+                                    Oleh
+                                    {{ $recipe->user->name ?? 'User' }}
+
+                                </p>
+
+
+                                <a
+                                    href="{{ route(
+                                        'admin.recipes.show',
+                                        $recipe
+                                    ) }}"
+                                    class="recipe-link"
+                                >
+
+                                    Buka resep →
+
+                                </a>
+
+
+                            </div>
+
+
+                        </article>
+
+
+                    @endforeach
+
+
+                </div>
+
+
+            @else
+
+
+                <div class="empty">
+
+                    Belum ada resep di dalam koleksi.
+
+                    <br>
+
+                    <a
+                        href="{{ route('recipes.create') }}"
+                    >
+
+                        Tambahkan resep pertama →
+
+                    </a>
+
+                </div>
+
+
+            @endif
+
+
+        </section>
+
+
+
+        <!-- KELOLA -->
+
+        <section>
+
+
+            <div class="section-heading">
+
+                <h3>
+                    Kelola
+                </h3>
+
+            </div>
+
+
+            <div class="manage">
+
+
+                <!-- SEMUA RESEP -->
+
+                <a
+                    href="{{ route('admin.recipes.index') }}"
+                    class="manage-link"
+                >
+
+                    <div class="manage-left">
+
+                        <div class="manage-icon">
+                            ≡
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Semua Resep
+                            </strong>
+
+                            <span class="manage-description">
+                                Kelola koleksi resep
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="manage-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <!-- TAMBAH RESEP -->
+
+                <a
+                    href="{{ route('recipes.create') }}"
+                    class="manage-link"
+                >
+
+                    <div class="manage-left">
+
+                        <div class="manage-icon">
+                            +
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Tambah Resep
+                            </strong>
+
+                            <span class="manage-description">
+                                Buat resep baru
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="manage-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <!-- DATA USER -->
 
                 <a
                     href="{{ route('admin.users.index') }}"
-                    class="number-link"
+                    class="manage-link"
                 >
 
+                    <div class="manage-left">
 
-                    <div class="number-label">
-                        Total Pengguna
+                        <div class="manage-icon">
+                            ○
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Data User
+                            </strong>
+
+                            <span class="manage-description">
+                                Kelola pengguna
+                            </span>
+
+                        </div>
+
                     </div>
 
 
-                    <div class="number-value">
-
-                        {{ \App\Models\User::count() }}
-
-                    </div>
-
-
-                    <div class="number-note">
-                        akun terdaftar
-                    </div>
-
-
-                    <div class="number-action">
-                        Kelola pengguna →
-                    </div>
-
+                    <span class="manage-arrow">
+                        →
+                    </span>
 
                 </a>
 
 
-            </div>
 
-
-
-            {{-- RESEP HARI INI --}}
-
-            <div class="number">
-
+                <!-- WEBSITE -->
 
                 <a
-                    href="{{ route(
-                        'admin.recipes.index',
-                        ['today' => 1]
-                    ) }}"
-                    class="number-link"
+                    href="{{ route('recipes.index') }}"
+                    class="manage-link"
                 >
 
+                    <div class="manage-left">
 
-                    <div class="number-label">
-                        Resep Hari Ini
+                        <div class="manage-icon">
+                            ↗
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Lihat Website
+                            </strong>
+
+
+                            <span class="manage-description">
+                                Buka halaman publik
+                            </span>
+
+                        </div>
+
                     </div>
 
 
-                    <div class="number-value">
-
-                        {{
-                            \App\Models\Recipe::whereDate(
-                                'created_at',
-                                today()
-                            )->count()
-                        }}
-
-                    </div>
-
-
-                    <div class="number-note">
-                        resep baru hari ini
-                    </div>
-
-
-                    <div class="number-action">
-                        Lihat hari ini →
-                    </div>
-
+                    <span class="manage-arrow">
+                        →
+                    </span>
 
                 </a>
 
@@ -1983,406 +2087,31 @@
         </section>
 
 
+    </div>
 
-        {{-- =================================================
-             CONTENT
-        ================================================== --}}
 
-        <div class="content-grid">
 
+    <!-- FOOTER -->
 
-            {{-- =================================================
-                 RESEP TERBARU
-            ================================================== --}}
+    <footer>
 
-            <section>
+        <span>
+            © {{ date('Y') }} ResepKu
+        </span>
 
 
-                <div class="section-heading">
+        <span>
+            Culinary Journal · Administrator
+        </span>
 
+    </footer>
 
-                    <h3>
-                        Resep terbaru
-                    </h3>
 
-
-                    <a
-                        href="{{ route('admin.recipes.index') }}"
-                    >
-                        Lihat semua →
-                    </a>
-
-
-                </div>
-
-
-                @php
-
-                    $latestRecipes = \App\Models\Recipe::with('user')
-                        ->latest()
-                        ->take(3)
-                        ->get();
-
-                @endphp
-
-
-                @if ($latestRecipes->count())
-
-
-                    <div class="recipe-grid">
-
-
-                        @foreach (
-                            $latestRecipes
-                            as $index => $recipe
-                        )
-
-
-                            <article class="recipe">
-
-
-                                @if ($recipe->image)
-
-
-                                    <img
-                                        src="{{ $recipe->imageUrl() }}"
-                                        alt="{{ $recipe->title }}"
-                                        class="recipe-image"
-                                    >
-
-
-                                @else
-
-
-                                    <div class="no-image">
-
-                                        Tidak ada foto
-
-                                    </div>
-
-
-                                @endif
-
-
-                                <div class="recipe-body">
-
-
-                                    <div class="recipe-number">
-
-                                        {{ str_pad(
-                                            $index + 1,
-                                            2,
-                                            '0',
-                                            STR_PAD_LEFT
-                                        ) }}
-
-                                    </div>
-
-
-                                    <h4 class="recipe-title">
-
-                                        {{ $recipe->title }}
-
-                                    </h4>
-
-
-                                    <p class="recipe-author">
-
-                                        Oleh
-
-                                        {{ $recipe->user->name ?? 'User' }}
-
-                                    </p>
-
-
-                                    <a
-                                        href="{{ route(
-                                            'admin.recipes.show',
-                                            $recipe
-                                        ) }}"
-                                        class="recipe-link"
-                                    >
-
-                                        Buka resep →
-
-                                    </a>
-
-
-                                </div>
-
-
-                            </article>
-
-
-                        @endforeach
-
-
-                    </div>
-
-
-                @else
-
-
-                    <div class="empty">
-
-
-                        Belum ada resep di dalam koleksi.
-
-
-                        <br>
-
-
-                        <a
-                            href="{{ route('recipes.create') }}"
-                        >
-
-                            Tambahkan resep pertama →
-
-                        </a>
-
-
-                    </div>
-
-
-                @endif
-
-
-            </section>
-
-
-
-            {{-- =================================================
-                 MENU ADMIN
-            ================================================== --}}
-
-            <section>
-
-
-                <div class="section-heading">
-
-
-                    <h3>
-                        Kelola
-                    </h3>
-
-
-                </div>
-
-
-                <div class="manage">
-
-
-                    {{-- SEMUA RESEP --}}
-
-                    <a
-                        href="{{ route('admin.recipes.index') }}"
-                        class="manage-link"
-                    >
-
-
-                        <div class="manage-left">
-
-
-                            <div class="manage-icon">
-                                ≡
-                            </div>
-
-
-                            <div>
-
-
-                                <strong>
-                                    Semua Resep
-                                </strong>
-
-
-                                <span class="manage-description">
-                                    Kelola koleksi resep
-                                </span>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        <span class="manage-arrow">
-                            →
-                        </span>
-
-
-                    </a>
-
-
-
-                    {{-- TAMBAH RESEP --}}
-
-                    <a
-                        href="{{ route('recipes.create') }}"
-                        class="manage-link"
-                    >
-
-
-                        <div class="manage-left">
-
-
-                            <div class="manage-icon">
-                                +
-                            </div>
-
-
-                            <div>
-
-
-                                <strong>
-                                    Tambah Resep
-                                </strong>
-
-
-                                <span class="manage-description">
-                                    Buat resep baru
-                                </span>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        <span class="manage-arrow">
-                            →
-                        </span>
-
-
-                    </a>
-
-
-
-                    {{-- DATA USER --}}
-
-                    <a
-                        href="{{ route('admin.users.index') }}"
-                        class="manage-link"
-                    >
-
-
-                        <div class="manage-left">
-
-
-                            <div class="manage-icon">
-                                ○
-                            </div>
-
-
-                            <div>
-
-
-                                <strong>
-                                    Data User
-                                </strong>
-
-
-                                <span class="manage-description">
-                                    Kelola pengguna
-                                </span>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        <span class="manage-arrow">
-                            →
-                        </span>
-
-
-                    </a>
-
-
-
-                    {{-- WEBSITE --}}
-
-                    <a
-                        href="{{ route('recipes.index') }}"
-                        class="manage-link"
-                    >
-
-
-                        <div class="manage-left">
-
-
-                            <div class="manage-icon">
-                                ↗
-                            </div>
-
-
-                            <div>
-
-
-                                <strong>
-                                    Lihat Website
-                                </strong>
-
-
-                                <span class="manage-description">
-                                    Buka halaman publik
-                                </span>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        <span class="manage-arrow">
-                            →
-                        </span>
-
-
-                    </a>
-
-
-                </div>
-
-
-            </section>
-
-
-        </div>
-
-
-
-        {{-- =================================================
-             FOOTER
-        ================================================== --}}
-
-        <footer>
-
-
-            <span>
-                © {{ date('Y') }} ResepKu
-            </span>
-
-
-            <span>
-                Culinary Journal · Administrator
-            </span>
-
-
-        </footer>
-
-
-    </main>
-
+</main>
 
 </div>
-
 
 </body>
 
 </html>
+

@@ -17,12 +17,16 @@
 </title>
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
 <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
     rel="stylesheet"
 >
+
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -68,24 +72,30 @@
             Arial,
             sans-serif;
 
-        background: var(--bg);
+        background:
+            var(--bg);
 
-        color: var(--text);
+        color:
+            var(--text);
 
-        line-height: 1.6;
+        line-height:
+            1.6;
     }
 
 
     a {
-        color: inherit;
+        color:
+            inherit;
 
-        text-decoration: none;
+        text-decoration:
+            none;
     }
 
 
     button,
     input {
-        font-family: inherit;
+        font-family:
+            inherit;
     }
 
 
@@ -94,15 +104,20 @@
     ====================================================== */
 
     .navbar {
-        position: sticky;
+        position:
+            sticky;
 
-        top: 0;
+        top:
+            0;
 
-        z-index: 100;
+        z-index:
+            100;
 
-        min-height: 72px;
+        min-height:
+            72px;
 
-        padding: 0 42px;
+        padding:
+            0 42px;
 
         background:
             rgba(
@@ -112,50 +127,72 @@
                 .97
             );
 
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+            1px solid var(--border);
 
-        backdrop-filter: blur(8px);
+        backdrop-filter:
+            blur(8px);
 
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: space-between;
+        justify-content:
+            space-between;
 
-        gap: 25px;
+        gap:
+            25px;
     }
 
 
     .brand {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 10px;
+        gap:
+            10px;
 
-        flex-shrink: 0;
+        flex-shrink:
+            0;
     }
 
 
     .brand-icon {
-        width: 38px;
-        height: 38px;
+        width:
+            38px;
 
-        border-radius: 50%;
+        height:
+            38px;
 
-        background: var(--brown);
+        border-radius:
+            50%;
 
-        color: #fff;
+        background:
+            var(--brown);
 
-        display: flex;
+        color:
+            #fff;
 
-        align-items: center;
+        display:
+            flex;
 
-        justify-content: center;
+        align-items:
+            center;
 
-        font-family: Georgia, serif;
+        justify-content:
+            center;
 
-        font-size: 17px;
+        font-family:
+            Georgia,
+            serif;
+
+        font-size:
+            17px;
     }
 
 
@@ -165,137 +202,185 @@
             Georgia,
             serif;
 
-        font-size: 21px;
+        font-size:
+            21px;
 
-        font-weight: 600;
+        font-weight:
+            600;
     }
 
 
     .brand-text span {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
     }
 
 
     .nav-menu {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 25px;
+        gap:
+            25px;
 
-        margin-left: auto;
+        margin-left:
+            auto;
     }
 
 
     .nav-menu a {
-        position: relative;
+        position:
+            relative;
 
-        padding: 5px 0;
+        padding:
+            5px 0;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 10px;
+        font-size:
+            10px;
     }
 
 
     .nav-menu a:hover {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
     .nav-menu a.active {
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        font-weight: 700;
+        font-weight:
+            700;
     }
 
 
     .nav-menu a.active::after {
-        content: "";
+        content:
+            "";
 
-        position: absolute;
+        position:
+            absolute;
 
-        left: 0;
-        right: 0;
+        left:
+            0;
 
-        bottom: -3px;
+        right:
+            0;
 
-        height: 1px;
+        bottom:
+            -3px;
 
-        background: var(--brown);
+        height:
+            1px;
+
+        background:
+            var(--brown);
     }
 
 
     .nav-right {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 7px;
+        gap:
+            7px;
 
-        flex-shrink: 0;
+        flex-shrink:
+            0;
     }
 
 
     .login-btn {
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        padding: 8px 10px;
+        padding:
+            8px 10px;
 
-        font-size: 9px;
+        font-size:
+            9px;
     }
 
 
     .login-btn:hover {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
     .dashboard-btn {
-        background: var(--brown);
+        background:
+            var(--brown);
 
-        color: white;
+        color:
+            white;
 
-        border: 1px solid var(--brown);
+        border:
+            1px solid var(--brown);
 
-        padding: 9px 13px;
+        padding:
+            9px 13px;
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .dashboard-btn:hover {
-        background: var(--terracotta);
+        background:
+            var(--terracotta);
 
-        border-color: var(--terracotta);
+        border-color:
+            var(--terracotta);
     }
 
 
     .logout-btn {
-        background: transparent;
+        background:
+            transparent;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
 
-        padding: 8px 11px;
+        padding:
+            8px 11px;
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        cursor: pointer;
+        cursor:
+            pointer;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .logout-btn:hover {
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        background: var(--surface-soft);
+        background:
+            var(--surface-soft);
     }
 
 
@@ -304,41 +389,54 @@
     ====================================================== */
 
     .hero {
-        max-width: 1200px;
+        max-width:
+            1200px;
 
-        margin: 0 auto;
+        margin:
+            0 auto;
 
-        padding: 55px 30px 40px;
+        padding:
+            55px 30px 40px;
 
-        display: grid;
+        display:
+            grid;
 
         grid-template-columns:
             1.25fr
             .9fr;
 
-        gap: 45px;
+        gap:
+            45px;
 
-        align-items: center;
+        align-items:
+            center;
     }
 
 
     .hero-eyebrow {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: 2px;
+        letter-spacing:
+            2px;
 
-        margin-bottom: 10px;
+        margin-bottom:
+            10px;
     }
 
 
     .hero-content h1 {
-        max-width: 690px;
+        max-width:
+            690px;
 
         font-family:
             "Playfair Display",
@@ -352,133 +450,185 @@
                 55px
             );
 
-        font-weight: 500;
+        font-weight:
+            500;
 
-        line-height: 1.08;
+        line-height:
+            1.08;
     }
 
 
     .hero-content h1 span {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
     }
 
 
     .hero-content p {
-        max-width: 590px;
+        max-width:
+            590px;
 
-        margin-top: 15px;
+        margin-top:
+            15px;
 
-        margin-bottom: 22px;
+        margin-bottom:
+            22px;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 11px;
+        font-size:
+            11px;
 
-        line-height: 1.9;
+        line-height:
+            1.9;
     }
 
 
     .hero-buttons {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 9px;
+        gap:
+            9px;
     }
 
 
     .primary-btn {
-        display: inline-flex;
+        display:
+            inline-flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        padding: 10px 15px;
+        padding:
+            10px 15px;
 
-        background: var(--brown);
+        background:
+            var(--brown);
 
-        color: #fff;
+        color:
+            #fff;
 
-        border: 1px solid var(--brown);
+        border:
+            1px solid var(--brown);
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .primary-btn:hover {
-        background: var(--terracotta);
+        background:
+            var(--terracotta);
 
-        border-color: var(--terracotta);
+        border-color:
+            var(--terracotta);
     }
 
 
     .secondary-btn {
-        display: inline-flex;
+        display:
+            inline-flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        padding: 9px 15px;
+        padding:
+            9px 15px;
 
-        background: transparent;
+        background:
+            transparent;
 
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .secondary-btn:hover {
-        background: var(--soft-brown);
+        background:
+            var(--soft-brown);
 
-        border-color: #c8b9a8;
+        border-color:
+            #c8b9a8;
     }
 
 
     .hero-image {
-        height: 275px;
+        height:
+            275px;
 
-        overflow: hidden;
+        overflow:
+            hidden;
 
-        position: relative;
+        position:
+            relative;
 
-        background: var(--soft-brown);
+        background:
+            var(--soft-brown);
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
     }
 
 
     .hero-image img {
-        width: 100%;
-        height: 100%;
+        width:
+            100%;
 
-        display: block;
+        height:
+            100%;
 
-        object-fit: cover;
+        display:
+            block;
 
-        filter: saturate(.82);
+        object-fit:
+            cover;
+
+        filter:
+            saturate(.82);
     }
 
 
     .hero-label {
-        position: absolute;
+        position:
+            absolute;
 
-        left: 15px;
-        bottom: 15px;
+        left:
+            15px;
 
-        padding: 8px 11px;
+        bottom:
+            15px;
+
+        padding:
+            8px 11px;
 
         background:
             rgba(
@@ -488,13 +638,17 @@
                 .94
             );
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
 
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
     }
 
 
@@ -503,11 +657,14 @@
     ====================================================== */
 
     .container {
-        max-width: 1200px;
+        max-width:
+            1200px;
 
-        margin: 0 auto;
+        margin:
+            0 auto;
 
-        padding: 10px 30px 65px;
+        padding:
+            10px 30px 65px;
     }
 
 
@@ -516,34 +673,47 @@
     ====================================================== */
 
     .section-heading {
-        display: flex;
+        display:
+            flex;
 
-        align-items: flex-end;
+        align-items:
+            flex-end;
 
-        justify-content: space-between;
+        justify-content:
+            space-between;
 
-        gap: 20px;
+        gap:
+            20px;
 
-        padding-bottom: 15px;
+        padding-bottom:
+            15px;
 
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+            1px solid var(--border);
 
-        margin-bottom: 20px;
+        margin-bottom:
+            20px;
     }
 
 
     .section-label {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: 1.8px;
+        letter-spacing:
+            1.8px;
 
-        margin-bottom: 5px;
+        margin-bottom:
+            5px;
     }
 
 
@@ -553,157 +723,205 @@
             Georgia,
             serif;
 
-        font-size: 27px;
+        font-size:
+            27px;
 
-        font-weight: 500;
+        font-weight:
+            500;
     }
 
 
     .section-heading p {
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        margin-top: 3px;
+        margin-top:
+            3px;
     }
 
 
     .recipe-count {
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        white-space: nowrap;
+        white-space:
+            nowrap;
     }
 
 
     .recipe-count strong {
-        color: var(--brown);
+        color:
+            var(--brown);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 20px;
+        font-size:
+            20px;
 
-        font-weight: 500;
+        font-weight:
+            500;
     }
 
 
     /* =====================================================
-       SEARCH EDITORIAL
+       SEARCH
     ====================================================== */
 
     .search-area {
-        width: 100%;
+        width:
+            100%;
 
-        max-width: 100%;
+        display:
+            flex;
 
-        display: flex;
+        align-items:
+            center;
 
-        align-items: center;
+        justify-content:
+            space-between;
 
-        justify-content: space-between;
+        gap:
+            30px;
 
-        gap: 30px;
+        padding:
+            14px 0;
 
-        padding: 14px 0;
+        margin-bottom:
+            30px;
 
-        margin-bottom: 30px;
+        border-top:
+            1px solid var(--text);
 
-        border-top: 1px solid var(--text);
-
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+            1px solid var(--border);
     }
 
 
     .search-intro {
-        flex-shrink: 0;
+        flex-shrink:
+            0;
     }
 
 
     .search-kicker {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        font-size: 7px;
+        font-size:
+            7px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: 1.5px;
+        letter-spacing:
+            1.5px;
     }
 
 
     .search-title {
-        margin-top: 2px;
+        margin-top:
+            2px;
 
-        color: var(--brown);
+        color:
+            var(--brown);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 18px;
+        font-size:
+            18px;
 
-        font-weight: 500;
+        font-weight:
+            500;
     }
 
 
     .search-box-wrapper {
-        margin-left: auto;
+        margin-left:
+            auto;
 
-        width: 530px;
+        width:
+            530px;
 
-        max-width: 100%;
+        max-width:
+            100%;
     }
 
 
     .search-form {
-        width: 100%;
+        width:
+            100%;
 
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: flex-end;
+        justify-content:
+            flex-end;
 
-        gap: 0;
+        gap:
+            0;
     }
 
 
     .search-field {
-        position: relative;
+        position:
+            relative;
 
-        width: 360px;
+        width:
+            360px;
 
-        max-width: 100%;
+        max-width:
+            100%;
     }
 
 
     .search-icon {
-        position: absolute;
+        position:
+            absolute;
 
-        left: 0;
+        left:
+            0;
 
-        top: 50%;
+        top:
+            50%;
 
-        transform: translateY(-50%);
+        transform:
+            translateY(-50%);
 
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        font-size: 13px;
+        font-size:
+            13px;
 
-        pointer-events: none;
+        pointer-events:
+            none;
     }
 
 
     .search-input {
-        width: 100%;
+        width:
+            100%;
 
-        height: 38px;
+        height:
+            38px;
 
         padding:
             0
@@ -711,113 +929,155 @@
             0
             22px;
 
-        background: transparent;
+        background:
+            transparent;
 
-        border: none;
+        border:
+            none;
 
-        border-bottom: 1px solid #bfb5a9;
+        border-bottom:
+            1px solid #bfb5a9;
 
-        outline: none;
+        outline:
+            none;
 
-        color: var(--text);
+        color:
+            var(--text);
 
-        font-size: 10px;
+        font-size:
+            10px;
     }
 
 
     .search-input::placeholder {
-        color: #9a9188;
+        color:
+            #9a9188;
     }
 
 
     .search-input:focus {
-        border-bottom-color: var(--brown);
+        border-bottom-color:
+            var(--brown);
     }
 
 
     .search-button {
-        height: 38px;
+        height:
+            38px;
 
-        padding: 0 14px;
+        padding:
+            0 14px;
 
-        background: var(--brown);
+        background:
+            var(--brown);
 
-        color: #fff;
+        color:
+            #fff;
 
-        border: 1px solid var(--brown);
+        border:
+            1px solid var(--brown);
 
-        cursor: pointer;
+        cursor:
+            pointer;
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: .8px;
+        letter-spacing:
+            .8px;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .search-button:hover {
-        background: var(--terracotta);
+        background:
+            var(--terracotta);
 
-        border-color: var(--terracotta);
+        border-color:
+            var(--terracotta);
     }
 
 
     .reset-button {
-        height: 38px;
+        height:
+            38px;
 
-        margin-left: 6px;
+        margin-left:
+            6px;
 
-        padding: 0 11px;
+        padding:
+            0 11px;
 
-        display: inline-flex;
+        display:
+            inline-flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
 
-        background: transparent;
+        background:
+            transparent;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: .6px;
+        letter-spacing:
+            .6px;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .reset-button:hover {
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        background: var(--soft-brown);
+        background:
+            var(--soft-brown);
     }
 
 
     .search-result {
-        margin-top: 7px;
+        margin-top:
+            7px;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        text-align: right;
+        text-align:
+            right;
     }
 
 
     .search-result strong {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
@@ -826,17 +1086,23 @@
     ====================================================== */
 
     .success-message {
-        margin-bottom: 20px;
+        margin-bottom:
+            20px;
 
-        padding: 10px 12px;
+        padding:
+            10px 12px;
 
-        background: var(--soft-green);
+        background:
+            var(--soft-green);
 
-        border-left: 2px solid var(--olive);
+        border-left:
+            2px solid var(--olive);
 
-        color: var(--olive);
+        color:
+            var(--olive);
 
-        font-size: 9px;
+        font-size:
+            9px;
     }
 
 
@@ -845,7 +1111,8 @@
     ====================================================== */
 
     .recipe-grid {
-        display: grid;
+        display:
+            grid;
 
         grid-template-columns:
             repeat(
@@ -856,218 +1123,300 @@
                 )
             );
 
-        gap: 20px;
+        gap:
+            20px;
     }
 
 
     .recipe-card {
-        background: var(--surface);
+        background:
+            var(--surface);
 
-        border: 1px solid var(--border);
+        border:
+            1px solid var(--border);
 
-        overflow: hidden;
+        overflow:
+            hidden;
 
-        transition: .22s ease;
+        transition:
+            .22s ease;
     }
 
 
     .recipe-card:hover {
-        transform: translateY(-3px);
+        transform:
+            translateY(-3px);
 
-        border-color: #c8b9a8;
+        border-color:
+            #c8b9a8;
     }
 
 
     .recipe-image-wrapper {
-        width: 100%;
+        width:
+            100%;
 
-        height: 230px;
+        height:
+            230px;
 
-        overflow: hidden;
+        overflow:
+            hidden;
 
-        position: relative;
+        position:
+            relative;
 
-        background: var(--soft-brown);
+        background:
+            var(--soft-brown);
     }
 
 
     .recipe-image {
-        width: 100%;
-        height: 100%;
+        width:
+            100%;
 
-        display: block;
+        height:
+            100%;
 
-        object-fit: cover;
+        display:
+            block;
 
-        filter: saturate(.86);
+        object-fit:
+            cover;
 
-        transition: .3s ease;
+        filter:
+            saturate(.86);
+
+        transition:
+            .3s ease;
     }
 
 
     .recipe-card:hover .recipe-image {
-        transform: scale(1.035);
+        transform:
+            scale(1.035);
     }
 
 
     .no-image {
-        width: 100%;
-        height: 100%;
+        width:
+            100%;
 
-        display: flex;
+        height:
+            100%;
 
-        align-items: center;
+        display:
+            flex;
 
-        justify-content: center;
+        align-items:
+            center;
 
-        background: #e8e0d5;
+        justify-content:
+            center;
 
-        color: #8d8379;
+        background:
+            #e8e0d5;
 
-        font-size: 9px;
+        color:
+            #8d8379;
+
+        font-size:
+            9px;
     }
 
 
     .recipe-body {
-        padding: 16px;
+        padding:
+            16px;
     }
 
 
     .recipe-category {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        font-size: 7px;
+        font-size:
+            7px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: 1.2px;
+        letter-spacing:
+            1.2px;
 
-        margin-bottom: 6px;
+        margin-bottom:
+            6px;
     }
 
 
+    /* =====================================================
+       JUDUL RESEP DI DALAM CARD
+    ====================================================== */
+
     .recipe-title {
-        min-height: 50px;
+        min-height:
+            39px;
 
-        margin-bottom: 7px;
+        margin-bottom:
+            7px;
 
-        color: var(--text);
+        color:
+            var(--text);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 20px;
+        font-size:
+            15px;
 
-        font-weight: 500;
+        font-weight:
+            500;
 
-        line-height: 1.25;
+        line-height:
+            1.3;
 
-        display: -webkit-box;
+        display:
+            -webkit-box;
 
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp:
+            2;
 
-        -webkit-box-orient: vertical;
+        -webkit-box-orient:
+            vertical;
 
-        overflow: hidden;
+        overflow:
+            hidden;
     }
 
 
     .recipe-author {
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        margin-bottom: 12px;
+        margin-bottom:
+            12px;
     }
 
 
     .recipe-footer {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: space-between;
+        justify-content:
+            space-between;
 
-        gap: 8px;
+        gap:
+            8px;
 
-        padding-top: 12px;
+        padding-top:
+            12px;
 
-        border-top: 1px solid var(--border);
+        border-top:
+            1px solid var(--border);
     }
 
 
     .detail-btn {
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        border-bottom: 1px solid var(--brown);
+        border-bottom:
+            1px solid var(--brown);
 
-        padding-bottom: 2px;
+        padding-bottom:
+            2px;
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .detail-btn:hover {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        border-color: var(--terracotta);
+        border-color:
+            var(--terracotta);
     }
 
 
     .manage-actions {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 5px;
+        gap:
+            5px;
     }
 
 
     .edit-btn,
     .delete-btn {
-        padding: 6px 8px;
+        padding:
+            6px 8px;
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
     }
 
 
     .edit-btn {
-        background: var(--soft-green);
+        background:
+            var(--soft-green);
 
-        color: var(--olive);
+        color:
+            var(--olive);
 
-        border: 1px solid #cad0c0;
+        border:
+            1px solid #cad0c0;
     }
 
 
     .edit-btn:hover {
-        background: #dce3d3;
+        background:
+            #dce3d3;
     }
 
 
     .delete-btn {
-        background: transparent;
+        background:
+            transparent;
 
-        color: #944233;
+        color:
+            #944233;
 
-        border: 1px solid #d5bbb2;
+        border:
+            1px solid #d5bbb2;
 
-        cursor: pointer;
+        cursor:
+            pointer;
     }
 
 
     .delete-btn:hover {
-        background: var(--soft-red);
+        background:
+            var(--soft-red);
     }
 
 
@@ -1076,13 +1425,17 @@
     ====================================================== */
 
     .empty {
-        padding: 70px 20px;
+        padding:
+            70px 20px;
 
-        border-top: 1px solid var(--text);
+        border-top:
+            1px solid var(--text);
 
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+            1px solid var(--border);
 
-        text-align: center;
+        text-align:
+            center;
 
         background:
             rgba(
@@ -1095,221 +1448,290 @@
 
 
     .empty-icon {
-        color: var(--brown);
+        color:
+            var(--brown);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 30px;
+        font-size:
+            30px;
 
-        margin-bottom: 8px;
+        margin-bottom:
+            8px;
     }
 
 
     .empty h3 {
-        color: var(--text);
+        color:
+            var(--text);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 25px;
+        font-size:
+            25px;
 
-        font-weight: 500;
+        font-weight:
+            500;
 
-        margin-bottom: 6px;
+        margin-bottom:
+            6px;
     }
 
 
     .empty p {
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        font-size: 9px;
+        font-size:
+            9px;
 
-        margin-bottom: 16px;
+        margin-bottom:
+            16px;
     }
 
 
     /* =====================================================
-       EDITORIAL PAGINATION
+       PAGINATION
     ====================================================== */
 
     .pagination {
-        margin-top: 48px;
+        margin-top:
+            48px;
 
-        padding-top: 20px;
+        padding-top:
+            20px;
 
-        border-top: 1px solid var(--border);
+        border-top:
+            1px solid var(--border);
 
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: space-between;
+        justify-content:
+            space-between;
 
-        gap: 20px;
+        gap:
+            20px;
     }
 
 
     .pagination-side {
-        min-width: 120px;
+        min-width:
+            120px;
     }
 
 
     .pagination-side.right {
-        text-align: right;
+        text-align:
+            right;
     }
 
 
     .pagination-arrow {
-        display: inline-flex;
+        display:
+            inline-flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        gap: 8px;
+        gap:
+            8px;
 
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        font-weight: 700;
+        font-weight:
+            700;
 
-        text-transform: uppercase;
+        text-transform:
+            uppercase;
 
-        letter-spacing: 1px;
+        letter-spacing:
+            1px;
 
-        transition: .2s ease;
+        transition:
+            .2s ease;
     }
 
 
     .pagination-arrow:hover {
-        color: var(--terracotta);
+        color:
+            var(--terracotta);
 
-        transform: translateX(2px);
+        transform:
+            translateX(2px);
     }
 
 
     .pagination-arrow.previous:hover {
-        transform: translateX(-2px);
+        transform:
+            translateX(-2px);
     }
 
 
     .pagination-arrow.disabled {
-        color: #b8afa5;
+        color:
+            #b8afa5;
 
-        pointer-events: none;
+        pointer-events:
+            none;
     }
 
 
     .pagination-arrow .arrow {
-        font-size: 15px;
+        font-size:
+            15px;
 
-        line-height: 1;
+        line-height:
+            1;
     }
 
 
     .pagination-center {
-        display: flex;
+        display:
+            flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        gap: 2px;
+        gap:
+            2px;
     }
 
 
     .pagination-number {
-        position: relative;
+        position:
+            relative;
 
-        min-width: 34px;
+        min-width:
+            34px;
 
-        height: 34px;
+        height:
+            34px;
 
-        display: inline-flex;
+        display:
+            inline-flex;
 
-        align-items: center;
+        align-items:
+            center;
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 13px;
+        font-size:
+            13px;
 
-        font-weight: 500;
+        font-weight:
+            500;
     }
 
 
     .pagination-number:hover {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
     .pagination-number.active {
-        color: var(--brown);
+        color:
+            var(--brown);
 
-        font-weight: 600;
+        font-weight:
+            600;
     }
 
 
     .pagination-number.active::after {
-        content: "";
+        content:
+            "";
 
-        position: absolute;
+        position:
+            absolute;
 
-        left: 50%;
+        left:
+            50%;
 
-        bottom: 1px;
+        bottom:
+            1px;
 
-        width: 20px;
+        width:
+            20px;
 
-        height: 2px;
+        height:
+            2px;
 
-        background: var(--terracotta);
+        background:
+            var(--terracotta);
 
-        transform: translateX(-50%);
+        transform:
+            translateX(-50%);
     }
 
 
     .pagination-dots {
-        min-width: 24px;
+        min-width:
+            24px;
 
-        text-align: center;
+        text-align:
+            center;
 
-        color: #a49b91;
+        color:
+            #a49b91;
 
         font-family:
             "Playfair Display",
             Georgia,
             serif;
 
-        font-size: 13px;
+        font-size:
+            13px;
     }
 
 
     .pagination-info {
-        margin-top: 12px;
+        margin-top:
+            12px;
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        text-align: center;
+        text-align:
+            center;
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        letter-spacing: .4px;
+        letter-spacing:
+            .4px;
     }
 
 
     .pagination-info strong {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
@@ -1318,22 +1740,29 @@
     ====================================================== */
 
     .footer {
-        padding: 22px 25px;
+        padding:
+            22px 25px;
 
-        border-top: 1px solid var(--border);
+        border-top:
+            1px solid var(--border);
 
-        background: var(--surface-soft);
+        background:
+            var(--surface-soft);
 
-        color: var(--muted);
+        color:
+            var(--muted);
 
-        text-align: center;
+        text-align:
+            center;
 
-        font-size: 8px;
+        font-size:
+            8px;
     }
 
 
     .footer strong {
-        color: var(--brown);
+        color:
+            var(--brown);
     }
 
 
@@ -1344,14 +1773,17 @@
     @media (max-width: 1000px) {
 
         .hero {
-            grid-template-columns: 1fr;
+            grid-template-columns:
+                1fr;
 
-            gap: 25px;
+            gap:
+                25px;
         }
 
 
         .hero-image {
-            height: 245px;
+            height:
+                245px;
         }
 
 
@@ -1368,12 +1800,14 @@
 
 
         .search-box-wrapper {
-            width: 500px;
+            width:
+                500px;
         }
 
 
         .search-field {
-            width: 330px;
+            width:
+                330px;
         }
 
     }
@@ -1382,29 +1816,38 @@
     @media (max-width: 800px) {
 
         .navbar {
-            padding: 14px 20px;
+            padding:
+                14px 20px;
 
-            flex-wrap: wrap;
+            flex-wrap:
+                wrap;
 
-            gap: 10px;
+            gap:
+                10px;
         }
 
 
         .nav-menu {
-            order: 3;
+            order:
+                3;
 
-            width: 100%;
+            width:
+                100%;
 
-            margin-left: 0;
+            margin-left:
+                0;
 
-            gap: 20px;
+            gap:
+                20px;
 
-            overflow-x: auto;
+            overflow-x:
+                auto;
         }
 
 
         .nav-right {
-            margin-left: auto;
+            margin-left:
+                auto;
         }
 
 
@@ -1423,50 +1866,62 @@
 
 
         .section-heading {
-            align-items: flex-start;
+            align-items:
+                flex-start;
 
-            flex-direction: column;
+            flex-direction:
+                column;
         }
 
 
         .recipe-count {
-            margin-top: -7px;
+            margin-top:
+                -7px;
         }
 
 
         .search-area {
-            align-items: flex-start;
+            align-items:
+                flex-start;
 
-            gap: 14px;
+            gap:
+                14px;
 
-            flex-direction: column;
+            flex-direction:
+                column;
         }
 
 
         .search-box-wrapper {
-            width: 100%;
+            width:
+                100%;
 
-            margin-left: 0;
+            margin-left:
+                0;
         }
 
 
         .search-form {
-            width: 100%;
+            width:
+                100%;
 
-            justify-content: flex-start;
+            justify-content:
+                flex-start;
         }
 
 
         .search-field {
-            width: min(
-                100%,
-                430px
-            );
+            width:
+                min(
+                    100%,
+                    430px
+                );
         }
 
 
         .search-result {
-            text-align: left;
+            text-align:
+                left;
         }
 
     }
@@ -1475,145 +1930,179 @@
     @media (max-width: 600px) {
 
         .brand-text {
-            font-size: 18px;
+            font-size:
+                18px;
         }
 
 
         .nav-right .login-btn {
-            display: none;
+            display:
+                none;
         }
 
 
         .hero-content h1 {
-            font-size: 36px;
+            font-size:
+                36px;
         }
 
 
         .hero-image {
-            height: 215px;
+            height:
+                215px;
         }
 
 
         .hero-buttons {
-            flex-direction: column;
+            flex-direction:
+                column;
 
-            align-items: stretch;
+            align-items:
+                stretch;
         }
 
 
         .primary-btn,
         .secondary-btn {
-            width: 100%;
+            width:
+                100%;
         }
 
 
         .search-form {
-            flex-wrap: wrap;
+            flex-wrap:
+                wrap;
 
-            gap: 6px;
+            gap:
+                6px;
         }
 
 
         .search-field {
-            width: 100%;
+            width:
+                100%;
         }
 
 
         .search-button {
-            flex: 1;
+            flex:
+                1;
         }
 
 
         .reset-button {
-            margin-left: 0;
+            margin-left:
+                0;
         }
 
 
         .recipe-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns:
+                1fr;
         }
 
 
         .recipe-image-wrapper {
-            height: 235px;
+            height:
+                235px;
         }
 
 
         .recipe-footer {
-            align-items: flex-start;
+            align-items:
+                flex-start;
 
-            flex-direction: column;
+            flex-direction:
+                column;
         }
 
 
         .manage-actions {
-            width: 100%;
+            width:
+                100%;
         }
 
 
         .edit-btn,
         .delete-btn {
-            flex: 1;
+            flex:
+                1;
 
-            text-align: center;
+            text-align:
+                center;
         }
 
 
         .pagination {
-            margin-top: 35px;
+            margin-top:
+                35px;
 
-            padding-top: 17px;
+            padding-top:
+                17px;
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
                 1fr
                 1fr;
 
-            row-gap: 15px;
+            row-gap:
+                15px;
         }
 
 
         .pagination-center {
-            grid-column: 1 / -1;
+            grid-column:
+                1 / -1;
 
-            grid-row: 1;
+            grid-row:
+                1;
 
-            order: -1;
+            order:
+                -1;
         }
 
 
         .pagination-side {
-            min-width: auto;
+            min-width:
+                auto;
         }
 
 
         .pagination-side.right {
-            text-align: right;
+            text-align:
+                right;
         }
 
 
         .pagination-arrow {
-            font-size: 7px;
+            font-size:
+                7px;
         }
 
 
         .pagination-number {
-            min-width: 30px;
+            min-width:
+                30px;
 
-            height: 30px;
+            height:
+                30px;
 
-            font-size: 12px;
+            font-size:
+                12px;
         }
 
 
         .pagination-number.active::after {
-            width: 17px;
+            width:
+                17px;
         }
 
 
         .footer {
-            line-height: 1.7;
+            line-height:
+                1.7;
         }
 
     }
@@ -1643,13 +2132,10 @@ NAVBAR
 
 
     <div class="brand-text">
-
         Resep<span>Ku</span>
-
     </div>
 
 </a>
-
 
 
 <nav class="nav-menu">
@@ -1678,7 +2164,6 @@ NAVBAR
 
 
 </nav>
-
 
 
 <div class="nav-right">
@@ -1845,8 +2330,6 @@ MAIN
 >
 
 
-{{-- SECTION HEADER --}}
-
 <div class="section-heading">
 
 
@@ -1888,14 +2371,10 @@ MAIN
 
 
 
-{{-- =================================================
-     SEARCH
-================================================== --}}
+{{-- SEARCH --}}
 
 <div class="search-area">
 
-
-    {{-- JUDUL DI KIRI --}}
 
     <div class="search-intro">
 
@@ -1913,8 +2392,6 @@ MAIN
     </div>
 
 
-
-    {{-- FORM DI KANAN --}}
 
     <div class="search-box-wrapper">
 
@@ -2014,9 +2491,7 @@ MAIN
 
 
 
-{{-- =================================================
-     RECIPE LIST
-================================================== --}}
+{{-- RECIPE LIST --}}
 
 @if($recipes->count())
 
@@ -2102,7 +2577,6 @@ MAIN
                             Lihat Resep →
 
                         </a>
-
 
 
                         @if(
@@ -2247,17 +2721,13 @@ MAIN
 
 
 
-{{-- =================================================
-     PAGINATION
-================================================== --}}
+{{-- PAGINATION --}}
 
 @if($recipes->hasPages())
 
 
     <div class="pagination">
 
-
-        {{-- SEBELUMNYA --}}
 
         <div class="pagination-side">
 
@@ -2301,8 +2771,6 @@ MAIN
         </div>
 
 
-
-        {{-- NOMOR HALAMAN --}}
 
         <div class="pagination-center">
 
@@ -2420,8 +2888,6 @@ MAIN
         </div>
 
 
-
-        {{-- BERIKUTNYA --}}
 
         <div class="pagination-side right">
 

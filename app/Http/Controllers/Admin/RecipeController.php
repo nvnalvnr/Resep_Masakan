@@ -11,22 +11,36 @@ use Illuminate\Support\Str;
 class RecipeController extends Controller
 {
     /**
-     * Menampilkan semua resep
+     * Menampilkan semua resep admin
      */
     public function index(Request $request)
     {
         $query = Recipe::with('user')
             ->latest();
 
+
         /*
         |--------------------------------------------------------------------------
         | FILTER RESEP HARI INI
         |--------------------------------------------------------------------------
+        |
+        | Jika URL memiliki:
+        |
+        | /admin/recipes?today=1
+        |
+        | maka hanya resep yang dibuat hari ini
+        | yang akan ditampilkan.
+        |
         */
 
         if ($request->filled('today')) {
-            $query->whereDate('created_at', today());
+
+            $query->whereDate(
+                'created_at',
+                today()
+            );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -35,19 +49,48 @@ class RecipeController extends Controller
         */
 
         if ($request->filled('search')) {
+
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('title', 'like', '%' . $search . '%')
-                    ->orWhereHas('user', function ($userQuery) use ($search) {
-                        $userQuery->where('name', 'like', '%' . $search . '%');
-                    });
+
+                $q->where(
+                    'title',
+                    'like',
+                    '%' . $search . '%'
+                );
+
+                $q->orWhereHas(
+                    'user',
+                    function ($userQuery) use ($search) {
+
+                        $userQuery->where(
+                            'name',
+                            'like',
+                            '%' . $search . '%'
+                        );
+                    }
+                );
             });
         }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | PAGINATION
+        |--------------------------------------------------------------------------
+        */
 
         $recipes = $query
             ->paginate(10)
             ->withQueryString();
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | VIEW
+        |--------------------------------------------------------------------------
+        */
 
         return view(
             'admin.recipes.index',
@@ -85,9 +128,19 @@ class RecipeController extends Controller
     /**
      * Memperbarui resep
      */
-    public function update(Request $request, Recipe $recipe)
-    {
+    public function update(
+        Request $request,
+        Recipe $recipe
+    ) {
+
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDASI
+        |--------------------------------------------------------------------------
+        */
+
         $validated = $request->validate([
+
             'title' => [
                 'required',
                 'string',
@@ -110,18 +163,22 @@ class RecipeController extends Controller
                 'mimes:jpg,jpeg,png,webp',
                 'max:2048',
             ],
+
         ]);
 
 
         /*
         |--------------------------------------------------------------------------
-        | SLUG
+        | BUAT SLUG
         |--------------------------------------------------------------------------
         */
 
-        $slug = Str::slug($validated['title']);
+        $slug = Str::slug(
+            $validated['title']
+        );
 
         $originalSlug = $slug;
+
         $counter = 1;
 
         while (
@@ -129,7 +186,11 @@ class RecipeController extends Controller
                 ->where('id', '!=', $recipe->id)
                 ->exists()
         ) {
-            $slug = $originalSlug . '-' . $counter;
+
+            $slug =
+                $originalSlug .
+                '-' .
+                $counter;
 
             $counter++;
         }
@@ -143,17 +204,29 @@ class RecipeController extends Controller
 
         $imagePath = $recipe->image;
 
+
+        /*
+        | Jika ada gambar baru
+        */
+
         if ($request->hasFile('image')) {
 
             /*
-            | Hapus gambar lama jika merupakan file lokal
+            | Hapus gambar lama jika file lokal
             */
 
             if (
                 $recipe->image &&
-                !str_starts_with($recipe->image, 'http://') &&
-                !str_starts_with($recipe->image, 'https://')
+                !str_starts_with(
+                    $recipe->image,
+                    'http://'
+                ) &&
+                !str_starts_with(
+                    $recipe->image,
+                    'https://'
+                )
             ) {
+
                 Storage::disk('public')->delete(
                     $recipe->image
                 );
@@ -166,24 +239,44 @@ class RecipeController extends Controller
 
             $imagePath = $request
                 ->file('image')
-                ->store('recipes', 'public');
+                ->store(
+                    'recipes',
+                    'public'
+                );
         }
 
 
         /*
         |--------------------------------------------------------------------------
-        | UPDATE DATA
+        | UPDATE RESEP
         |--------------------------------------------------------------------------
         */
 
         $recipe->update([
-            'title' => $validated['title'],
-            'slug' => $slug,
-            'ingredients' => $validated['ingredients'],
-            'steps' => $validated['steps'],
-            'image' => $imagePath,
+
+            'title' =>
+                $validated['title'],
+
+            'slug' =>
+                $slug,
+
+            'ingredients' =>
+                $validated['ingredients'],
+
+            'steps' =>
+                $validated['steps'],
+
+            'image' =>
+                $imagePath,
+
         ]);
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | REDIRECT
+        |--------------------------------------------------------------------------
+        */
 
         return redirect()
             ->route(
@@ -210,9 +303,16 @@ class RecipeController extends Controller
 
         if (
             $recipe->image &&
-            !str_starts_with($recipe->image, 'http://') &&
-            !str_starts_with($recipe->image, 'https://')
+            !str_starts_with(
+                $recipe->image,
+                'http://'
+            ) &&
+            !str_starts_with(
+                $recipe->image,
+                'https://'
+            )
         ) {
+
             Storage::disk('public')->delete(
                 $recipe->image
             );
@@ -228,8 +328,16 @@ class RecipeController extends Controller
         $recipe->delete();
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | REDIRECT
+        |--------------------------------------------------------------------------
+        */
+
         return redirect()
-            ->route('admin.recipes.index')
+            ->route(
+                'admin.recipes.index'
+            )
             ->with(
                 'success',
                 'Resep berhasil dihapus.'

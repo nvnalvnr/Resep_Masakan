@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
 
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -54,6 +56,8 @@
             font-family: "DM Sans", Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         a {
@@ -115,7 +119,7 @@
         .brand-sub {
             display: block;
             color: var(--muted);
-            font-size: 8px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.4px;
             margin-top: 2px;
@@ -123,7 +127,7 @@
 
         .menu-title {
             color: #968d82;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -142,7 +146,7 @@
             gap: 11px;
             padding: 11px 10px;
             color: var(--muted);
-            font-size: 11px;
+            font-size: 13px;
             border-left: 2px solid transparent;
             transition: .2s;
         }
@@ -162,7 +166,7 @@
         .menu-icon {
             width: 19px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .sidebar-bottom {
@@ -197,7 +201,7 @@
 
         .user-mini-info strong {
             display: block;
-            font-size: 10px;
+            font-size: 12px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -206,7 +210,7 @@
         .user-mini-info span {
             display: block;
             color: var(--muted);
-            font-size: 8px;
+            font-size: 10px;
             margin-top: 2px;
         }
 
@@ -217,7 +221,7 @@
             border: 1px solid var(--border);
             padding: 9px;
             cursor: pointer;
-            font-size: 9px;
+            font-size: 11px;
             text-align: left;
         }
 
@@ -243,7 +247,7 @@
 
         .eyebrow {
             color: var(--terracotta);
-            font-size: 8px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -254,17 +258,18 @@
             font-family: "Playfair Display", Georgia, serif;
             font-size: 35px;
             font-weight: 500;
+            line-height: 1.2;
         }
 
         .topbar p {
             color: var(--muted);
-            font-size: 10px;
+            font-size: 13px;
             margin-top: 7px;
         }
 
         .date {
             color: var(--muted);
-            font-size: 9px;
+            font-size: 10px;
             border-bottom: 1px solid var(--brown);
             padding-bottom: 4px;
         }
@@ -291,7 +296,7 @@
 
         .intro-copy {
             color: var(--muted);
-            font-size: 10px;
+            font-size: 13px;
             line-height: 1.8;
             max-width: 380px;
             justify-self: end;
@@ -309,7 +314,7 @@
 
         .summary-text {
             color: var(--muted);
-            font-size: 9px;
+            font-size: 12px;
         }
 
         .summary-text strong {
@@ -321,7 +326,7 @@
 
         .browse-link {
             color: var(--brown);
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 700;
             border-bottom: 1px solid var(--brown);
             padding-bottom: 2px;
@@ -338,7 +343,7 @@
 
         .section-label {
             color: var(--terracotta);
-            font-size: 8px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.8px;
             font-weight: 700;
@@ -349,11 +354,12 @@
             font-family: "Playfair Display", Georgia, serif;
             font-size: 26px;
             font-weight: 500;
+            line-height: 1.3;
         }
 
         .section-description {
             color: var(--muted);
-            font-size: 9px;
+            font-size: 12px;
             margin-top: 4px;
         }
 
@@ -403,7 +409,7 @@
             justify-content: center;
             color: #8d8379;
             background: #e8e0d5;
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .heart {
@@ -426,7 +432,7 @@
 
         .favorite-label {
             color: var(--terracotta);
-            font-size: 7px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.1px;
@@ -443,7 +449,7 @@
 
         .favorite-author {
             color: var(--muted);
-            font-size: 8px;
+            font-size: 11px;
             margin-top: 7px;
         }
 
@@ -459,7 +465,7 @@
 
         .view-link {
             color: var(--brown);
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 700;
             border-bottom: 1px solid var(--brown);
             padding-bottom: 2px;
@@ -475,7 +481,7 @@
             background: transparent;
             color: #944233;
             padding: 6px 8px;
-            font-size: 8px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
         }
@@ -507,7 +513,7 @@
 
         .empty p {
             color: var(--muted);
-            font-size: 9px;
+            font-size: 12px;
             margin-bottom: 15px;
         }
 
@@ -518,7 +524,7 @@
             background: var(--brown);
             color: white;
             padding: 10px 14px;
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 700;
         }
 
@@ -531,7 +537,7 @@
             margin-top: 45px;
             padding-top: 17px;
             color: var(--muted);
-            font-size: 8px;
+            font-size: 10px;
             display: flex;
             justify-content: space-between;
         }
@@ -541,6 +547,7 @@
         }
 
         @media (max-width: 1000px) {
+
             .page {
                 grid-template-columns: 200px 1fr;
             }
@@ -552,9 +559,11 @@
             .favorite-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
         }
 
         @media (max-width: 800px) {
+
             .page {
                 display: block;
             }
@@ -607,9 +616,11 @@
             .intro-copy {
                 justify-self: start;
             }
+
         }
 
         @media (max-width: 600px) {
+
             .topbar {
                 display: block;
             }
@@ -654,6 +665,7 @@
                 display: block;
                 line-height: 1.7;
             }
+
         }
 
     </style>
@@ -1089,3 +1101,4 @@
 </body>
 
 </html>
+

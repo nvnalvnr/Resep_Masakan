@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,11 +15,59 @@ class UserController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->paginate(10);
+        $query = User::latest();
 
-        return view('admin.users.index', compact('users'));
+        /*
+        |----------------------------------------------------------------------
+        | SEARCH USER
+        |----------------------------------------------------------------------
+        */
+
+        if ($request->filled('search')) {
+
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+
+            });
+        }
+
+
+        /*
+        |----------------------------------------------------------------------
+        | DATA USER
+        |----------------------------------------------------------------------
+        */
+
+        $users = $query
+            ->paginate(10)
+            ->withQueryString();
+
+
+        /*
+        |----------------------------------------------------------------------
+        | SUMMARY
+        |----------------------------------------------------------------------
+        */
+
+        $totalUsers = User::count();
+
+        $totalAdmins = User::where('role', 'admin')->count();
+
+        $totalRegularUsers = User::where('role', 'user')->count();
+
+
+        return view('admin.users.index', compact(
+            'users',
+            'totalUsers',
+            'totalAdmins',
+            'totalRegularUsers'
+        ));
     }
 
 
@@ -43,6 +92,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+
             'name' => [
                 'required',
                 'string',
@@ -67,20 +117,31 @@ class UserController extends Controller
                 'required',
                 'in:user,admin',
             ],
+
         ]);
 
 
         User::create([
+
             'name' => $validated['name'],
+
             'email' => $validated['email'],
-            'password' => $validated['password'],
+
+            'password' => Hash::make(
+                $validated['password']
+            ),
+
             'role' => $validated['role'],
+
         ]);
 
 
         return redirect()
             ->route('admin.users.index')
-            ->with('success', 'User berhasil ditambahkan.');
+            ->with(
+                'success',
+                'User berhasil ditambahkan.'
+            );
     }
 
 
@@ -92,7 +153,10 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        return view(
+            'admin.users.edit',
+            compact('user')
+        );
     }
 
 
@@ -105,6 +169,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
+
             'name' => [
                 'required',
                 'string',
@@ -122,19 +187,27 @@ class UserController extends Controller
                 'required',
                 'in:user,admin',
             ],
+
         ]);
 
 
         $user->update([
+
             'name' => $validated['name'],
+
             'email' => $validated['email'],
+
             'role' => $validated['role'],
+
         ]);
 
 
         return redirect()
             ->route('admin.users.index')
-            ->with('success', 'Data user berhasil diperbarui.');
+            ->with(
+                'success',
+                'Data user berhasil diperbarui.'
+            );
     }
 
 
@@ -146,11 +219,20 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        /*
+        |----------------------------------------------------------------------
+        | ADMIN TIDAK BOLEH MENGHAPUS AKUN SENDIRI
+        |----------------------------------------------------------------------
+        */
+
         if ($user->id === auth()->id()) {
 
             return redirect()
                 ->route('admin.users.index')
-                ->with('error', 'Akun admin yang sedang digunakan tidak dapat dihapus.');
+                ->with(
+                    'error',
+                    'Akun admin yang sedang digunakan tidak dapat dihapus.'
+                );
         }
 
 
@@ -159,6 +241,9 @@ class UserController extends Controller
 
         return redirect()
             ->route('admin.users.index')
-            ->with('success', 'User berhasil dihapus.');
+            ->with(
+                'success',
+                'User berhasil dihapus.'
+            );
     }
 }

@@ -4,7 +4,6 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard - ResepKu</title>
@@ -19,14 +18,54 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #f7f3ed;
+            --white: #ffffff;
+            --surface: #fffdf9;
+            --surface-soft: #faf7f2;
+
+            --text: #2d2723;
+            --muted: #81776e;
+            --light-muted: #a8a099;
+
+            --border: #e7dfd5;
+
+            --brown: #6b3424;
+            --brown-dark: #512719;
+
+            --orange: #ea580c;
+            --orange-dark: #c2410c;
+
+            --soft-orange: #ffedd5;
+            --soft-purple: #f3e8ff;
+            --soft-green: #dcfce7;
+            --soft-blue: #dbeafe;
+            --soft-red: #fff1f2;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f8f6f3;
-            color: #292524;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
         }
+
 
         a {
             text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
         }
 
 
@@ -35,7 +74,6 @@
         ========================================== */
 
         .layout {
-            display: flex;
             min-height: 100vh;
         }
 
@@ -45,68 +83,91 @@
         ========================================== */
 
         .sidebar {
-            width: 245px;
-            background: #ffffff;
-            border-right: 1px solid #eee8e1;
-
-            padding: 25px 18px;
-
             position: fixed;
 
-            left: 0;
             top: 0;
+            left: 0;
             bottom: 0;
+
+            width: 250px;
+
+            background: var(--white);
+
+            border-right: 1px solid var(--border);
+
+            padding: 24px 18px;
+
+            display: flex;
+            flex-direction: column;
 
             z-index: 100;
         }
 
 
+        /* =========================================
+           BRAND
+        ========================================== */
+
         .brand {
             display: flex;
             align-items: center;
 
-            gap: 10px;
+            gap: 11px;
 
-            padding: 8px 10px 30px;
+            padding: 5px 10px 28px;
         }
 
 
         .brand-icon {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
 
-            background: #ffedd5;
+            background: var(--soft-orange);
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-size: 22px;
+            font-size: 23px;
+
+            flex-shrink: 0;
         }
 
 
         .brand-text h2 {
-            font-size: 17px;
-            color: #292524;
+            font-size: 18px;
+
+            line-height: 1.2;
+
+            color: var(--text);
         }
 
 
         .brand-text span {
+            display: block;
+
+            margin-top: 3px;
+
             font-size: 11px;
-            color: #a8a29e;
+
+            color: var(--light-muted);
         }
 
 
+        /* =========================================
+           MENU
+        ========================================== */
+
         .menu-title {
+            margin: 4px 10px 10px;
+
+            color: var(--light-muted);
+
             font-size: 10px;
 
-            font-weight: bold;
-
-            color: #a8a29e;
-
-            margin: 5px 10px 10px;
+            font-weight: 700;
 
             text-transform: uppercase;
 
@@ -116,58 +177,66 @@
 
         .menu {
             display: flex;
-
             flex-direction: column;
 
-            gap: 6px;
+            gap: 5px;
         }
 
 
         .menu a {
-            display: flex;
+            position: relative;
 
+            display: flex;
             align-items: center;
 
             gap: 12px;
 
-            padding: 12px 13px;
+            width: 100%;
+
+            padding: 13px 13px;
+
+            border-radius: 11px;
 
             color: #57534e;
 
-            border-radius: 10px;
-
             font-size: 13px;
+            font-weight: 500;
 
-            transition: 0.2s ease;
-
-            position: relative;
-
-            z-index: 101;
+            transition:
+                background .2s ease,
+                color .2s ease,
+                transform .2s ease;
         }
 
 
         .menu a:hover {
             background: #fff7ed;
 
-            color: #ea580c;
+            color: var(--orange);
+
+            transform: translateX(2px);
         }
 
 
         .menu a.active {
-            background: #ffedd5;
+            background: var(--soft-orange);
 
-            color: #ea580c;
+            color: var(--orange);
 
-            font-weight: bold;
+            font-weight: 700;
         }
 
 
         .menu-icon {
             width: 28px;
 
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            font-size: 17px;
+            font-size: 18px;
+
+            flex-shrink: 0;
         }
 
 
@@ -176,75 +245,73 @@
         ========================================== */
 
         .sidebar-bottom {
-            position: absolute;
-
-            left: 18px;
-            right: 18px;
-            bottom: 20px;
+            margin-top: auto;
         }
 
 
         .profile-mini {
-            background: #fafaf9;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 12px;
-
-            padding: 12px;
-
             display: flex;
-
             align-items: center;
 
             gap: 10px;
 
+            padding: 12px;
+
             margin-bottom: 10px;
+
+            background: var(--surface-soft);
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
         }
 
 
         .avatar {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
 
             border-radius: 50%;
 
             background: #fed7aa;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             color: #9a3412;
 
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 700;
+
+            flex-shrink: 0;
         }
 
 
         .profile-mini-info {
-            overflow: hidden;
+            min-width: 0;
         }
 
 
-        .profile-mini strong {
+        .profile-mini-info strong {
             display: block;
 
             font-size: 12px;
 
             white-space: nowrap;
-
             overflow: hidden;
-
             text-overflow: ellipsis;
         }
 
 
-        .profile-mini span {
-            font-size: 10px;
+        .profile-mini-info span {
+            display: block;
 
-            color: #a8a29e;
+            margin-top: 3px;
+
+            color: var(--light-muted);
+
+            font-size: 10px;
         }
 
 
@@ -253,24 +320,27 @@
 
             border: none;
 
-            background: #fff1f2;
+            background: var(--soft-red);
 
             color: #be123c;
 
-            padding: 10px;
+            padding: 11px 12px;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             cursor: pointer;
 
             font-size: 12px;
+            font-weight: 600;
 
-            transition: 0.2s;
+            transition: .2s ease;
         }
 
 
         .logout-btn:hover {
             background: #ffe4e6;
+
+            transform: translateY(-1px);
         }
 
 
@@ -279,15 +349,11 @@
         ========================================== */
 
         .main {
-            margin-left: 245px;
+            margin-left: 250px;
 
-            width: calc(100% - 245px);
+            width: calc(100% - 250px);
 
-            padding: 30px 35px 50px;
-
-            position: relative;
-
-            z-index: 1;
+            padding: 32px 38px 50px;
         }
 
 
@@ -299,92 +365,127 @@
             display: flex;
 
             align-items: center;
-
             justify-content: space-between;
+
+            gap: 20px;
 
             margin-bottom: 28px;
         }
 
 
         .welcome h1 {
-            font-size: 26px;
+            font-size: 28px;
 
-            margin-bottom: 6px;
+            line-height: 1.25;
+
+            margin-bottom: 7px;
         }
 
 
         .welcome p {
-            font-size: 13px;
+            color: var(--muted);
 
-            color: #a8a29e;
+            font-size: 14px;
+
+            line-height: 1.5;
         }
 
 
         .date-box {
-            background: white;
+            display: flex;
+            align-items: center;
 
-            border: 1px solid #eee8e1;
+            gap: 7px;
 
-            padding: 10px 15px;
+            padding: 11px 15px;
 
-            border-radius: 10px;
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            color: var(--muted);
 
             font-size: 12px;
 
-            color: #78716c;
+            white-space: nowrap;
         }
 
 
         /* =========================================
-           BANNER
+           WELCOME BANNER
         ========================================== */
 
         .banner {
-            background: linear-gradient(
-                120deg,
-                #ffedd5,
-                #fef3c7,
-                #ecfccb
-            );
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            border-radius: 18px;
+            gap: 30px;
 
-            padding: 25px 28px;
+            padding: 28px 30px;
 
             margin-bottom: 25px;
 
-            display: flex;
+            background:
+                linear-gradient(
+                    120deg,
+                    #ffedd5 0%,
+                    #fef3c7 52%,
+                    #ecfccb 100%
+                );
 
-            justify-content: space-between;
+            border: 1px solid #f1e1cc;
 
-            align-items: center;
+            border-radius: 19px;
 
             overflow: hidden;
         }
 
 
+        .banner-text {
+            min-width: 0;
+        }
+
+
         .banner-text h2 {
-            font-size: 21px;
+            font-size: 22px;
+
+            line-height: 1.35;
 
             margin-bottom: 8px;
         }
 
 
         .banner-text p {
-            font-size: 12px;
+            max-width: 620px;
 
-            color: #78716c;
+            color: #716860;
 
-            max-width: 500px;
+            font-size: 13px;
 
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
 
         .banner-icon {
-            font-size: 65px;
+            width: 90px;
+            height: 90px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,.55);
+
+            border-radius: 25px;
+
+            font-size: 53px;
 
             transform: rotate(-5deg);
+
+            flex-shrink: 0;
         }
 
 
@@ -404,75 +505,90 @@
 
 
         .stat-card {
-            background: white;
+            display: flex;
+            align-items: center;
 
-            border: 1px solid #eee8e1;
+            gap: 16px;
 
-            border-radius: 15px;
+            min-height: 105px;
 
             padding: 20px;
 
-            display: flex;
+            background: var(--white);
 
-            align-items: center;
+            border: 1px solid var(--border);
 
-            gap: 15px;
+            border-radius: 16px;
+
+            transition: .2s ease;
+        }
+
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 25px rgba(70, 50, 30, .06);
         }
 
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
-
-            border-radius: 13px;
+            width: 53px;
+            height: 53px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            font-size: 23px;
+            border-radius: 14px;
+
+            font-size: 24px;
 
             flex-shrink: 0;
         }
 
 
         .orange {
-            background: #ffedd5;
+            background: var(--soft-orange);
         }
 
 
         .purple {
-            background: #f3e8ff;
+            background: var(--soft-purple);
         }
 
 
         .green {
-            background: #dcfce7;
+            background: var(--soft-green);
         }
 
 
         .blue {
-            background: #dbeafe;
+            background: var(--soft-blue);
         }
 
 
         .stat-content span {
             display: block;
 
+            margin-bottom: 6px;
+
+            color: var(--light-muted);
+
             font-size: 11px;
+            font-weight: 700;
 
-            color: #a8a29e;
-
-            margin-bottom: 5px;
+            letter-spacing: .4px;
         }
 
 
         .stat-content strong {
             display: block;
 
-            font-size: 25px;
+            color: var(--text);
+
+            font-size: 27px;
+
+            line-height: 1;
         }
 
 
@@ -483,13 +599,9 @@
         .content-grid {
             display: grid;
 
-            grid-template-columns: 1.6fr 1fr;
+            grid-template-columns: minmax(0, 1.35fr) minmax(330px, 1fr);
 
             gap: 20px;
-
-            position: relative;
-
-            z-index: 2;
         }
 
 
@@ -498,50 +610,62 @@
         ========================================== */
 
         .section-card {
-            background: white;
+            min-width: 0;
 
-            border: 1px solid #eee8e1;
+            padding: 23px;
 
-            border-radius: 16px;
+            background: var(--white);
 
-            padding: 22px;
+            border: 1px solid var(--border);
 
-            position: relative;
-
-            z-index: 2;
+            border-radius: 17px;
         }
 
 
         .section-header {
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
-            margin-bottom: 20px;
+            gap: 15px;
+
+            margin-bottom: 18px;
         }
 
 
         .section-header h3 {
-            font-size: 16px;
+            font-size: 17px;
         }
 
 
         .section-header span {
-            font-size: 11px;
+            color: var(--light-muted);
 
-            color: #a8a29e;
+            font-size: 11px;
+        }
+
+
+        .section-header a {
+            color: var(--orange);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+
+        .section-header a:hover {
+            color: var(--orange-dark);
         }
 
 
         /* =========================================
-           MENU CARD
+           USER MENU CARDS
         ========================================== */
 
         .menu-card {
             display: flex;
-
             align-items: center;
 
             gap: 14px;
@@ -550,25 +674,23 @@
 
             padding: 15px;
 
-            background: #fafaf9;
-
-            border: 1px solid #eee8e1;
-
-            border-radius: 12px;
-
             margin-bottom: 10px;
 
-            color: #292524;
+            background: var(--surface-soft);
 
-            text-decoration: none;
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            color: var(--text);
 
             cursor: pointer;
 
-            position: relative;
-
-            z-index: 10;
-
-            transition: all 0.2s ease;
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                transform .2s ease,
+                box-shadow .2s ease;
         }
 
 
@@ -578,32 +700,30 @@
 
 
         .menu-card:hover {
-            background: #fff7ed;
+            background: #fffaf4;
 
-            border-color: #fed7aa;
+            border-color: #f0cfae;
 
             transform: translateY(-2px);
 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 7px 20px rgba(70, 50, 30, .06);
         }
 
 
         .menu-card:active {
-            transform: scale(0.99);
+            transform: translateY(0);
         }
 
 
         .menu-card-icon {
-            width: 44px;
-            height: 44px;
-
-            border-radius: 11px;
+            width: 45px;
+            height: 45px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
+
+            border-radius: 12px;
 
             font-size: 21px;
 
@@ -614,44 +734,54 @@
         .menu-card-info {
             flex: 1;
 
-            pointer-events: none;
+            min-width: 0;
         }
 
 
         .menu-card-info strong {
             display: block;
 
-            font-size: 13px;
-
             margin-bottom: 4px;
+
+            font-size: 13px;
         }
 
 
         .menu-card-info span {
             display: block;
 
+            color: var(--light-muted);
+
             font-size: 11px;
 
-            color: #a8a29e;
+            line-height: 1.5;
         }
 
 
         .arrow {
-            color: #a8a29e;
+            color: #b0a69d;
 
-            font-size: 18px;
+            font-size: 20px;
 
-            pointer-events: none;
+            flex-shrink: 0;
+
+            transition: .2s ease;
+        }
+
+
+        .menu-card:hover .arrow {
+            color: var(--orange);
+
+            transform: translateX(3px);
         }
 
 
         /* =========================================
-           RESEP TERBARU
+           RECIPE LIST
         ========================================== */
 
         .recipe-list {
             display: flex;
-
             flex-direction: column;
 
             gap: 10px;
@@ -660,63 +790,59 @@
 
         .recipe-item {
             display: flex;
-
             align-items: center;
 
             gap: 13px;
 
+            width: 100%;
+
             padding: 11px;
 
-            background: #fafaf9;
+            background: var(--surface-soft);
 
-            border: 1px solid #eee8e1;
+            border: 1px solid var(--border);
 
             border-radius: 12px;
 
-            color: #292524;
+            color: var(--text);
 
-            transition: 0.2s ease;
+            transition: .2s ease;
         }
 
 
         .recipe-item:hover {
-            background: #fff7ed;
+            background: #fffaf4;
 
-            border-color: #fed7aa;
+            border-color: #f0cfae;
 
             transform: translateY(-1px);
         }
 
 
-        .recipe-image {
-            width: 62px;
-            height: 62px;
-
-            border-radius: 10px;
-
-            object-fit: cover;
-
-            flex-shrink: 0;
-        }
-
-
+        .recipe-image,
         .recipe-no-image {
             width: 62px;
             height: 62px;
 
             border-radius: 10px;
 
-            background: #ffedd5;
+            flex-shrink: 0;
+        }
 
+
+        .recipe-image {
+            object-fit: cover;
+        }
+
+
+        .recipe-no-image {
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            font-size: 24px;
+            background: var(--soft-orange);
 
-            flex-shrink: 0;
+            font-size: 25px;
         }
 
 
@@ -730,9 +856,9 @@
         .recipe-info strong {
             display: block;
 
-            font-size: 13px;
-
             margin-bottom: 5px;
+
+            font-size: 13px;
 
             white-space: nowrap;
 
@@ -745,76 +871,29 @@
         .recipe-info span {
             display: block;
 
-            font-size: 11px;
+            color: var(--light-muted);
 
-            color: #a8a29e;
+            font-size: 11px;
 
             line-height: 1.5;
         }
 
 
         .recipe-arrow {
-            color: #a8a29e;
+            color: #b0a69d;
 
-            font-size: 17px;
+            font-size: 19px;
 
             flex-shrink: 0;
+
+            transition: .2s ease;
         }
 
 
-        /* =========================================
-           INFORMATION
-        ========================================== */
+        .recipe-item:hover .recipe-arrow {
+            color: var(--orange);
 
-        .info-box {
-            background: #fff7ed;
-
-            border-radius: 13px;
-
-            padding: 17px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .info-box h4 {
-            font-size: 13px;
-
-            margin-bottom: 7px;
-        }
-
-
-        .info-box p {
-            font-size: 11px;
-
-            color: #78716c;
-
-            line-height: 1.6;
-        }
-
-
-        .info-list {
-            list-style: none;
-        }
-
-
-        .info-list li {
-            display: flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            padding: 10px 0;
-
-            border-bottom: 1px solid #f5f5f4;
-
-            font-size: 12px;
-        }
-
-
-        .info-list li:last-child {
-            border-bottom: none;
+            transform: translateX(3px);
         }
 
 
@@ -823,55 +902,52 @@
         ========================================== */
 
         .empty-state {
+            padding: 32px 15px;
+
             text-align: center;
 
-            padding: 30px 15px;
-
-            color: #a8a29e;
+            color: var(--light-muted);
         }
 
 
         .empty-state-icon {
-            font-size: 35px;
-
             margin-bottom: 10px;
+
+            font-size: 38px;
         }
 
 
         .empty-state p {
-            font-size: 12px;
+            margin-bottom: 16px;
 
-            margin-bottom: 15px;
+            font-size: 12px;
         }
 
 
         .primary-btn {
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
 
             gap: 7px;
 
-            background: #ea580c;
+            padding: 11px 16px;
+
+            background: var(--orange);
 
             color: white;
 
-            padding: 10px 15px;
-
-            border-radius: 9px;
+            border-radius: 10px;
 
             font-size: 12px;
+            font-weight: 700;
 
-            font-weight: bold;
-
-            transition: 0.2s ease;
+            transition: .2s ease;
         }
 
 
         .primary-btn:hover {
-            background: #c2410c;
+            background: var(--orange-dark);
 
             transform: translateY(-1px);
         }
@@ -882,24 +958,25 @@
         ========================================== */
 
         footer {
-            text-align: center;
-
             padding-top: 30px;
 
-            color: #a8a29e;
+            color: var(--light-muted);
+
+            text-align: center;
 
             font-size: 11px;
         }
 
 
         /* =========================================
-           RESPONSIVE
+           RESPONSIVE 1100
         ========================================== */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
 
-            .stats {
-                grid-template-columns: 1fr 1fr;
+            .main {
+                padding-left: 28px;
+                padding-right: 28px;
             }
 
 
@@ -910,12 +987,41 @@
         }
 
 
+        /* =========================================
+           RESPONSIVE 900
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .stats .stat-card:last-child {
+                grid-column: span 2;
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE 750
+        ========================================== */
+
         @media (max-width: 750px) {
 
             .sidebar {
-                width: 70px;
+                width: 74px;
 
                 padding: 18px 10px;
+            }
+
+
+            .brand {
+                justify-content: center;
+
+                padding: 5px 0 25px;
             }
 
 
@@ -927,31 +1033,36 @@
             }
 
 
-            .brand {
+            .menu a {
                 justify-content: center;
 
-                padding-bottom: 25px;
+                padding: 13px 8px;
             }
 
 
-            .menu a {
-                justify-content: center;
+            .menu-icon {
+                width: auto;
+
+                font-size: 19px;
             }
 
 
             .main {
-                margin-left: 70px;
+                margin-left: 74px;
 
-                width: calc(100% - 70px);
+                width: calc(100% - 74px);
 
-                padding: 22px 18px;
+                padding: 25px 20px 40px;
             }
 
 
-            .topbar {
-                align-items: flex-start;
+            .welcome h1 {
+                font-size: 24px;
+            }
 
-                gap: 15px;
+
+            .welcome p {
+                font-size: 13px;
             }
 
 
@@ -961,21 +1072,35 @@
 
 
             .banner {
-                padding: 20px;
+                padding: 23px;
             }
 
 
-            .banner-icon {
-                font-size: 45px;
+            .banner-text h2 {
+                font-size: 20px;
+            }
+
+
+            .banner-text p {
+                font-size: 12px;
             }
 
         }
 
 
+        /* =========================================
+           RESPONSIVE 550
+        ========================================== */
+
         @media (max-width: 550px) {
 
-            .stats {
-                grid-template-columns: 1fr;
+            .main {
+                padding: 20px 15px 35px;
+            }
+
+
+            .topbar {
+                margin-bottom: 20px;
             }
 
 
@@ -984,8 +1109,137 @@
             }
 
 
+            .welcome p {
+                font-size: 12px;
+            }
+
+
+            .banner {
+                padding: 20px;
+
+                margin-bottom: 18px;
+            }
+
+
             .banner-icon {
                 display: none;
+            }
+
+
+            .banner-text h2 {
+                font-size: 18px;
+            }
+
+
+            .banner-text p {
+                font-size: 11px;
+            }
+
+
+            .stats {
+                grid-template-columns: 1fr;
+
+                gap: 10px;
+
+                margin-bottom: 18px;
+            }
+
+
+            .stats .stat-card:last-child {
+                grid-column: auto;
+            }
+
+
+            .stat-card {
+                min-height: 90px;
+
+                padding: 16px;
+            }
+
+
+            .stat-icon {
+                width: 46px;
+                height: 46px;
+
+                font-size: 21px;
+            }
+
+
+            .stat-content strong {
+                font-size: 24px;
+            }
+
+
+            .section-card {
+                padding: 17px;
+            }
+
+
+            .section-header h3 {
+                font-size: 15px;
+            }
+
+
+            .menu-card {
+                padding: 13px;
+            }
+
+
+            .menu-card-icon {
+                width: 41px;
+                height: 41px;
+
+                font-size: 19px;
+            }
+
+
+            .menu-card-info strong {
+                font-size: 12px;
+            }
+
+
+            .menu-card-info span {
+                font-size: 10px;
+            }
+
+
+            .recipe-image,
+            .recipe-no-image {
+                width: 55px;
+                height: 55px;
+            }
+
+        }
+
+
+        /* =========================================
+           VERY SMALL SCREEN
+        ========================================== */
+
+        @media (max-width: 400px) {
+
+            .sidebar {
+                width: 62px;
+
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+
+
+            .main {
+                margin-left: 62px;
+
+                width: calc(100% - 62px);
+            }
+
+
+            .menu a {
+                padding: 12px 5px;
+            }
+
+
+            .menu-icon {
+                font-size: 18px;
             }
 
         }
@@ -1001,12 +1255,14 @@
 <div class="layout">
 
 
-    <!-- =========================================
-         SIDEBAR USER
-    ========================================== -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="sidebar">
 
+
+        <!-- BRAND -->
 
         <div class="brand">
 
@@ -1030,10 +1286,14 @@
         </div>
 
 
+        <!-- MENU TITLE -->
+
         <div class="menu-title">
             Menu Utama
         </div>
 
+
+        <!-- MENU -->
 
         <nav class="menu">
 
@@ -1058,9 +1318,7 @@
 
             <!-- RESEP SAYA -->
 
-            <a
-                href="{{ route('recipes.my') }}"
-            >
+            <a href="{{ route('recipes.my') }}">
 
                 <span class="menu-icon">
                     📖
@@ -1075,9 +1333,7 @@
 
             <!-- TAMBAH RESEP -->
 
-            <a
-                href="{{ route('recipes.create') }}"
-            >
+            <a href="{{ route('recipes.create') }}">
 
                 <span class="menu-icon">
                     ➕
@@ -1092,9 +1348,7 @@
 
             <!-- RESEP TERSIMPAN -->
 
-            <a
-                href="{{ route('user.favorites') }}"
-            >
+            <a href="{{ route('user.favorites') }}">
 
                 <span class="menu-icon">
                     ❤️
@@ -1109,9 +1363,7 @@
 
             <!-- PROFILE -->
 
-            <a
-                href="{{ route('profile.edit') }}"
-            >
+            <a href="{{ route('profile.edit') }}">
 
                 <span class="menu-icon">
                     👤
@@ -1124,11 +1376,9 @@
             </a>
 
 
-            <!-- LIHAT WEBSITE -->
+            <!-- WEBSITE -->
 
-            <a
-                href="{{ route('recipes.index') }}"
-            >
+            <a href="{{ route('recipes.index') }}">
 
                 <span class="menu-icon">
                     🌐
@@ -1144,12 +1394,14 @@
         </nav>
 
 
-        <!-- =========================================
+        <!-- =================================================
              SIDEBAR BOTTOM
-        ========================================== -->
+        ================================================== -->
 
         <div class="sidebar-bottom">
 
+
+            <!-- USER -->
 
             <div class="profile-mini">
 
@@ -1177,6 +1429,8 @@
             </div>
 
 
+            <!-- LOGOUT -->
+
             <form
                 method="POST"
                 action="{{ route('logout') }}"
@@ -1189,7 +1443,7 @@
                     class="logout-btn"
                 >
 
-                    🚪 Keluar
+                    🚪&nbsp; Keluar
 
                 </button>
 
@@ -1203,16 +1457,16 @@
 
 
 
-    <!-- =========================================
-         MAIN
-    ========================================== -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main class="main">
 
 
-        <!-- =========================================
+        <!-- =================================================
              TOPBAR
-        ========================================== -->
+        ================================================== -->
 
         <div class="topbar">
 
@@ -1232,8 +1486,13 @@
 
             <div class="date-box">
 
-                📅
-                {{ now()->format('d M Y') }}
+                <span>
+                    📅
+                </span>
+
+                <span>
+                    {{ now()->format('d M Y') }}
+                </span>
 
             </div>
 
@@ -1242,17 +1501,17 @@
 
 
 
-        <!-- =========================================
-             BANNER
-        ========================================== -->
+        <!-- =================================================
+             WELCOME BANNER
+        ================================================== -->
 
-        <div class="banner">
+        <section class="banner">
 
 
             <div class="banner-text">
 
                 <h2>
-                    Selamat datang, {{ auth()->user()->name }}!
+                    Selamat datang, {{ auth()->user()->name }}! 👋
                 </h2>
 
                 <p>
@@ -1269,20 +1528,33 @@
             </div>
 
 
-        </div>
+        </section>
 
 
 
-        <!-- =========================================
+        <!-- =================================================
              STATISTICS
-        ========================================== -->
+        ================================================== -->
 
         @php
+
+            /*
+            |--------------------------------------------------------------------------
+            | RESEP MILIK USER
+            |--------------------------------------------------------------------------
+            */
 
             $myRecipes = \App\Models\Recipe::where(
                 'user_id',
                 auth()->id()
             )->count();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | RESEP TERSIMPAN
+            |--------------------------------------------------------------------------
+            */
 
             $savedRecipes = 0;
 
@@ -1292,11 +1564,10 @@
                     \Illuminate\Support\Facades\Schema::hasTable('favorites')
                 ) {
 
-                    $savedRecipes = \Illuminate\Support\Facades\DB::table(
-                        'favorites'
-                    )
-                    ->where('user_id', auth()->id())
-                    ->count();
+                    $savedRecipes =
+                        \Illuminate\Support\Facades\DB::table('favorites')
+                            ->where('user_id', auth()->id())
+                            ->count();
 
                 }
 
@@ -1306,12 +1577,32 @@
 
             }
 
-            $totalRecipes = \App\Models\Recipe::count();
+
+            /*
+            |--------------------------------------------------------------------------
+            | TOTAL SEMUA RESEP
+            |--------------------------------------------------------------------------
+            */
+
+            $totalRecipes =
+                \App\Models\Recipe::count();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | RESEP TERBARU
+            |--------------------------------------------------------------------------
+            */
+
+            $latestRecipes =
+                \App\Models\Recipe::latest()
+                    ->take(4)
+                    ->get();
 
         @endphp
 
 
-        <div class="stats">
+        <section class="stats">
 
 
             <!-- RESEP SAYA -->
@@ -1388,20 +1679,20 @@
             </div>
 
 
-        </div>
+        </section>
 
 
 
-        <!-- =========================================
-             CONTENT
-        ========================================== -->
+        <!-- =================================================
+             CONTENT GRID
+        ================================================== -->
 
-        <div class="content-grid">
+        <section class="content-grid">
 
 
-            <!-- =====================================
-                 MENU USER
-            ====================================== -->
+            <!-- =================================================
+                 MENU SAYA
+            ================================================== -->
 
             <div class="section-card">
 
@@ -1427,9 +1718,7 @@
                 >
 
                     <div class="menu-card-icon orange">
-
                         📖
-
                     </div>
 
 
@@ -1462,9 +1751,7 @@
                 >
 
                     <div class="menu-card-icon green">
-
                         ➕
-
                     </div>
 
 
@@ -1489,7 +1776,7 @@
 
 
 
-                <!-- FAVORITE -->
+                <!-- RESEP TERSIMPAN -->
 
                 <a
                     href="{{ route('user.favorites') }}"
@@ -1497,9 +1784,7 @@
                 >
 
                     <div class="menu-card-icon purple">
-
                         ❤️
-
                     </div>
 
 
@@ -1532,9 +1817,7 @@
                 >
 
                     <div class="menu-card-icon blue">
-
                         👤
-
                     </div>
 
 
@@ -1562,9 +1845,9 @@
 
 
 
-            <!-- =====================================
+            <!-- =================================================
                  RESEP TERBARU
-            ====================================== -->
+            ================================================== -->
 
             <div class="section-card">
 
@@ -1575,27 +1858,12 @@
                         Resep Terbaru
                     </h3>
 
-                    <a
-                        href="{{ route('recipes.index') }}"
-                        style="
-                            font-size:11px;
-                            color:#ea580c;
-                            font-weight:bold;
-                        "
-                    >
+
+                    <a href="{{ route('recipes.index') }}">
                         Lihat Semua →
                     </a>
 
                 </div>
-
-
-                @php
-
-                    $latestRecipes = \App\Models\Recipe::latest()
-                        ->take(4)
-                        ->get();
-
-                @endphp
 
 
                 @if ($latestRecipes->count() > 0)
@@ -1637,7 +1905,7 @@
                                     </strong>
 
                                     <span>
-                                        Lihat detail resep
+                                        Lihat detail resep →
                                     </span>
 
                                 </div>
@@ -1690,13 +1958,13 @@
             </div>
 
 
-        </div>
+        </section>
 
 
 
-        <!-- =========================================
+        <!-- =================================================
              FOOTER
-        ========================================== -->
+        ================================================== -->
 
         <footer>
 

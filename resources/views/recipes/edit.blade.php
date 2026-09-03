@@ -62,6 +62,7 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            font-size: 14px;
         }
 
 
@@ -87,7 +88,7 @@
 
             display: grid;
 
-            grid-template-columns: 235px 1fr;
+            grid-template-columns: 240px minmax(0, 1fr);
         }
 
 
@@ -123,7 +124,7 @@
 
             gap: 11px;
 
-            padding-bottom: 30px;
+            padding: 5px 7px 31px;
 
             border-bottom: 1px solid var(--border);
         }
@@ -148,15 +149,19 @@
             font-family: Georgia, serif;
 
             font-size: 18px;
+
+            flex-shrink: 0;
         }
 
 
         .brand-name {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 21px;
+            font-size: 22px;
 
             font-weight: 600;
+
+            line-height: 1;
         }
 
 
@@ -165,28 +170,28 @@
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
             text-transform: uppercase;
 
-            letter-spacing: 1.4px;
+            letter-spacing: 1.5px;
 
-            margin-top: 2px;
+            margin-top: 5px;
         }
 
 
         .menu-title {
             color: #968d82;
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
             text-transform: uppercase;
 
-            letter-spacing: 1.5px;
+            letter-spacing: 1.6px;
 
-            margin: 26px 9px 10px;
+            margin: 28px 9px 11px;
         }
 
 
@@ -206,15 +211,18 @@
 
             gap: 11px;
 
-            padding: 11px 10px;
+            padding: 12px 10px;
 
             color: var(--muted);
 
-            font-size: 11px;
+            font-size: 13px;
 
             border-left: 2px solid transparent;
 
-            transition: .2s ease;
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
         }
 
 
@@ -228,7 +236,7 @@
         .menu a.active {
             color: var(--brown);
 
-            background: #eee4d8;
+            background: var(--soft-brown);
 
             border-left-color: var(--brown);
 
@@ -241,7 +249,9 @@
 
             text-align: center;
 
-            font-size: 13px;
+            font-size: 15px;
+
+            flex-shrink: 0;
         }
 
 
@@ -252,7 +262,7 @@
         .sidebar-bottom {
             margin-top: auto;
 
-            padding-top: 18px;
+            padding-top: 19px;
 
             border-top: 1px solid var(--border);
         }
@@ -265,13 +275,13 @@
 
             gap: 10px;
 
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
 
         .avatar {
-            width: 35px;
-            height: 35px;
+            width: 38px;
+            height: 38px;
 
             border-radius: 50%;
 
@@ -285,7 +295,7 @@
 
             justify-content: center;
 
-            font-size: 12px;
+            font-size: 13px;
 
             font-weight: 700;
 
@@ -301,7 +311,7 @@
         .user-mini-info strong {
             display: block;
 
-            font-size: 10px;
+            font-size: 12px;
 
             white-space: nowrap;
 
@@ -316,9 +326,9 @@
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
 
@@ -331,11 +341,11 @@
 
             border: 1px solid var(--border);
 
-            padding: 9px;
+            padding: 10px;
 
             cursor: pointer;
 
-            font-size: 9px;
+            font-size: 11px;
 
             text-align: left;
 
@@ -359,7 +369,7 @@
         .main {
             min-width: 0;
 
-            padding: 35px 48px 50px;
+            padding: 38px 48px 50px;
         }
 
 
@@ -374,7 +384,7 @@
 
             justify-content: space-between;
 
-            padding-bottom: 24px;
+            padding-bottom: 26px;
 
             border-bottom: 1px solid var(--border);
         }
@@ -383,7 +393,7 @@
         .eyebrow {
             color: var(--terracotta);
 
-            font-size: 8px;
+            font-size: 10px;
 
             font-weight: 700;
 
@@ -391,14 +401,14 @@
 
             letter-spacing: 2px;
 
-            margin-bottom: 7px;
+            margin-bottom: 9px;
         }
 
 
         .topbar h1 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 34px;
+            font-size: 36px;
 
             font-weight: 500;
 
@@ -409,20 +419,24 @@
         .topbar p {
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 13px;
 
-            margin-top: 7px;
+            margin-top: 9px;
+
+            line-height: 1.6;
         }
 
 
         .date {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 11px;
 
             border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 4px;
+            padding-bottom: 6px;
+
+            white-space: nowrap;
         }
 
 
@@ -437,18 +451,18 @@
 
             gap: 30px;
 
-            margin: 27px 0 28px;
+            margin: 28px 0 29px;
 
             border-bottom: 1px solid var(--border);
 
-            padding-bottom: 28px;
+            padding-bottom: 29px;
         }
 
 
         .intro h2 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 25px;
+            font-size: 27px;
 
             font-weight: 500;
 
@@ -466,7 +480,7 @@
         .intro-copy {
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 13px;
 
             line-height: 1.8;
 
@@ -485,11 +499,11 @@
 
             color: var(--brown);
 
-            font-size: 9px;
+            font-size: 11px;
 
             font-weight: 700;
 
-            padding-bottom: 2px;
+            padding-bottom: 3px;
 
             border-bottom: 1px solid var(--brown);
 
@@ -509,11 +523,13 @@
         ====================================================== */
 
         .alert {
-            padding: 11px 13px;
+            padding: 12px 14px;
 
             margin-bottom: 18px;
 
-            font-size: 9px;
+            font-size: 11px;
+
+            line-height: 1.6;
         }
 
 
@@ -538,16 +554,16 @@
         .alert-error strong {
             display: block;
 
-            margin-bottom: 5px;
+            margin-bottom: 6px;
 
-            font-size: 9px;
+            font-size: 12px;
         }
 
 
         .alert-error ul {
-            padding-left: 17px;
+            padding-left: 18px;
 
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
 
@@ -558,7 +574,7 @@
         .recipe-summary {
             display: grid;
 
-            grid-template-columns: 145px 1fr;
+            grid-template-columns: 145px minmax(0, 1fr);
 
             align-items: center;
 
@@ -568,9 +584,9 @@
 
             border-bottom: 1px solid var(--border);
 
-            padding: 16px 0;
+            padding: 17px 0;
 
-            margin-bottom: 27px;
+            margin-bottom: 28px;
         }
 
 
@@ -599,14 +615,14 @@
 
             justify-content: center;
 
-            font-size: 9px;
+            font-size: 11px;
         }
 
 
         .summary-label {
             color: var(--terracotta);
 
-            font-size: 8px;
+            font-size: 10px;
 
             font-weight: 700;
 
@@ -614,27 +630,29 @@
 
             letter-spacing: 1.3px;
 
-            margin-bottom: 6px;
+            margin-bottom: 7px;
         }
 
 
         .summary-title {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 25px;
+            font-size: 27px;
 
             font-weight: 500;
 
             line-height: 1.2;
+
+            word-break: break-word;
         }
 
 
         .summary-author {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 11px;
 
-            margin-top: 7px;
+            margin-top: 8px;
         }
 
 
@@ -655,20 +673,20 @@
         .form-head {
             display: flex;
 
-            align-items: end;
+            align-items: baseline;
 
             justify-content: space-between;
 
             gap: 20px;
 
-            margin-bottom: 14px;
+            margin-bottom: 18px;
         }
 
 
         .form-head h3 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 22px;
+            font-size: 23px;
 
             font-weight: 500;
         }
@@ -677,7 +695,7 @@
         .form-head span {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 11px;
         }
 
 
@@ -686,12 +704,12 @@
 
             border: 1px solid var(--border);
 
-            padding: 26px;
+            padding: 27px;
         }
 
 
         .form-group {
-            margin-bottom: 23px;
+            margin-bottom: 24px;
         }
 
 
@@ -705,22 +723,22 @@
 
             color: var(--text);
 
-            font-size: 10px;
+            font-size: 12px;
 
             font-weight: 700;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
 
         .help-text {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 11px;
 
             line-height: 1.6;
 
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
 
@@ -736,21 +754,21 @@
 
             outline: none;
 
-            font-size: 10px;
+            font-size: 13px;
 
-            padding: 11px 12px;
+            padding: 12px 13px;
 
             transition: .2s ease;
         }
 
 
         input[type="text"] {
-            height: 43px;
+            height: 44px;
         }
 
 
         textarea {
-            min-height: 165px;
+            min-height: 170px;
 
             resize: vertical;
 
@@ -777,9 +795,9 @@
 
             color: #9b3d2d;
 
-            font-size: 8px;
+            font-size: 10px;
 
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
 
@@ -788,9 +806,9 @@
         ====================================================== */
 
         .current-image {
-            margin-bottom: 13px;
+            margin-bottom: 14px;
 
-            padding-bottom: 14px;
+            padding-bottom: 15px;
 
             border-bottom: 1px solid var(--border);
         }
@@ -803,7 +821,7 @@
 
             letter-spacing: 1px;
 
-            font-size: 8px;
+            font-size: 10px;
 
             margin-bottom: 8px;
         }
@@ -825,9 +843,11 @@
         .current-note {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
-            margin-top: 6px;
+            margin-top: 7px;
+
+            line-height: 1.6;
         }
 
 
@@ -840,7 +860,7 @@
 
             background: var(--surface-soft);
 
-            padding: 15px;
+            padding: 16px;
         }
 
 
@@ -849,7 +869,7 @@
 
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 12px;
 
             cursor: pointer;
         }
@@ -862,13 +882,13 @@
 
             border: none;
 
-            padding: 8px 11px;
+            padding: 9px 12px;
 
-            margin-right: 8px;
+            margin-right: 9px;
 
             font-family: inherit;
 
-            font-size: 8px;
+            font-size: 11px;
 
             cursor: pointer;
         }
@@ -877,20 +897,20 @@
         .image-note {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
             line-height: 1.6;
 
-            margin-top: 8px;
+            margin-top: 9px;
         }
 
 
         .image-preview {
             display: none;
 
-            margin-top: 14px;
+            margin-top: 15px;
 
-            padding-top: 14px;
+            padding-top: 15px;
 
             border-top: 1px solid var(--border);
         }
@@ -899,13 +919,13 @@
         .preview-label {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
 
             text-transform: uppercase;
 
             letter-spacing: 1px;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
 
@@ -937,23 +957,25 @@
 
             border-top: 1px solid var(--border);
 
-            padding-top: 18px;
+            padding-top: 20px;
 
-            margin-top: 4px;
+            margin-top: 7px;
         }
 
 
         .form-note {
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 10px;
+
+            line-height: 1.6;
         }
 
 
         .form-actions {
             display: flex;
 
-            gap: 7px;
+            gap: 8px;
         }
 
 
@@ -964,9 +986,9 @@
 
             justify-content: center;
 
-            padding: 10px 14px;
+            padding: 10px 15px;
 
-            font-size: 9px;
+            font-size: 11px;
 
             font-weight: 700;
 
@@ -1015,17 +1037,19 @@
         .footer {
             border-top: 1px solid var(--border);
 
-            margin-top: 45px;
+            margin-top: 50px;
 
-            padding-top: 17px;
+            padding-top: 18px;
 
             color: var(--muted);
 
-            font-size: 8px;
+            font-size: 11px;
 
             display: flex;
 
             justify-content: space-between;
+
+            gap: 20px;
         }
 
 
@@ -1041,12 +1065,12 @@
         @media (max-width: 950px) {
 
             .page {
-                grid-template-columns: 200px 1fr;
+                grid-template-columns: 210px minmax(0, 1fr);
             }
 
 
             .main {
-                padding: 30px;
+                padding: 32px;
             }
 
 
@@ -1057,6 +1081,8 @@
 
             .intro-copy {
                 justify-self: start;
+
+                max-width: 520px;
             }
 
         }
@@ -1087,7 +1113,7 @@
 
 
             .brand {
-                padding-bottom: 15px;
+                padding-bottom: 16px;
 
                 border-bottom: none;
             }
@@ -1103,9 +1129,11 @@
 
                 overflow-x: auto;
 
-                gap: 4px;
+                gap: 3px;
 
-                margin-top: 7px;
+                margin-top: 10px;
+
+                padding-bottom: 2px;
             }
 
 
@@ -1115,6 +1143,8 @@
                 border-left: none;
 
                 border-bottom: 2px solid transparent;
+
+                padding: 10px 12px;
             }
 
 
@@ -1131,7 +1161,7 @@
 
 
             .main {
-                padding: 27px 20px 45px;
+                padding: 28px 20px 45px;
             }
 
         }
@@ -1139,15 +1169,13 @@
 
         @media (max-width: 600px) {
 
-            .topbar {
-                display: block;
+            .main {
+                padding: 25px 17px 35px;
             }
 
 
-            .date {
-                display: inline-block;
-
-                margin-top: 12px;
+            .topbar {
+                display: block;
             }
 
 
@@ -1156,8 +1184,39 @@
             }
 
 
+            .topbar p {
+                font-size: 12px;
+            }
+
+
+            .date {
+                display: inline-block;
+
+                margin-top: 15px;
+            }
+
+
+            .intro {
+                margin-top: 22px;
+
+                gap: 15px;
+            }
+
+
+            .intro h2 {
+                font-size: 23px;
+            }
+
+
+            .intro-copy {
+                font-size: 12px;
+            }
+
+
             .recipe-summary {
                 grid-template-columns: 1fr;
+
+                gap: 14px;
             }
 
 
@@ -1169,8 +1228,27 @@
             }
 
 
+            .summary-title {
+                font-size: 25px;
+            }
+
+
             .form-card {
-                padding: 18px;
+                padding: 19px;
+            }
+
+
+            .form-head {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 5px;
+            }
+
+
+            .form-head h3 {
+                font-size: 22px;
             }
 
 
@@ -1182,7 +1260,7 @@
             .form-note {
                 display: block;
 
-                margin-bottom: 12px;
+                margin-bottom: 14px;
             }
 
 
@@ -1193,6 +1271,8 @@
 
             .btn {
                 flex: 1;
+
+                text-align: center;
             }
 
 
@@ -1207,7 +1287,42 @@
             .footer {
                 display: block;
 
-                line-height: 1.7;
+                line-height: 1.8;
+            }
+
+
+            .footer span {
+                display: block;
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .main {
+                padding-left: 15px;
+
+                padding-right: 15px;
+            }
+
+
+            .form-card {
+                padding: 16px;
+            }
+
+
+            .summary-title {
+                font-size: 23px;
+            }
+
+
+            .btn {
+                font-size: 10px;
+
+                padding-left: 10px;
+
+                padding-right: 10px;
             }
 
         }

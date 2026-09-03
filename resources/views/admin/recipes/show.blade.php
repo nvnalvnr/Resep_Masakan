@@ -1,1527 +1,1467 @@
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        {{ $recipe->title }} | ResepKu
-    </title>
+<meta charset="UTF-8">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
-        rel="stylesheet"
-    >
+<title>
+    {{ $recipe->title }} | ResepKu
+</title>
 
-    <style>
 
-        :root {
-            --paper: #f5f1e8;
-            --paper-light: #fbf9f4;
-            --white: #fffdf8;
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-            --ink: #29231f;
-            --muted: #777067;
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    rel="stylesheet"
+>
 
-            --brown: #6b3424;
-            --terracotta: #a95635;
-            --olive: #5d6947;
 
-            --line: #ded7ca;
+<style>
 
-            --soft-brown: #eee3d8;
-            --soft-green: #e7eadf;
-        }
+    :root {
+        --paper: #f5f1e8;
+        --paper-light: #fbf9f4;
+        --white: #fffdf8;
 
+        --ink: #29231f;
+        --muted: #777067;
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        --brown: #6b3424;
+        --terracotta: #a95635;
+        --olive: #5d6947;
 
+        --line: #ded7ca;
 
-        html {
-            scroll-behavior: smooth;
-        }
+        --soft-brown: #eee3d8;
+        --soft-green: #e7eadf;
+    }
 
 
-        body {
-            font-family: "DM Sans", Arial, sans-serif;
-            background: var(--paper);
-            color: var(--ink);
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    body {
+        font-family: "DM Sans", Arial, sans-serif;
 
+        background: var(--paper);
 
-        button {
-            font-family: inherit;
-        }
+        color: var(--ink);
 
+        font-size: 14px;
 
-        /* =====================================================
-           LAYOUT
-        ====================================================== */
+        line-height: 1.6;
+    }
 
-        .page {
-            min-height: 100vh;
 
-            display: grid;
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 
-            grid-template-columns: 235px 1fr;
-        }
 
+    button {
+        font-family: inherit;
+    }
 
-        /* =====================================================
-           SIDEBAR
-        ====================================================== */
 
-        .sidebar {
-            background: var(--paper-light);
+    /* =====================================================
+       LAYOUT
+    ====================================================== */
 
-            border-right: 1px solid var(--line);
+    .page {
+        min-height: 100vh;
 
-            min-height: 100vh;
+        display: grid;
 
-            padding: 30px 22px;
+        grid-template-columns: 235px minmax(0, 1fr);
+    }
 
-            display: flex;
 
-            flex-direction: column;
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
 
-            position: sticky;
+    .sidebar {
+        background: var(--paper-light);
 
-            top: 0;
+        border-right: 1px solid var(--line);
 
-            height: 100vh;
-        }
+        min-height: 100vh;
 
+        height: 100vh;
 
-        .brand {
-            display: flex;
+        padding: 30px 22px;
 
-            align-items: center;
+        display: flex;
 
-            gap: 11px;
+        flex-direction: column;
 
-            padding-bottom: 31px;
+        position: sticky;
 
-            border-bottom: 1px solid var(--line);
-        }
+        top: 0;
 
+        z-index: 20;
 
-        .brand-mark {
-            width: 40px;
-            height: 40px;
+        overflow-y: auto;
+    }
 
-            background: var(--brown);
 
-            color: white;
+    .brand {
+        display: flex;
 
-            display: flex;
+        align-items: center;
 
-            align-items: center;
-            justify-content: center;
+        gap: 11px;
 
-            border-radius: 50%;
+        padding-bottom: 31px;
 
-            font-family: Georgia, serif;
+        border-bottom: 1px solid var(--line);
+    }
 
-            font-size: 18px;
-        }
 
+    .brand-mark {
+        width: 40px;
+        height: 40px;
 
-        .brand-name {
-            font-family: "Playfair Display", Georgia, serif;
+        flex-shrink: 0;
 
-            font-size: 21px;
+        background: var(--brown);
 
-            font-weight: 600;
-        }
+        color: white;
 
+        display: flex;
 
-        .brand-small {
-            display: block;
+        align-items: center;
 
-            color: var(--muted);
+        justify-content: center;
 
-            font-size: 9px;
+        border-radius: 50%;
 
-            letter-spacing: 1.5px;
+        font-family: Georgia, serif;
 
-            text-transform: uppercase;
+        font-size: 18px;
+    }
 
-            margin-top: 2px;
-        }
 
+    .brand-name {
+        font-family: "Playfair Display", Georgia, serif;
 
-        .nav-label {
-            color: #968d82;
+        font-size: 21px;
 
-            font-size: 9px;
+        font-weight: 600;
+    }
 
-            font-weight: 700;
 
-            letter-spacing: 1.6px;
+    .brand-small {
+        display: block;
 
-            text-transform: uppercase;
+        color: var(--muted);
 
-            margin: 27px 9px 11px;
-        }
+        font-size: 9px;
 
+        letter-spacing: 1.5px;
 
-        .nav {
-            display: flex;
+        text-transform: uppercase;
 
-            flex-direction: column;
+        margin-top: 2px;
+    }
 
-            gap: 3px;
-        }
 
+    .nav-label {
+        color: #968d82;
 
-        .nav a {
-            display: flex;
+        font-size: 10px;
 
-            align-items: center;
+        font-weight: 700;
 
-            gap: 11px;
+        letter-spacing: 1.5px;
 
-            padding: 11px 10px;
+        text-transform: uppercase;
 
-            font-size: 12px;
+        margin: 27px 9px 11px;
+    }
 
-            color: var(--muted);
 
-            border-left: 2px solid transparent;
+    .nav {
+        display: flex;
 
-            transition: .2s ease;
-        }
+        flex-direction: column;
 
+        gap: 3px;
+    }
 
-        .nav a:hover {
-            color: var(--brown);
 
-            background: #f4eee5;
-        }
+    .nav a {
+        display: flex;
 
+        align-items: center;
 
-        .nav a.active {
-            color: var(--brown);
+        gap: 11px;
 
-            border-left-color: var(--brown);
+        padding: 11px 10px;
 
-            background: #eee5da;
+        color: var(--muted);
 
-            font-weight: 700;
-        }
+        font-size: 13px;
 
+        border-left: 2px solid transparent;
 
-        .nav-icon {
-            width: 19px;
+        transition: .2s ease;
+    }
 
-            text-align: center;
 
-            font-size: 14px;
-        }
+    .nav a:hover {
+        color: var(--brown);
 
+        background: #f4eee5;
+    }
 
-        /* =====================================================
-           SIDEBAR BOTTOM
-        ====================================================== */
 
-        .sidebar-bottom {
-            margin-top: auto;
-        }
+    .nav a.active {
+        color: var(--brown);
 
+        border-left-color: var(--brown);
 
-        .admin-user {
-            border-top: 1px solid var(--line);
+        background: #eee5da;
 
-            padding-top: 19px;
+        font-weight: 700;
+    }
 
-            display: flex;
 
-            align-items: center;
+    .nav-icon {
+        width: 19px;
 
-            gap: 10px;
-        }
+        text-align: center;
 
+        font-size: 15px;
+    }
 
-        .avatar {
-            width: 34px;
-            height: 34px;
 
-            background: var(--soft-brown);
+    .sidebar-bottom {
+        margin-top: auto;
+    }
 
-            color: var(--brown);
 
-            display: flex;
+    .admin-user {
+        border-top: 1px solid var(--line);
 
-            align-items: center;
+        padding-top: 19px;
 
-            justify-content: center;
+        display: flex;
 
-            border-radius: 50%;
+        align-items: center;
 
-            font-size: 12px;
+        gap: 10px;
+    }
 
-            font-weight: 700;
 
-            flex-shrink: 0;
-        }
+    .avatar {
+        width: 35px;
+        height: 35px;
 
+        background: var(--soft-brown);
 
-        .admin-user-info {
-            min-width: 0;
-        }
+        color: var(--brown);
 
+        display: flex;
 
-        .admin-user strong {
-            display: block;
+        align-items: center;
 
-            font-size: 11px;
+        justify-content: center;
 
-            max-width: 125px;
+        border-radius: 50%;
 
-            white-space: nowrap;
+        font-size: 12px;
 
-            overflow: hidden;
+        font-weight: 700;
+    }
 
-            text-overflow: ellipsis;
-        }
 
+    .admin-user-info {
+        min-width: 0;
+    }
 
-        .admin-user span {
-            display: block;
 
-            color: var(--muted);
+    .admin-user strong {
+        display: block;
 
-            font-size: 9px;
+        max-width: 125px;
 
-            margin-top: 2px;
-        }
+        white-space: nowrap;
 
+        overflow: hidden;
 
-        .logout {
-            margin-top: 14px;
+        text-overflow: ellipsis;
 
-            width: 100%;
+        font-size: 12px;
+    }
 
-            background: transparent;
 
-            border: 1px solid var(--line);
+    .admin-user span {
+        display: block;
 
-            padding: 9px;
+        color: var(--muted);
 
-            color: var(--muted);
+        font-size: 10px;
 
-            cursor: pointer;
+        margin-top: 2px;
+    }
 
-            font-size: 10px;
 
-            transition: .2s;
-        }
+    .logout {
+        margin-top: 14px;
 
+        width: 100%;
 
-        .logout:hover {
-            color: #9b3d2d;
+        background: transparent;
 
-            border-color: #c9a397;
+        border: 1px solid var(--line);
 
-            background: #faf0ec;
-        }
+        padding: 10px;
 
+        color: var(--muted);
 
-        /* =====================================================
-           MAIN
-        ====================================================== */
+        cursor: pointer;
 
-        .main {
-            min-width: 0;
+        font-size: 11px;
+    }
 
-            padding: 36px 48px 45px;
-        }
 
+    .logout:hover {
+        color: #9b3d2d;
 
-        /* =====================================================
-           HEADER
-        ====================================================== */
+        border-color: #c9a397;
 
-        .top {
-            display: flex;
+        background: #faf0ec;
+    }
 
-            justify-content: space-between;
 
-            align-items: flex-start;
+    /* =====================================================
+       MAIN
+    ====================================================== */
 
-            padding-bottom: 27px;
+    .main {
+        min-width: 0;
 
-            border-bottom: 1px solid var(--line);
-        }
+        padding: 36px 48px 45px;
+    }
 
 
-        .eyebrow {
-            font-size: 9px;
+    .top {
+        display: flex;
 
-            text-transform: uppercase;
+        justify-content: space-between;
 
-            letter-spacing: 2px;
+        align-items: flex-start;
 
-            color: var(--terracotta);
+        gap: 25px;
 
-            font-weight: 700;
+        padding-bottom: 27px;
 
-            margin-bottom: 8px;
-        }
+        border-bottom: 1px solid var(--line);
+    }
 
 
-        .top h1 {
-            font-family: "Playfair Display", Georgia, serif;
+    .eyebrow {
+        font-size: 10px;
 
-            font-size: 36px;
+        text-transform: uppercase;
 
-            font-weight: 500;
+        letter-spacing: 2px;
 
-            line-height: 1.15;
-        }
+        color: var(--terracotta);
 
+        font-weight: 700;
 
-        .top p {
-            margin-top: 8px;
+        margin-bottom: 8px;
+    }
 
-            color: var(--muted);
 
-            font-size: 12px;
-        }
+    .top h1 {
+        font-family: "Playfair Display", Georgia, serif;
 
+        font-size: 36px;
 
-        .date {
-            font-size: 10px;
+        font-weight: 500;
 
-            color: var(--muted);
+        line-height: 1.15;
+    }
 
-            border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 5px;
-        }
+    .top p {
+        margin-top: 8px;
 
+        color: var(--muted);
 
-        /* =====================================================
-           BACK LINK
-        ====================================================== */
+        font-size: 12px;
+    }
 
-        .back-link {
-            display: inline-block;
 
-            margin-top: 25px;
+    .date {
+        font-size: 11px;
 
-            margin-bottom: 20px;
+        color: var(--muted);
 
-            color: var(--brown);
+        border-bottom: 1px solid var(--brown);
 
-            font-size: 10px;
+        padding-bottom: 5px;
 
-            font-weight: 700;
+        flex-shrink: 0;
+    }
 
-            border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 3px;
+    .back-link {
+        display: inline-block;
 
-            transition: .2s;
-        }
+        margin-top: 25px;
 
+        margin-bottom: 20px;
 
-        .back-link:hover {
-            color: var(--terracotta);
+        color: var(--brown);
 
-            border-color: var(--terracotta);
-        }
+        font-size: 10px;
 
+        font-weight: 700;
 
-        /* =====================================================
-           SUCCESS
-        ====================================================== */
+        border-bottom: 1px solid var(--brown);
 
-        .success {
-            background: var(--soft-green);
+        padding-bottom: 3px;
 
-            border: 1px solid #d5dac8;
+        transition: .2s;
+    }
 
-            color: var(--olive);
 
-            padding: 13px 16px;
+    .back-link:hover {
+        color: var(--terracotta);
 
-            margin-bottom: 20px;
+        border-color: var(--terracotta);
+    }
 
-            font-size: 11px;
-        }
 
+    .success {
+        background: var(--soft-green);
 
-        /* =====================================================
-           RECIPE HEADER
-        ====================================================== */
+        border: 1px solid #d5dac8;
 
-        .recipe-heading {
-            margin-bottom: 25px;
-        }
+        color: var(--olive);
 
+        padding: 13px 16px;
 
-        .recipe-heading h2 {
-            font-family: "Playfair Display", Georgia, serif;
+        margin-bottom: 20px;
 
-            font-size: 32px;
+        font-size: 11px;
+    }
 
-            line-height: 1.25;
 
-            font-weight: 500;
+    /* =====================================================
+       RECIPE HEADER
+    ====================================================== */
 
-            max-width: 800px;
-        }
+    .recipe-heading {
+        margin-bottom: 25px;
+    }
 
 
-        .recipe-author {
-            margin-top: 9px;
+    .recipe-heading h2 {
+        font-family: "Playfair Display", Georgia, serif;
 
-            color: var(--muted);
+        font-size: 32px;
 
-            font-size: 10px;
-        }
+        line-height: 1.25;
 
+        font-weight: 500;
 
-        .recipe-author strong {
-            color: var(--brown);
-        }
+        max-width: 800px;
+    }
 
 
-        /* =====================================================
-           RECIPE HERO
-        ====================================================== */
+    .recipe-author {
+        margin-top: 9px;
+
+        color: var(--muted);
+
+        font-size: 11px;
+    }
+
+
+    .recipe-author strong {
+        color: var(--brown);
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .recipe-hero {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1.15fr)
+            minmax(280px, .85fr);
+
+        gap: 28px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .recipe-image {
+        width: 100%;
+
+        height: 350px;
+
+        object-fit: cover;
+
+        display: block;
+
+        border: 1px solid var(--line);
+
+        background: #e9e3d9;
+    }
+
+
+    .no-image {
+        width: 100%;
+
+        height: 350px;
+
+        border: 1px solid var(--line);
+
+        background: #e9e3d9;
+
+        color: #91887d;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-family: "Playfair Display", Georgia, serif;
+
+        font-size: 16px;
+    }
+
+
+    .quick-info {
+        border-top: 1px solid var(--ink);
+
+        border-bottom: 1px solid var(--line);
+
+        align-self: start;
+    }
+
+
+    .quick-info-row {
+        padding: 17px 0;
+
+        border-bottom: 1px solid var(--line);
+    }
+
+
+    .quick-info-row:last-child {
+        border-bottom: none;
+    }
+
+
+    .quick-info-label {
+        color: var(--muted);
+
+        font-size: 10px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.2px;
+
+        margin-bottom: 5px;
+    }
+
+
+    .quick-info-value {
+        font-family: "Playfair Display", Georgia, serif;
+
+        font-size: 19px;
+
+        font-weight: 500;
+    }
+
+
+    /* =====================================================
+       CONTENT
+    ====================================================== */
+
+    .recipe-content {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1.5fr)
+            minmax(250px, .7fr);
+
+        gap: 45px;
+    }
+
+
+    .content-section {
+        margin-bottom: 35px;
+    }
+
+
+    .section-title {
+        font-family: "Playfair Display", Georgia, serif;
+
+        font-size: 24px;
+
+        font-weight: 500;
+
+        padding-bottom: 10px;
+
+        border-bottom: 1px solid var(--ink);
+
+        margin-bottom: 18px;
+    }
+
+
+    .ingredients,
+    .steps {
+        white-space: pre-line;
+
+        font-size: 13px;
+
+        line-height: 1.95;
+
+        color: #4f4842;
+    }
+
+
+    /* =====================================================
+       ADMIN ACTIONS
+    ====================================================== */
+
+    .admin-actions {
+        border-top: 1px solid var(--ink);
+
+        margin-top: 10px;
+    }
+
+
+    .action-link {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        padding: 15px 0;
+
+        border-bottom: 1px solid var(--line);
+
+        font-size: 12px;
+
+        transition: .2s;
+    }
+
+
+    .action-link:hover {
+        color: var(--terracotta);
+
+        padding-left: 5px;
+    }
+
+
+    .action-left {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        min-width: 0;
+    }
+
+
+    .action-icon {
+        width: 29px;
+        height: 29px;
+
+        flex-shrink: 0;
+
+        border: 1px solid var(--line);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 12px;
+    }
+
+
+    .action-description {
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        margin-top: 2px;
+    }
+
+
+    .delete-form {
+        border-bottom: 1px solid var(--line);
+    }
+
+
+    .delete-button {
+        width: 100%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 15px;
+
+        padding: 15px 0;
+
+        background: transparent;
+
+        border: none;
+
+        color: #9b3d2d;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        text-align: left;
+    }
+
+
+    .delete-button:hover {
+        padding-left: 5px;
+
+        color: #7f3024;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer {
+        border-top: 1px solid var(--line);
+
+        margin-top: 50px;
+
+        padding-top: 18px;
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        display: flex;
+
+        justify-content: space-between;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 1000px) {
 
         .recipe-hero {
-            display: grid;
-
-            grid-template-columns:
-                minmax(0, 1.15fr)
-                minmax(280px, .85fr);
-
-            gap: 28px;
-
-            margin-bottom: 30px;
+            grid-template-columns: 1fr;
         }
 
+        .recipe-content {
+            grid-template-columns: 1fr;
+        }
 
-        .recipe-image {
-            width: 100%;
+    }
 
-            height: 350px;
 
-            object-fit: cover;
+    @media (max-width: 850px) {
 
+        .page {
             display: block;
-
-            border: 1px solid var(--line);
-
-            background: #e9e3d9;
         }
 
+        .sidebar {
+            position: relative;
 
-        .no-image {
             width: 100%;
 
-            height: 350px;
+            height: auto;
 
-            border: 1px solid var(--line);
+            min-height: auto;
 
-            background: #e9e3d9;
+            padding: 18px 22px;
 
-            color: #91887d;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 16px;
-        }
-
-
-        .quick-info {
-            border-top: 1px solid var(--ink);
-
-            border-bottom: 1px solid var(--line);
-
-            align-self: start;
-        }
-
-
-        .quick-info-row {
-            padding: 16px 0;
+            border-right: none;
 
             border-bottom: 1px solid var(--line);
         }
 
+        .brand {
+            padding-bottom: 15px;
 
-        .quick-info-row:last-child {
             border-bottom: none;
         }
 
-
-        .quick-info-label {
-            color: var(--muted);
-
-            font-size: 9px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.2px;
-
-            margin-bottom: 5px;
+        .nav-label {
+            display: none;
         }
 
+        .nav {
+            flex-direction: row;
 
-        .quick-info-value {
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 18px;
-
-            font-weight: 500;
-        }
-
-
-        /* =====================================================
-           CONTENT
-        ====================================================== */
-
-        .recipe-content {
-            display: grid;
-
-            grid-template-columns:
-                minmax(0, 1.5fr)
-                minmax(250px, .7fr);
-
-            gap: 45px;
-        }
-
-
-        .content-section {
-            margin-bottom: 35px;
-        }
-
-
-        .section-title {
-            font-family: "Playfair Display", Georgia, serif;
-
-            font-size: 23px;
-
-            font-weight: 500;
-
-            padding-bottom: 10px;
-
-            border-bottom: 1px solid var(--ink);
-
-            margin-bottom: 18px;
-        }
-
-
-        .ingredients {
-            white-space: pre-line;
-
-            font-size: 12px;
-
-            line-height: 1.9;
-
-            color: #4f4842;
-        }
-
-
-        .steps {
-            white-space: pre-line;
-
-            font-size: 12px;
-
-            line-height: 2;
-
-            color: #4f4842;
-        }
-
-
-        /* =====================================================
-           ADMIN ACTIONS
-        ====================================================== */
-
-        .admin-actions {
-            border-top: 1px solid var(--ink);
+            overflow-x: auto;
 
             margin-top: 10px;
         }
 
+        .nav a {
+            white-space: nowrap;
 
-        .action-link {
-            display: flex;
+            border-left: none;
 
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding: 15px 0;
-
-            border-bottom: 1px solid var(--line);
-
-            font-size: 11px;
-
-            transition: .2s;
+            border-bottom: 2px solid transparent;
         }
 
+        .nav a.active {
+            border-left: none;
 
-        .action-link:hover {
-            color: var(--terracotta);
-
-            padding-left: 5px;
+            border-bottom-color: var(--brown);
         }
 
-
-        .action-left {
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
+        .sidebar-bottom {
+            display: none;
         }
 
+    }
 
-        .action-icon {
-            width: 28px;
 
-            height: 28px;
+    @media (max-width: 600px) {
 
-            border: 1px solid var(--line);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 11px;
+        .main {
+            padding: 25px 18px;
         }
 
-
-        .action-description {
+        .top {
             display: block;
-
-            color: var(--muted);
-
-            font-size: 8px;
-
-            margin-top: 2px;
         }
 
+        .date {
+            display: inline-block;
 
-        .delete-form {
-            border-bottom: 1px solid var(--line);
+            margin-top: 15px;
         }
 
-
-        .delete-button {
-            width: 100%;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            padding: 15px 0;
-
-            background: transparent;
-
-            border: none;
-
-            color: #9b3d2d;
-
-            cursor: pointer;
-
-            font-size: 11px;
-
-            text-align: left;
-
-            transition: .2s;
+        .recipe-heading h2 {
+            font-size: 28px;
         }
 
-
-        .delete-button:hover {
-            padding-left: 5px;
-
-            color: #7f3024;
+        .recipe-image,
+        .no-image {
+            height: 260px;
         }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
 
         footer {
-            border-top: 1px solid var(--line);
+            display: block;
 
-            margin-top: 50px;
-
-            padding-top: 18px;
-
-            color: var(--muted);
-
-            font-size: 9px;
-
-            display: flex;
-
-            justify-content: space-between;
+            line-height: 1.7;
         }
 
+    }
 
-        /* =====================================================
-           RESPONSIVE
-        ====================================================== */
+</style>
 
-        @media (max-width: 1000px) {
-
-            .recipe-hero {
-                grid-template-columns: 1fr;
-            }
-
-
-            .recipe-content {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-
-        @media (max-width: 850px) {
-
-            .page {
-                display: block;
-            }
-
-
-            .sidebar {
-                position: relative;
-
-                width: 100%;
-
-                height: auto;
-
-                min-height: auto;
-
-                padding: 18px 22px;
-
-                border-right: none;
-
-                border-bottom: 1px solid var(--line);
-            }
-
-
-            .brand {
-                padding-bottom: 15px;
-
-                border-bottom: none;
-            }
-
-
-            .nav-label {
-                display: none;
-            }
-
-
-            .nav {
-                flex-direction: row;
-
-                overflow-x: auto;
-
-                margin-top: 10px;
-            }
-
-
-            .nav a {
-                white-space: nowrap;
-
-                border-left: none;
-
-                border-bottom: 2px solid transparent;
-            }
-
-
-            .nav a.active {
-                border-left: none;
-
-                border-bottom-color: var(--brown);
-            }
-
-
-            .sidebar-bottom {
-                display: none;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .main {
-                padding: 25px 18px;
-            }
-
-
-            .top {
-                display: block;
-            }
-
-
-            .date {
-                display: inline-block;
-
-                margin-top: 15px;
-            }
-
-
-            .recipe-heading h2 {
-                font-size: 27px;
-            }
-
-
-            .recipe-image,
-            .no-image {
-                height: 260px;
-            }
-
-
-            footer {
-                display: block;
-
-                line-height: 1.7;
-            }
-
-        }
-
-    </style>
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
 
-    {{-- =====================================================
-         SIDEBAR
-    ====================================================== --}}
-
-    <aside class="sidebar">
+<aside class="sidebar">
 
 
-        <a
-            href="{{ route('admin.dashboard') }}"
-            class="brand"
-        >
+    <a
+        href="{{ route('admin.dashboard') }}"
+        class="brand"
+    >
 
-            <div class="brand-mark">
-                R
+        <div class="brand-mark">
+            R
+        </div>
+
+
+        <div>
+
+            <div class="brand-name">
+                ResepKu
             </div>
 
 
-            <div>
+            <span class="brand-small">
+                Culinary Journal
+            </span>
 
-                <div class="brand-name">
-                    ResepKu
-                </div>
+        </div>
+
+    </a>
 
 
-                <span class="brand-small">
-                    Culinary Journal
-                </span>
+    <div class="nav-label">
+        Menu Utama
+    </div>
 
-            </div>
+
+    <nav class="nav">
+
+
+        <a href="{{ route('admin.dashboard') }}">
+
+            <span class="nav-icon">
+                ⌂
+            </span>
+
+            <span>
+                Dashboard
+            </span>
 
         </a>
 
-
-        <div class="nav-label">
-            Menu Utama
-        </div>
-
-
-        <nav class="nav">
-
-
-            <a href="{{ route('admin.dashboard') }}">
-
-                <span class="nav-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Dashboard
-                </span>
-
-            </a>
-
-
-            <a
-                href="{{ route('admin.recipes.index') }}"
-                class="active"
-            >
-
-                <span class="nav-icon">
-                    ≡
-                </span>
-
-                <span>
-                    Semua Resep
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('recipes.create') }}">
-
-                <span class="nav-icon">
-                    +
-                </span>
-
-                <span>
-                    Tambah Resep
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('admin.users.index') }}">
-
-                <span class="nav-icon">
-                    ○
-                </span>
-
-                <span>
-                    Data User
-                </span>
-
-            </a>
-
-
-            <a href="{{ route('recipes.index') }}">
-
-                <span class="nav-icon">
-                    ↗
-                </span>
-
-                <span>
-                    Lihat Website
-                </span>
-
-            </a>
-
-
-        </nav>
-
-
-        <div class="sidebar-bottom">
-
-
-            <div class="admin-user">
-
-
-                <div class="avatar">
-
-                    {{ strtoupper(
-                        substr(
-                            auth()->user()->name,
-                            0,
-                            1
-                        )
-                    ) }}
-
-                </div>
-
-
-                <div class="admin-user-info">
-
-                    <strong>
-                        {{ auth()->user()->name }}
-                    </strong>
-
-
-                    <span>
-                        Administrator
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-
-                @csrf
-
-
-                <button
-                    type="submit"
-                    class="logout"
-                >
-                    Keluar dari akun
-                </button>
-
-            </form>
-
-
-        </div>
-
-
-    </aside>
-
-
-
-    {{-- =====================================================
-         MAIN
-    ====================================================== --}}
-
-    <main class="main">
-
-
-        {{-- HEADER --}}
-
-        <header class="top">
-
-
-            <div>
-
-                <div class="eyebrow">
-                    ResepKu / Admin / Detail
-                </div>
-
-
-                <h1>
-                    Detail Resep
-                </h1>
-
-
-                <p>
-                    Informasi lengkap resep yang dipilih.
-                </p>
-
-            </div>
-
-
-            <div class="date">
-
-                {{ now()->translatedFormat('l, d F Y') }}
-
-            </div>
-
-
-        </header>
-
-
-        {{-- BACK --}}
 
         <a
             href="{{ route('admin.recipes.index') }}"
-            class="back-link"
+            class="active"
         >
-            ← Kembali ke Semua Resep
+
+            <span class="nav-icon">
+                ≡
+            </span>
+
+            <span>
+                Semua Resep
+            </span>
+
         </a>
 
 
-        {{-- SUCCESS --}}
+        <a href="{{ route('recipes.create') }}">
 
-        @if(session('success'))
+            <span class="nav-icon">
+                +
+            </span>
 
-            <div class="success">
+            <span>
+                Tambah Resep
+            </span>
 
-                {{ session('success') }}
+        </a>
+
+
+        <a href="{{ route('admin.users.index') }}">
+
+            <span class="nav-icon">
+                ○
+            </span>
+
+            <span>
+                Data User
+            </span>
+
+        </a>
+
+
+        <a href="{{ route('recipes.index') }}">
+
+            <span class="nav-icon">
+                ↗
+            </span>
+
+            <span>
+                Lihat Website
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+
+        <div class="admin-user">
+
+
+            <div class="avatar">
+
+                {{ strtoupper(
+                    substr(
+                        auth()->user()->name,
+                        0,
+                        1
+                    )
+                ) }}
 
             </div>
 
-        @endif
 
+            <div class="admin-user-info">
 
-        {{-- RECIPE TITLE --}}
-
-        <div class="recipe-heading">
-
-
-            <h2>
-                {{ $recipe->title }}
-            </h2>
-
-
-            <p class="recipe-author">
-
-                Dibuat oleh
                 <strong>
-                    {{ $recipe->user->name ?? 'User' }}
+                    {{ auth()->user()->name }}
                 </strong>
 
+
+                <span>
+                    Administrator
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{{ route('logout') }}"
+        >
+
+            @csrf
+
+
+            <button
+                type="submit"
+                class="logout"
+            >
+                Keluar dari akun
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<main class="main">
+
+
+    <header class="top">
+
+
+        <div>
+
+            <div class="eyebrow">
+                ResepKu / Admin / Detail
+            </div>
+
+
+            <h1>
+                Detail Resep
+            </h1>
+
+
+            <p>
+                Informasi lengkap resep yang dipilih.
             </p>
 
+        </div>
+
+
+        <div class="date">
+
+            {{ now()->translatedFormat('l, d F Y') }}
 
         </div>
 
 
-        {{-- RECIPE HERO --}}
-
-        <div class="recipe-hero">
+    </header>
 
 
-            {{-- IMAGE --}}
-
-            <div>
-
-
-                @if($recipe->image)
-
-                    <img
-                        src="{{ $recipe->imageUrl() }}"
-                        alt="{{ $recipe->title }}"
-                        class="recipe-image"
-                    >
-
-                @else
-
-                    <div class="no-image">
-                        Tidak ada foto resep
-                    </div>
-
-                @endif
+    <a
+        href="{{ route('admin.recipes.index') }}"
+        class="back-link"
+    >
+        ← Kembali ke Semua Resep
+    </a>
 
 
-            </div>
+    @if(session('success'))
+
+        <div class="success">
+
+            {{ session('success') }}
+
+        </div>
+
+    @endif
 
 
-            {{-- QUICK INFO --}}
-
-            <div class="quick-info">
+    <div class="recipe-heading">
 
 
-                <div class="quick-info-row">
+        <h2>
+            {{ $recipe->title }}
+        </h2>
 
 
-                    <div class="quick-info-label">
-                        Pembuat
-                    </div>
+        <p class="recipe-author">
+
+            Dibuat oleh
+
+            <strong>
+                {{ $recipe->user->name ?? 'User' }}
+            </strong>
+
+        </p>
 
 
-                    <div class="quick-info-value">
-                        {{ $recipe->user->name ?? 'User' }}
-                    </div>
+    </div>
 
 
+
+    <div class="recipe-hero">
+
+
+        <div>
+
+
+            @if($recipe->image)
+
+                <img
+                    src="{{ $recipe->imageUrl() }}"
+                    alt="{{ $recipe->title }}"
+                    class="recipe-image"
+                >
+
+            @else
+
+                <div class="no-image">
+                    Tidak ada foto resep
                 </div>
 
-
-                <div class="quick-info-row">
-
-
-                    <div class="quick-info-label">
-                        Dibuat
-                    </div>
-
-
-                    <div class="quick-info-value">
-
-                        {{ $recipe->created_at?->format('d M Y') ?? '-' }}
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="quick-info-row">
-
-
-                    <div class="quick-info-label">
-                        Terakhir diperbarui
-                    </div>
-
-
-                    <div class="quick-info-value">
-
-                        {{ $recipe->updated_at?->format('d M Y') ?? '-' }}
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
+            @endif
 
 
         </div>
 
 
-        {{-- CONTENT --}}
-
-        <div class="recipe-content">
+        <div class="quick-info">
 
 
-            {{-- RECIPE INFORMATION --}}
+            <div class="quick-info-row">
 
-            <div>
-
-
-                {{-- BAHAN --}}
-
-                <section class="content-section">
+                <div class="quick-info-label">
+                    Pembuat
+                </div>
 
 
-                    <h3 class="section-title">
-                        Bahan-bahan
-                    </h3>
-
-
-                    <div class="ingredients">
-                        {{ $recipe->ingredients }}
-                    </div>
-
-
-                </section>
-
-
-                {{-- LANGKAH --}}
-
-                <section class="content-section">
-
-
-                    <h3 class="section-title">
-                        Langkah-langkah
-                    </h3>
-
-
-                    <div class="steps">
-                        {{ $recipe->steps }}
-                    </div>
-
-
-                </section>
-
+                <div class="quick-info-value">
+                    {{ $recipe->user->name ?? 'User' }}
+                </div>
 
             </div>
 
 
-            {{-- ADMIN ACTION --}}
+            <div class="quick-info-row">
 
-            <aside>
+                <div class="quick-info-label">
+                    Dibuat
+                </div>
+
+
+                <div class="quick-info-value">
+
+                    {{ $recipe->created_at?->format('d M Y') ?? '-' }}
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-info-row">
+
+                <div class="quick-info-label">
+                    Terakhir diperbarui
+                </div>
+
+
+                <div class="quick-info-value">
+
+                    {{ $recipe->updated_at?->format('d M Y') ?? '-' }}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="recipe-content">
+
+
+        <div>
+
+
+            <section class="content-section">
 
 
                 <h3 class="section-title">
-                    Kelola Resep
+                    Bahan-bahan
                 </h3>
 
 
-                <div class="admin-actions">
+                <div class="ingredients">
+
+                    {{ $recipe->ingredients }}
+
+                </div>
 
 
-                    {{-- EDIT --}}
-
-                    <a
-                        href="{{ route(
-                            'admin.recipes.edit',
-                            $recipe
-                        ) }}"
-                        class="action-link"
-                    >
+            </section>
 
 
-                        <div class="action-left">
+            <section class="content-section">
 
 
-                            <div class="action-icon">
-                                ✎
-                            </div>
+                <h3 class="section-title">
+                    Langkah-langkah
+                </h3>
 
 
-                            <div>
+                <div class="steps">
+
+                    {{ $recipe->steps }}
+
+                </div>
 
 
-                                <strong>
-                                    Edit Resep
-                                </strong>
+            </section>
 
 
-                                <span class="action-description">
-                                    Ubah informasi resep
-                                </span>
+        </div>
 
 
-                            </div>
 
+        <aside>
+
+
+            <h3 class="section-title">
+                Kelola Resep
+            </h3>
+
+
+            <div class="admin-actions">
+
+
+                <a
+                    href="{{ route(
+                        'admin.recipes.edit',
+                        $recipe
+                    ) }}"
+                    class="action-link"
+                >
+
+
+                    <div class="action-left">
+
+
+                        <div class="action-icon">
+                            ✎
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Edit Resep
+                            </strong>
+
+
+                            <span class="action-description">
+                                Ubah informasi resep
+                            </span>
 
                         </div>
 
 
-                        <span>
-                            →
-                        </span>
+                    </div>
 
 
-                    </a>
+                    <span>
+                        →
+                    </span>
 
 
-                    {{-- BACK --}}
-
-                    <a
-                        href="{{ route('admin.recipes.index') }}"
-                        class="action-link"
-                    >
+                </a>
 
 
-                        <div class="action-left">
+                <a
+                    href="{{ route('admin.recipes.index') }}"
+                    class="action-link"
+                >
 
 
-                            <div class="action-icon">
-                                ≡
-                            </div>
+                    <div class="action-left">
 
 
-                            <div>
+                        <div class="action-icon">
+                            ≡
+                        </div>
 
 
-                                <strong>
-                                    Semua Resep
-                                </strong>
+                        <div>
+
+                            <strong>
+                                Semua Resep
+                            </strong>
 
 
-                                <span class="action-description">
-                                    Kembali ke koleksi
-                                </span>
-
-
-                            </div>
-
+                            <span class="action-description">
+                                Kembali ke koleksi
+                            </span>
 
                         </div>
 
 
-                        <span>
-                            →
-                        </span>
+                    </div>
 
 
-                    </a>
+                    <span>
+                        →
+                    </span>
 
 
-                    {{-- DELETE --}}
+                </a>
 
-                    <form
-                        method="POST"
-                        action="{{ route(
-                            'admin.recipes.destroy',
-                            $recipe
-                        ) }}"
-                        class="delete-form"
+
+                <form
+                    method="POST"
+                    action="{{ route(
+                        'admin.recipes.destroy',
+                        $recipe
+                    ) }}"
+                    class="delete-form"
+                >
+
+                    @csrf
+
+                    @method('DELETE')
+
+
+                    <button
+                        type="submit"
+                        class="delete-button"
+                        onclick="return confirm('Yakin ingin menghapus resep ini?')"
                     >
 
-                        @csrf
 
-                        @method('DELETE')
-
-
-                        <button
-                            type="submit"
-                            class="delete-button"
-                            onclick="return confirm('Yakin ingin menghapus resep ini?')"
-                        >
+                        <span class="action-left">
 
 
-                            <span class="action-left">
-
-
-                                <span class="action-icon">
-                                    ×
-                                </span>
-
-
-                                <span>
-
-
-                                    <strong>
-                                        Hapus Resep
-                                    </strong>
-
-
-                                    <span class="action-description">
-                                        Hapus permanen dari koleksi
-                                    </span>
-
-
-                                </span>
-
-
+                            <span class="action-icon">
+                                ×
                             </span>
 
 
                             <span>
-                                →
+
+                                <strong>
+                                    Hapus Resep
+                                </strong>
+
+
+                                <span class="action-description">
+                                    Hapus permanen dari koleksi
+                                </span>
+
                             </span>
 
 
-                        </button>
+                        </span>
 
 
-                    </form>
+                        <span>
+                            →
+                        </span>
 
 
-                </div>
+                    </button>
 
 
-            </aside>
+                </form>
 
 
-        </div>
+            </div>
 
 
-        {{-- FOOTER --}}
-
-        <footer>
+        </aside>
 
 
-            <span>
-                © {{ date('Y') }} ResepKu
-            </span>
+    </div>
 
 
-            <span>
-                Culinary Journal · Administrator
-            </span>
+
+    <footer>
 
 
-        </footer>
+        <span>
+            © {{ date('Y') }} ResepKu
+        </span>
 
 
-    </main>
+        <span>
+            Culinary Journal · Administrator
+        </span>
 
+
+    </footer>
+
+
+</main>
 
 </div>
-
 
 </body>
 

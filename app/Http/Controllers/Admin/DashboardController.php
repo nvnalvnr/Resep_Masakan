@@ -16,16 +16,20 @@ class DashboardController extends Controller
         // Total semua pengguna
         $totalUsers = User::count();
 
-        // Ambil 6 resep terbaru
+        // Total resep yang dibuat hari ini
+        $todayRecipes = Recipe::whereDate('created_at', today())->count();
+
+        // 3 resep terbaru
         $latestRecipes = Recipe::with('user')
             ->latest()
-            ->take(6)
+            ->take(3)
             ->get();
 
-        return view('admin.dashboard', [
-            'totalRecipes' => $totalRecipes,
-            'totalUsers' => $totalUsers,
-            'latestRecipes' => $latestRecipes,
-        ]);
+        return view('admin.dashboard', compact(
+            'totalRecipes',
+            'totalUsers',
+            'todayRecipes',
+            'latestRecipes'
+        ));
     }
 }

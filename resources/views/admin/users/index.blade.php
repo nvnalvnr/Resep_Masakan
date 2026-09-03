@@ -4,17 +4,28 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Data User - ResepKu</title>
 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
         rel="stylesheet"
     >
+
 
     <style>
 
@@ -45,45 +56,50 @@
         }
 
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-
         body {
             font-family: "DM Sans", Arial, sans-serif;
+
             background: var(--paper);
+
             color: var(--ink);
+
+            font-size: 14px;
+
+            line-height: 1.6;
         }
 
 
         a {
             color: inherit;
+
             text-decoration: none;
         }
 
 
-        button {
+        button,
+        input {
             font-family: inherit;
         }
 
 
-        /* =====================================================
+        /* =========================
            LAYOUT
-        ====================================================== */
+        ========================== */
 
         .page {
             min-height: 100vh;
 
             display: grid;
 
-            grid-template-columns: 235px 1fr;
+            grid-template-columns:
+                235px
+                minmax(0, 1fr);
         }
 
 
-        /* =====================================================
+        /* =========================
            SIDEBAR
-        ====================================================== */
+        ========================== */
 
         .sidebar {
             background: var(--paper-light);
@@ -91,6 +107,8 @@
             border-right: 1px solid var(--line);
 
             min-height: 100vh;
+
+            height: 100vh;
 
             padding: 30px 22px;
 
@@ -102,7 +120,7 @@
 
             top: 0;
 
-            height: 100vh;
+            z-index: 20;
         }
 
 
@@ -121,6 +139,7 @@
 
         .brand-mark {
             width: 40px;
+
             height: 40px;
 
             background: var(--brown);
@@ -160,19 +179,17 @@
             letter-spacing: 1.5px;
 
             text-transform: uppercase;
-
-            margin-top: 2px;
         }
 
 
         .nav-label {
             color: #968d82;
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
-            letter-spacing: 1.6px;
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
 
@@ -198,13 +215,13 @@
 
             padding: 11px 10px;
 
-            font-size: 12px;
+            font-size: 13px;
 
             color: var(--muted);
 
             border-left: 2px solid transparent;
 
-            transition: .2s ease;
+            transition: .2s;
         }
 
 
@@ -230,14 +247,8 @@
             width: 19px;
 
             text-align: center;
-
-            font-size: 14px;
         }
 
-
-        /* =====================================================
-           SIDEBAR BOTTOM
-        ====================================================== */
 
         .sidebar-bottom {
             margin-top: auto;
@@ -258,8 +269,9 @@
 
 
         .avatar {
-            width: 34px;
-            height: 34px;
+            width: 35px;
+
+            height: 35px;
 
             background: var(--soft-brown);
 
@@ -276,8 +288,6 @@
             font-size: 12px;
 
             font-weight: 700;
-
-            flex-shrink: 0;
         }
 
 
@@ -289,8 +299,6 @@
         .admin-user strong {
             display: block;
 
-            font-size: 11px;
-
             max-width: 125px;
 
             white-space: nowrap;
@@ -298,17 +306,15 @@
             overflow: hidden;
 
             text-overflow: ellipsis;
+
+            font-size: 12px;
         }
 
 
         .admin-user span {
-            display: block;
-
             color: var(--muted);
 
-            font-size: 9px;
-
-            margin-top: 2px;
+            font-size: 10px;
         }
 
 
@@ -321,30 +327,26 @@
 
             border: 1px solid var(--line);
 
-            padding: 9px;
+            padding: 10px;
 
             color: var(--muted);
 
             cursor: pointer;
 
-            font-size: 10px;
-
-            transition: .2s;
+            font-size: 11px;
         }
 
 
         .logout:hover {
             color: #9b3d2d;
 
-            border-color: #c9a397;
-
-            background: #faf0ec;
+            background: var(--soft-red);
         }
 
 
-        /* =====================================================
+        /* =========================
            MAIN
-        ====================================================== */
+        ========================== */
 
         .main {
             min-width: 0;
@@ -353,16 +355,14 @@
         }
 
 
-        /* =====================================================
-           HEADER
-        ====================================================== */
-
         .top {
             display: flex;
 
             justify-content: space-between;
 
             align-items: flex-start;
+
+            gap: 20px;
 
             padding-bottom: 27px;
 
@@ -371,7 +371,7 @@
 
 
         .eyebrow {
-            font-size: 9px;
+            font-size: 10px;
 
             text-transform: uppercase;
 
@@ -391,8 +391,6 @@
             font-size: 36px;
 
             font-weight: 500;
-
-            line-height: 1.15;
         }
 
 
@@ -406,9 +404,9 @@
 
 
         .date {
-            font-size: 10px;
-
             color: var(--muted);
+
+            font-size: 11px;
 
             border-bottom: 1px solid var(--brown);
 
@@ -416,14 +414,16 @@
         }
 
 
-        /* =====================================================
+        /* =========================
            INTRO
-        ====================================================== */
+        ========================== */
 
         .intro {
             display: grid;
 
-            grid-template-columns: 1.5fr .8fr;
+            grid-template-columns:
+                minmax(0, 1.5fr)
+                minmax(230px, .8fr);
 
             gap: 30px;
 
@@ -442,9 +442,7 @@
 
             font-weight: 500;
 
-            max-width: 620px;
-
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
 
@@ -468,83 +466,16 @@
         }
 
 
-        /* =====================================================
-           TOP ACTION
-        ====================================================== */
-
-        .top-actions {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            border-top: 1px solid var(--ink);
-
-            border-bottom: 1px solid var(--line);
-
-            padding: 14px 0;
-
-            margin-bottom: 24px;
-        }
-
-
-        .collection-info {
-            color: var(--muted);
-
-            font-size: 10px;
-        }
-
-
-        .collection-info strong {
-            font-family: "Playfair Display", Georgia, serif;
-
-            color: var(--brown);
-
-            font-size: 20px;
-
-            font-weight: 500;
-
-            margin: 0 4px;
-        }
-
-
-        .add-user {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 7px;
-
-            background: var(--brown);
-
-            color: white;
-
-            padding: 10px 14px;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            transition: .2s;
-        }
-
-
-        .add-user:hover {
-            background: var(--terracotta);
-        }
-
-
-        /* =====================================================
+        /* =========================
            ALERT
-        ====================================================== */
+        ========================== */
 
         .alert {
             padding: 13px 15px;
 
             margin-bottom: 20px;
 
-            font-size: 10px;
+            font-size: 11px;
 
             border: 1px solid;
         }
@@ -568,25 +499,218 @@
         }
 
 
-        /* =====================================================
+        /* =========================
+           TOP ACTION
+        ========================== */
+
+        .top-actions {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            border-top: 1px solid var(--ink);
+
+            border-bottom: 1px solid var(--line);
+
+            padding: 14px 0;
+
+            margin-bottom: 18px;
+        }
+
+
+        .collection-info {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        .collection-info strong {
+            color: var(--brown);
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 21px;
+
+            font-weight: 500;
+        }
+
+
+        .add-user {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            background: var(--brown);
+
+            color: white;
+
+            padding: 10px 15px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: .2s;
+        }
+
+
+        .add-user:hover {
+            background: var(--terracotta);
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================== */
+
+        .search-box {
+            display: flex;
+
+            align-items: stretch;
+
+            gap: 8px;
+
+            margin-bottom: 25px;
+
+            padding: 14px;
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+        }
+
+
+        .search-input-wrapper {
+            flex: 1;
+        }
+
+
+        .search-input {
+            width: 100%;
+
+            height: 43px;
+
+            border: 1px solid var(--line);
+
+            background: white;
+
+            color: var(--ink);
+
+            padding: 0 14px;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+
+        .search-input:focus {
+            border-color: var(--brown);
+
+            box-shadow:
+                0 0 0 3px rgba(107,52,36,.08);
+        }
+
+
+        .search-button,
+        .reset-button {
+            height: 43px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 0 18px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        .search-button {
+            background: var(--brown);
+
+            color: white;
+
+            border: 1px solid var(--brown);
+        }
+
+
+        .search-button:hover {
+            background: var(--terracotta);
+
+            border-color: var(--terracotta);
+        }
+
+
+        .reset-button {
+            background: var(--white);
+
+            color: var(--muted);
+
+            border: 1px solid var(--line);
+        }
+
+
+        .reset-button:hover {
+            background: var(--soft-brown);
+
+            color: var(--brown);
+        }
+
+
+        .search-result {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: -10px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .search-result strong {
+            color: var(--brown);
+        }
+
+
+        /* =========================
            SUMMARY
-        ====================================================== */
+        ========================== */
 
         .summary {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
 
             border-top: 1px solid var(--line);
 
             border-bottom: 1px solid var(--line);
 
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
 
         .summary-card {
-            padding: 17px 20px;
+            padding: 18px 20px;
 
             border-right: 1px solid var(--line);
         }
@@ -600,39 +724,35 @@
         .summary-label {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
 
             text-transform: uppercase;
 
             letter-spacing: 1.2px;
-
-            margin-bottom: 7px;
         }
 
 
         .summary-number {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 28px;
+            font-size: 30px;
 
             font-weight: 500;
 
-            color: var(--ink);
+            margin-top: 5px;
         }
 
 
         .summary-description {
             color: var(--muted);
 
-            font-size: 9px;
-
-            margin-top: 3px;
+            font-size: 10px;
         }
 
 
-        /* =====================================================
+        /* =========================
            TABLE
-        ====================================================== */
+        ========================== */
 
         .section-heading {
             display: flex;
@@ -648,7 +768,7 @@
         .section-heading h3 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 23px;
+            font-size: 24px;
 
             font-weight: 500;
         }
@@ -657,7 +777,7 @@
         .section-heading span {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
         }
 
 
@@ -684,7 +804,7 @@
         th {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
 
             font-weight: 700;
 
@@ -694,7 +814,7 @@
 
             text-align: left;
 
-            padding: 13px 15px;
+            padding: 14px 15px;
 
             background: #faf7f0;
 
@@ -703,23 +823,13 @@
 
 
         td {
-            padding: 14px 15px;
+            padding: 15px;
 
             border-bottom: 1px solid #eee8dd;
 
-            font-size: 10px;
+            font-size: 11px;
 
             vertical-align: middle;
-        }
-
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-
-        tbody tr {
-            transition: .2s ease;
         }
 
 
@@ -728,9 +838,27 @@
         }
 
 
-        /* =====================================================
+        .number-column {
+            width: 60px;
+
+            text-align: center;
+        }
+
+
+        .row-number {
+            font-family: "Playfair Display", Georgia, serif;
+
+            color: var(--brown);
+
+            font-size: 15px;
+
+            font-weight: 500;
+        }
+
+
+        /* =========================
            USER
-        ====================================================== */
+        ========================== */
 
         .user-cell {
             display: flex;
@@ -742,9 +870,9 @@
 
 
         .user-avatar {
-            width: 35px;
+            width: 36px;
 
-            height: 35px;
+            height: 36px;
 
             border-radius: 50%;
 
@@ -758,32 +886,23 @@
 
             justify-content: center;
 
-            font-size: 11px;
+            font-size: 12px;
 
             font-weight: 700;
-
-            flex-shrink: 0;
-        }
-
-
-        .user-info {
-            min-width: 0;
         }
 
 
         .user-name {
-            font-size: 11px;
+            font-size: 12px;
 
             font-weight: 700;
-
-            color: var(--ink);
         }
 
 
         .user-email {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
 
             margin-top: 3px;
         }
@@ -800,28 +919,24 @@
 
             padding: 2px 5px;
 
-            font-size: 7px;
+            font-size: 8px;
 
             text-transform: uppercase;
-
-            letter-spacing: .7px;
         }
 
 
-        /* =====================================================
+        /* =========================
            ROLE
-        ====================================================== */
+        ========================== */
 
         .role-badge {
             display: inline-block;
 
-            padding: 5px 8px;
+            padding: 5px 9px;
 
-            font-size: 8px;
+            font-size: 9px;
 
             text-transform: uppercase;
-
-            letter-spacing: .7px;
 
             font-weight: 700;
         }
@@ -841,20 +956,16 @@
         }
 
 
-        /* =====================================================
-           DATE
-        ====================================================== */
-
         .date-text {
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
         }
 
 
-        /* =====================================================
+        /* =========================
            ACTION
-        ====================================================== */
+        ========================== */
 
         .action-group {
             display: flex;
@@ -872,21 +983,21 @@
 
             justify-content: center;
 
-            min-width: 42px;
+            min-width: 46px;
 
-            padding: 7px 9px;
+            padding: 8px 10px;
 
             border: 1px solid var(--line);
 
             background: transparent;
 
-            font-size: 8px;
+            font-size: 9px;
 
             font-weight: 700;
 
-            transition: .2s;
-
             cursor: pointer;
+
+            transition: .2s;
         }
 
 
@@ -901,8 +1012,6 @@
             background: var(--brown);
 
             color: white;
-
-            border-color: var(--brown);
         }
 
 
@@ -910,8 +1019,6 @@
             color: #9b3d2d;
 
             border-color: #d8bdb4;
-
-            background: transparent;
         }
 
 
@@ -919,14 +1026,12 @@
             background: #9b3d2d;
 
             color: white;
-
-            border-color: #9b3d2d;
         }
 
 
-        /* =====================================================
+        /* =========================
            EMPTY
-        ====================================================== */
+        ========================== */
 
         .empty {
             border: 1px dashed #cfc6b9;
@@ -953,7 +1058,7 @@
         .empty h3 {
             font-family: "Playfair Display", Georgia, serif;
 
-            font-size: 22px;
+            font-size: 23px;
 
             font-weight: 500;
 
@@ -964,22 +1069,69 @@
 
 
         .empty p {
-            font-size: 10px;
+            font-size: 11px;
 
             margin-bottom: 15px;
         }
 
 
-        /* =====================================================
+        /* =========================
            PAGINATION
-        ====================================================== */
+        ========================== */
 
         .pagination {
-            margin-top: 24px;
+            margin-top: 28px;
 
             display: flex;
 
             justify-content: center;
+        }
+
+
+        .pagination nav {
+            display: flex;
+
+            justify-content: center;
+        }
+
+
+        .pagination a,
+        .pagination span {
+            min-width: 34px;
+
+            height: 34px;
+
+            padding: 0 9px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid var(--line);
+
+            background: var(--white);
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+
+        .pagination a:hover {
+            color: var(--brown);
+
+            border-color: var(--brown);
+        }
+
+
+        .pagination span[aria-current="page"] {
+            background: var(--brown);
+
+            color: white;
+
+            border-color: var(--brown);
         }
 
 
@@ -990,15 +1142,9 @@
         }
 
 
-        .pagination a,
-        .pagination span {
-            font-size: 9px;
-        }
-
-
-        /* =====================================================
+        /* =========================
            FOOTER
-        ====================================================== */
+        ========================== */
 
         footer {
             border-top: 1px solid var(--line);
@@ -1009,7 +1155,7 @@
 
             color: var(--muted);
 
-            font-size: 9px;
+            font-size: 10px;
 
             display: flex;
 
@@ -1017,29 +1163,15 @@
         }
 
 
-        /* =====================================================
+        /* =========================
            RESPONSIVE
-        ====================================================== */
-
-        @media (max-width: 1000px) {
-
-            .main {
-                padding: 30px;
-            }
-
-            .page {
-                grid-template-columns: 200px 1fr;
-            }
-
-        }
-
+        ========================== */
 
         @media (max-width: 850px) {
 
             .page {
                 display: block;
             }
-
 
             .sidebar {
                 position: relative;
@@ -1057,18 +1189,15 @@
                 border-bottom: 1px solid var(--line);
             }
 
-
             .brand {
                 padding-bottom: 15px;
 
                 border-bottom: none;
             }
 
-
             .nav-label {
                 display: none;
             }
-
 
             .nav {
                 flex-direction: row;
@@ -1078,7 +1207,6 @@
                 margin-top: 10px;
             }
 
-
             .nav a {
                 white-space: nowrap;
 
@@ -1087,25 +1215,19 @@
                 border-bottom: 2px solid transparent;
             }
 
-
             .nav a.active {
                 border-left: none;
 
                 border-bottom-color: var(--brown);
             }
 
-
             .sidebar-bottom {
                 display: none;
             }
 
-
             .intro {
                 grid-template-columns: 1fr;
-
-                gap: 18px;
             }
-
 
             .intro-text {
                 justify-self: start;
@@ -1120,11 +1242,13 @@
                 padding: 25px 18px;
             }
 
-
             .top {
                 display: block;
             }
 
+            .top h1 {
+                font-size: 30px;
+            }
 
             .date {
                 display: inline-block;
@@ -1132,26 +1256,26 @@
                 margin-top: 15px;
             }
 
-
-            .top h1 {
-                font-size: 30px;
-            }
-
-
             .top-actions {
                 display: block;
             }
-
 
             .add-user {
                 margin-top: 12px;
             }
 
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-button,
+            .reset-button {
+                width: 100%;
+            }
 
             .summary {
                 grid-template-columns: 1fr;
             }
-
 
             .summary-card {
                 border-right: none;
@@ -1159,11 +1283,9 @@
                 border-bottom: 1px solid var(--line);
             }
 
-
             .summary-card:last-child {
                 border-bottom: none;
             }
-
 
             footer {
                 display: block;
@@ -1184,9 +1306,7 @@
 <div class="page">
 
 
-    {{-- =====================================================
-         SIDEBAR
-    ====================================================== --}}
+    {{-- SIDEBAR --}}
 
     <aside class="sidebar">
 
@@ -1207,7 +1327,6 @@
                     ResepKu
                 </div>
 
-
                 <span class="brand-small">
                     Culinary Journal
                 </span>
@@ -1225,58 +1344,38 @@
         <nav class="nav">
 
 
-            {{-- DASHBOARD --}}
-
-            <a
-                href="{{ route('admin.dashboard') }}"
-            >
+            <a href="{{ route('admin.dashboard') }}">
 
                 <span class="nav-icon">
                     ⌂
                 </span>
 
-                <span>
-                    Dashboard
-                </span>
+                Dashboard
 
             </a>
 
 
-            {{-- SEMUA RESEP --}}
-
-            <a
-                href="{{ route('admin.recipes.index') }}"
-            >
+            <a href="{{ route('admin.recipes.index') }}">
 
                 <span class="nav-icon">
                     ≡
                 </span>
 
-                <span>
-                    Semua Resep
-                </span>
+                Semua Resep
 
             </a>
 
 
-            {{-- TAMBAH RESEP --}}
-
-            <a
-                href="{{ route('recipes.create') }}"
-            >
+            <a href="{{ route('recipes.create') }}">
 
                 <span class="nav-icon">
                     +
                 </span>
 
-                <span>
-                    Tambah Resep
-                </span>
+                Tambah Resep
 
             </a>
 
-
-            {{-- DATA USER --}}
 
             <a
                 href="{{ route('admin.users.index') }}"
@@ -1287,34 +1386,24 @@
                     ○
                 </span>
 
-                <span>
-                    Data User
-                </span>
+                Data User
 
             </a>
 
 
-            {{-- WEBSITE --}}
-
-            <a
-                href="{{ route('recipes.index') }}"
-            >
+            <a href="{{ route('recipes.index') }}">
 
                 <span class="nav-icon">
                     ↗
                 </span>
 
-                <span>
-                    Lihat Website
-                </span>
+                Lihat Website
 
             </a>
 
 
         </nav>
 
-
-        {{-- USER ADMIN --}}
 
         <div class="sidebar-bottom">
 
@@ -1341,7 +1430,6 @@
                         {{ auth()->user()->name }}
                     </strong>
 
-
                     <span>
                         Administrator
                     </span>
@@ -1358,7 +1446,6 @@
             >
 
                 @csrf
-
 
                 <button
                     type="submit"
@@ -1377,14 +1464,10 @@
 
 
 
-    {{-- =====================================================
-         MAIN
-    ====================================================== --}}
+    {{-- MAIN --}}
 
     <main class="main">
 
-
-        {{-- HEADER --}}
 
         <header class="top">
 
@@ -1419,8 +1502,6 @@
 
 
 
-        {{-- INTRO --}}
-
         <section class="intro">
 
 
@@ -1446,31 +1527,22 @@
 
 
 
-        {{-- ALERT SUCCESS --}}
-
         @if(session('success'))
 
             <div class="alert alert-success">
 
-                ✓
-
-                {{ session('success') }}
+                ✓ {{ session('success') }}
 
             </div>
 
         @endif
 
 
-
-        {{-- ALERT ERROR --}}
-
         @if(session('error'))
 
             <div class="alert alert-error">
 
-                !
-
-                {{ session('error') }}
+                ! {{ session('error') }}
 
             </div>
 
@@ -1512,84 +1584,129 @@
 
 
 
+        {{-- SEARCH --}}
+
+        <form
+            method="GET"
+            action="{{ route('admin.users.index') }}"
+            class="search-box"
+        >
+
+
+            <div class="search-input-wrapper">
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ request('search') }}"
+                    class="search-input"
+                    placeholder="Cari berdasarkan nama atau email..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+
+                🔍 Cari
+
+            </button>
+
+
+            <a
+                href="{{ route('admin.users.index') }}"
+                class="reset-button"
+            >
+
+                ↻ Reset
+
+            </a>
+
+
+        </form>
+
+
+
+        @if(request('search'))
+
+            <div class="search-result">
+
+                Hasil pencarian:
+
+                <strong>
+                    "{{ request('search') }}"
+                </strong>
+
+                —
+
+                <strong>
+                    {{ $users->total() }}
+                </strong>
+
+                user ditemukan.
+
+            </div>
+
+        @endif
+
+
+
         {{-- SUMMARY --}}
 
         <div class="summary">
 
 
-            {{-- TOTAL --}}
-
             <div class="summary-card">
-
 
                 <div class="summary-label">
                     Total User
                 </div>
 
-
                 <div class="summary-number">
-
                     {{ \App\Models\User::count() }}
-
                 </div>
-
 
                 <div class="summary-description">
                     seluruh akun terdaftar
                 </div>
 
-
             </div>
 
 
-
-            {{-- ADMIN --}}
-
             <div class="summary-card">
-
 
                 <div class="summary-label">
                     Administrator
                 </div>
 
-
                 <div class="summary-number">
-
                     {{ \App\Models\User::where('role', 'admin')->count() }}
-
                 </div>
-
 
                 <div class="summary-description">
                     akun dengan akses admin
                 </div>
 
-
             </div>
 
 
-
-            {{-- USER --}}
-
             <div class="summary-card">
-
 
                 <div class="summary-label">
                     Pengguna
                 </div>
 
-
                 <div class="summary-number">
-
                     {{ \App\Models\User::where('role', 'user')->count() }}
-
                 </div>
-
 
                 <div class="summary-description">
                     akun pengguna biasa
                 </div>
-
 
             </div>
 
@@ -1597,8 +1714,6 @@
         </div>
 
 
-
-        {{-- TABLE HEADER --}}
 
         <div class="section-heading">
 
@@ -1617,8 +1732,6 @@
 
 
 
-        {{-- TABLE --}}
-
         @if($users->count() > 0)
 
 
@@ -1632,17 +1745,27 @@
 
                         <tr>
 
+                            {{-- NOMOR --}}
+
+                            <th class="number-column">
+                                No.
+                            </th>
+
+
                             <th>
                                 Pengguna
                             </th>
+
 
                             <th>
                                 Role
                             </th>
 
+
                             <th>
                                 Bergabung
                             </th>
+
 
                             <th>
                                 Aksi
@@ -1656,13 +1779,29 @@
                     <tbody>
 
 
-                        @foreach($users as $user)
+                        @foreach($users as $index => $user)
 
 
                             <tr>
 
 
-                                {{-- USER --}}
+                                {{-- NOMOR URUT --}}
+
+                                <td class="number-column">
+
+                                    <span class="row-number">
+
+                                        {{ str_pad(
+                                            $users->firstItem() + $index,
+                                            2,
+                                            '0',
+                                            STR_PAD_LEFT
+                                        ) }}
+
+                                    </span>
+
+                                </td>
+
 
                                 <td>
 
@@ -1683,7 +1822,7 @@
                                         </div>
 
 
-                                        <div class="user-info">
+                                        <div>
 
 
                                             <div class="user-name">
@@ -1698,6 +1837,7 @@
                                                     </span>
 
                                                 @endif
+
 
                                             </div>
 
@@ -1718,26 +1858,19 @@
                                 </td>
 
 
-
-                                {{-- ROLE --}}
-
                                 <td>
 
 
                                     @if($user->role === 'admin')
 
                                         <span class="role-badge role-admin">
-
                                             Administrator
-
                                         </span>
 
                                     @else
 
                                         <span class="role-badge role-user">
-
                                             User
-
                                         </span>
 
                                     @endif
@@ -1746,10 +1879,8 @@
                                 </td>
 
 
-
-                                {{-- TANGGAL --}}
-
                                 <td>
+
 
                                     <span class="date-text">
 
@@ -1757,19 +1888,15 @@
 
                                     </span>
 
+
                                 </td>
 
-
-
-                                {{-- AKSI --}}
 
                                 <td>
 
 
                                     <div class="action-group">
 
-
-                                        {{-- EDIT --}}
 
                                         <a
                                             href="{{ route(
@@ -1778,14 +1905,9 @@
                                             ) }}"
                                             class="action-button edit-button"
                                         >
-
                                             Edit
-
                                         </a>
 
-
-
-                                        {{-- HAPUS --}}
 
                                         @if($user->id !== auth()->id())
 
@@ -1796,7 +1918,7 @@
                                                     $user->id
                                                 ) }}"
                                                 method="POST"
-                                                style="margin: 0;"
+                                                style="margin:0;"
                                                 onsubmit="return confirm('Yakin ingin menghapus user ini?')"
                                             >
 
@@ -1809,10 +1931,9 @@
                                                     type="submit"
                                                     class="action-button delete-button"
                                                 >
-
                                                     Hapus
-
                                                 </button>
+
 
                                             </form>
 
@@ -1858,8 +1979,6 @@
         @else
 
 
-            {{-- EMPTY --}}
-
             <div class="empty">
 
 
@@ -1868,24 +1987,46 @@
                 </div>
 
 
-                <h3>
-                    Belum ada pengguna
-                </h3>
+                @if(request('search'))
+
+                    <h3>
+                        User tidak ditemukan
+                    </h3>
 
 
-                <p>
-                    Belum ada akun pengguna yang tersimpan.
-                </p>
+                    <p>
+                        Tidak ada user yang cocok dengan
+                        pencarian "{{ request('search') }}".
+                    </p>
 
 
-                <a
-                    href="{{ route('admin.users.create') }}"
-                    class="add-user"
-                >
+                    <a
+                        href="{{ route('admin.users.index') }}"
+                        class="add-user"
+                    >
+                        ↻ Lihat Semua User
+                    </a>
 
-                    + Tambah User
+                @else
 
-                </a>
+                    <h3>
+                        Belum ada pengguna
+                    </h3>
+
+
+                    <p>
+                        Belum ada akun pengguna yang tersimpan.
+                    </p>
+
+
+                    <a
+                        href="{{ route('admin.users.create') }}"
+                        class="add-user"
+                    >
+                        + Tambah User
+                    </a>
+
+                @endif
 
 
             </div>
@@ -1895,20 +2036,15 @@
 
 
 
-        {{-- FOOTER --}}
-
         <footer>
-
 
             <span>
                 © {{ date('Y') }} ResepKu
             </span>
 
-
             <span>
                 Culinary Journal · Administrator
             </span>
-
 
         </footer>
 

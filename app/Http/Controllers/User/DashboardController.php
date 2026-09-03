@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
         $recipes = Recipe::with('user')
             ->latest()
-            ->take(6)
+            ->take(4)
             ->get();
 
         /*
