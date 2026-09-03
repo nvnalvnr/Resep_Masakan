@@ -62,3 +62,9 @@
  5. kalo semissal orang login terus mau logout harus dikasih jeda 10 detik kalo mau login f
  6. sisanya ada git hub
  
+ ## Kamis, 03 September 
+ 1. nomer di data user ga pakai 0 langsung ke angka
+ 2. tombol delete resep diperbaiki\
+ 3. jika admin atau user  sudah login , di navbar homepage dibuatin tulisan nama 
+  Nama (admin atau user), dan dijadikan dragdown semisal nama login di navbar di klik
+  muncul pilihan dashboard profil dan logout

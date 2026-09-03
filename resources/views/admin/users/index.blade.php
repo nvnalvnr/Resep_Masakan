@@ -1791,13 +1791,13 @@
 
                                     <span class="row-number">
 
-                                        {{ str_pad(
-                                            $users->firstItem() + $index,
-                                            2,
-                                            '0',
-                                            STR_PAD_LEFT
-                                        ) }}
+                                        <td class="number-column">
 
+                                            <span class="row-number">
+                                                {{ $users->firstItem() + $index }}
+                                            </span>
+
+                                        </td>
                                     </span>
 
                                 </td>

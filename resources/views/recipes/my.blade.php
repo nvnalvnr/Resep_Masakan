@@ -429,6 +429,27 @@
 
 
         /* =====================================================
+           SUCCESS MESSAGE
+        ===================================================== */
+
+        .success-message {
+            margin-top: 20px;
+
+            padding: 13px 16px;
+
+            background: var(--soft-green);
+
+            border: 1px solid #c9d2bd;
+
+            color: #53613f;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
            INTRO
         ===================================================== */
 
@@ -878,8 +899,17 @@
 
 
         .recipe-actions a,
+        .recipe-actions form {
+            width: 100%;
+            min-width: 0;
+        }
+
+
+        .recipe-actions a,
         .recipe-actions button {
             min-height: 40px;
+
+            width: 100%;
 
             display: flex;
 
@@ -897,9 +927,27 @@
 
             font-weight: 600;
 
+            line-height: 1;
+
+            text-align: center;
+
             cursor: pointer;
 
-            transition: .2s ease;
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
+
+            appearance: none;
+
+            -webkit-appearance: none;
+        }
+
+
+        .recipe-actions form {
+            margin: 0;
+            padding: 0;
+            display: block;
         }
 
 
@@ -934,16 +982,25 @@
 
 
         .btn-delete {
-            color: #a33b2c;
+            color: #a33b2c !important;
 
-            background: #fffdf8;
+            background: #fffdf8 !important;
+
+            border-color: var(--border) !important;
         }
 
 
         .btn-delete:hover {
-            background: var(--soft-red);
+            color: white !important;
 
-            border-color: #d9b8af;
+            background: #a33b2c !important;
+
+            border-color: #a33b2c !important;
+        }
+
+
+        .btn-delete:active {
+            transform: translateY(1px);
         }
 
 
@@ -1368,6 +1425,13 @@
             }
 
 
+            .success-message {
+                font-size: 12px;
+
+                padding: 12px 13px;
+            }
+
+
             .intro {
                 margin-top: 22px;
             }
@@ -1748,7 +1812,9 @@
     <main class="main">
 
 
-        <!-- HEADER -->
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
         <header class="top">
 
@@ -1780,7 +1846,24 @@
         </header>
 
 
-        <!-- INTRO -->
+        <!-- =================================================
+             SUCCESS MESSAGE
+        ================================================== -->
+
+        @if(session('success'))
+
+            <div class="success-message">
+
+                ✓ {{ session('success') }}
+
+            </div>
+
+        @endif
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
 
         <section class="intro">
 
@@ -1801,7 +1884,9 @@
         </section>
 
 
-        <!-- ACTION BAR -->
+        <!-- =================================================
+             ACTION BAR
+        ================================================== -->
 
         <div class="action-bar">
 
@@ -1828,7 +1913,9 @@
         </div>
 
 
-        <!-- SEARCH -->
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
 
         <form
             method="GET"
@@ -1978,30 +2065,39 @@
                         </div>
 
 
-                        <!-- ACTIONS -->
+                        <!-- =================================================
+                             ACTIONS
+                        ================================================== -->
 
                         <div class="recipe-actions">
 
 
+                            <!-- LIHAT -->
+
                             <a
-                                href="{{ route('recipes.show', $recipe->slug) }}"
+                                href="{{ route('recipes.show', ['slug' => $recipe->slug]) }}"
                                 class="btn-view"
                             >
                                 Lihat
                             </a>
 
 
+                            <!-- EDIT -->
+
                             <a
-                                href="{{ route('recipes.edit', $recipe->slug) }}"
+                                href="{{ route('recipes.edit', ['slug' => $recipe->slug]) }}"
                                 class="btn-edit"
                             >
                                 Edit
                             </a>
 
 
+                            <!-- HAPUS -->
+
                             <form
-                                action="{{ route('recipes.destroy', $recipe->slug) }}"
+                                action="{{ route('recipes.destroy', ['slug' => $recipe->slug]) }}"
                                 method="POST"
+                                class="delete-form"
                                 onsubmit="return confirm('Yakin ingin menghapus resep ini?');"
                             >
 
@@ -2111,7 +2207,7 @@
                     <div class="pagination">
 
 
-                        {{-- PREVIOUS --}}
+                        <!-- PREVIOUS -->
 
                         @if($recipes->onFirstPage())
 
@@ -2145,7 +2241,7 @@
                         @endphp
 
 
-                        {{-- FIRST PAGE --}}
+                        <!-- FIRST PAGE -->
 
                         @if($start > 1)
 
@@ -2168,7 +2264,7 @@
                         @endif
 
 
-                        {{-- PAGE NUMBERS --}}
+                        <!-- PAGE NUMBERS -->
 
                         @for($page = $start; $page <= $end; $page++)
 
@@ -2195,7 +2291,7 @@
                         @endfor
 
 
-                        {{-- LAST PAGE --}}
+                        <!-- LAST PAGE -->
 
                         @if($end < $last)
 
@@ -2218,7 +2314,7 @@
                         @endif
 
 
-                        {{-- NEXT --}}
+                        <!-- NEXT -->
 
                         @if($recipes->hasMorePages())
 
