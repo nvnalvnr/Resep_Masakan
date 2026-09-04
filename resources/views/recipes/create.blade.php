@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
@@ -21,20 +21,22 @@
     <style>
 
         :root {
-            --paper: #f5f1e8;
-            --paper-light: #fbf9f4;
-            --white: #fffdf8;
+            --cream: #f5f0e7;
+            --cream-light: #fbf9f4;
+            --card: #fffdf9;
 
-            --ink: #29231f;
-            --muted: #777067;
+            --brown: #693728;
+            --brown-dark: #4d261c;
+            --terracotta: #ad6040;
 
-            --brown: #6b3424;
-            --terracotta: #a95635;
-            --olive: #5d6947;
+            --text: #2e2723;
+            --muted: #7d746c;
 
-            --line: #ded7ca;
-            --soft-brown: #eee3d8;
-            --soft-green: #e7eadf;
+            --border: #ded6ca;
+            --border-light: #ebe4da;
+
+            --soft-brown: #f1e5dc;
+            --soft-green: #e9ede3;
         }
 
 
@@ -51,9 +53,9 @@
 
 
         body {
-            font-family: "DM Sans", Arial, sans-serif;
-            background: var(--paper);
-            color: var(--ink);
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
             font-size: 14px;
         }
 
@@ -72,7 +74,7 @@
 
 
         /* =====================================================
-           LAYOUT
+           PAGE
         ===================================================== */
 
         .page {
@@ -80,7 +82,7 @@
 
             display: grid;
 
-            grid-template-columns: 240px minmax(0, 1fr);
+            grid-template-columns: 245px minmax(0, 1fr);
         }
 
 
@@ -89,19 +91,17 @@
         ===================================================== */
 
         .sidebar {
-            background: var(--paper-light);
-
-            border-right: 1px solid var(--line);
-
-            min-height: 100vh;
-
-            padding: 30px 22px;
-
             position: sticky;
 
             top: 0;
 
             height: 100vh;
+
+            background: var(--cream-light);
+
+            border-right: 1px solid var(--border);
+
+            padding: 27px 20px;
 
             display: flex;
 
@@ -116,24 +116,24 @@
 
             gap: 11px;
 
-            padding: 5px 7px 31px;
+            padding: 5px 8px 27px;
 
-            border-bottom: 1px solid var(--line);
+            border-bottom: 1px solid var(--border);
         }
 
 
         .brand-mark {
-            width: 40px;
-            height: 40px;
-
-            background: var(--brown);
-
-            color: white;
+            width: 41px;
+            height: 41px;
 
             display: flex;
 
             align-items: center;
             justify-content: center;
+
+            background: var(--brown);
+
+            color: white;
 
             border-radius: 50%;
 
@@ -146,7 +146,7 @@
 
 
         .brand-name {
-            font-family: "Playfair Display", Georgia, serif;
+            font-family: "Playfair Display", serif;
 
             font-size: 22px;
 
@@ -159,30 +159,30 @@
         .brand-small {
             display: block;
 
+            margin-top: 5px;
+
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 9px;
 
-            letter-spacing: 1.5px;
+            letter-spacing: 1.7px;
 
             text-transform: uppercase;
-
-            margin-top: 5px;
         }
 
 
         .nav-label {
-            color: #968d82;
+            margin: 28px 9px 10px;
+
+            color: #988f86;
 
             font-size: 10px;
 
             font-weight: 700;
 
-            letter-spacing: 1.6px;
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
-
-            margin: 28px 9px 11px;
         }
 
 
@@ -191,7 +191,7 @@
 
             flex-direction: column;
 
-            gap: 3px;
+            gap: 4px;
         }
 
 
@@ -200,36 +200,31 @@
 
             align-items: center;
 
-            gap: 11px;
+            gap: 12px;
 
-            padding: 12px 10px;
-
-            font-size: 13px;
+            padding: 12px 11px;
 
             color: var(--muted);
 
-            border-left: 2px solid transparent;
+            font-size: 13px;
 
-            transition:
-                background .2s ease,
-                color .2s ease,
-                border-color .2s ease;
+            border-radius: 5px;
+
+            transition: .2s ease;
         }
 
 
         .nav a:hover {
             color: var(--brown);
 
-            background: #f4eee5;
+            background: #f3ece3;
         }
 
 
         .nav a.active {
             color: var(--brown);
 
-            border-left-color: var(--brown);
-
-            background: #eee5da;
+            background: var(--soft-brown);
 
             font-weight: 700;
         }
@@ -240,14 +235,14 @@
 
             text-align: center;
 
-            font-size: 15px;
+            font-size: 16px;
 
             flex-shrink: 0;
         }
 
 
         /* =====================================================
-           SIDEBAR BOTTOM
+           SIDEBAR USER
         ===================================================== */
 
         .sidebar-bottom {
@@ -256,25 +251,21 @@
 
 
         .admin-user {
-            border-top: 1px solid var(--line);
-
-            padding-top: 19px;
-
             display: flex;
 
             align-items: center;
 
             gap: 10px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid var(--border);
         }
 
 
         .avatar {
-            width: 38px;
-            height: 38px;
-
-            background: var(--soft-brown);
-
-            color: var(--brown);
+            width: 39px;
+            height: 39px;
 
             display: flex;
 
@@ -282,6 +273,10 @@
             justify-content: center;
 
             border-radius: 50%;
+
+            background: var(--soft-brown);
+
+            color: var(--brown);
 
             font-size: 13px;
 
@@ -294,56 +289,56 @@
         .admin-user strong {
             display: block;
 
-            font-size: 12px;
-
-            max-width: 135px;
-
-            white-space: nowrap;
+            max-width: 140px;
 
             overflow: hidden;
 
             text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            font-size: 12px;
         }
 
 
         .admin-user span {
             display: block;
 
+            margin-top: 3px;
+
             color: var(--muted);
 
             font-size: 10px;
-
-            margin-top: 3px;
         }
 
 
         .logout {
-            margin-top: 14px;
-
             width: 100%;
 
-            background: transparent;
-
-            border: 1px solid var(--line);
+            margin-top: 14px;
 
             padding: 10px;
 
+            border: 1px solid var(--border);
+
+            background: transparent;
+
             color: var(--muted);
 
-            cursor: pointer;
-
             font-size: 11px;
+
+            cursor: pointer;
 
             transition: .2s ease;
         }
 
 
         .logout:hover {
+            background: #faf0ec;
+
             color: #9b3d2d;
 
-            border-color: #c9a397;
-
-            background: #faf0ec;
+            border-color: #d7b8ac;
         }
 
 
@@ -354,7 +349,16 @@
         .main {
             min-width: 0;
 
-            padding: 38px 48px 45px;
+            padding: 42px 55px 55px;
+        }
+
+
+        .content {
+            width: 100%;
+
+            max-width: 1040px;
+
+            margin: 0 auto;
         }
 
 
@@ -367,35 +371,35 @@
 
             justify-content: space-between;
 
-            align-items: flex-start;
+            align-items: flex-end;
 
-            padding-bottom: 26px;
+            padding-bottom: 25px;
 
-            border-bottom: 1px solid var(--line);
+            border-bottom: 1px solid var(--border);
         }
 
 
         .eyebrow {
-            font-size: 10px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 2px;
+            margin-bottom: 8px;
 
             color: var(--terracotta);
 
+            font-size: 10px;
+
             font-weight: 700;
 
-            margin-bottom: 9px;
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
 
         .top h1 {
-            font-family: "Playfair Display", Georgia, serif;
+            font-family: "Playfair Display", serif;
 
-            font-size: 36px;
+            font-size: 38px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             line-height: 1.15;
         }
@@ -413,49 +417,47 @@
 
 
         .date {
-            font-size: 11px;
+            padding-bottom: 7px;
 
             color: var(--muted);
 
             border-bottom: 1px solid var(--brown);
 
-            padding-bottom: 6px;
+            font-size: 11px;
 
             white-space: nowrap;
         }
 
 
         /* =====================================================
-           FORM INTRO
+           INTRO
         ===================================================== */
 
         .intro {
             display: grid;
 
-            grid-template-columns: 1.5fr .8fr;
+            grid-template-columns: 1.3fr .7fr;
 
-            gap: 35px;
+            gap: 45px;
 
-            margin: 28px 0 30px;
+            padding: 32px 0 29px;
 
-            border-bottom: 1px solid var(--line);
-
-            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
         }
 
 
-        .intro h2 {
-            font-family: "Playfair Display", Georgia, serif;
+        .intro-title {
+            font-family: "Playfair Display", serif;
 
-            font-size: 27px;
+            font-size: 28px;
 
             font-weight: 500;
 
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
 
-        .intro h2 em {
+        .intro-title em {
             color: var(--terracotta);
 
             font-style: italic;
@@ -463,64 +465,134 @@
 
 
         .intro-text {
+            align-self: center;
+
             color: var(--muted);
 
             font-size: 13px;
 
             line-height: 1.8;
-
-            max-width: 390px;
-
-            justify-self: end;
         }
 
 
         /* =====================================================
-           FORM
+           FORM AREA
         ===================================================== */
 
-        .form-wrapper {
-            max-width: 900px;
+        .form-area {
+            padding-top: 31px;
         }
 
 
         .form-heading {
             display: flex;
 
+            align-items: center;
+
             justify-content: space-between;
 
-            align-items: baseline;
-
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
 
-        .form-heading h3 {
-            font-family: "Playfair Display", Georgia, serif;
+        .form-heading h2 {
+            font-family: "Playfair Display", serif;
 
-            font-size: 23px;
+            font-size: 24px;
 
-            font-weight: 500;
+            font-weight: 600;
         }
 
 
-        .required-note {
+        .required {
             color: var(--muted);
 
             font-size: 11px;
         }
 
 
-        .form-container {
-            background: var(--white);
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
 
-            border: 1px solid var(--line);
+        .form-card {
+            background: var(--card);
 
-            padding: 27px;
+            border: 1px solid var(--border);
 
-            border-radius: 2px;
+            border-radius: 8px;
+
+            overflow: hidden;
         }
 
+
+        .form-section {
+            padding: 27px 30px;
+
+            border-bottom: 1px solid var(--border-light);
+        }
+
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+
+        .section-title {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-number {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            background: var(--soft-brown);
+
+            color: var(--brown);
+
+            border-radius: 50%;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .section-title h3 {
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .section-title p {
+            margin-top: 4px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
 
         .form-group {
             margin-bottom: 24px;
@@ -535,24 +607,24 @@
         label {
             display: block;
 
+            margin-bottom: 8px;
+
             font-size: 12px;
 
             font-weight: 700;
-
-            letter-spacing: .3px;
-
-            margin-bottom: 7px;
         }
 
 
-        .label-description {
+        .label-help {
+            margin-top: -2px;
+
+            margin-bottom: 9px;
+
             color: var(--muted);
 
             font-size: 11px;
 
             line-height: 1.6;
-
-            margin-bottom: 9px;
         }
 
 
@@ -560,35 +632,44 @@
         textarea {
             width: 100%;
 
-            border: 1px solid var(--line);
+            border: 1px solid var(--border);
 
-            background: #fffefb;
+            background: #fffefa;
 
-            color: var(--ink);
-
-            padding: 12px 13px;
-
-            font-size: 13px;
+            color: var(--text);
 
             outline: none;
 
-            border-radius: 0;
-
-            transition: .2s ease;
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
         }
 
 
         input[type="text"] {
-            height: 44px;
+            height: 48px;
+
+            padding: 0 15px;
+
+            border-radius: 5px;
+
+            font-size: 13px;
         }
 
 
         textarea {
-            min-height: 170px;
+            min-height: 190px;
+
+            padding: 14px 15px;
+
+            border-radius: 5px;
 
             resize: vertical;
 
-            line-height: 1.7;
+            line-height: 1.75;
+
+            font-size: 13px;
         }
 
 
@@ -596,7 +677,9 @@
         textarea:focus {
             border-color: var(--terracotta);
 
-            background: #fffdf8;
+            background: white;
+
+            box-shadow: 0 0 0 3px rgba(169, 86, 53, .08);
         }
 
 
@@ -607,93 +690,200 @@
 
 
         /* =====================================================
-           IMAGE
+           RECIPE NAME
         ===================================================== */
 
-        .image-box {
-            border: 1px dashed #cfc6b9;
+        .title-input {
+            font-family: "Playfair Display", serif !important;
 
-            background: #faf7f0;
+            font-size: 18px !important;
 
-            padding: 18px;
+            font-weight: 500;
         }
 
 
-        .image-box input[type="file"] {
-            width: 100%;
+        /* =====================================================
+           TEXTAREA COUNTER / HINT
+        ===================================================== */
 
-            font-size: 12px;
+        .textarea-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 7px;
+
+            color: #999087;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           IMAGE UPLOAD
+        ===================================================== */
+
+        .upload-area {
+            display: grid;
+
+            grid-template-columns: 1fr 220px;
+
+            gap: 20px;
+
+            padding: 19px;
+
+            background: #faf7f1;
+
+            border: 1px dashed #cfc5b7;
+
+            border-radius: 6px;
+        }
+
+
+        .upload-left {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .upload-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 12px;
+
+            background: var(--soft-brown);
+
+            color: var(--brown);
+
+            border-radius: 50%;
+
+            font-size: 18px;
+        }
+
+
+        .upload-left strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: 13px;
+        }
+
+
+        .upload-left p {
+            margin-bottom: 14px;
 
             color: var(--muted);
 
-            cursor: pointer;
+            font-size: 11px;
+
+            line-height: 1.6;
         }
 
 
-        .image-box input[type="file"]::file-selector-button {
+        .file-input-wrapper {
+            position: relative;
+
+            width: fit-content;
+        }
+
+
+        .file-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 10px 14px;
+
             background: var(--brown);
 
             color: white;
 
-            border: none;
+            border-radius: 4px;
 
-            padding: 9px 13px;
+            font-size: 11px;
 
-            margin-right: 10px;
+            font-weight: 700;
 
             cursor: pointer;
 
-            font-family: inherit;
-
-            font-size: 11px;
+            transition: .2s ease;
         }
 
 
-        .image-info {
+        .file-button:hover {
+            background: var(--brown-dark);
+        }
+
+
+        #image {
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+
+            opacity: 0;
+        }
+
+
+        .file-name {
+            margin-top: 9px;
+
             color: var(--muted);
 
             font-size: 10px;
-
-            line-height: 1.6;
-
-            margin-top: 9px;
         }
 
 
-        .image-preview {
+        /* =====================================================
+           IMAGE PREVIEW
+        ===================================================== */
+
+        .preview-box {
             display: none;
 
-            margin-top: 15px;
+            overflow: hidden;
 
-            padding-top: 15px;
+            background: white;
 
-            border-top: 1px solid var(--line);
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
         }
 
 
-        .image-preview-label {
+        .preview-box img {
+            width: 100%;
+
+            height: 145px;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        .preview-caption {
+            padding: 8px 10px;
+
             color: var(--muted);
 
-            font-size: 10px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: 1px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .image-preview img {
-            width: 230px;
-
-            height: 155px;
-
-            object-fit: cover;
-
-            display: block;
-
-            border: 1px solid var(--line);
         }
 
 
@@ -702,24 +892,26 @@
         ===================================================== */
 
         .error-box {
+            margin-bottom: 18px;
+
+            padding: 15px 17px;
+
             background: #faf0ec;
 
             border: 1px solid #dec1b5;
 
-            padding: 14px 16px;
-
-            margin-bottom: 20px;
+            border-radius: 5px;
         }
 
 
         .error-box strong {
             display: block;
 
+            margin-bottom: 7px;
+
             color: #8b3426;
 
             font-size: 12px;
-
-            margin-bottom: 7px;
         }
 
 
@@ -737,83 +929,65 @@
         .field-error {
             display: block;
 
+            margin-top: 6px;
+
             color: #a33b2c;
 
             font-size: 10px;
-
-            margin-top: 6px;
         }
 
 
         /* =====================================================
-           FORM FOOTER
+           FORM ACTION
         ===================================================== */
 
-        .form-footer {
+        .form-actions {
             display: flex;
-
-            justify-content: space-between;
 
             align-items: center;
 
-            border-top: 1px solid var(--line);
+            justify-content: space-between;
 
-            padding-top: 20px;
+            gap: 20px;
 
-            margin-top: 7px;
+            padding: 21px 30px;
+
+            background: #faf7f1;
+
+            border-top: 1px solid var(--border-light);
         }
 
 
-        .form-footer-note {
+        .action-note {
             color: var(--muted);
 
             font-size: 10px;
+
+            line-height: 1.5;
         }
 
 
-        .form-buttons {
+        .buttons {
             display: flex;
+
+            align-items: center;
 
             gap: 9px;
         }
 
 
-        .btn-cancel {
+        .btn {
             display: inline-flex;
 
             align-items: center;
 
             justify-content: center;
 
-            padding: 10px 16px;
+            min-height: 40px;
 
-            border: 1px solid var(--line);
+            padding: 0 17px;
 
-            background: transparent;
-
-            color: var(--muted);
-
-            font-size: 11px;
-
-            transition: .2s ease;
-        }
-
-
-        .btn-cancel:hover {
-            background: #f4eee5;
-
-            color: var(--brown);
-        }
-
-
-        .btn-submit {
-            border: 1px solid var(--brown);
-
-            background: var(--brown);
-
-            color: white;
-
-            padding: 10px 18px;
+            border-radius: 4px;
 
             font-size: 11px;
 
@@ -825,10 +999,37 @@
         }
 
 
-        .btn-submit:hover {
-            background: #54291d;
+        .btn-cancel {
+            border: 1px solid var(--border);
 
-            border-color: #54291d;
+            background: white;
+
+            color: var(--muted);
+        }
+
+
+        .btn-cancel:hover {
+            color: var(--brown);
+
+            background: #f3ece3;
+        }
+
+
+        .btn-submit {
+            border: 1px solid var(--brown);
+
+            background: var(--brown);
+
+            color: white;
+        }
+
+
+        .btn-submit:hover {
+            background: var(--brown-dark);
+
+            border-color: var(--brown-dark);
+
+            transform: translateY(-1px);
         }
 
 
@@ -837,21 +1038,23 @@
         ===================================================== */
 
         footer {
-            border-top: 1px solid var(--line);
-
-            margin-top: 50px;
-
-            padding-top: 18px;
-
-            color: var(--muted);
-
-            font-size: 11px;
-
             display: flex;
+
+            align-items: center;
 
             justify-content: space-between;
 
             gap: 20px;
+
+            margin-top: 35px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--muted);
+
+            font-size: 10px;
         }
 
 
@@ -862,12 +1065,17 @@
         @media (max-width: 1100px) {
 
             .page {
-                grid-template-columns: 210px minmax(0, 1fr);
+                grid-template-columns: 215px minmax(0, 1fr);
             }
 
 
             .main {
-                padding: 32px;
+                padding: 35px;
+            }
+
+
+            .upload-area {
+                grid-template-columns: 1fr 190px;
             }
 
         }
@@ -893,12 +1101,12 @@
 
                 border-right: none;
 
-                border-bottom: 1px solid var(--line);
+                border-bottom: 1px solid var(--border);
             }
 
 
             .brand {
-                padding-bottom: 16px;
+                padding-bottom: 15px;
 
                 border-bottom: none;
             }
@@ -912,31 +1120,22 @@
             .nav {
                 flex-direction: row;
 
+                gap: 4px;
+
+                margin-top: 8px;
+
                 overflow-x: auto;
-
-                gap: 3px;
-
-                margin-top: 10px;
 
                 padding-bottom: 2px;
             }
 
 
             .nav a {
+                flex-shrink: 0;
+
                 white-space: nowrap;
 
-                border-left: none;
-
-                border-bottom: 2px solid transparent;
-
                 padding: 10px 12px;
-            }
-
-
-            .nav a.active {
-                border-left: none;
-
-                border-bottom-color: var(--brown);
             }
 
 
@@ -948,23 +1147,21 @@
             .intro {
                 grid-template-columns: 1fr;
 
-                gap: 18px;
+                gap: 15px;
             }
 
 
             .intro-text {
-                justify-self: start;
-
-                max-width: 520px;
+                max-width: 600px;
             }
 
         }
 
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
             .main {
-                padding: 25px 18px 35px;
+                padding: 27px 17px 35px;
             }
 
 
@@ -974,12 +1171,7 @@
 
 
             .top h1 {
-                font-size: 30px;
-            }
-
-
-            .top p {
-                font-size: 12px;
+                font-size: 31px;
             }
 
 
@@ -991,68 +1183,64 @@
 
 
             .intro {
-                margin-top: 22px;
+                padding: 25px 0;
             }
 
 
-            .intro h2 {
-                font-size: 23px;
+            .intro-title {
+                font-size: 24px;
             }
 
 
-            .intro-text {
-                font-size: 12px;
+            .form-area {
+                padding-top: 25px;
             }
 
 
-            .form-container {
-                padding: 19px;
+            .form-heading h2 {
+                font-size: 21px;
             }
 
 
-            label {
-                font-size: 12px;
+            .form-section {
+                padding: 22px 18px;
             }
 
 
-            .label-description {
-                font-size: 10px;
-            }
-
-
-            input[type="text"],
-            textarea {
-                font-size: 13px;
-            }
-
-
-            .form-footer {
+            .form-actions {
                 display: block;
+
+                padding: 19px 18px;
             }
 
 
-            .form-footer-note {
+            .action-note {
                 margin-bottom: 14px;
             }
 
 
-            .form-buttons {
+            .buttons {
                 width: 100%;
             }
 
 
-            .btn-cancel,
-            .btn-submit {
+            .btn {
                 flex: 1;
-
-                text-align: center;
             }
 
 
-            .image-preview img {
-                width: 100%;
+            .upload-area {
+                grid-template-columns: 1fr;
+            }
 
-                height: 190px;
+
+            .preview-box {
+                width: 100%;
+            }
+
+
+            .preview-box img {
+                height: 200px;
             }
 
 
@@ -1070,16 +1258,21 @@
         }
 
 
-        @media (max-width: 380px) {
+        @media (max-width: 400px) {
 
             .main {
-                padding-left: 15px;
-                padding-right: 15px;
+                padding-left: 14px;
+                padding-right: 14px;
             }
 
 
-            .form-container {
-                padding: 16px;
+            .top h1 {
+                font-size: 28px;
+            }
+
+
+            .form-section {
+                padding: 19px 15px;
             }
 
 
@@ -1088,12 +1281,20 @@
 
                 flex-direction: column;
 
-                gap: 5px;
+                gap: 4px;
             }
 
 
-            .btn-cancel,
-            .btn-submit {
+            .form-actions {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+
+            .btn {
+                padding-left: 10px;
+                padding-right: 10px;
+
                 font-size: 10px;
             }
 
@@ -1133,7 +1334,6 @@
                 <div class="brand-name">
                     ResepKu
                 </div>
-
 
                 <span class="brand-small">
                     Culinary Journal
@@ -1300,7 +1500,7 @@
         </nav>
 
 
-        <!-- SIDEBAR BOTTOM -->
+        <!-- SIDEBAR USER -->
 
         <div class="sidebar-bottom">
 
@@ -1348,9 +1548,7 @@
                     type="submit"
                     class="logout"
                 >
-
                     Keluar dari akun
-
                 </button>
 
             </form>
@@ -1368,187 +1566,236 @@
 
     <main class="main">
 
+        <div class="content">
 
-        <!-- HEADER -->
 
-        <header class="top">
+            <!-- HEADER -->
 
+            <header class="top">
 
-            <div>
+                <div>
 
-                <div class="eyebrow">
-                    ResepKu / {{ auth()->user()->role === 'admin' ? 'Admin' : 'User' }}
-                </div>
+                    <div class="eyebrow">
 
-
-                <h1>
-                    Tambah Resep
-                </h1>
-
-
-                <p>
-                    Tambahkan resep baru ke dalam koleksi ResepKu.
-                </p>
-
-            </div>
-
-
-            <div class="date">
-
-                {{ now()->translatedFormat('l, d F Y') }}
-
-            </div>
-
-
-        </header>
-
-
-        <!-- INTRO -->
-
-        <section class="intro">
-
-
-            <h2>
-
-                Bagikan resep masakan
-                <em>favoritmu</em>
-                ke dalam koleksi.
-
-            </h2>
-
-
-            <p class="intro-text">
-
-                Lengkapi nama resep, bahan-bahan, langkah memasak,
-                dan foto agar resep mudah dibaca dan ditemukan kembali.
-
-            </p>
-
-
-        </section>
-
-
-        <!-- FORM -->
-
-        <div class="form-wrapper">
-
-
-            <div class="form-heading">
-
-
-                <h3>
-                    Informasi Resep
-                </h3>
-
-
-                <span class="required-note">
-                    * Wajib diisi
-                </span>
-
-
-            </div>
-
-
-            <!-- ERROR -->
-
-            @if ($errors->any())
-
-                <div class="error-box">
-
-
-                    <strong>
-                        Periksa kembali data yang dimasukkan.
-                    </strong>
-
-
-                    <ul>
-
-                        @foreach ($errors->all() as $error)
-
-                            <li>
-                                {{ $error }}
-                            </li>
-
-                        @endforeach
-
-                    </ul>
-
-
-                </div>
-
-            @endif
-
-
-            <div class="form-container">
-
-
-                <form
-                    action="{{ route('recipes.store') }}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                >
-
-                    @csrf
-
-
-                    <!-- NAMA RESEP -->
-
-                    <div class="form-group">
-
-
-                        <label for="title">
-                            Nama Resep *
-                        </label>
-
-
-                        <div class="label-description">
-                            Gunakan nama yang singkat dan mudah dikenali.
-                        </div>
-
-
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value="{{ old('title') }}"
-                            placeholder="Contoh: Japanese Potato Salad"
-                            required
-                        >
-
-
-                        @error('title')
-
-                            <span class="field-error">
-                                {{ $message }}
-                            </span>
-
-                        @enderror
-
+                        ResepKu /
+                        {{ auth()->user()->role === 'admin'
+                            ? 'Admin'
+                            : 'User'
+                        }}
 
                     </div>
 
 
-                    <!-- BAHAN -->
-
-                    <div class="form-group">
-
-
-                        <label for="ingredients">
-                            Bahan-bahan *
-                        </label>
+                    <h1>
+                        Tambah Resep
+                    </h1>
 
 
-                        <div class="label-description">
-                            Tulis bahan beserta takarannya. Sebaiknya satu bahan per baris.
+                    <p>
+                        Buat dan bagikan resep baru ke koleksi ResepKu.
+                    </p>
+
+                </div>
+
+
+                <div class="date">
+
+                    {{ now()->translatedFormat('l, d F Y') }}
+
+                </div>
+
+            </header>
+
+
+            <!-- INTRO -->
+
+            <section class="intro">
+
+                <h2 class="intro-title">
+
+                    Ceritakan resep
+                    <em>favoritmu</em>
+                    di sini.
+
+                </h2>
+
+
+                <p class="intro-text">
+
+                    Isi informasi resep dengan lengkap mulai dari nama,
+                    bahan, langkah memasak, hingga foto. Semakin lengkap
+                    resepnya, semakin mudah untuk dibuat kembali.
+
+                </p>
+
+            </section>
+
+
+            <!-- FORM AREA -->
+
+            <section class="form-area">
+
+
+                <div class="form-heading">
+
+                    <h2>
+                        Informasi Resep
+                    </h2>
+
+
+                    <span class="required">
+                        * Wajib diisi
+                    </span>
+
+                </div>
+
+
+                <!-- ERROR -->
+
+                @if ($errors->any())
+
+                    <div class="error-box">
+
+                        <strong>
+                            Periksa kembali data yang dimasukkan.
+                        </strong>
+
+
+                        <ul>
+
+                            @foreach ($errors->all() as $error)
+
+                                <li>
+                                    {{ $error }}
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+
+                @endif
+
+
+                <!-- FORM CARD -->
+
+                <div class="form-card">
+
+
+                    <form
+                        action="{{ route('recipes.store') }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+
+                        @csrf
+
+
+                        <!-- =================================================
+                             SECTION 01
+                        ================================================== -->
+
+                        <div class="form-section">
+
+
+                            <div class="section-title">
+
+                                <div class="section-number">
+                                    01
+                                </div>
+
+
+                                <div>
+
+                                    <h3>
+                                        Nama Resep
+                                    </h3>
+
+                                    <p>
+                                        Berikan nama yang singkat dan mudah dikenali.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+
+                                <label for="title">
+                                    Nama resep *
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    class="title-input"
+                                    value="{{ old('title') }}"
+                                    placeholder="Contoh: Japanese Potato Salad"
+                                    required
+                                >
+
+
+                                @error('title')
+
+                                    <span class="field-error">
+                                        {{ $message }}
+                                    </span>
+
+                                @enderror
+
+
+                            </div>
+
+
                         </div>
 
 
-                        <textarea
-                            id="ingredients"
-                            name="ingredients"
-                            placeholder="Contoh:
+                        <!-- =================================================
+                             SECTION 02
+                        ================================================== -->
 
-500 gram kentang
+                        <div class="form-section">
+
+
+                            <div class="section-title">
+
+                                <div class="section-number">
+                                    02
+                                </div>
+
+
+                                <div>
+
+                                    <h3>
+                                        Bahan-bahan
+                                    </h3>
+
+                                    <p>
+                                        Tulis setiap bahan beserta takarannya, satu bahan per baris.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+
+                                <label for="ingredients">
+                                    Daftar bahan *
+                                </label>
+
+
+                                <textarea
+                                    id="ingredients"
+                                    name="ingredients"
+                                    placeholder="500 gram kentang
 1 buah wortel
 1 buah mentimun
 2 butir telur
@@ -1557,43 +1804,79 @@
 1 sdt gula
 ½ sdt garam
 ¼ sdt lada hitam"
-                            required
-                        >{{ old('ingredients') }}</textarea>
+                                    required
+                                >{{ old('ingredients') }}</textarea>
 
 
-                        @error('ingredients')
+                                <div class="textarea-bottom">
 
-                            <span class="field-error">
-                                {{ $message }}
-                            </span>
+                                    <span>
+                                        Satu bahan per baris
+                                    </span>
 
-                        @enderror
+                                    <span>
+                                        Gunakan takaran yang jelas
+                                    </span>
 
-
-                    </div>
-
-
-                    <!-- LANGKAH -->
-
-                    <div class="form-group">
+                                </div>
 
 
-                        <label for="steps">
-                            Langkah-langkah *
-                        </label>
+                                @error('ingredients')
+
+                                    <span class="field-error">
+                                        {{ $message }}
+                                    </span>
+
+                                @enderror
 
 
-                        <div class="label-description">
-                            Jelaskan proses memasak secara berurutan dari awal sampai selesai.
+                            </div>
+
+
                         </div>
 
 
-                        <textarea
-                            id="steps"
-                            name="steps"
-                            placeholder="Contoh:
+                        <!-- =================================================
+                             SECTION 03
+                        ================================================== -->
 
-1. Kupas kentang lalu potong menjadi beberapa bagian.
+                        <div class="form-section">
+
+
+                            <div class="section-title">
+
+                                <div class="section-number">
+                                    03
+                                </div>
+
+
+                                <div>
+
+                                    <h3>
+                                        Langkah Memasak
+                                    </h3>
+
+                                    <p>
+                                        Jelaskan proses memasak secara berurutan dari awal sampai selesai.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+
+                                <label for="steps">
+                                    Cara memasak *
+                                </label>
+
+
+                                <textarea
+                                    id="steps"
+                                    name="steps"
+                                    placeholder="1. Kupas kentang lalu potong menjadi beberapa bagian.
 2. Rebus kentang sampai empuk.
 3. Rebus telur sampai matang.
 4. Iris tipis mentimun dan peras airnya.
@@ -1603,73 +1886,30 @@
 8. Masukkan wortel, mentimun, telur, dan bahan lainnya.
 9. Tambahkan mayones lalu aduk rata.
 10. Simpan di kulkas sebelum disajikan."
-                            required
-                        >{{ old('steps') }}</textarea>
+                                    required
+                                >{{ old('steps') }}</textarea>
 
 
-                        @error('steps')
+                                <div class="textarea-bottom">
 
-                            <span class="field-error">
-                                {{ $message }}
-                            </span>
+                                    <span>
+                                        Gunakan nomor untuk setiap langkah
+                                    </span>
 
-                        @enderror
+                                    <span>
+                                        Jelaskan dengan urutan yang jelas
+                                    </span>
 
-
-                    </div>
-
-
-                    <!-- FOTO -->
-
-                    <div class="form-group">
-
-
-                        <label for="image">
-                            Foto Resep
-                        </label>
-
-
-                        <div class="label-description">
-                            Foto akan membuat resep lebih menarik. Bagian ini boleh dikosongkan.
-                        </div>
-
-
-                        <div class="image-box">
-
-
-                            <input
-                                type="file"
-                                id="image"
-                                name="image"
-                                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-                            >
-
-
-                            <div class="image-info">
-
-                                Format yang didukung:
-                                JPG, JPEG, PNG, WEBP.
-                                Maksimal ukuran 2 MB.
-
-                            </div>
-
-
-                            <div
-                                class="image-preview"
-                                id="imagePreview"
-                            >
-
-
-                                <div class="image-preview-label">
-                                    Preview foto
                                 </div>
 
 
-                                <img
-                                    id="previewImage"
-                                    src=""
-                                    alt="Preview foto resep"
-                                >
+                                @error('steps')
+
+                                    <span class="field-error">
+                                        {{ $message }}
+                                    </span>
+
+                                @enderror
 
 
                             </div>
@@ -1678,100 +1918,218 @@
                         </div>
 
 
-                        @error('image')
+                        <!-- =================================================
+                             SECTION 04
+                        ================================================== -->
 
-                            <span class="field-error">
-                                {{ $message }}
-                            </span>
-
-                        @enderror
+                        <div class="form-section">
 
 
-                    </div>
+                            <div class="section-title">
+
+                                <div class="section-number">
+                                    04
+                                </div>
 
 
-                    <!-- FOOTER FORM -->
+                                <div>
 
-                    <div class="form-footer">
+                                    <h3>
+                                        Foto Resep
+                                    </h3>
+
+                                    <p>
+                                        Tambahkan foto makanan agar resep terlihat lebih menarik.
+                                    </p>
+
+                                </div>
+
+                            </div>
 
 
-                        <div class="form-footer-note">
+                            <div class="form-group">
 
-                            Pastikan semua informasi resep sudah benar.
+
+                                <label for="image">
+                                    Foto makanan
+                                </label>
+
+
+                                <div class="upload-area">
+
+
+                                    <div class="upload-left">
+
+
+                                        <div class="upload-icon">
+                                            +
+                                        </div>
+
+
+                                        <strong>
+                                            Tambahkan foto resep
+                                        </strong>
+
+
+                                        <p>
+                                            Pilih foto makanan dengan kualitas yang jelas.
+                                            Format JPG, JPEG, PNG, atau WEBP dengan ukuran maksimal 2 MB.
+                                        </p>
+
+
+                                        <div class="file-input-wrapper">
+
+
+                                            <label
+                                                for="image"
+                                                class="file-button"
+                                            >
+                                                Pilih Foto
+                                            </label>
+
+
+                                            <input
+                                                type="file"
+                                                id="image"
+                                                name="image"
+                                                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                                            >
+
+
+                                        </div>
+
+
+                                        <div
+                                            class="file-name"
+                                            id="fileName"
+                                        >
+                                            Belum ada foto dipilih
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div
+                                        class="preview-box"
+                                        id="imagePreview"
+                                    >
+
+                                        <img
+                                            id="previewImage"
+                                            src=""
+                                            alt="Preview foto resep"
+                                        >
+
+
+                                        <div class="preview-caption">
+                                            Preview foto
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                @error('image')
+
+                                    <span class="field-error">
+                                        {{ $message }}
+                                    </span>
+
+                                @enderror
+
+
+                            </div>
+
 
                         </div>
 
 
-                        <div class="form-buttons">
+                        <!-- =================================================
+                             ACTION
+                        ================================================== -->
+
+                        <div class="form-actions">
 
 
-                            @if(auth()->user()->role === 'admin')
+                            <div class="action-note">
 
-                                <a
-                                    href="{{ route('admin.dashboard') }}"
-                                    class="btn-cancel"
+                                Pastikan informasi resep sudah benar<br>
+                                sebelum menyimpannya.
+
+                            </div>
+
+
+                            <div class="buttons">
+
+
+                                @if(auth()->user()->role === 'admin')
+
+                                    <a
+                                        href="{{ route('admin.dashboard') }}"
+                                        class="btn btn-cancel"
+                                    >
+                                        Batal
+                                    </a>
+
+                                @else
+
+                                    <a
+                                        href="{{ route('user.dashboard') }}"
+                                        class="btn btn-cancel"
+                                    >
+                                        Batal
+                                    </a>
+
+                                @endif
+
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-submit"
                                 >
-                                    Batal
-                                </a>
-
-                            @else
-
-                                <a
-                                    href="{{ route('user.dashboard') }}"
-                                    class="btn-cancel"
-                                >
-                                    Batal
-                                </a>
-
-                            @endif
+                                    Simpan Resep →
+                                </button>
 
 
-                            <button
-                                type="submit"
-                                class="btn-submit"
-                            >
-
-                                Simpan Resep →
-
-                            </button>
+                            </div>
 
 
                         </div>
 
 
-                    </div>
+                    </form>
 
 
-                </form>
+                </div>
 
 
-            </div>
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer>
+
+                <span>
+                    © {{ date('Y') }} ResepKu
+                </span>
+
+
+                <span>
+                    Culinary Journal ·
+                    {{ auth()->user()->role === 'admin'
+                        ? 'Administrator'
+                        : 'Member'
+                    }}
+                </span>
+
+            </footer>
 
 
         </div>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-
-            <span>
-                © {{ date('Y') }} ResepKu
-            </span>
-
-
-            <span>
-                Culinary Journal ·
-                {{ auth()->user()->role === 'admin'
-                    ? 'Administrator'
-                    : 'Member'
-                }}
-            </span>
-
-
-        </footer>
-
 
     </main>
 
@@ -1780,7 +2138,7 @@
 
 
 <!-- =====================================================
-     PREVIEW GAMBAR
+     IMAGE PREVIEW SCRIPT
 ====================================================== -->
 
 <script>
@@ -1790,6 +2148,8 @@
     const imagePreview = document.getElementById('imagePreview');
 
     const previewImage = document.getElementById('previewImage');
+
+    const fileName = document.getElementById('fileName');
 
 
     if (imageInput) {
@@ -1805,9 +2165,14 @@
 
                 previewImage.src = '';
 
+                fileName.textContent = 'Belum ada foto dipilih';
+
                 return;
 
             }
+
+
+            fileName.textContent = file.name;
 
 
             if (!file.type.startsWith('image/')) {

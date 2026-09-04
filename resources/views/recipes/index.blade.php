@@ -71,7 +71,6 @@
 
             display: flex;
             align-items: center;
-            justify-content: space-between;
 
             padding: 0 7%;
 
@@ -85,16 +84,24 @@
             backdrop-filter: blur(10px);
         }
 
+        /* =========================
+           BRAND / LOGO
+        ========================= */
+
         .brand {
             display: flex;
             align-items: center;
             gap: 10px;
+
             flex-shrink: 0;
+
+            position: relative;
+            z-index: 2;
         }
 
         .brand-icon {
-            width: 38px;
-            height: 38px;
+            width: 41px;
+            height: 41px;
 
             display: flex;
             align-items: center;
@@ -103,11 +110,14 @@
             background: var(--brown);
             color: #fff;
 
-            border-radius: 11px;
+            /* LOGO SEKARANG BULAT */
+            border-radius: 50%;
 
             font-family: 'Playfair Display', serif;
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 700;
+
+            flex-shrink: 0;
         }
 
         .brand-text {
@@ -121,13 +131,25 @@
             color: var(--terracotta);
         }
 
+        /* =========================
+           NAV MENU - TENGAH
+        ========================= */
+
         .nav-menu {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
             display: flex;
             align-items: center;
-            gap: 30px;
+            justify-content: center;
 
-            margin-left: auto;
-            margin-right: 35px;
+            gap: 32px;
+
+            white-space: nowrap;
         }
 
         .nav-menu a {
@@ -151,20 +173,32 @@
             content: "";
 
             position: absolute;
+
             left: 0;
             right: 0;
+
             bottom: -8px;
 
             height: 2px;
 
             background: var(--brown);
+
             border-radius: 10px;
         }
+
+        /* =========================
+           NAV RIGHT
+        ========================= */
 
         .nav-right {
             display: flex;
             align-items: center;
             gap: 12px;
+
+            margin-left: auto;
+
+            position: relative;
+            z-index: 2;
         }
 
         .login-btn {
@@ -277,13 +311,16 @@
             font-size: 11px;
             font-weight: 500;
             color: var(--muted);
+
             margin-top: 2px;
         }
 
         .user-arrow {
             font-size: 12px;
             color: var(--muted);
+
             transition: transform 0.2s ease;
+
             margin-left: 2px;
         }
 
@@ -1169,7 +1206,7 @@
         }
 
         /* =========================
-           RESPONSIVE
+           RESPONSIVE TABLET
         ========================= */
 
         @media (max-width: 1000px) {
@@ -1180,7 +1217,6 @@
 
             .nav-menu {
                 gap: 20px;
-                margin-right: 20px;
             }
 
             .hero {
@@ -1198,6 +1234,10 @@
             }
         }
 
+        /* =========================
+           RESPONSIVE MOBILE
+        ========================= */
+
         @media (max-width: 750px) {
 
             .navbar {
@@ -1213,15 +1253,21 @@
             }
 
             .nav-menu {
+                position: static;
+
                 order: 3;
 
                 width: 100%;
+
+                transform: none;
 
                 justify-content: center;
 
                 margin: 0;
 
                 padding-top: 7px;
+
+                gap: 24px;
             }
 
             .nav-menu a {
@@ -1256,6 +1302,10 @@
                 gap: 40px;
             }
         }
+
+        /* =========================
+           RESPONSIVE SMALL MOBILE
+        ========================= */
 
         @media (max-width: 600px) {
 
@@ -1334,6 +1384,10 @@
             }
         }
 
+        /* =========================
+           RESPONSIVE EXTRA SMALL
+        ========================= */
+
         @media (max-width: 450px) {
 
             .nav-menu {
@@ -1373,6 +1427,8 @@
 
     <header class="navbar">
 
+        <!-- LOGO KIRI -->
+
         <a
             href="{{ route('recipes.index') }}"
             class="brand"
@@ -1389,6 +1445,8 @@
         </a>
 
 
+        <!-- MENU TENGAH -->
+
         <nav class="nav-menu">
 
             <a
@@ -1398,9 +1456,11 @@
                 Beranda
             </a>
 
+
             <a href="#resep">
                 Koleksi Resep
             </a>
+
 
             @auth
 
@@ -1412,6 +1472,8 @@
 
         </nav>
 
+
+        <!-- LOGIN / USER KANAN -->
 
         <div class="nav-right">
 
@@ -1451,6 +1513,8 @@
 
                     </button>
 
+
+                    <!-- DROPDOWN USER -->
 
                     <div
                         class="user-dropdown"
@@ -1515,6 +1579,7 @@
                 >
                     Masuk
                 </a>
+
 
                 <a
                     href="{{ route('register') }}"
@@ -1591,6 +1656,8 @@
         </div>
 
 
+        <!-- HERO IMAGE -->
+
         <div class="hero-card">
 
             <img
@@ -1651,8 +1718,6 @@
             </button>
 
 
-            {{-- RESET HANYA MUNCUL SAAT ADA PENCARIAN --}}
-
             @if(request('search'))
 
                 <a
@@ -1667,8 +1732,6 @@
         </form>
 
 
-        {{-- INFORMASI HASIL PENCARIAN --}}
-
         @if(request('search'))
 
             <div class="search-result-info">
@@ -1680,9 +1743,11 @@
                 </strong>
 
                 — ditemukan
+
                 <strong>
                     {{ $recipes->total() }}
                 </strong>
+
                 resep.
 
             </div>
@@ -1852,7 +1917,7 @@
 
 
             <!-- =========================
-                 CUSTOM PAGINATION
+                 PAGINATION
             ========================= -->
 
             @if($recipes->hasPages())
@@ -1860,8 +1925,6 @@
                 <div class="pagination-wrap">
 
                     <div class="pagination">
-
-                        {{-- PREVIOUS --}}
 
                         @if($recipes->onFirstPage())
 
@@ -1887,8 +1950,6 @@
                             $lastPage = $recipes->lastPage();
                         @endphp
 
-
-                        {{-- NOMOR HALAMAN --}}
 
                         @for($page = 1; $page <= $lastPage; $page++)
 
@@ -1926,8 +1987,6 @@
 
                         @endfor
 
-
-                        {{-- NEXT --}}
 
                         @if($recipes->hasMorePages())
 
@@ -2155,7 +2214,9 @@
             }
 
 
-            /* BUKA / TUTUP DROPDOWN */
+            /* =========================
+               BUKA / TUTUP DROPDOWN
+            ========================= */
 
             userMenuButton.addEventListener('click', function (event) {
 
@@ -2179,7 +2240,9 @@
             });
 
 
-            /* KLIK DI LUAR DROPDOWN */
+            /* =========================
+               KLIK DI LUAR DROPDOWN
+            ========================= */
 
             document.addEventListener('click', function (event) {
 
@@ -2202,7 +2265,9 @@
             });
 
 
-            /* TOMBOL ESC */
+            /* =========================
+               TOMBOL ESC
+            ========================= */
 
             document.addEventListener('keydown', function (event) {
 
