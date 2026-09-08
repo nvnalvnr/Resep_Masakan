@@ -8,7 +8,6 @@
 
     <title>{{ $recipe->title }} | ResepKu</title>
 
-    {{-- GOOGLE FONT --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -45,10 +44,6 @@
             --sans: "Manrope", Arial, sans-serif;
         }
 
-
-        /* =====================================================
-           RESET
-        ====================================================== */
 
         * {
             box-sizing: border-box;
@@ -98,7 +93,7 @@
 
             width: 100%;
 
-            background: rgba(245, 241, 232, .95);
+            background: rgba(245, 241, 232, .96);
 
             border-bottom: 1px solid rgba(107, 52, 36, .12);
 
@@ -114,22 +109,22 @@
 
             margin: auto;
 
-            display: flex;
+            display: grid;
+
+            grid-template-columns: 1fr auto 1fr;
 
             align-items: center;
-
-            justify-content: space-between;
 
             gap: 28px;
         }
 
 
-        /* BRAND */
-
         .brand {
             display: flex;
 
             align-items: center;
+
+            justify-self: start;
 
             gap: 11px;
 
@@ -146,6 +141,8 @@
             align-items: center;
 
             justify-content: center;
+
+            flex-shrink: 0;
 
             border-radius: 50%;
 
@@ -195,7 +192,9 @@
         }
 
 
-        /* NAV */
+        /* =====================================================
+           NAVIGATION
+        ====================================================== */
 
         .nav-menu {
             display: flex;
@@ -206,18 +205,30 @@
 
             gap: 30px;
 
-            margin-left: auto;
+            justify-self: center;
+
+            margin: 0;
         }
 
 
         .nav-link {
             position: relative;
 
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 30px;
+
             color: #756b62;
 
             font-size: 12px;
 
             font-weight: 700;
+
+            white-space: nowrap;
 
             transition: color .2s ease;
         }
@@ -228,15 +239,15 @@
 
             position: absolute;
 
-            left: 0;
-            right: 0;
+            left: 50%;
 
             bottom: -8px;
 
             width: 0;
+
             height: 2px;
 
-            margin: auto;
+            transform: translateX(-50%);
 
             background: var(--terracotta);
 
@@ -256,16 +267,22 @@
         }
 
 
-        /* NAV ACTION */
+        /* =====================================================
+           NAV ACTION
+        ====================================================== */
 
         .nav-actions {
             display: flex;
 
             align-items: center;
 
+            justify-content: flex-end;
+
             gap: 9px;
 
-            flex-shrink: 0;
+            justify-self: end;
+
+            min-width: 0;
         }
 
 
@@ -291,6 +308,8 @@
             font-size: 11px;
 
             font-weight: 700;
+
+            white-space: nowrap;
 
             cursor: pointer;
 
@@ -725,6 +744,7 @@
 
         /* =====================================================
            STATS
+           Digeser sedikit ke tengah
         ====================================================== */
 
         .stats {
@@ -733,6 +753,8 @@
             align-items: stretch;
 
             margin-top: 25px;
+
+            padding-left: 45px;
         }
 
 
@@ -1158,7 +1180,9 @@
         }
 
 
-        /* SIDE MENU */
+        /* =====================================================
+           SIDE MENU
+        ====================================================== */
 
         .side-menu {
             display: flex;
@@ -1316,7 +1340,7 @@
 
 
         /* =====================================================
-           NEW FOOTER
+           FOOTER
         ====================================================== */
 
         .footer {
@@ -1515,7 +1539,9 @@
         @media (max-width: 980px) {
 
             .navbar-inner {
-                gap: 20px;
+                grid-template-columns: auto 1fr auto;
+
+                gap: 18px;
             }
 
 
@@ -1572,7 +1598,18 @@
 
                 min-height: 66px;
 
+                display: flex;
+
+                align-items: center;
+
+                justify-content: space-between;
+
                 gap: 10px;
+            }
+
+
+            .brand {
+                flex-shrink: 0;
             }
 
 
@@ -1598,11 +1635,17 @@
 
 
             .nav-actions {
+                display: flex;
+
+                justify-content: flex-end;
+
                 gap: 6px;
             }
 
 
             .nav-button {
+                min-height: 35px;
+
                 padding: 0 10px;
 
                 font-size: 10px;
@@ -1624,8 +1667,6 @@
                 font-size: 10px;
             }
 
-
-            /* HERO */
 
             .recipe-hero {
                 display: flex;
@@ -1689,8 +1730,12 @@
             }
 
 
+            /* STATS MOBILE */
+
             .stats {
                 margin-top: 21px;
+
+                padding-left: 20px;
             }
 
 
@@ -1717,8 +1762,6 @@
                 font-size: 8px;
             }
 
-
-            /* SAVE */
 
             .action-bar {
                 display: flex;
@@ -1748,8 +1791,6 @@
                 font-size: 10px;
             }
 
-
-            /* CONTENT */
 
             .recipe-content {
                 display: block;
@@ -1782,8 +1823,6 @@
             }
 
 
-            /* INGREDIENTS */
-
             .ingredients-grid {
                 grid-template-columns: 1fr;
             }
@@ -1797,8 +1836,6 @@
                 font-size: 12px;
             }
 
-
-            /* STEPS */
 
             .step {
                 grid-template-columns: 38px minmax(0, 1fr);
@@ -1830,16 +1867,12 @@
             }
 
 
-            /* TIP */
-
             .recipe-tip {
                 margin-top: 30px;
 
                 padding: 18px;
             }
 
-
-            /* SIDE */
 
             .side-column {
                 display: block;
@@ -1857,8 +1890,6 @@
                 margin-top: 14px;
             }
 
-
-            /* FOOTER */
 
             .footer {
                 padding: 45px 22px 22px;
@@ -1957,8 +1988,6 @@
         <div class="navbar-inner">
 
 
-            {{-- BRAND --}}
-
             <a
                 href="{{ route('recipes.index') }}"
                 class="brand"
@@ -1985,8 +2014,6 @@
             </a>
 
 
-
-            {{-- NAVIGATION --}}
 
             <nav class="nav-menu">
 
@@ -2020,8 +2047,6 @@
             </nav>
 
 
-
-            {{-- ACTIONS --}}
 
             <div class="nav-actions">
 
@@ -2092,14 +2117,8 @@
 
 
 
-    {{-- =====================================================
-         MAIN
-    ====================================================== --}}
-
     <main class="page">
 
-
-        {{-- BREADCRUMB --}}
 
         <div class="breadcrumb">
 
@@ -2131,8 +2150,6 @@
 
 
 
-        {{-- SUCCESS --}}
-
         @if(session('success'))
 
             <div class="success-message">
@@ -2149,8 +2166,6 @@
 
         <section class="recipe-hero">
 
-
-            {{-- PHOTO --}}
 
             <div class="photo-area">
 
@@ -2198,8 +2213,6 @@
 
 
 
-            {{-- INFORMATION --}}
-
             <div class="hero-content">
 
 
@@ -2221,8 +2234,6 @@
                 </p>
 
 
-
-                {{-- AUTHOR --}}
 
                 <div class="author-row">
 
@@ -2249,7 +2260,10 @@
 
 
 
-                {{-- STATS --}}
+                {{-- =================================================
+                     STATS
+                     HANYA BAHAN & LANGKAH
+                ================================================== --}}
 
                 <div class="stats">
 
@@ -2305,21 +2319,6 @@
                     </div>
 
 
-
-                    <div class="stat">
-
-                        <div class="stat-value">
-                            •
-                        </div>
-
-
-                        <div class="stat-label">
-                            Rumahan
-                        </div>
-
-                    </div>
-
-
                 </div>
 
             </div>
@@ -2329,7 +2328,7 @@
 
 
         {{-- =================================================
-             SAVE
+             SAVE BAR
         ================================================== --}}
 
         <div class="action-bar">
@@ -2377,14 +2376,10 @@
         <div class="recipe-content">
 
 
-            {{-- MAIN COLUMN --}}
-
             <div class="main-column">
 
 
-                {{-- =================================================
-                     INGREDIENTS
-                ================================================== --}}
+                {{-- BAHAN --}}
 
                 <section
                     id="bahan"
@@ -2457,9 +2452,7 @@
 
 
 
-                {{-- =================================================
-                     STEPS
-                ================================================== --}}
+                {{-- CARA MEMASAK --}}
 
                 <section
                     id="cara-memasak"
@@ -2550,8 +2543,6 @@
 
 
 
-                    {{-- TIP --}}
-
                     <div class="recipe-tip">
 
 
@@ -2584,8 +2575,6 @@
 
             <aside class="side-column">
 
-
-                {{-- NAVIGATION --}}
 
                 <div class="side-card">
 
@@ -2646,8 +2635,6 @@
                 </div>
 
 
-
-                {{-- INFORMATION --}}
 
                 <div class="side-card">
 
@@ -2726,8 +2713,6 @@
 
 
 
-                {{-- ADMIN --}}
-
                 @auth
 
                     @if(auth()->user()->role === 'admin')
@@ -2783,8 +2768,6 @@
             <div class="footer-main">
 
 
-                {{-- FOOTER BRAND --}}
-
                 <div class="footer-brand-area">
 
 
@@ -2810,8 +2793,6 @@
                 </div>
 
 
-
-                {{-- FOOTER LINKS --}}
 
                 <div class="footer-links">
 
@@ -2850,8 +2831,6 @@
             </div>
 
 
-
-            {{-- FOOTER BOTTOM --}}
 
             <div class="footer-bottom">
 

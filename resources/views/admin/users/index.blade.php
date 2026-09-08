@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -58,20 +59,15 @@
 
         body {
             font-family: "DM Sans", Arial, sans-serif;
-
             background: var(--paper);
-
             color: var(--ink);
-
             font-size: 14px;
-
             line-height: 1.6;
         }
 
 
         a {
             color: inherit;
-
             text-decoration: none;
         }
 
@@ -247,6 +243,8 @@
             width: 19px;
 
             text-align: center;
+
+            font-size: 15px;
         }
 
 
@@ -334,6 +332,8 @@
             cursor: pointer;
 
             font-size: 11px;
+
+            transition: .2s;
         }
 
 
@@ -751,7 +751,7 @@
 
 
         /* =========================
-           TABLE
+           TABLE HEADER
         ========================== */
 
         .section-heading {
@@ -780,6 +780,10 @@
             font-size: 10px;
         }
 
+
+        /* =========================
+           TABLE
+        ========================== */
 
         .table-box {
             background: var(--white);
@@ -833,8 +837,18 @@
         }
 
 
+        tbody tr {
+            transition: .2s;
+        }
+
+
         tbody tr:hover {
             background: #fbf7ef;
+        }
+
+
+        tbody tr:last-child td {
+            border-bottom: none;
         }
 
 
@@ -889,6 +903,8 @@
             font-size: 12px;
 
             font-weight: 700;
+
+            flex-shrink: 0;
         }
 
 
@@ -1173,6 +1189,7 @@
                 display: block;
             }
 
+
             .sidebar {
                 position: relative;
 
@@ -1189,15 +1206,18 @@
                 border-bottom: 1px solid var(--line);
             }
 
+
             .brand {
                 padding-bottom: 15px;
 
                 border-bottom: none;
             }
 
+
             .nav-label {
                 display: none;
             }
+
 
             .nav {
                 flex-direction: row;
@@ -1207,6 +1227,7 @@
                 margin-top: 10px;
             }
 
+
             .nav a {
                 white-space: nowrap;
 
@@ -1215,19 +1236,23 @@
                 border-bottom: 2px solid transparent;
             }
 
+
             .nav a.active {
                 border-left: none;
 
                 border-bottom-color: var(--brown);
             }
 
+
             .sidebar-bottom {
                 display: none;
             }
 
+
             .intro {
                 grid-template-columns: 1fr;
             }
+
 
             .intro-text {
                 justify-self: start;
@@ -1242,13 +1267,16 @@
                 padding: 25px 18px;
             }
 
+
             .top {
                 display: block;
             }
 
+
             .top h1 {
                 font-size: 30px;
             }
+
 
             .date {
                 display: inline-block;
@@ -1256,26 +1284,32 @@
                 margin-top: 15px;
             }
 
+
             .top-actions {
                 display: block;
             }
+
 
             .add-user {
                 margin-top: 12px;
             }
 
+
             .search-box {
                 flex-direction: column;
             }
+
 
             .search-button,
             .reset-button {
                 width: 100%;
             }
 
+
             .summary {
                 grid-template-columns: 1fr;
             }
+
 
             .summary-card {
                 border-right: none;
@@ -1283,9 +1317,11 @@
                 border-bottom: 1px solid var(--line);
             }
 
+
             .summary-card:last-child {
                 border-bottom: none;
             }
+
 
             footer {
                 display: block;
@@ -1306,10 +1342,14 @@
 <div class="page">
 
 
-    {{-- SIDEBAR --}}
+    {{-- =====================================================
+         SIDEBAR ADMIN
+    ====================================================== --}}
 
     <aside class="sidebar">
 
+
+        {{-- BRAND --}}
 
         <a
             href="{{ route('admin.dashboard') }}"
@@ -1344,7 +1384,12 @@
         <nav class="nav">
 
 
-            <a href="{{ route('admin.dashboard') }}">
+            {{-- DASHBOARD --}}
+
+            <a
+                href="{{ route('admin.dashboard') }}"
+                class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
+            >
 
                 <span class="nav-icon">
                     ⌂
@@ -1355,7 +1400,12 @@
             </a>
 
 
-            <a href="{{ route('admin.recipes.index') }}">
+            {{-- SEMUA RESEP --}}
+
+            <a
+                href="{{ route('admin.recipes.index') }}"
+                class="{{ request()->routeIs('admin.recipes.*') ? 'active' : '' }}"
+            >
 
                 <span class="nav-icon">
                     ≡
@@ -1366,7 +1416,11 @@
             </a>
 
 
-            <a href="{{ route('recipes.create') }}">
+            {{-- TAMBAH RESEP --}}
+
+            <a
+                href="{{ route('recipes.create') }}"
+            >
 
                 <span class="nav-icon">
                     +
@@ -1377,9 +1431,11 @@
             </a>
 
 
+            {{-- DATA USER --}}
+
             <a
                 href="{{ route('admin.users.index') }}"
-                class="active"
+                class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}"
             >
 
                 <span class="nav-icon">
@@ -1391,7 +1447,11 @@
             </a>
 
 
-            <a href="{{ route('recipes.index') }}">
+            {{-- LIHAT WEBSITE --}}
+
+            <a
+                href="{{ route('recipes.index') }}"
+            >
 
                 <span class="nav-icon">
                     ↗
@@ -1404,6 +1464,8 @@
 
         </nav>
 
+
+        {{-- ADMIN ACCOUNT --}}
 
         <div class="sidebar-bottom">
 
@@ -1440,6 +1502,8 @@
             </div>
 
 
+            {{-- LOGOUT --}}
+
             <form
                 method="POST"
                 action="{{ route('logout') }}"
@@ -1464,10 +1528,14 @@
 
 
 
-    {{-- MAIN --}}
+    {{-- =====================================================
+         MAIN CONTENT
+    ====================================================== --}}
 
     <main class="main">
 
+
+        {{-- HEADER --}}
 
         <header class="top">
 
@@ -1502,6 +1570,8 @@
 
 
 
+        {{-- INTRO --}}
+
         <section class="intro">
 
 
@@ -1527,6 +1597,8 @@
 
 
 
+        {{-- SUCCESS MESSAGE --}}
+
         @if(session('success'))
 
             <div class="alert alert-success">
@@ -1537,6 +1609,9 @@
 
         @endif
 
+
+
+        {{-- ERROR MESSAGE --}}
 
         @if(session('error'))
 
@@ -1550,7 +1625,9 @@
 
 
 
-        {{-- TOP ACTION --}}
+        {{-- =====================================================
+             TOP ACTION
+        ====================================================== --}}
 
         <div class="top-actions">
 
@@ -1568,23 +1645,29 @@
             </div>
 
 
-            <a
-                href="{{ route('admin.users.create') }}"
-                class="add-user"
-            >
+            @if(Route::has('admin.users.create'))
 
-                +
+                <a
+                    href="{{ route('admin.users.create') }}"
+                    class="add-user"
+                >
 
-                Tambah User
+                    +
 
-            </a>
+                    Tambah User
+
+                </a>
+
+            @endif
 
 
         </div>
 
 
 
-        {{-- SEARCH --}}
+        {{-- =====================================================
+             SEARCH
+        ====================================================== --}}
 
         <form
             method="GET"
@@ -1631,6 +1714,8 @@
 
 
 
+        {{-- SEARCH RESULT --}}
+
         @if(request('search'))
 
             <div class="search-result">
@@ -1655,10 +1740,14 @@
 
 
 
-        {{-- SUMMARY --}}
+        {{-- =====================================================
+             SUMMARY
+        ====================================================== --}}
 
         <div class="summary">
 
+
+            {{-- TOTAL --}}
 
             <div class="summary-card">
 
@@ -1677,6 +1766,8 @@
             </div>
 
 
+            {{-- ADMIN --}}
+
             <div class="summary-card">
 
                 <div class="summary-label">
@@ -1693,6 +1784,8 @@
 
             </div>
 
+
+            {{-- USER --}}
 
             <div class="summary-card">
 
@@ -1715,6 +1808,10 @@
 
 
 
+        {{-- =====================================================
+             TABLE TITLE
+        ====================================================== --}}
+
         <div class="section-heading">
 
 
@@ -1732,6 +1829,10 @@
 
 
 
+        {{-- =====================================================
+             USER TABLE
+        ====================================================== --}}
+
         @if($users->count() > 0)
 
 
@@ -1744,8 +1845,6 @@
                     <thead>
 
                         <tr>
-
-                            {{-- NOMOR --}}
 
                             <th class="number-column">
                                 No.
@@ -1785,23 +1884,18 @@
                             <tr>
 
 
-                                {{-- NOMOR URUT --}}
+                                {{-- NOMOR --}}
 
                                 <td class="number-column">
 
                                     <span class="row-number">
-
-                                        <td class="number-column">
-
-                                            <span class="row-number">
-                                                {{ $users->firstItem() + $index }}
-                                            </span>
-
-                                        </td>
+                                        {{ $users->firstItem() + $index }}
                                     </span>
 
                                 </td>
 
+
+                                {{-- PENGGUNA --}}
 
                                 <td>
 
@@ -1858,6 +1952,8 @@
                                 </td>
 
 
+                                {{-- ROLE --}}
+
                                 <td>
 
 
@@ -1879,8 +1975,9 @@
                                 </td>
 
 
-                                <td>
+                                {{-- TANGGAL --}}
 
+                                <td>
 
                                     <span class="date-text">
 
@@ -1888,9 +1985,10 @@
 
                                     </span>
 
-
                                 </td>
 
+
+                                {{-- AKSI --}}
 
                                 <td>
 
@@ -1898,45 +1996,71 @@
                                     <div class="action-group">
 
 
-                                        <a
-                                            href="{{ route(
-                                                'admin.users.edit',
-                                                $user->id
-                                            ) }}"
-                                            class="action-button edit-button"
-                                        >
-                                            Edit
-                                        </a>
+                                        {{-- EDIT --}}
 
+                                        @if(Route::has('admin.users.edit'))
+
+                                            <a
+                                                href="{{ route(
+                                                    'admin.users.edit',
+                                                    $user->id
+                                                ) }}"
+                                                class="action-button edit-button"
+                                            >
+
+                                                Edit
+
+                                            </a>
+
+                                        @endif
+
+
+                                        {{-- HAPUS --}}
 
                                         @if($user->id !== auth()->id())
 
+                                            @if(Route::has('admin.users.destroy'))
 
-                                            <form
-                                                action="{{ route(
-                                                    'admin.users.destroy',
-                                                    $user->id
-                                                ) }}"
-                                                method="POST"
-                                                style="margin:0;"
-                                                onsubmit="return confirm('Yakin ingin menghapus user ini?')"
-                                            >
-
-                                                @csrf
-
-                                                @method('DELETE')
-
-
-                                                <button
-                                                    type="submit"
-                                                    class="action-button delete-button"
+                                                <form
+                                                    action="{{ route(
+                                                        'admin.users.destroy',
+                                                        $user->id
+                                                    ) }}"
+                                                    method="POST"
+                                                    style="margin:0;"
+                                                    onsubmit="return confirm('Yakin ingin menghapus user ini?')"
                                                 >
-                                                    Hapus
-                                                </button>
+
+                                                    @csrf
+
+                                                    @method('DELETE')
 
 
-                                            </form>
+                                                    <button
+                                                        type="submit"
+                                                        class="action-button delete-button"
+                                                    >
 
+                                                        Hapus
+
+                                                    </button>
+
+
+                                                </form>
+
+                                            @endif
+
+                                        @else
+
+                                            <span
+                                                style="
+                                                    font-size: 9px;
+                                                    color: var(--muted);
+                                                "
+                                            >
+                                                Akun aktif
+
+                                            </span>
 
                                         @endif
 
@@ -1963,7 +2087,9 @@
 
 
 
-            {{-- PAGINATION --}}
+            {{-- =================================================
+                 PAGINATION
+            ================================================== --}}
 
             @if($users->hasPages())
 
@@ -1978,6 +2104,10 @@
 
         @else
 
+
+            {{-- =================================================
+                 EMPTY STATE
+            ================================================== --}}
 
             <div class="empty">
 
@@ -1995,8 +2125,10 @@
 
 
                     <p>
+
                         Tidak ada user yang cocok dengan
                         pencarian "{{ request('search') }}".
+
                     </p>
 
 
@@ -2004,7 +2136,9 @@
                         href="{{ route('admin.users.index') }}"
                         class="add-user"
                     >
+
                         ↻ Lihat Semua User
+
                     </a>
 
                 @else
@@ -2019,12 +2153,18 @@
                     </p>
 
 
-                    <a
-                        href="{{ route('admin.users.create') }}"
-                        class="add-user"
-                    >
-                        + Tambah User
-                    </a>
+                    @if(Route::has('admin.users.create'))
+
+                        <a
+                            href="{{ route('admin.users.create') }}"
+                            class="add-user"
+                        >
+
+                            + Tambah User
+
+                        </a>
+
+                    @endif
 
                 @endif
 
@@ -2035,6 +2175,10 @@
         @endif
 
 
+
+        {{-- =====================================================
+             FOOTER
+        ====================================================== --}}
 
         <footer>
 
