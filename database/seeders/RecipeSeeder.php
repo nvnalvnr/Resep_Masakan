@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class RecipeSeeder extends Seeder
 {
@@ -25,7 +24,6 @@ class RecipeSeeder extends Seeder
         Recipe::create([
             'user_id' => $admin->id,
             'title' => 'Nasi Goreng Spesial',
-            'slug' => Str::slug('Nasi Goreng Spesial'),
             'ingredients' => "2 piring nasi putih
 2 butir telur
 3 siung bawang putih
@@ -49,7 +47,6 @@ Minyak untuk menumis",
         Recipe::create([
             'user_id' => $admin->id,
             'title' => 'Pasta Carbonara Creamy',
-            'slug' => Str::slug('Pasta Carbonara Creamy'),
             'ingredients' => "200 gram spaghetti
 100 ml susu cair
 50 gram keju parmesan
@@ -72,7 +69,6 @@ Garam secukupnya",
         Recipe::create([
             'user_id' => $user->id,
             'title' => 'Chicken Katsu Curry',
-            'slug' => Str::slug('Chicken Katsu Curry'),
             'ingredients' => "1 dada ayam
 100 gram tepung terigu
 100 gram tepung panir
@@ -98,7 +94,6 @@ Minyak untuk menggoreng",
         Recipe::create([
             'user_id' => $user->id,
             'title' => 'Beef Teriyaki Rice Bowl',
-            'slug' => Str::slug('Beef Teriyaki Rice Bowl'),
             'ingredients' => "200 gram daging sapi iris tipis
 2 sdm saus teriyaki
 1 sdm kecap manis
@@ -122,7 +117,6 @@ Wijen secukupnya",
         Recipe::create([
             'user_id' => $admin->id,
             'title' => 'Avocado Egg Toast',
-            'slug' => Str::slug('Avocado Egg Toast'),
             'ingredients' => "2 lembar roti gandum
 1 buah alpukat matang
 2 butir telur
@@ -145,7 +139,6 @@ Chili flakes secukupnya
         Recipe::create([
             'user_id' => $user->id,
             'title' => 'Creamy Mie Chili Oil',
-            'slug' => Str::slug('Creamy Mie Chili Oil'),
             'ingredients' => "1 bungkus mie
 1 butir telur
 2 sdm chili oil
@@ -168,7 +161,6 @@ Wijen secukupnya",
         Recipe::create([
             'user_id' => $admin->id,
             'title' => 'Ayam Geprek Sambal Matah',
-            'slug' => Str::slug('Ayam Geprek Sambal Matah'),
             'ingredients' => "1 potong ayam crispy
 5 buah cabai rawit
 3 siung bawang merah

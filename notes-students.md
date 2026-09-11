@@ -6,52 +6,6 @@
 
 ---
 
-## 🐛 Error Seeder — `slug` Tidak Ada Nilai Default
-
-**Kapan ketemu:** Jumat, 11 September 2026, sekitar 08:19
-
-**Error:**
-```
-SQLSTATE[HY000]: General error: 1364 Field 'slug' doesn't have a default value
-```
-Muncul waktu jalanin `php artisan migrate:fresh --seed`, pas seeder
-`RecipeSeeder` coba insert resep pertama ("Nasi Goreng Spesial").
-
-**Penyebab:** `database/seeders/RecipeSeeder.php` — tiap pemanggilan
-`Recipe::create([...])` (ada 7, satu per resep) tidak pernah isi field
-`slug`. Kolom `slug` di tabel `recipes` wajib diisi (`NOT NULL`, tanpa nilai
-default), jadi database tolak insert-nya.
-
-**Kesalahan yang kejadian:** di `RecipeController@store` (tempat user
-nambah resep lewat form), slug selalu dibikin otomatis dari judul pakai
-`Str::slug($title)` sebelum disimpan. Tapi di seeder, langkah ini
-kelewatan — cuma isi `title`, `ingredients`, `steps`, `user_id`, tanpa
-`slug`. Dua tempat yang sama-sama bikin data resep, tapi caranya beda.
-
-**Sudah dibenerin** (oleh review ini) — tiap `Recipe::create()` di
-`RecipeSeeder.php` sekarang ikut isi slug:
-
-```php
-use Illuminate\Support\Str;
-
-Recipe::create([
-    'user_id' => $admin->id,
-    'title' => 'Nasi Goreng Spesial',
-    'slug' => Str::slug('Nasi Goreng Spesial'),
-    'ingredients' => "...",
-    'steps' => "...",
-]);
-```
-
-Diulang buat ketujuh resep di file itu. Sudah dites ulang —
-`php artisan migrate:fresh --seed` jalan lancar, semua 7 resep masuk.
-
-**Yang perlu diinget buat next time:** kalau nambah kolom wajib
-(`NOT NULL` tanpa default) di migration, cek juga semua tempat yang bikin
-data lewat kolom itu — bukan cuma controller, seeder dan factory juga.
-
----
-
 ## 📝 Catatan Kamu
 
 _(jawab tiap pertanyaan, double click di bawahnya buat nulis jawabannya)_
