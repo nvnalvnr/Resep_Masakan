@@ -68,6 +68,8 @@ data lewat kolom itu — bukan cuma controller, seeder dan factory juga.
 
 ---
 
+# Tidak Perlu dikerjakan bawah ini, nanti aja
+
 ## 📝 Catatan Kamu
 
 _(jawab tiap pertanyaan, double click di bawahnya buat nulis jawabannya)_
