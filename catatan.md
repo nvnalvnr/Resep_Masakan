@@ -1,0 +1,85 @@
+## Fitur yang sudah ada
+
+1. LOGIN USER DAN ADMIN
+
+2. CRUD RESEP
+
+3. REGISTERNYA BISA
+
+4. ROLE ADMIN DAN USER MASIH DIGABUNG
+
+5. KOLOM SEARCH BISA
+
+6. PEGINATION SUDAH BISA
+
+## Fitur yang belum dibuat
+
+1. USER DAN ADMIN DASHBOARD
+
+2. ADMIN BISA MENGELOLA SEMUA
+
+3. USER BISA KELOLA DATA SENDIRI DAN SIMPAN RESEP
+
+4. RAPIHKAN TAMPILAN FRONTEND WEBSITE
+
+5. BUAT NAVIGASI BAR , FOOTER DAN SIDEBAR UNTUK DASHBORD ADMIN DAN USER
+
+6. SINGLE POST RESEP MASAKAN DENGAN SLUG
+
+## Kamis, 20 Agustus 2026.
+
+1. tombol searching diperbaiki karena terlalu panjang sama kasih tombol reset
+
+2. Halaman User sama admin tidak konsisten , User tidak bisa utak atik role manajemen cuman bisa CRUD resep masakan aja dan cuman bisa edit resep dia sendiri
+
+3. Resep Saya setelah login user tidak perlu diarahkan ke website homepage tapi nampilin di dashboard di user bagian daftar saya
+
+4. profil, login, register frontendnya diperbaiki
+
+5. buat fitur favoriite atau simpen resep
+
+6. fotonya resep masakan jangan pake url aja tambahin option dimana kita bisa masukin file gambar
+   sendiri
+
+7. profil login user harusnya di sidebar dan tombol logout dibawah profil user
+
+8. Daftar resep dipindahkan ke dashboard
+
+9. Logo di dashboar diperbaiki lagi karena terlalu AI
+
+10. data user kalo bisa admin bisa tambah user dan user gabisa utakatik daftar user
+
+## Jumat, 21 Agustus 2026
+
+1. loginnya diarahkan ke homepage
+
+## Jumat, 28 Agustus 2026
+
+1.  Font digedein
+2.  tambahin fitur search dan reset di resep saya
+3.  perbaiki halama login sesusaikan denga tema
+4.  tambahkan nomer urutan di seluruh tabel dan tambahkan tombol search dan pagination
+5.  kalo semissal orang login terus mau logout harus dikasih jeda 10 detik kalo mau login f
+6.  sisanya ada git hub
+
+## Kamis, 03 September
+
+1.  nomer di data user ga pakai 0 langsung ke angka
+2.  tombol delete resep diperbaiki\
+3.  jika admin atau user sudah login , di navbar homepage dibuatin tulisan nama
+    Nama (admin atau user), dan dijadikan dragdown semisal nama login di navbar di klik
+    muncul pilihan dashboard profil dan logout
+
+## Jumat, 11 September 2026 ( Dari Tutor )
+
+1. ada tulisan p dibawah footer cari tau kenapa salahnya, benerin footernya
+
+2. pas di klik di tombol search apus outline nya.
+
+3. perbaiki seeder yaitu RecipeSeeder karena tadi kakak jalanin php artisan migrate:fresh --seed dia error karena enggak ada slug nya aku tulis di notes-student.md untuk baca cara benerinnya. intinya diganti RecipeSeeder.php pake codingan kakak.
+
+4. Perbaiki lagi UI nya yang masih kebanyakan Icon yang terlalu keliatan kayak AI.
+
+5. Pastikan website Responsive juga jadi biar enak diliat di hp juga.
+
+6. pastikan sidebar pada saat di klik baik itu di dashboard admin atau user bisa di buka sama ditutup ya.
